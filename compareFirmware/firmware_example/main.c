@@ -24,9 +24,12 @@
 #include "msg.h"
 #include "periph/gpio.h"
 #include "periph/adc.h"
+#include "periph/usbdev.h"
 #include "board.h"
 
-#define MAIN_QUEUE_SIZE     (8)
+#define ADC_SAMPLE_LINE 1
+
+#define MAIN_QUEUE_SIZE (8)
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
 
 /* toggles the user LED */
@@ -41,7 +44,7 @@ static int toggle_LED(int argc, char **argv){
 static int read_ADC(int argc, char **argv){
     (void)argc;
     (void)argv;
-    int sample = adc_sample(ADC_LINE(0), ADC_RES_10BIT);
+    int sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
     printf("ADC value: %d\n", sample);
     return 1;
 }
@@ -74,7 +77,7 @@ int main(void)
     gpio_irq_enable(BTN0_PIN);
 
     /* setting up ADC */
-    adc_init(ADC_LINE(0));
+    adc_init(ADC_LINE(ADC_SAMPLE_LINE));
 
     /* initializes the message queue */
     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
