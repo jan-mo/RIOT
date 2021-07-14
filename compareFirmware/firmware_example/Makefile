@@ -10,14 +10,11 @@ USEMODULE += shell_commands
 
 # sensors/devices
 FEATURES_REQUIRED += periph_adc
-FEATURES_REQUIRED += periph_usbdev
 FEATURES_REQUIRED += periph_gpio_irq
 
 # USB Ethernet and gnrc_networking
 GNRC_NETIF_NUMOF := 1
 
-USEMODULE += usbus_cdc_ecm
-USEMODULE += auto_init_usbus
 USEMODULE += gnrc_netdev_default
 USEMODULE += auto_init_gnrc_netif
 USEMODULE += gnrc_ipv6

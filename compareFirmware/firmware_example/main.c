@@ -24,10 +24,9 @@
 #include "msg.h"
 #include "periph/gpio.h"
 #include "periph/adc.h"
-#include "periph/usbdev.h"
 #include "board.h"
 
-#define ADC_SAMPLE_LINE 1
+#define ADC_SAMPLE_LINE 0
 
 #define MAIN_QUEUE_SIZE (8)
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
