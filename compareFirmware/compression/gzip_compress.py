@@ -3,36 +3,61 @@
 import gzip
 import os
 
-board_folder = ['../database/samd20-xpro/bin_files/', '../database/samd21-xpro/bin_files/']
+# list all files in database
+data = os.listdir('../database')
+versions = []
+folders_samd20 = []
+folders_samd21 = []
 
+# create path for samd20 and samd21
+for version in data:
+	if os.path.isdir(os.path.join('../database/' + version)):
+		versions.append(version)
+		folders_samd20.append('../database/' + version + '/samd20-xpro/')
+		folders_samd21.append('../database/' + version + '/samd21-xpro/')
 
-for folder in board_folder:
-	# compress all bin-files in folder bin_files
-	files = os.listdir(folder)
-
+# samd20-xpro
+for i, folder in enumerate(folders_samd20):
 	# compress
-	for file in files:
-		f = open(folder + file, 'rb').read()
-		compress = gzip.compress(f)
+	f = open(folder + versions[i] + '.bin', 'rb').read()
+	compress = gzip.compress(f)
 
-		file_name = file[:-4]
-		name_compress = file_name + '_gzip_compressed'
+	name_compress = versions[i] + '_gzip_compressed'
 
-		f = open('compressed/' + name_compress, 'wb')
-		f.write(compress)
-		f.close()
-
+	f = open('compressed/samd20-xpro/' + name_compress, 'wb')
+	f.write(compress)
+	f.close()
 
 	# decompress
-	for file in files:
+	name_compress = versions[i] + '_gzip_compressed'
+	name_decompress = versions[i] + '_gzip_decompressed.bin'
 
-		file_name = file[:-4]
-		name_compress = file_name + '_gzip_compressed'
-		name_decompress = file_name + '_gzip_decompressed.bin'
+	f = open('compressed/samd20-xpro/' + name_compress, 'rb').read()
+	decompress = gzip.decompress(f)
 
-		f = open('compressed/' + name_compress, 'rb').read()
-		decompress = gzip.decompress(f)
+	f = open('decompressed/samd20-xpro/' + name_decompress, 'wb')
+	f.write(decompress)
+	f.close()
 
-		f = open('decompressed/' + name_decompress, 'wb')
-		f.write(decompress)
-		f.close()
+# samd21-xpro
+for i, folder in enumerate(folders_samd21):
+	# compress
+	f = open(folder + versions[i] + '.bin', 'rb').read()
+	compress = gzip.compress(f)
+
+	name_compress = versions[i] + '_gzip_compressed'
+
+	f = open('compressed/samd21-xpro/' + name_compress, 'wb')
+	f.write(compress)
+	f.close()
+
+	# decompress
+	name_compress = versions[i] + '_gzip_compressed'
+	name_decompress = versions[i] + '_gzip_decompressed.bin'
+
+	f = open('compressed/samd21-xpro/' + name_compress, 'rb').read()
+	decompress = gzip.decompress(f)
+
+	f = open('decompressed/samd21-xpro/' + name_decompress, 'wb')
+	f.write(decompress)
+	f.close()

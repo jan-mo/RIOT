@@ -3,38 +3,61 @@
 import heatshrink2 as hs
 import os
 
-board_folder = ['../database/samd20-xpro/bin_files/', '../database/samd21-xpro/bin_files/']
+# list all files in database
+data = os.listdir('../database')
+versions = []
+folders_samd20 = []
+folders_samd21 = []
 
+# create path for samd20 and samd21
+for version in data:
+	if os.path.isdir(os.path.join('../database/' + version)):
+		versions.append(version)
+		folders_samd20.append('../database/' + version + '/samd20-xpro/')
+		folders_samd21.append('../database/' + version + '/samd21-xpro/')
 
-for folder in board_folder:
-	# compress all bin-files in folder bin_files
-	files = os.listdir(folder)
-
+# samd20-xpro
+for i, folder in enumerate(folders_samd20):
 	# compress
-	for file in files:
-		fin = open(folder + file,'rb').read()
+	f = open(folder + versions[i] + '.bin', 'rb').read()
+	compress = hs.compress(f)
 
-		compress = hs.compress(fin)
+	name_compress = versions[i] + '_heat_compressed'
 
-		file_name = file[:-4]
-		name_compress = file_name + '_heat_compressed'
-
-		fout = open('compressed/' + name_compress, 'wb')
-		fout.write(compress)
-		fout.close()
-
+	f = open('compressed/samd20-xpro/' + name_compress, 'wb')
+	f.write(compress)
+	f.close()
 
 	# decompress
-	for file in files:
-		
-		file_name = file[:-4]
-		name_compress = file_name + '_heat_compressed'
-		name_decompress = file_name + '_heat_decompressed.bin'
+	name_compress = versions[i] + '_heat_compressed'
+	name_decompress = versions[i] + '_heat_decompressed.bin'
 
-		fout = open('compressed/' + name_compress, 'rb').read()
+	f = open('compressed/samd20-xpro/' + name_compress, 'rb').read()
+	decompress = hs.decompress(f)
 
-		decompress = hs.decompress(fout)
+	f = open('decompressed/samd20-xpro/' + name_decompress, 'wb')
+	f.write(decompress)
+	f.close()
 
-		fout = open('decompressed/' + name_decompress, 'wb')
-		fout.write(decompress)
-		fout.close()
+# samd21-xpro
+for i, folder in enumerate(folders_samd21):
+	# compress
+	f = open(folder + versions[i] + '.bin', 'rb').read()
+	compress = hs.compress(f)
+
+	name_compress = versions[i] + '_heat_compressed'
+
+	f = open('compressed/samd21-xpro/' + name_compress, 'wb')
+	f.write(compress)
+	f.close()
+
+	# decompress
+	name_compress = versions[i] + '_heat_compressed'
+	name_decompress = versions[i] + '_heat_decompressed.bin'
+
+	f = open('compressed/samd21-xpro/' + name_compress, 'rb').read()
+	decompress = hs.decompress(f)
+
+	f = open('decompressed/samd21-xpro/' + name_decompress, 'wb')
+	f.write(decompress)
+	f.close()
