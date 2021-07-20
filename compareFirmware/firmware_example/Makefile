@@ -12,7 +12,7 @@ USEMODULE += shell_commands
 FEATURES_REQUIRED += periph_adc
 FEATURES_REQUIRED += periph_gpio_irq
 
-# USB Ethernet and gnrc_networking
+# gnrc_networking
 GNRC_NETIF_NUMOF := 1
 
 USEMODULE += gnrc_netdev_default
@@ -25,10 +25,6 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += ps
 USEMODULE += netstats_l2
 USEMODULE += netstats_ipv6
-
-USB_VID ?= 1234
-USB_PID ?= 33ab
-CFLAGS += -DUSB_CONFIG_VID=0x$(USB_VID) -DUSB_CONFIG_PID=0x$(USB_PID)
 
 
 # This has to be the absolute path to the RIOT base directory:
