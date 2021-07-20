@@ -1,0 +1,13 @@
+diff --git a/compareFirmware/firmware_example/main.c b/compareFirmware/firmware_example/main.c
+index 8389ec7cb2..cd112d95ab 100644
+--- a/compareFirmware/firmware_example/main.c
++++ b/compareFirmware/firmware_example/main.c
+@@ -26,7 +26,7 @@
+ #include "periph/adc.h"
+ #include "board.h"
+ 
+-#define ADC_SAMPLE_LINE 0
++#define ADC_SAMPLE_LINE 1
+ 
+ #define MAIN_QUEUE_SIZE (8)
+ static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
