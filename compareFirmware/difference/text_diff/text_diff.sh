@@ -1,31 +1,71 @@
-echo xxd/obj/both:
+echo Hint: Give both firmwareversions as arguments!
+echo Hint: Uses xxd for \'bin\', objdump for \'elf\' and diff for \'map\'.
+
+echo bin/elf/map/all/clear:
 read command
 
-if [[ $command = xxd ]]; then
-    xxd $1 > out1
-    xxd $2 > out2
+if [ $command = clear ]; then
+    rm diff_bin_samd20 diff_bin_samd21
+    rm diff_elf_samd20 diff_elf_samd21
+    rm diff_map_samd20 diff_map_samd21
+    echo Cleared!
+    exit
+fi
 
-    diff -a out1 out2 > diff_xxd
 
-elif [[ $command = obj ]]; then
-    arm-none-eabi-objdump -d $1 > out1
-    arm-none-eabi-objdump -d $2 > out2
-
-    diff -a out1 out2 > diff_obj
-
-elif [[ $command = both ]]; then
-    xxd $1 > out1
-    xxd $2 > out2
-
-    diff -a out1 out2 > diff_xxd
-
-    arm-none-eabi-objdump -d $1 > out1
-    arm-none-eabi-objdump -d $2 > out2
-
-    diff -a out1 out2 > diff_obj
-
-else
+if [ $command != bin ] && [ $command != elf ] && [ $command != map ] && [ $command != all ]; then
     echo Wrong command!
+    exit
+fi
+
+if [ $command = bin ] || [ $command = all ]; then
+    # samd20-xpro
+    xxd "../../database/${1}/samd20-xpro/${1}.bin" > out1
+    xxd "../../database/${2}/samd20-xpro/${2}.bin" > out2
+
+    diff -a out1 out2 > diff_bin_samd20
+    echo Lines: $(wc -l diff_bin_samd20)
+
+    # samd21-xpro
+    xxd "../../database/${1}/samd21-xpro/${1}.bin" > out1
+    xxd "../../database/${2}/samd21-xpro/${2}.bin" > out2
+
+    diff -a out1 out2 > diff_bin_samd21
+    echo Lines: $(wc -l diff_bin_samd21)
+fi
+
+if [ $command = elf ] || [ $command = all ]; then
+    # samd20-xpro
+    arm-none-eabi-objdump -d "../../database/${1}/samd20-xpro/${1}.elf" > out1
+    arm-none-eabi-objdump -d "../../database/${2}/samd20-xpro/${2}.elf" > out2
+
+    diff -a out1 out2 > diff_elf_samd20
+    echo Lines: $(wc -l diff_elf_samd20)
+
+    # samd21-xpro
+    arm-none-eabi-objdump -d "../../database/${1}/samd20-xpro/${1}.elf" > out1
+    arm-none-eabi-objdump -d "../../database/${2}/samd20-xpro/${2}.elf" > out2
+
+    diff -a out1 out2 > diff_elf_samd21
+    echo Lines: $(wc -l diff_elf_samd21)
+fi 
+
+if [ $command = map ] || [ $command = all ]; then
+    # samd20-xpro
+    out1="../../database/${1}/samd20-xpro/${1}.map"
+    out2="../../database/${2}/samd20-xpro/${2}.map"
+
+    diff -a $out1 $out2 > diff_map_samd20
+    echo Lines: $(wc -l diff_map_samd20)
+
+    # samd21-xpro
+    out1="../../database/${1}/samd21-xpro/${1}.map"
+    out2="../../database/${2}/samd21-xpro/${2}.map"
+
+    diff -a $out1 $out2 > diff_map_samd21
+    echo Lines: $(wc -l diff_map_samd21)
 fi
 
 rm out1 out2
+
+echo Done!
