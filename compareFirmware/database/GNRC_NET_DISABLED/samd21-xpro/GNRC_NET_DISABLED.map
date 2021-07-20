@@ -599,7 +599,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
  .debug_macro   0x0000000000000000      0x114 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
  .debug_line    0x0000000000000000      0x2c1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
- .debug_str     0x0000000000000000     0x7bff /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
+ .debug_str     0x0000000000000000     0x7c00 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
  .ARM.attributes
                 0x0000000000000000       0x32 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/assert.o
@@ -950,7 +950,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6d /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
  .debug_macro   0x0000000000000000       0x3a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
  .debug_line    0x0000000000000000     0x2f5c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
- .debug_str     0x0000000000000000    0x7684b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
+ .debug_str     0x0000000000000000    0x7684c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
  .debug_frame   0x0000000000000000      0x618 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_c11.o
  .ARM.attributes
@@ -1164,7 +1164,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6d /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
  .debug_macro   0x0000000000000000       0x3a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
  .debug_line    0x0000000000000000      0x7ba /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
- .debug_str     0x0000000000000000    0x75aec /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
+ .debug_str     0x0000000000000000    0x75aed /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
  .debug_frame   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/atomic_sync.o
  .ARM.attributes
@@ -1393,7 +1393,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
  .debug_macro   0x0000000000000000      0x174 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
  .debug_line    0x0000000000000000      0x286 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
- .debug_str     0x0000000000000000     0x36b0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
+ .debug_str     0x0000000000000000     0x36b1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
  .debug_frame   0x0000000000000000       0x30 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/clist.o
  .ARM.attributes
@@ -1635,7 +1635,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x114 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
  .debug_line    0x0000000000000000      0xa94 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
- .debug_str     0x0000000000000000    0x76c00 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
+ .debug_str     0x0000000000000000    0x76c01 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
  .debug_frame   0x0000000000000000       0xa4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/cond.o
  .ARM.attributes
@@ -2805,7 +2805,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x2e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
  .debug_line    0x0000000000000000      0x8e9 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
- .debug_str     0x0000000000000000    0x76908 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
+ .debug_str     0x0000000000000000    0x76909 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
  .debug_frame   0x0000000000000000       0x48 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/priority_queue.o
  .ARM.attributes
@@ -2889,7 +2889,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
  .debug_macro   0x0000000000000000       0x35 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
  .debug_line    0x0000000000000000      0x5cb /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
- .debug_str     0x0000000000000000     0x768e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
+ .debug_str     0x0000000000000000     0x768f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
  .debug_frame   0x0000000000000000       0xd4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/ringbuffer.o
  .ARM.attributes
@@ -3134,7 +3134,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x19 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
  .debug_macro   0x0000000000000000       0x28 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
  .debug_line    0x0000000000000000      0xb76 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
- .debug_str     0x0000000000000000    0x77ae5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
+ .debug_str     0x0000000000000000    0x77ae6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
  .debug_frame   0x0000000000000000       0x84 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/rmutex.o
  .ARM.attributes
@@ -4295,7 +4295,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
  .debug_macro   0x0000000000000000       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
  .debug_line    0x0000000000000000      0x8b9 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
- .debug_str     0x0000000000000000    0x76777 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
+ .debug_str     0x0000000000000000    0x76778 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
  .debug_frame   0x0000000000000000       0x60 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/mpu.o
  .ARM.attributes
@@ -5848,7 +5848,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x2e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
  .debug_macro   0x0000000000000000       0x19 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
  .debug_line    0x0000000000000000      0x9d7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
- .debug_str     0x0000000000000000    0x761a8 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
+ .debug_str     0x0000000000000000    0x761a9 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
  .debug_frame   0x0000000000000000       0x90 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/malloc_thread_safe/malloc_wrappers.o
  .ARM.attributes
@@ -6361,7 +6361,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x123 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
  .debug_line    0x0000000000000000      0x981 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
- .debug_str     0x0000000000000000    0x772ad /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
+ .debug_str     0x0000000000000000    0x772ae /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
  .debug_frame   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/cpuid.o
  .ARM.attributes
@@ -6603,7 +6603,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x123 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
  .debug_line    0x0000000000000000      0x94c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
- .debug_str     0x0000000000000000    0x772a0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
+ .debug_str     0x0000000000000000    0x772a1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
  .debug_frame   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/eeprom.o
  .ARM.attributes
@@ -6845,7 +6845,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x123 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
  .debug_line    0x0000000000000000      0x989 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
- .debug_str     0x0000000000000000    0x772db /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
+ .debug_str     0x0000000000000000    0x772dc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
  .debug_frame   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/flashpage.o
  .ARM.attributes
@@ -7089,7 +7089,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
  .debug_macro   0x0000000000000000       0xc7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
  .debug_line    0x0000000000000000      0xa14 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
- .debug_str     0x0000000000000000    0x787a2 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
+ .debug_str     0x0000000000000000    0x787a3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
  .debug_frame   0x0000000000000000       0x40 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/gpio_util.o
  .ARM.attributes
@@ -7355,7 +7355,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
  .debug_macro   0x0000000000000000       0x12 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
  .debug_line    0x0000000000000000      0xc18 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
- .debug_str     0x0000000000000000    0x78eb4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
+ .debug_str     0x0000000000000000    0x78eb5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
  .debug_frame   0x0000000000000000       0xd4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/i2c.o
  .ARM.attributes
@@ -7823,7 +7823,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
  .debug_line    0x0000000000000000      0x99e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
- .debug_str     0x0000000000000000    0x77458 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
+ .debug_str     0x0000000000000000    0x77459 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
  .debug_frame   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/pm.o
  .ARM.attributes
@@ -7857,7 +7857,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1df /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
  .debug_macro   0x0000000000000000       0x60 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
  .debug_line    0x0000000000000000      0x1df /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
- .debug_str     0x0000000000000000     0x47a7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
+ .debug_str     0x0000000000000000     0x47a8 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
  .ARM.attributes
                 0x0000000000000000       0x32 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/ptp.o
@@ -8127,7 +8127,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
  .debug_macro   0x0000000000000000       0xc1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
  .debug_line    0x0000000000000000      0xda5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
- .debug_str     0x0000000000000000    0x78add /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
+ .debug_str     0x0000000000000000    0x78ade /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
  .debug_frame   0x0000000000000000       0xc4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/rtc.o
  .ARM.attributes
@@ -8385,7 +8385,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x241 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
  .debug_macro   0x0000000000000000       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
  .debug_line    0x0000000000000000      0xa97 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
- .debug_str     0x0000000000000000    0x78e69 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
+ .debug_str     0x0000000000000000    0x78e6a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
  .debug_frame   0x0000000000000000       0x94 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/spi.o
  .ARM.attributes
@@ -8631,7 +8631,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xc7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
  .debug_macro   0x0000000000000000       0x1c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
  .debug_line    0x0000000000000000      0xa3d /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
- .debug_str     0x0000000000000000    0x78838 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
+ .debug_str     0x0000000000000000    0x78839 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
  .debug_frame   0x0000000000000000       0x40 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/timer.o
  .ARM.attributes
@@ -9665,8 +9665,8 @@ Discarded input sections
  .debug_rnglists
                 0x0000000000000000       0x19 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_macro   0x0000000000000000      0x5b1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
- .debug_macro   0x0000000000000000      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
+ .debug_macro   0x0000000000000000      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_macro   0x0000000000000000       0x56 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_macro   0x0000000000000000       0x51 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
@@ -9777,7 +9777,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x123 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_macro   0x0000000000000000       0x5e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_line    0x0000000000000000      0x9c5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
- .debug_str     0x0000000000000000    0x777dc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
+ .debug_str     0x0000000000000000    0x77785 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .debug_frame   0x0000000000000000       0x40 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/cpuid.o
  .ARM.attributes
@@ -10163,7 +10163,7 @@ Discarded input sections
                 0x0000000000000000       0xfc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
  .text.timer_set_periodic
                 0x0000000000000000       0xbc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
  .debug_macro   0x0000000000000000      0x174 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
  .debug_macro   0x0000000000000000       0x56 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
@@ -11199,8 +11199,8 @@ Discarded input sections
  .debug_rnglists
                 0x0000000000000000      0x165 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_macro   0x0000000000000000      0x9d4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
- .debug_macro   0x0000000000000000      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
+ .debug_macro   0x0000000000000000      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_macro   0x0000000000000000       0x4c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_macro   0x0000000000000000       0x5c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
@@ -11360,7 +11360,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x82 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_macro   0x0000000000000000       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_line    0x0000000000000000     0x17ff /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
- .debug_str     0x0000000000000000    0x83a26 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
+ .debug_str     0x0000000000000000    0x839cf /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .debug_frame   0x0000000000000000       0x64 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_icmpv6_echo.o
  .ARM.attributes
@@ -11551,8 +11551,8 @@ Discarded input sections
  .debug_rnglists
                 0x0000000000000000      0x12d /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_macro   0x0000000000000000      0x8d1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
- .debug_macro   0x0000000000000000      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
+ .debug_macro   0x0000000000000000      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_macro   0x0000000000000000       0x4c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_macro   0x0000000000000000       0x18 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
@@ -11706,7 +11706,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xbe /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_macro   0x0000000000000000       0x82 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_line    0x0000000000000000     0x1388 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
- .debug_str     0x0000000000000000    0x830e5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
+ .debug_str     0x0000000000000000    0x8308e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .debug_frame   0x0000000000000000       0xa0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_ipv6_nib.o
  .ARM.attributes
@@ -11933,8 +11933,8 @@ Discarded input sections
  .debug_rnglists
                 0x0000000000000000      0x20c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_macro   0x0000000000000000      0x8c1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
- .debug_macro   0x0000000000000000      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
+ .debug_macro   0x0000000000000000      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_macro   0x0000000000000000      0x174 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_macro   0x0000000000000000       0x56 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
@@ -12086,7 +12086,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x52 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_macro   0x0000000000000000      0x113 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_line    0x0000000000000000     0x21e5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
- .debug_str     0x0000000000000000    0x832e1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
+ .debug_str     0x0000000000000000    0x8328a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .debug_frame   0x0000000000000000      0x1c4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_gnrc_netif.o
  .ARM.attributes
@@ -12478,8 +12478,8 @@ Discarded input sections
  .debug_rnglists
                 0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_macro   0x0000000000000000      0x673 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
- .debug_macro   0x0000000000000000      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
- .debug_macro   0x0000000000000000      0x2b6 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
+ .debug_macro   0x0000000000000000      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
+ .debug_macro   0x0000000000000000      0x29e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_macro   0x0000000000000000       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_macro   0x0000000000000000       0x4c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_macro   0x0000000000000000       0x18 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
@@ -12604,7 +12604,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_macro   0x0000000000000000       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_line    0x0000000000000000      0xb25 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
- .debug_str     0x0000000000000000    0x7a110 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
+ .debug_str     0x0000000000000000    0x7a0b9 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .comment       0x0000000000000000       0x1f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .debug_frame   0x0000000000000000       0x50 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_random.o
  .ARM.attributes
@@ -14742,18 +14742,17 @@ END GROUP
                 0x0000000000003214       0x20 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/bitarithm.o
                 0x0000000000003214                MultiplyDeBruijnBitPosition
  .rodata.main_trampoline.str1.1
-                0x0000000000003234       0x5c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
+                0x0000000000003234       0x5d /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
  .rodata.kernel_init.str1.1
-                0x0000000000003290        0x5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
+                0x0000000000003291        0x5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
  .rodata.core_panic.str1.1
-                0x0000000000003295       0x2e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
+                0x0000000000003296       0x2e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
                                          0x30 (size before relaxing)
  .rodata.assert_crash_message
-                0x00000000000032c3       0x12 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
-                0x00000000000032c3                assert_crash_message
+                0x00000000000032c4       0x12 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
+                0x00000000000032c4                assert_crash_message
  .rodata.str1.1
-                0x00000000000032d5       0x6a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/thread.o
- *fill*         0x000000000000333f        0x1 
+                0x00000000000032d6       0x6a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/thread.o
  .rodata.state_names
                 0x0000000000003340       0x34 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/thread.o
  .rodata.panic_arch.str1.1
@@ -14786,10 +14785,9 @@ END GROUP
                 0x0000000000003883      0x158 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
                                         0x15e (size before relaxing)
  .rodata._version_handler.str1.1
-                0x00000000000039db       0x3a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
+                0x00000000000039db       0x3b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
  .rodata.str1.1
-                0x0000000000003a15       0x8e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
- *fill*         0x0000000000003aa3        0x1 
+                0x0000000000003a16       0x8e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
  .rodata._shell_command_list
                 0x0000000000003aa4       0x3c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
                 0x0000000000003aa4                _shell_command_list
@@ -15332,7 +15330,7 @@ LOAD linker stubs
  .debug_rnglists
                 0x0000000000001155       0xc7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
 
-.debug_macro    0x0000000000000000    0x36d02
+.debug_macro    0x0000000000000000    0x36cea
  .debug_macro   0x0000000000000000      0x5ee /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
  .debug_macro   0x00000000000005ee      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
  .debug_macro   0x00000000000010ea      0x17e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
@@ -15533,36 +15531,36 @@ LOAD linker stubs
  .debug_macro   0x000000000002a949      0x5ca /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/gpio.o
  .debug_macro   0x000000000002af13      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/gpio.o
  .debug_macro   0x000000000002ba0f      0x5e5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
- .debug_macro   0x000000000002bff4      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
- .debug_macro   0x000000000002caf0      0x5bf /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
- .debug_macro   0x000000000002d0af      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
- .debug_macro   0x000000000002dbab       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
- .debug_macro   0x000000000002dbbb      0x648 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002e203      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002ecff       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002ed15       0xc7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002eddc       0x4b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002ee27       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002ee37       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
- .debug_macro   0x000000000002ee4d      0x515 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
- .debug_macro   0x000000000002f362      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
- .debug_macro   0x000000000002fe5e       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
- .debug_macro   0x000000000002fe74      0x5c7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
- .debug_macro   0x000000000003043b      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
- .debug_macro   0x0000000000030f37       0x24 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
- .debug_macro   0x0000000000030f5b      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
- .debug_macro   0x0000000000031a57      0x585 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
- .debug_macro   0x0000000000031fdc      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
- .debug_macro   0x0000000000032ad8      0x5d5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
- .debug_macro   0x00000000000330ad      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
- .debug_macro   0x0000000000033ba9       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
- .debug_macro   0x0000000000033bcb      0x651 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
- .debug_macro   0x000000000003421c      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
- .debug_macro   0x0000000000034d18      0x64e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
- .debug_macro   0x0000000000035366      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
- .debug_macro   0x0000000000035e62       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
- .debug_macro   0x0000000000035e78      0x38e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
- .debug_macro   0x0000000000036206      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
+ .debug_macro   0x000000000002bff4      0xae4 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
+ .debug_macro   0x000000000002cad8      0x5bf /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
+ .debug_macro   0x000000000002d097      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
+ .debug_macro   0x000000000002db93       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
+ .debug_macro   0x000000000002dba3      0x648 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002e1eb      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002ece7       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002ecfd       0xc7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002edc4       0x4b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002ee0f       0x10 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002ee1f       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+ .debug_macro   0x000000000002ee35      0x515 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
+ .debug_macro   0x000000000002f34a      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
+ .debug_macro   0x000000000002fe46       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
+ .debug_macro   0x000000000002fe5c      0x5c7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
+ .debug_macro   0x0000000000030423      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
+ .debug_macro   0x0000000000030f1f       0x24 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
+ .debug_macro   0x0000000000030f43      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
+ .debug_macro   0x0000000000031a3f      0x585 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
+ .debug_macro   0x0000000000031fc4      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
+ .debug_macro   0x0000000000032ac0      0x5d5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
+ .debug_macro   0x0000000000033095      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
+ .debug_macro   0x0000000000033b91       0x22 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
+ .debug_macro   0x0000000000033bb3      0x651 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
+ .debug_macro   0x0000000000034204      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
+ .debug_macro   0x0000000000034d00      0x64e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
+ .debug_macro   0x000000000003534e      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
+ .debug_macro   0x0000000000035e4a       0x16 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
+ .debug_macro   0x0000000000035e60      0x38e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
+ .debug_macro   0x00000000000361ee      0xafc /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
 
 .debug_line     0x0000000000000000    0x1a952
  .debug_line    0x0000000000000000      0xae3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
@@ -15606,82 +15604,82 @@ LOAD linker stubs
  .debug_line    0x000000000001a8b5       0x4a /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .debug_line    0x000000000001a8ff       0x53 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_shi.o)
 
-.debug_str      0x0000000000000000    0x80ff9
- .debug_str     0x0000000000000000    0x78d99 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
-                                      0x79331 (size before relaxing)
- .debug_str     0x0000000000078d99      0x54c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/auto_init/auto_init.o
-                                       0x80e4 (size before relaxing)
- .debug_str     0x00000000000792e5       0xbf /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/board/board.o
-                                      0x78a64 (size before relaxing)
- .debug_str     0x00000000000793a4      0x361 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/bitarithm.o
-                                      0x75368 (size before relaxing)
- .debug_str     0x0000000000079705      0x72b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
-                                      0x77b51 (size before relaxing)
- .debug_str     0x0000000000079e30      0x604 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/msg.o
-                                      0x76e80 (size before relaxing)
- .debug_str     0x000000000007a434      0x1b0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/mutex.o
-                                      0x7717e (size before relaxing)
- .debug_str     0x000000000007a5e4       0xc1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
-                                      0x7757c (size before relaxing)
- .debug_str     0x000000000007a6a5      0x1f3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/sched.o
-                                      0x7708e (size before relaxing)
- .debug_str     0x000000000007a898      0x1c3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/thread.o
-                                      0x774a5 (size before relaxing)
- .debug_str     0x000000000007aa5b      0x183 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/cortexm_init.o
-                                      0x7694b (size before relaxing)
- .debug_str     0x000000000007abde       0x6a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/panic.o
-                                      0x76829 (size before relaxing)
- .debug_str     0x000000000007ac48       0xbd /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common_periph/pm.o
-                                      0x77312 (size before relaxing)
- .debug_str     0x000000000007ad05      0x1ae /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/thread_arch.o
-                                      0x76cab (size before relaxing)
- .debug_str     0x000000000007aeb3      0x39c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/vectors_cortexm.o
-                                      0x78d19 (size before relaxing)
- .debug_str     0x000000000007b24f     0x19b3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cpu/cpu.o
-                                      0x7a0a9 (size before relaxing)
- .debug_str     0x000000000007cc02      0x19c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/isrpipe/isrpipe.o
-                                      0x737be (size before relaxing)
- .debug_str     0x000000000007cd9e      0xbde /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/newlib_syscalls_default/syscalls.o
-                                      0x7ab42 (size before relaxing)
- .debug_str     0x000000000007d97c       0xaa /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/init.o
-                                      0x772b7 (size before relaxing)
- .debug_str     0x000000000007da26      0x12b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph/pm.o
-                                      0x7785c (size before relaxing)
- .debug_str     0x000000000007db51      0x41c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/pm_layered/pm.o
-                                      0x77947 (size before relaxing)
- .debug_str     0x000000000007df6d       0xcb /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/ps/ps.o
-                                      0x768f6 (size before relaxing)
- .debug_str     0x000000000007e038      0x3b7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/adc.o
-                                      0x79630 (size before relaxing)
- .debug_str     0x000000000007e3ef      0x563 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/gpio.o
-                                      0x79710 (size before relaxing)
- .debug_str     0x000000000007e952      0x66f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
-                                      0x795fd (size before relaxing)
- .debug_str     0x000000000007efc1      0x475 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
-                                      0x7942e (size before relaxing)
- .debug_str     0x000000000007f436     0x11b5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
+.debug_str      0x0000000000000000    0x80ffa
+ .debug_str     0x0000000000000000    0x78d9a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
+                                      0x79332 (size before relaxing)
+ .debug_str     0x0000000000078d9a      0x54c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/auto_init/auto_init.o
+                                       0x80e5 (size before relaxing)
+ .debug_str     0x00000000000792e6       0xbf /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/board/board.o
+                                      0x78a65 (size before relaxing)
+ .debug_str     0x00000000000793a5      0x361 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/bitarithm.o
+                                      0x75369 (size before relaxing)
+ .debug_str     0x0000000000079706      0x72b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/init.o
+                                      0x77b52 (size before relaxing)
+ .debug_str     0x0000000000079e31      0x604 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/msg.o
+                                      0x76e81 (size before relaxing)
+ .debug_str     0x000000000007a435      0x1b0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/mutex.o
+                                      0x7717f (size before relaxing)
+ .debug_str     0x000000000007a5e5       0xc1 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/panic.o
+                                      0x7757d (size before relaxing)
+ .debug_str     0x000000000007a6a6      0x1f3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/sched.o
+                                      0x7708f (size before relaxing)
+ .debug_str     0x000000000007a899      0x1c3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/core/thread.o
+                                      0x774a6 (size before relaxing)
+ .debug_str     0x000000000007aa5c      0x183 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/cortexm_init.o
+                                      0x7694c (size before relaxing)
+ .debug_str     0x000000000007abdf       0x6a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/panic.o
+                                      0x7682a (size before relaxing)
+ .debug_str     0x000000000007ac49       0xbd /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common_periph/pm.o
+                                      0x77313 (size before relaxing)
+ .debug_str     0x000000000007ad06      0x1ae /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/thread_arch.o
+                                      0x76cac (size before relaxing)
+ .debug_str     0x000000000007aeb4      0x39c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cortexm_common/vectors_cortexm.o
+                                      0x78d1a (size before relaxing)
+ .debug_str     0x000000000007b250     0x19b3 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/cpu/cpu.o
+                                      0x7a0aa (size before relaxing)
+ .debug_str     0x000000000007cc03      0x19c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/isrpipe/isrpipe.o
+                                      0x737bf (size before relaxing)
+ .debug_str     0x000000000007cd9f      0xbde /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/newlib_syscalls_default/syscalls.o
+                                      0x7ab43 (size before relaxing)
+ .debug_str     0x000000000007d97d       0xaa /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph_common/init.o
+                                      0x772b8 (size before relaxing)
+ .debug_str     0x000000000007da27      0x12b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/periph/pm.o
+                                      0x7785d (size before relaxing)
+ .debug_str     0x000000000007db52      0x41c /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/pm_layered/pm.o
+                                      0x77948 (size before relaxing)
+ .debug_str     0x000000000007df6e       0xcb /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/ps/ps.o
+                                      0x768f7 (size before relaxing)
+ .debug_str     0x000000000007e039      0x3b7 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/adc.o
+                                      0x79631 (size before relaxing)
+ .debug_str     0x000000000007e3f0      0x563 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/gpio.o
+                                      0x79711 (size before relaxing)
+ .debug_str     0x000000000007e953      0x66f /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/timer.o
+                                      0x795a6 (size before relaxing)
+ .debug_str     0x000000000007efc2      0x475 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/uart.o
+                                      0x7942f (size before relaxing)
+ .debug_str     0x000000000007f437     0x11b5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/sam0_common_periph/usbdev.o
                                       0x7af67 (size before relaxing)
- .debug_str     0x00000000000805eb       0xd5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
-                                      0x768e9 (size before relaxing)
- .debug_str     0x00000000000806c0      0x126 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
-                                      0x777b6 (size before relaxing)
- .debug_str     0x00000000000807e6       0x86 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
-                                       0x32ff (size before relaxing)
- .debug_str     0x000000000008086c       0x9e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
-                                      0x772f1 (size before relaxing)
- .debug_str     0x000000000008090a      0x14b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
-                                      0x77aca (size before relaxing)
- .debug_str     0x0000000000080a55      0x35a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
-                                      0x78673 (size before relaxing)
- .debug_str     0x0000000000080daf      0x124 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
-                                      0x7a0a5 (size before relaxing)
- .debug_str     0x0000000000080ed3       0xc0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
-                                      0x71e79 (size before relaxing)
- .debug_str     0x0000000000080f93       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
- .debug_str     0x0000000000080ff9       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uhi.o)
- .debug_str     0x0000000000080ff9       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
- .debug_str     0x0000000000080ff9       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_str     0x0000000000080ff9       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_shi.o)
+ .debug_str     0x00000000000805ec       0xd5 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/samd21_vectors/vectors_samd2x.o
+                                      0x768ea (size before relaxing)
+ .debug_str     0x00000000000806c1      0x126 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_pm.o
+                                      0x777b7 (size before relaxing)
+ .debug_str     0x00000000000807e7       0x86 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_ps.o
+                                       0x3300 (size before relaxing)
+ .debug_str     0x000000000008086d       0x9e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/sc_sys.o
+                                      0x772f2 (size before relaxing)
+ .debug_str     0x000000000008090b      0x14b /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell_commands/shell_commands.o
+                                      0x77acb (size before relaxing)
+ .debug_str     0x0000000000080a56      0x35a /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/shell/shell.o
+                                      0x78674 (size before relaxing)
+ .debug_str     0x0000000000080db0      0x124 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/stdio_uart/stdio_uart.o
+                                      0x7a0a6 (size before relaxing)
+ .debug_str     0x0000000000080ed4       0xc0 /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/tsrb/tsrb.o
+                                      0x71e7a (size before relaxing)
+ .debug_str     0x0000000000080f94       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
+ .debug_str     0x0000000000080ffa       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uhi.o)
+ .debug_str     0x0000000000080ffa       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
+ .debug_str     0x0000000000080ffa       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_str     0x0000000000080ffa       0x66 /usr/lib/gcc/arm-none-eabi/11.1.0/thumb/v6-m/nofp/libgcc.a(_thumb1_case_shi.o)
 
 .comment        0x0000000000000000       0x1e
  .comment       0x0000000000000000       0x1e /home/arch/GIT/RIOT/compareFirmware/firmware_example/bin/samd21-xpro/application_firmware_example/main.o
