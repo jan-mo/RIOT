@@ -1,0 +1,16 @@
+2c2
+< ../../database/LIS2DH12_INCLUDED/samd20-xpro/LIS2DH12_INCLUDED.elf:     file format elf32-littlearm
+---
+> ../../database/LIS2DH12_FUNCTION_NAME/samd20-xpro/LIS2DH12_FUNCTION_NAME.elf:     file format elf32-littlearm
+39c39
+< 000000c4 <shell_is2dh12_read>:
+---
+> 000000c4 <shell_lis2dh12_read>:
+41c41
+<       c6:	4809      	ldr	r0, [pc, #36]	; (ec <shell_is2dh12_read+0x28>)
+---
+>       c6:	4809      	ldr	r0, [pc, #36]	; (ec <shell_lis2dh12_read+0x28>)
+53c53
+<       e0:	4803      	ldr	r0, [pc, #12]	; (f0 <shell_is2dh12_read+0x2c>)
+---
+>       e0:	4803      	ldr	r0, [pc, #12]	; (f0 <shell_lis2dh12_read+0x2c>)
