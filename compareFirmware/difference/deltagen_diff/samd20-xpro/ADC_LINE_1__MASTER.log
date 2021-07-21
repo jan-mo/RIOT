@@ -31,14 +31,14 @@ There are 4 non-matching segments with total length of 52
 -- Done...
 ------------------------------------------
 
--- Generating file 'samd20-xpro\MASTER__ADC_LINE_1.bin'...
+-- Generating file 'samd20-xpro\ADC_LINE_1__MASTER.bin'...
 --- Data succesfully generated
 --- Generating checksum CRC-16
 --- Generated CRC-16
 --- Finalizing delta file
---- Writing file 'samd20-xpro\MASTER__ADC_LINE_1.bin'
+--- Writing file 'samd20-xpro\ADC_LINE_1__MASTER.bin'
 
 -- OPERATION SUCCESFULL ...
-Elapsed time: 00:00:00.1367161
+Elapsed time: 00:00:00.1287980
 ------------------------------------------
 
