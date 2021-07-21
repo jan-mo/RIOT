@@ -18,14 +18,14 @@ if [ $command = run ] || [ $command = all ]; then
     # samd20-xpro
     bsdiff "../../database/${1}/samd20-xpro/${1}.bin" "../../database/${2}/samd20-xpro/${2}.bin" diff_bin_samd20
 
-    echo Lines: $(ls -la diff_bin_samd20)
+    echo Bytes: $(ls -la diff_bin_samd20)
 
     cp diff_bin_samd20 "samd20-xpro/bin_${1}__${2}"
 
     # samd21-xpro
     bsdiff "../../database/${1}/samd21-xpro/${1}.bin" "../../database/${2}/samd21-xpro/${2}.bin" diff_bin_samd21
 
-    echo Lines: $(ls -la diff_bin_samd21)
+    echo Bytes: $(ls -la diff_bin_samd21)
 
     cp diff_bin_samd21 "samd21-xpro/bin_${1}__${2}"
 fi
