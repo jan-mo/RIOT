@@ -12,6 +12,9 @@ USEMODULE += shell_commands
 FEATURES_REQUIRED += periph_adc
 FEATURES_REQUIRED += periph_gpio_irq
 
+# acceleration sensor
+USEMODULE += lis2dh12_spi
+
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
 
