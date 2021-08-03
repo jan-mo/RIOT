@@ -26,11 +26,10 @@
 #include "periph/adc.h"
 #include "board.h"
 
-#include "lis2dh12.h"
-#include "lis2dh12_params.h"
-#include "lis2dh12_registers.h"
+#include "lis3dh.h"
+#include "lis3dh_params.h"
 /* allocate device descriptor */
-static lis2dh12_t dev;
+static lis3dh_t dev;
 
 #define ENABLE_DEBUG 0
 #include "debug.h"
@@ -63,47 +62,34 @@ void button_int_cb(void* arg){
     puts("interrupt received.");
 }
 
-/* LIS2DH12 init function */
-void lis2dh12_test_init(void) {
-
-    if (IS_USED(MODULE_LIS2DH12_SPI)) {
-        puts("using SPI mode, for I2C mode select the lis2dh12_i2c module");
-    } else {
-        puts("using I2C mode, for SPI mode select the lis2dh12_spi module");
-    }
+/* LIS3DH init function */
+void lis3dh_func_init(void) {
 
     /* init lis */
-    if (lis2dh12_init(&dev, &lis2dh12_params[0]) == LIS2DH12_OK) {
-        puts("lis2dh12 [Initialized]");
+    if (lis3dh_init(&dev, &lis3dh_params[0]) == 0) {
+        puts("lis3dh [Initialized]");
     }
     else {
-        puts("lis2dh12 [Failed]");
+        puts("lis3dh [Failed]");
     }
 
-    /* change LIS settings */
-    lis2dh12_set_resolution(&dev, LIS2DH12_POWER_LOW);
-    lis2dh12_set_datarate(&dev, LIS2DH12_RATE_100HZ);
-    lis2dh12_set_scale(&dev, LIS2DH12_SCALE_16G);
+    lis3dh_set_odr(&dev, lis3dh_params[0].odr);
+    lis3dh_set_scale(&dev, lis3dh_params[0].scale);
+    lis3dh_set_axes(&dev, LIS3DH_AXES_XYZ);
 
-    /* configure FIFO */
-    lis2dh12_fifo_t fifo_cfg = {
-        .FIFO_mode = LIS2DH12_FIFO_MODE_STREAM,
-    };
-
-    lis2dh12_set_fifo(&dev, &fifo_cfg);
 }
 
 /* read LIS values */
-static int shell_is2dh12_read(int argc, char **argv)
+static int lis3dh_read(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
 
-    lis2dh12_fifo_data_t data;
+    lis3dh_data_t data;
 
-    lis2dh12_read(&dev, &data);
+    lis3dh_read_xyz(&dev, &data);
 
-    printf("X: %d  Y: %d  Z: %d\n", data.axis.x, data.axis.y, data.axis.z);
+    printf("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
 
     return 0;
 }
@@ -112,7 +98,7 @@ static int shell_is2dh12_read(int argc, char **argv)
 static const shell_command_t shell_commands[] = {
     { "toggle_LED", "toggles the LED status of LED0", toggle_LED },
     { "adc", "reads the ADC0", read_ADC },
-    { "lis_read", "Read acceleration data", shell_is2dh12_read },
+    { "lis_read", "Read acceleration data", lis3dh_read },
     { NULL, NULL, NULL }
 };
 
@@ -137,7 +123,7 @@ int main(void)
     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
 
     /* init acceleration sensor */
-    lis2dh12_test_init();
+    lis3dh_func_init();
 
     /* start shell */
     puts("All up, running the shell now");
