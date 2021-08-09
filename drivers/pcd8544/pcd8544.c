@@ -345,6 +345,20 @@ void pcd8544_write_s(const pcd8544_t *dev, uint8_t x, uint8_t y, const char *s)
     }
 }
 
+void pcd8544_write_l(const pcd8544_t *dev, uint8_t y, const char *s)
+{
+    uint8_t x = 0;
+
+    /* write every char from string */
+    for (; (*s != '\0') && x < PCD8544_COLS; x++, s++) {
+        pcd8544_write_c(dev, x, y, *s);
+    }
+    /* fill rest with spaces */
+    for (; x < PCD8544_COLS; x++){
+        pcd8544_write_c(dev, x, y, *" ");
+    }
+}
+
 void pcd8544_clear(const pcd8544_t *dev)
 {
     lock(dev);
