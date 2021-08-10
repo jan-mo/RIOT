@@ -40,7 +40,7 @@ static lis3dh_t dev;
 #define ENABLE_DEBUG 0
 #include "debug.h"
 
-#define ADC_SAMPLE_LINE 0
+#define ADC_SAMPLE_LINE 1
 
 #define MAIN_QUEUE_SIZE (8)
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
