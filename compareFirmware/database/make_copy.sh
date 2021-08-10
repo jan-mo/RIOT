@@ -21,6 +21,7 @@ sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
 
 git diff thesis/rev_00 > firmware.diff
+git checkout thesis/checking_firmware_versions
 
 cd -
 ./__copy_bin_elf.py ${version}
