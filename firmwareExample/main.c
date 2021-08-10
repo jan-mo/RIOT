@@ -25,19 +25,17 @@
 #include "msg.h"
 #include "board.h"
 #include "xtimer.h"
+#include "thread.h"
 
 #include "periph/gpio.h"
-#include "periph/adc.h"
 
-/* acceleration sensor */
+/* acceleration sensor config */
 #include "lis3dh.h"
-/* define LIS3DH params */
 #define LIS3DH_PARAM_SPI  (SPI_DEV(1))
 #define LIS3DH_PARAM_CS   (GPIO_PIN(PA, 17))
 #define LIS3DH_PARAM_INT1 (GPIO_PIN(PB, 11))
 #define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
 #include "lis3dh_params.h"
-
 static lis3dh_t dev_lis;
 
 /* display PCD8544 */
@@ -48,13 +46,29 @@ static pcd8544_t dev_pcd;
 #define SECOND          1000000
 #define MILLI_SECOND    1000
 
+/* debug config */
 #define ENABLE_DEBUG 0
 #include "debug.h"
 
+/* ADC config */
+#include "periph/adc.h"
 #define ADC_SAMPLE_LINE 1   /* PB01 */
 
+/* message queue */
 #define MAIN_QUEUE_SIZE (8)
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
+
+/* ADC threading */
+char adc_thread_stack[THREAD_STACKSIZE_MAIN];
+kernel_pid_t ADC_thread_pid;
+bool ADC_thread_sleep = false;
+uint32_t ADC_thread_delay = 800 * MILLI_SECOND;
+
+/* LIS threading */
+char lis_thread_stack[THREAD_STACKSIZE_MAIN];
+kernel_pid_t LIS_thread_pid;
+bool LIS_thread_sleep = false;
+uint32_t LIS_thread_delay = 450 * MILLI_SECOND;
 
 /* toggles the user LED */
 static int led_toggle(int argc, char **argv) {
@@ -69,6 +83,7 @@ static int adc_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
+    ADC_thread_sleep = true;
     char buffer[4] = {0};
 
     int sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
@@ -80,6 +95,41 @@ static int adc_read(int argc, char **argv) {
     pcd8544_write_s(&dev_pcd, 5, 0, buffer);
 
     return 1;
+}
+
+/* ADC periodic thread */
+void *adc_read_periodic(void *arg)
+{
+    (void) arg;
+    int sample = 0;
+    char buffer[4] = {0};
+
+    while (1) {
+        /* read ADC data */
+        sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
+        DEBUG("ADC value: %d\n", sample);
+        /* print to display */
+        pcd8544_write_s(&dev_pcd, 0, 0, "ADC: ");
+        sprintf(buffer, "%d   ", sample);
+        pcd8544_write_s(&dev_pcd, 5, 0, buffer);
+
+        xtimer_usleep(ADC_thread_delay);
+        if (ADC_thread_sleep)
+            thread_sleep();
+    }
+
+    return NULL;
+}
+
+/* ADC wake-up thread */
+static int adc_thread_wakeup (int argc, char **argv){
+    (void)argc;
+    (void)argv;
+
+    ADC_thread_sleep = false;
+    thread_wakeup(ADC_thread_pid);
+
+    return 0;
 }
 
 /* interrupt callback for user button */
@@ -107,6 +157,8 @@ static int lis3dh_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
+    LIS_thread_sleep = true;
+
     lis3dh_data_t data = {0};
     char buffer[5] = {0};
 
@@ -125,6 +177,50 @@ static int lis3dh_read(int argc, char **argv) {
     pcd8544_write_s(&dev_pcd, 0, 3, "Z: ");
     sprintf(buffer, "%d    ", data.acc_z);
     pcd8544_write_s(&dev_pcd, 3, 3, buffer);
+
+    return 0;
+}
+
+/* LIS periodic thread */
+void *lis_read_periodic(void *arg)
+{
+    (void) arg;
+    lis3dh_data_t data = {0};
+    char buffer[5] = {0};
+
+    while (1) {
+        /* read LIS data */
+        lis3dh_read_xyz(&dev_lis, &data);
+        DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
+
+        /* print to display */
+        pcd8544_write_s(&dev_pcd, 0, 1, "X: ");
+        sprintf(buffer, "%d    ", data.acc_x);
+        pcd8544_write_s(&dev_pcd, 3, 1, buffer);
+
+        pcd8544_write_s(&dev_pcd, 0, 2, "Y: ");
+        sprintf(buffer, "%d    ", data.acc_y);
+        pcd8544_write_s(&dev_pcd, 3, 2, buffer);
+
+        pcd8544_write_s(&dev_pcd, 0, 3, "Z: ");
+        sprintf(buffer, "%d    ", data.acc_z);
+        pcd8544_write_s(&dev_pcd, 3, 3, buffer);
+
+        xtimer_usleep(LIS_thread_delay);
+        if (LIS_thread_sleep)
+            thread_sleep();
+    }
+
+    return NULL;
+}
+
+/* LIS wake-up thread */
+static int lis_thread_wakeup (int argc, char **argv){
+    (void)argc;
+    (void)argv;
+
+    LIS_thread_sleep = false;
+    thread_wakeup(LIS_thread_pid);
 
     return 0;
 }
@@ -199,7 +295,9 @@ static const shell_command_t shell_commands[] = {
     { "disp_write", "Write string to display", display_write},
     { "disp_clear", "Clear display", display_clear },
     { "lis_read", "Read acceleration data", lis3dh_read },
+    { "lis_read_periodic", "Periodic read of acceleration data", lis_thread_wakeup },
     { "adc_read", "Read ADC value, stops periodic read", adc_read},
+    { "adc_read_periodic", "Periodic read of ADC value", adc_thread_wakeup},
     { "led_toggle", "Toggles the LED0 status", led_toggle},
     { NULL, NULL, NULL }
 };
@@ -221,12 +319,20 @@ int main(void) {
 
     /* setting up ADC */
     adc_init(ADC_LINE(ADC_SAMPLE_LINE));
+    /* starting sleeping ADC thread */
+    ADC_thread_pid = thread_create( adc_thread_stack, sizeof(adc_thread_stack),
+                        THREAD_PRIORITY_MAIN - 1, THREAD_CREATE_SLEEPING,
+                        adc_read_periodic, NULL, "ADC_periodic");
 
     /* initializes the message queue */
     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
 
-    /* init acceleration sensor */
+    /* initializes acceleration sensor */
     lis3dh_func_init();
+    /* starting sleeping LIS thread */
+    LIS_thread_pid = thread_create( lis_thread_stack, sizeof(lis_thread_stack),
+                        THREAD_PRIORITY_MAIN - 1, THREAD_CREATE_SLEEPING,
+                        lis_read_periodic, NULL, "LIS_periodic");
 
     printf("Initializing PCD8544 LCD at SPI_%i...\n", SPI_DEV(0));
     if (pcd8544_init(&dev_pcd, SPI_DEV(0), GPIO_PIN(PA,5),
