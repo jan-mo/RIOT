@@ -25,3 +25,4 @@ git checkout thesis/checking_firmware_versions
 
 cd -
 ./__copy_bin_elf.py ${version}
+cd ../database
