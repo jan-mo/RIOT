@@ -7,15 +7,15 @@
 
 
 import os, sys
-from shutil import copyfile
+from shutil import move
 
 
-src = '../firmware_example/bin/'
+src = '../../firmwareExample/bin/'
 
 boards = ['samd20-xpro', 'samd21-xpro']
 
-# enter firmware_name
-name = input('Enter firmware name: ')
+# firmware_name
+name = sys.argv[1]
 
 # check if firmware already exists
 try:
@@ -40,6 +40,6 @@ for board in boards:
 
 
 # save diff of firmware version
-copyfile(src + '../firmware.diff', name + '/firmware.diff')
+move(src + '../firmware.diff', name + '/firmware.diff')
 
 print('Done!')
