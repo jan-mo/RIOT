@@ -150,6 +150,20 @@ void pcd8544_write_c(const pcd8544_t *dev, uint8_t x, uint8_t y, const char c);
 void pcd8544_write_s(const pcd8544_t *dev, uint8_t x, uint8_t y, const char* str);
 
 /**
+ * @brief   Write a line to a given row on the display
+ *
+ * This function prints a given string to the given row and overwrites the rest with
+ * spaces. The position is given in terms of rows (y). If a string does not
+ * fit completely in the given position (it overflows its row), the overflowing
+ * part of the string is cut off.
+ *
+ * @param[in] dev           device descriptor of display to use
+ * @param[in] y             row to write the string to [0 - 5]
+ * @param[in] str           string to write to the display
+ */
+void pcd8544_write_l(const pcd8544_t *dev, uint8_t y, const char* str);
+
+/**
  * @brief   Clear the current display (clear the display memory)
  *
  * @param[in] dev           device descriptor of display to use

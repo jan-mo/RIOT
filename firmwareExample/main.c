@@ -84,15 +84,14 @@ static int adc_read(int argc, char **argv) {
     (void)argv;
 
     ADC_thread_sleep = true;
-    char buffer[4] = {0};
+    char buffer[PCD8544_COLS] = {0};
 
     int sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
     DEBUG("ADC value: %d\n", sample);
 
     /* print to display */
-    pcd8544_write_s(&dev_pcd, 0, 0, "ADC: ");
-    sprintf(buffer, "%d   ", sample);
-    pcd8544_write_s(&dev_pcd, 5, 0, buffer);
+    sprintf(buffer, "ADC: %d", sample);
+    pcd8544_write_l(&dev_pcd, 0, buffer);
 
     return 1;
 }
@@ -102,16 +101,15 @@ void *adc_read_periodic(void *arg)
 {
     (void) arg;
     int sample = 0;
-    char buffer[4] = {0};
+    char buffer[PCD8544_COLS] = {0};
 
     while (1) {
         /* read ADC data */
         sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
         DEBUG("ADC value: %d\n", sample);
         /* print to display */
-        pcd8544_write_s(&dev_pcd, 0, 0, "ADC: ");
-        sprintf(buffer, "%d   ", sample);
-        pcd8544_write_s(&dev_pcd, 5, 0, buffer);
+        sprintf(buffer, "ADC: %d", sample);
+        pcd8544_write_l(&dev_pcd, 0, buffer);
 
         xtimer_usleep(ADC_thread_delay);
         if (ADC_thread_sleep)
@@ -160,23 +158,20 @@ static int lis3dh_read(int argc, char **argv) {
     LIS_thread_sleep = true;
 
     lis3dh_data_t data = {0};
-    char buffer[5] = {0};
+    char buffer[PCD8544_COLS] = {0};
 
     lis3dh_read_xyz(&dev_lis, &data);
     DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
 
     /* print to display */
-    pcd8544_write_s(&dev_pcd, 0, 1, "X: ");
-    sprintf(buffer, "%d    ", data.acc_x);
-    pcd8544_write_s(&dev_pcd, 3, 1, buffer);
+    sprintf(buffer, "X: %d", data.acc_x);
+    pcd8544_write_l(&dev_pcd, 1, buffer);
 
-    pcd8544_write_s(&dev_pcd, 0, 2, "Y: ");
-    sprintf(buffer, "%d    ", data.acc_y);
-    pcd8544_write_s(&dev_pcd, 3, 2, buffer);
+    sprintf(buffer, "Y: %d", data.acc_y);
+    pcd8544_write_l(&dev_pcd, 2, buffer);
 
-    pcd8544_write_s(&dev_pcd, 0, 3, "Z: ");
-    sprintf(buffer, "%d    ", data.acc_z);
-    pcd8544_write_s(&dev_pcd, 3, 3, buffer);
+    sprintf(buffer, "Z: %d", data.acc_z);
+    pcd8544_write_l(&dev_pcd, 3, buffer);
 
     return 0;
 }
@@ -186,7 +181,7 @@ void *lis_read_periodic(void *arg)
 {
     (void) arg;
     lis3dh_data_t data = {0};
-    char buffer[5] = {0};
+    char buffer[PCD8544_COLS] = {0};
 
     while (1) {
         /* read LIS data */
@@ -194,17 +189,14 @@ void *lis_read_periodic(void *arg)
         DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
 
         /* print to display */
-        pcd8544_write_s(&dev_pcd, 0, 1, "X: ");
-        sprintf(buffer, "%d    ", data.acc_x);
-        pcd8544_write_s(&dev_pcd, 3, 1, buffer);
+        sprintf(buffer, "X: %d", data.acc_x);
+        pcd8544_write_l(&dev_pcd, 1, buffer);
 
-        pcd8544_write_s(&dev_pcd, 0, 2, "Y: ");
-        sprintf(buffer, "%d    ", data.acc_y);
-        pcd8544_write_s(&dev_pcd, 3, 2, buffer);
+        sprintf(buffer, "Y: %d", data.acc_y);
+        pcd8544_write_l(&dev_pcd, 2, buffer);
 
-        pcd8544_write_s(&dev_pcd, 0, 3, "Z: ");
-        sprintf(buffer, "%d    ", data.acc_z);
-        pcd8544_write_s(&dev_pcd, 3, 3, buffer);
+        sprintf(buffer, "Z: %d", data.acc_z);
+        pcd8544_write_l(&dev_pcd, 3, buffer);
 
         xtimer_usleep(LIS_thread_delay);
         if (LIS_thread_sleep)
