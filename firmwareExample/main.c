@@ -26,11 +26,15 @@
 #include "periph/adc.h"
 #include "board.h"
 
+/* LIS2DH12 */
+#define LIS2DH12_PARAM_SPI  SPI_DEV(2)
+#define LIS2DH12_PARAM_CS   GPIO_PIN(PB, 17)
 #include "lis2dh12.h"
 #include "lis2dh12_params.h"
 #include "lis2dh12_registers.h"
 /* allocate device descriptor */
 static lis2dh12_t dev;
+
 
 #define ENABLE_DEBUG 0
 #include "debug.h"
@@ -81,9 +85,9 @@ void lis2dh12_test_init(void) {
     }
 
     /* change LIS settings */
-    lis2dh12_set_resolution(&dev, LIS2DH12_POWER_LOW);
+    lis2dh12_set_powermode(&dev, LIS2DH12_POWER_LOW);
     lis2dh12_set_datarate(&dev, LIS2DH12_RATE_100HZ);
-    lis2dh12_set_scale(&dev, LIS2DH12_SCALE_16G);
+    lis2dh12_set_scale(&dev, LIS2DH12_SCALE_2G);
 
     /* configure FIFO */
     lis2dh12_fifo_t fifo_cfg = {
@@ -99,11 +103,11 @@ static int shell_is2dh12_read(int argc, char **argv)
     (void)argc;
     (void)argv;
 
-    lis2dh12_fifo_data_t data;
+    int16_t data[3] = {0};
 
-    lis2dh12_read(&dev, &data);
+    lis2dh12_read(&dev, data);
 
-    printf("X: %d  Y: %d  Z: %d\n", data.axis.x, data.axis.y, data.axis.z);
+    printf("X: %d  Y: %d  Z: %d\n", data[0], data[1], data[2]);
 
     return 0;
 }
