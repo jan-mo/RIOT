@@ -13,7 +13,7 @@ FEATURES_REQUIRED += periph_adc
 FEATURES_REQUIRED += periph_gpio_irq
 
 # acceleration sensor
-USEMODULE += lis2dh12_spi
+USEMODULE += lis3dh
 
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
