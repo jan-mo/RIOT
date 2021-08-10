@@ -19,12 +19,15 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "shell.h"
 #include "msg.h"
+#include "board.h"
+#include "xtimer.h"
+
 #include "periph/gpio.h"
 #include "periph/adc.h"
-#include "board.h"
 
 /* acceleration sensor */
 #include "lis3dh.h"
@@ -35,18 +38,26 @@
 #define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
 #include "lis3dh_params.h"
 
-static lis3dh_t dev;
+static lis3dh_t dev_lis;
+
+/* display PCD8544 */
+#include "pcd8544.h"
+static pcd8544_t dev_pcd;
+
+/* timings */
+#define SECOND          1000000
+#define MILLI_SECOND    1000
 
 #define ENABLE_DEBUG 0
 #include "debug.h"
 
-#define ADC_SAMPLE_LINE 1
+#define ADC_SAMPLE_LINE 1   /* PB01 */
 
 #define MAIN_QUEUE_SIZE (8)
 static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
 
 /* toggles the user LED */
-static int toggle_LED(int argc, char **argv){
+static int led_toggle(int argc, char **argv) {
     (void)argc;
     (void)argv;
     LED0_TOGGLE;
@@ -54,68 +65,154 @@ static int toggle_LED(int argc, char **argv){
 }
 
 /* read ADC (differential mode) */
-static int read_ADC(int argc, char **argv){
+static int adc_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
+
+    char buffer[4] = {0};
+
     int sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
-    printf("ADC value: %d\n", sample);
+    DEBUG("ADC value: %d\n", sample);
+
+    /* print to display */
+    pcd8544_write_s(&dev_pcd, 0, 0, "ADC: ");
+    sprintf(buffer, "%d   ", sample);
+    pcd8544_write_s(&dev_pcd, 5, 0, buffer);
+
     return 1;
 }
 
 /* interrupt callback for user button */
-void button_int_cb(void* arg){
+void button_int_cb(void* arg) {
     (void)arg;
     puts("interrupt received.");
 }
 
 /* LIS3DH init function */
 void lis3dh_func_init(void) {
-
-    /* init lis */
-    if (lis3dh_init(&dev, &lis3dh_params[0]) == 0) {
+    if (lis3dh_init(&dev_lis, &lis3dh_params[0]) == 0) {
         puts("lis3dh [Initialized]");
     }
     else {
         puts("lis3dh [Failed]");
     }
 
-    lis3dh_set_odr(&dev, lis3dh_params[0].odr);
-    lis3dh_set_scale(&dev, lis3dh_params[0].scale);
-    lis3dh_set_axes(&dev, LIS3DH_AXES_XYZ);
-
+    lis3dh_set_odr(&dev_lis, lis3dh_params[0].odr);
+    lis3dh_set_scale(&dev_lis, lis3dh_params[0].scale);
+    lis3dh_set_axes(&dev_lis, LIS3DH_AXES_XYZ);
 }
 
 /* read LIS values */
-static int lis3dh_read(int argc, char **argv)
-{
+static int lis3dh_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
-    lis3dh_data_t data;
+    lis3dh_data_t data = {0};
+    char buffer[5] = {0};
 
-    lis3dh_read_xyz(&dev, &data);
+    lis3dh_read_xyz(&dev_lis, &data);
+    DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
 
-    printf("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
+    /* print to display */
+    pcd8544_write_s(&dev_pcd, 0, 1, "X: ");
+    sprintf(buffer, "%d    ", data.acc_x);
+    pcd8544_write_s(&dev_pcd, 3, 1, buffer);
 
+    pcd8544_write_s(&dev_pcd, 0, 2, "Y: ");
+    sprintf(buffer, "%d    ", data.acc_y);
+    pcd8544_write_s(&dev_pcd, 3, 2, buffer);
+
+    pcd8544_write_s(&dev_pcd, 0, 3, "Z: ");
+    sprintf(buffer, "%d    ", data.acc_z);
+    pcd8544_write_s(&dev_pcd, 3, 3, buffer);
+
+    return 0;
+}
+
+/* turn on the display */
+static int display_on(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    pcd8544_poweron(&dev_pcd);
+    return 0;
+}
+
+/* turn off the display */
+static int display_off(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    pcd8544_poweroff(&dev_pcd);
+    return 0;
+}
+
+/* clear the display content */
+static int display_clear(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    pcd8544_clear(&dev_pcd);
+    return 0;
+}
+
+/* display riot-logo */
+static int display_riot(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    pcd8544_riot(&dev_pcd);
+    return 0;
+}
+
+/* invert display content */
+static int display_invert(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    pcd8544_invert(&dev_pcd);
+    return 0;
+}
+
+/* write to specific line and column of display */
+static int display_write(int argc, char **argv) {
+    uint8_t x, y;
+
+    if (argc < 4) {
+        printf("usage: %s LINE COLUMN STRING\n", argv[0]);
+        return -1;
+    }
+
+    x = atoi(argv[1]);
+    y = atoi(argv[2]);
+
+    pcd8544_write_s(&dev_pcd, y, x, argv[3]);
     return 0;
 }
 
 /* shell commands */
 static const shell_command_t shell_commands[] = {
-    { "toggle_LED", "toggles the LED status of LED0", toggle_LED },
-    { "adc", "reads the ADC0", read_ADC },
+    { "disp_on", "Turn on the display", display_on },
+    { "disp_off", "Turn off the display", display_off },
+    { "disp_riot", "Displays RIOT logo", display_riot },
+    { "disp_invert", "Invert display", display_invert },
+    { "disp_write", "Write string to display", display_write},
+    { "disp_clear", "Clear display", display_clear },
     { "lis_read", "Read acceleration data", lis3dh_read },
+    { "adc_read", "Read ADC value, stops periodic read", adc_read},
+    { "led_toggle", "Toggles the LED0 status", led_toggle},
     { NULL, NULL, NULL }
 };
 
-int main(void)
-{
+
+int main(void) {
+
     puts("Example Firmware");
 
     printf("You are running RIOT on a(n) %s board.\n", RIOT_BOARD);
     printf("This board features a(n) %s MCU.\n", RIOT_MCU);
 
-    /* powers off the LED */
+    /* power off the LED */
     LED0_OFF;
 
     /* setting up interrupt pin (user button) */
@@ -130,6 +227,25 @@ int main(void)
 
     /* init acceleration sensor */
     lis3dh_func_init();
+
+    printf("Initializing PCD8544 LCD at SPI_%i...\n", SPI_DEV(0));
+    if (pcd8544_init(&dev_pcd, SPI_DEV(0), GPIO_PIN(PA,5),
+                     GPIO_PIN(PB,9), GPIO_PIN(PB,8)) != 0) {
+        puts("Failed to initialize PCD8544 display");
+        return 1;
+    }
+
+    /* display riot-logo for one second */
+    pcd8544_clear(&dev_pcd);
+    pcd8544_poweron(&dev_pcd);
+    pcd8544_riot(&dev_pcd);
+    xtimer_usleep(1 * SECOND);
+    pcd8544_clear(&dev_pcd);
+    pcd8544_write_s(&dev_pcd, 3, 1, "Running");
+    pcd8544_write_s(&dev_pcd, 3, 2, "Example");
+    pcd8544_write_s(&dev_pcd, 3, 3, "Firmware");
+    xtimer_usleep(2 * SECOND);
+    pcd8544_clear(&dev_pcd);
 
     /* start shell */
     puts("All up, running the shell now");
