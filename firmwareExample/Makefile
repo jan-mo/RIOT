@@ -18,6 +18,13 @@ USEMODULE += lis3dh
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
 
+USEMODULE += gnrc_netdev_default
+USEMODULE += auto_init_gnrc_netif
+USEMODULE += gnrc_ipv6
+USEMODULE += gnrc_icmpv6_error
+USEMODULE += gnrc_udp
+USEMODULE += gnrc_icmpv6_echo
+
 USEMODULE += ps
 USEMODULE += netstats_l2
 USEMODULE += netstats_ipv6
