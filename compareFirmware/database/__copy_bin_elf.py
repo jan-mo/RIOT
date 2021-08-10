@@ -7,7 +7,7 @@
 
 
 import os, sys
-from shutil import move
+from shutil import move, copyfile
 
 
 src = '../../firmwareExample/bin/'
