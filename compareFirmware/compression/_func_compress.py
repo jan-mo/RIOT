@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.9
 
-import zlib, gzip
+import zlib, gzip, bz2, lzma
 import heatshrink2 as hs
 import os
 
@@ -24,6 +24,16 @@ def __all_compress_functions(file, method, option = None):
     elif method == "hs":
         compress = hs.compress(file)
 
+    elif method == "bz2" and option:
+        compress = bz2.compress(file, option)
+    elif method == "bz2":
+        compress = bz2.compress(file)
+
+    elif method == "lzma" and option:
+        compress = lzma.compress(file, option)
+    elif method == "lzma":
+        compress = lzma.compress(file)
+
     return compress
 
 def __all_decompress_functions(file, method, option = None):
@@ -31,21 +41,31 @@ def __all_decompress_functions(file, method, option = None):
         decompress = zlib.decompress(file, option)
     elif method == "zlib":
         decompress = zlib.decompress(file)
-    
+
     elif method == "gzip" and option:
         decompress = gzip.decompress(file, option)
     elif method == "gzip":
         decompress = gzip.decompress(file)
-    
+
     elif method == "hs" and option:
         decompress = hs.decompress(file, option)
     elif method == "hs":
         decompress = hs.decompress(file)
 
+    elif method == "bz2" and option:
+        decompress = bz2.decompress(file, option)
+    elif method == "bz2":
+        decompress = bz2.decompress(file)
+
+    elif method == "lzma" and option:
+        decompress = lzma.decompress(file, option)
+    elif method == "lzma":
+        decompress = lzma.decompress(file)
+
     return decompress
 
 
-def compress_function(method, option = None):
+def compress_database(method, option = None):
     # list all files in database
     data = os.listdir('../database')
     versions = []
@@ -73,8 +93,8 @@ def compress_function(method, option = None):
 
         # files
         file_orig = folder + versions[i] + '.bin' 
-        file_comp = 'compressed/samd20-xpro/' + versions[i] + '_zlib_compressed'
-        file_decomp = 'decompressed/samd20-xpro/' +  versions[i] + '_zlib_decompressed.bin'
+        file_comp = 'compressed/samd20-xpro/' + versions[i] + '_' + method + '_compressed'
+        file_decomp = 'decompressed/samd20-xpro/' +  versions[i] + '_' + method + '_decompressed.bin'
 
         # compress
         f = open(file_orig, 'rb').read()
@@ -109,27 +129,22 @@ def compress_function(method, option = None):
 
         # files
         file_orig = folder + versions[i] + '.bin' 
-        file_comp = 'compressed/samd21-xpro/' + versions[i] + '_zlib_compressed'
-        file_decomp = 'decompressed/samd21-xpro/' +  versions[i] + '_zlib_decompressed.bin'
+        file_comp = 'compressed/samd21-xpro/' + versions[i] + '_' + method + '_compressed'
+        file_decomp = 'decompressed/samd21-xpro/' +  versions[i] + '_' + method + '_decompressed.bin'
 
         # compress
         f = open(folder + versions[i] + '.bin', 'rb').read()
         compress = __all_compress_functions(f, method, option)
 
-        name_compress = versions[i] + '_zlib_compressed'
-
-        f = open('compressed/samd21-xpro/' + name_compress, 'wb')
+        f = open(file_comp, 'wb')
         f.write(compress)
         f.close()
 
         # decompress
-        name_compress = versions[i] + '_zlib_compressed'
-        name_decompress = versions[i] + '_zlib_decompressed.bin'
-
-        f = open('compressed/samd21-xpro/' + name_compress, 'rb').read()
+        f = open(file_comp, 'rb').read()
         decompress = __all_decompress_functions(f, method, option)
 
-        f = open('decompressed/samd21-xpro/' + name_decompress, 'wb')
+        f = open(file_decomp, 'wb')
         f.write(decompress)
         f.close()
 

@@ -1,47 +1,44 @@
 #!/usr/bin/env python3.9
 
 from tabulate import tabulate
-from _func_compress import compress_function
+from _func_compress import compress_database
 
-[results_samd20_zlib, results_samd21_zlib] = compress_function("zlib")
-[results_samd20_gzip, results_samd21_gzip] = compress_function("gzip")
-[results_samd20_hs, results_samd21_hs] = compress_function("hs")
+# compress functions
+compress_func = ["zlib","gzip","hs","bz2","lzma"]
 
-# print table samd20
-entries = []
-entry_zlib = []
-entry_gzip = []
-entry_hs = []
-entry_zlib.append("zlib")
-entry_gzip.append("gzip")
-entry_hs.append("hs")
+entries_samd20 = []
+entries_samd21 = []
 
-revisions = sorted(results_samd20_zlib.keys())
-for revision in revisions:
-    entry_zlib.append(str(results_samd20_zlib[revision]["reduction"]) + "%")
-    entry_gzip.append(str(results_samd20_gzip[revision]["reduction"]) + "%")
-    entry_hs.append(str(results_samd20_hs[revision]["reduction"]) + "%")
+# compress database
+for comp in compress_func:
+    [SAMD20, SAMD21] = compress_database(comp)
 
-revisions.insert(0,"SAMD20-xpro")
-print(tabulate([entry_zlib, entry_gzip, entry_hs], headers = revisions, tablefmt = "tsv"))
+    # calc SAMD20 and SAMD21 entries
+    entry_samd20 = []
+    entry_samd21 = []
+    entry_samd20.append(comp)
+    entry_samd21.append(comp)
 
+    revisions_samd20 = sorted(SAMD20.keys())
+    for revision in revisions_samd20:
+        entry_samd20.append(str(SAMD20[revision]["reduction"]) + "%")
+        if (SAMD20[revision]["result"] != "pass"):
+            print("SAMD20: " + revision + " with " + comp + " failed!")
+
+    revisions_samd21 = sorted(SAMD21.keys())
+    for revision in revisions_samd21:
+        entry_samd21.append(str(SAMD21[revision]["reduction"]) + "%")
+        if (SAMD21[revision]["result"] != "pass"):
+            print("SAMD21: " + revision + " with " + comp + " failed!")
+
+    entries_samd20.append(entry_samd20)
+    entries_samd21.append(entry_samd21)
+
+# print SAMD20 table
+revisions_samd20.insert(0,"SAMD20-xpro")
+print(tabulate(entries_samd20, headers = revisions_samd20, tablefmt = "tsv"))
 
 print()
-print()
-# print table samd21
-entries = []
-entry_zlib = []
-entry_gzip = []
-entry_hs = []
-entry_zlib.append("zlib")
-entry_gzip.append("gzip")
-entry_hs.append("hs")
-
-revisions = sorted(results_samd21_zlib.keys())
-for revision in revisions:
-    entry_zlib.append(str(results_samd21_zlib[revision]["reduction"]) + "%")
-    entry_gzip.append(str(results_samd21_gzip[revision]["reduction"]) + "%")
-    entry_hs.append(str(results_samd21_hs[revision]["reduction"]) + "%")
-
-revisions.insert(0,"SAMD21-xpro")
-print(tabulate([entry_zlib, entry_gzip, entry_hs], headers = revisions, tablefmt = "tsv"))
+# print SAMD21 table
+revisions_samd21.insert(0,"SAMD21-xpro")
+print(tabulate(entries_samd21, headers = revisions_samd21, tablefmt = "tsv"))
