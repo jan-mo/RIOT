@@ -5,6 +5,8 @@ from shutil import move, copyfile
 from joblib import Parallel, delayed
 import matplotlib.pyplot as plt
 import numpy as np
+from pathos.multiprocessing import ThreadingPool as TPool
+from pathos.multiprocessing import ProcessingPool as Pool
 
 ###
 ### calculates differences in firmware-database
@@ -36,7 +38,7 @@ folder = "algo_diffs/"
 folder_patch = "algo_diffs/patched/"
 
 # calculate all differences
-def second_loop(i, file1, sizes, files, name_arch):
+def second_loop(i, file1, files, sizes, name_arch):
     for j, file2 in enumerate(files):
 
         #### diff ####
@@ -147,7 +149,7 @@ def second_loop(i, file1, sizes, files, name_arch):
             sizes["rsync32"][name_rsync32] = {"size":os.path.getsize(folder_rsync32),
                                               "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync32) else "fail"}
 
-    return sizes
+    return [sizes]
 
 # clear folder differences
 os.system("rm -r " + folder + "*")
@@ -159,19 +161,56 @@ for algo in diff_algos:
     os.system("mkdir " + folder + algo + "/samd20-xpro/")
     os.system("mkdir " + folder + algo + "/samd21-xpro/")
 
-# create dictionary
-sizes_all = dict()
+### create dictionary ###
+sizes_samd20 = dict()
+sizes_samd21 = dict()
 for algo in diff_algos:
-    sizes_all[algo] = dict()
+    sizes_samd20[algo] = dict()
+    sizes_samd21[algo] = dict()
 
 ### samd20-xpro ###
-results_samd20 = Parallel(n_jobs=-1)(delayed(second_loop)(i, file1, sizes_all, files_samd20, "samd20-xpro") for i, file1 in enumerate(files_samd20))
+#results_samd20 = [Parallel(n_jobs=-1)(delayed(second_loop)(i, file1, files_samd20, sizes_samd20, "samd20-xpro") for i, file1 in enumerate(files_samd20))]
+
+
+num = []
+file1 = []
+files = []
+sizes = []
+arch = []
+for i, file in enumerate(files_samd20):
+    num.append(i)
+    file1.append(file)
+    files.append(files_samd20)
+    sizes.append(sizes_samd20)
+    arch.append("samd20-xpro")
+
+result = TPool().amap(second_loop, num, file1, files, sizes, arch)
+
+results_samd20 = result.get()
 
 # clear patched folder
 os.system("rm -r " + folder_patch + "*")
 
 ### samd21-xpro ###
-results_samd21 = Parallel(n_jobs=-1)(delayed(second_loop)(i, file1, sizes_all, files_samd21, "samd21-xpro") for i, file1 in enumerate(files_samd21))
+#results_samd21 = Parallel(n_jobs=-1)(delayed(second_loop)(i, file1, files_samd21, sizes_samd21, "samd21-xpro") for i, file1 in enumerate(files_samd21))
+
+
+num = []
+file1 = []
+files = []
+sizes = []
+arch = []
+for i, file in enumerate(files_samd21):
+    num.append(i)
+    file1.append(file)
+    files.append(files_samd21)
+    sizes.append(sizes_samd21)
+    arch.append("samd21-xpro")
+
+result = TPool().amap(second_loop, num, file1, files, sizes, arch)
+
+results_samd21 = result.get()
+
 
 # clear database
 for file in files_samd20:
@@ -181,116 +220,118 @@ for file in files_samd21:
 
 ### clear data ###
 os.system("rm -r " + folder_patch)
-for algo in diff_algos:
-    os.system("rm -r " + folder + algo + "/samd20-xpro/" + "*.sh")
-    os.system("rm -r " + folder + algo + "/samd21-xpro/" + "*.sh")
-
+os.system("rm " + folder + "rsync8/" + "samd20-xpro" + "/*.sh")
+os.system("rm " + folder + "rsync16/" + "samd20-xpro" + "/*.sh")
+os.system("rm " + folder + "rsync32/" + "samd20-xpro" + "/*.sh")
+os.system("rm " + folder + "rsync8/" + "samd21-xpro" + "/*.sh")
+os.system("rm " + folder + "rsync16/" + "samd21-xpro" + "/*.sh")
+os.system("rm " + folder + "rsync32/" + "samd21-xpro" + "/*.sh")
 
 ### build one dict ###
 sizes_all_arch = dict()
-sizes_all_arch["samd20-xpro"] = sizes_all
-sizes_all_arch["samd21-xpro"] = sizes_all
+sizes_all_arch["samd20-xpro"] = dict()
+sizes_all_arch["samd21-xpro"] = dict()
+for algo in diff_algos:
+    sizes_all_arch["samd20-xpro"][algo] = dict()
+    sizes_all_arch["samd21-xpro"][algo] = dict()
 
 # add dict samd20
-for elem in results_samd20:
-    for algo in diff_algos:
-        for key in elem[algo].keys():
-            sizes_all_arch["samd20-xpro"][algo][key] = elem[algo][key]
+for result in results_samd20:
+    for elem in result:
+        for algo in diff_algos:
+            for key in elem[algo].keys():
+                sizes_all_arch["samd20-xpro"][algo][key] = elem[algo][key]
+            
 
 # add dict samd21
-for elem in results_samd21:
-    for algo in diff_algos:
-        for key in elem[algo].keys():
-            sizes_all_arch["samd21-xpro"][algo][key] = elem[algo][key]
+for result in results_samd21:
+    for elem in result:
+        for algo in diff_algos:
+            for key in elem[algo].keys():
+                sizes_all_arch["samd21-xpro"][algo][key] = elem[algo][key]
+
+# sorting dict
+sizes_sorted = dict()
+sizes_sorted["samd20-xpro"] = dict()
+sizes_sorted["samd21-xpro"] = dict()
+
+for algo in diff_algos:
+    sizes_sorted["samd20-xpro"][algo] = dict()
+    sizes_sorted["samd21-xpro"][algo] = dict()
+    for i in sorted(sizes_all_arch["samd20-xpro"][algo]):
+        sizes_sorted["samd20-xpro"][algo][i] = sizes_all_arch["samd20-xpro"][algo][i]
+    for i in sorted(sizes_all_arch["samd21-xpro"][algo]):
+        sizes_sorted["samd21-xpro"][algo][i] = sizes_all_arch["samd21-xpro"][algo][i]
 
 
+#### bar plot function ####
+def plot_bar(values, xlabels, legend, name_fig, ylabel="size [Byte]"):
 
-# show graph of differences
-# samd20
-labels_1 = []
-revs = sizes_all_arch["samd20-xpro"]["diff"].keys()
+    x = np.arange(len(labels))  # the label locations
+
+    plt.rcParams["figure.figsize"] = (18,8)
+
+    fig, ax = plt.subplots()
+
+    width = 0.1
+    length = len(legend)
+
+    for i, value in enumerate(values):
+        offset = x + ((i-length/2) * width) if i < length/2 else x + ((i-length/2+1) * width)
+        ax.bar(offset, value, width, label=legend[i])
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel(ylabel)
+    ax.set_title(name_fig)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation='vertical')
+    ax.legend()
+
+    fig.tight_layout()
+
+    return fig
+
+
+### SAMD20 bar plot ###
+labels = []
+revs = sizes_sorted["samd20-xpro"][diff_algos[0]].keys()
 for elem in revs:
-    labels_1.append(elem[5:])
+    labels.append(elem[5:])
 
 array_all = []
 for algo in diff_algos:
-    revs = sizes_all_arch["samd20-xpro"][algo].keys()
+    revs = sizes_sorted["samd20-xpro"][algo].keys()
     array = []
     for rev in revs:
-        array.append(sizes_all_arch["samd20-xpro"][algo][rev]["size"])
+        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"])
+        if sizes_sorted["samd20-xpro"][algo][rev]["check"] != "pass":
+            print("Warning: SAMD20 " + algo + " " + rev + " check FAILED") 
     array_all.append(array)
 
-diff_1 = array_all[0]
-bsdiff_1 = array_all[1]
-xdelta3_1 = array_all[2]
-rsync8_1 = array_all[3]
-rsync16_1 = array_all[4]
-rsync32_1 = array_all[5]
-
-
-x = np.arange(len(labels_1))  # the label locations
-
-fig1, ax1 = plt.subplots()
-rects1_1 = ax1.bar(x - 0.3, diff_1, 0.15, label='diff')
-rects2_1 = ax1.bar(x - 0.2, bsdiff_1, 0.15, label='bsdiff')
-rects3_1 = ax1.bar(x - 0.1, xdelta3_1, 0.15, label='xdelta3')
-rects4_1 = ax1.bar(x + 0.1, rsync8_1, 0.15, label='rsync8')
-rects5_1 = ax1.bar(x + 0.2, rsync16_1, 0.15, label='rsync16')
-rects6_1 = ax1.bar(x + 0.3, rsync32_1, 0.15, label='rsync32')
-
-# Add some text for labels, title and custom x-axis tick labels, etc.
-ax1.set_ylabel('size [kB]')
-ax1.set_title('SAMD20-xpro diff size')
-ax1.set_xticks(x)
-ax1.set_xticklabels(labels_1, rotation='vertical')
-ax1.legend()
-
-fig1.tight_layout()
+fig_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
 
 
 
-#### samd21
-labels_2 = []
-revs = sizes_all_arch["samd21-xpro"]["diff"].keys()
+### SAMD21 bar plot ###
+labels = []
+revs = sizes_sorted["samd21-xpro"][diff_algos[0]].keys()
 for elem in revs:
-    labels_2.append(elem[5:])
+    labels.append(elem[5:])
 
 array_all = []
 for algo in diff_algos:
-    revs = sizes_all_arch["samd21-xpro"][algo].keys()
+    revs = sizes_sorted["samd21-xpro"][algo].keys()
     array = []
     for rev in revs:
-        array.append(sizes_all_arch["samd21-xpro"][algo][rev]["size"])
+        array.append(sizes_sorted["samd21-xpro"][algo][rev]["size"])
+        if sizes_sorted["samd21-xpro"][algo][rev]["check"] != "pass":
+            print("Warning: SAMD21 " + algo + " " + rev + " check FAILED") 
     array_all.append(array)
 
-diff_2 = array_all[0]
-bsdiff_2 = array_all[1]
-xdelta3_2 = array_all[2]
-rsync8_2 = array_all[3]
-rsync16_2 = array_all[4]
-rsync32_2 = array_all[5]
+fig_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms")
 
+#plt.show()
 
-x = np.arange(len(labels_2))  # the label locations
-
-fig2, ax2 = plt.subplots()
-rects1 = ax2.bar(x - 0.3, diff_2, 0.15, label='diff')
-rects2 = ax2.bar(x - 0.2, bsdiff_2, 0.15, label='bsdiff')
-rects3 = ax2.bar(x - 0.1, xdelta3_2, 0.15, label='xdelta3')
-rects4 = ax2.bar(x + 0.1, rsync8_2, 0.15, label='rsync8')
-rects5 = ax2.bar(x + 0.2, rsync16_2, 0.15, label='rsync16')
-rects6 = ax2.bar(x + 0.3, rsync32_2, 0.15, label='rsync32')
-
-# Add some text for labels, title and custom x-axis tick labels, etc.
-ax2.set_ylabel('size [kB]')
-ax2.set_title('SAMD21-xpro diff size')
-ax2.set_xticks(x)
-ax2.set_xticklabels(labels_2, rotation='vertical')
-ax2.legend()
-
-fig2.tight_layout()
-
-plt.show()
-
-
-#print(json.dumps(sizes_all_arch, indent = 4))
+### save plots to file ###
+fig_samd20.savefig("diffalgos_samd20.pdf")
+fig_samd21.savefig("diffalgos_samd21.pdf")
