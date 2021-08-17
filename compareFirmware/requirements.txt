@@ -1,0 +1,8 @@
+# difference.py
+matplotlib
+numpy
+pathos
+
+# compress.py
+tabulate
+heatshrink2
