@@ -1,0 +1,10 @@
+thesis/rev_00   Revision 00 - default firmware_example
+thesis/rev_01   Revision 01 - added LIS2DH12
+thesis/rev_02   Revision 02 - change to LIS3DH
+thesis/rev_03   Revision 03 - GNRC_NET enabled
+thesis/rev_04   Revision 04 - ADC_LINE changed
+thesis/rev_05   Revision 05 - PCD8544 and display values
+thesis/rev_06   Revision 06 - periodic read for LIS and ADC
+thesis/rev_07   Revision 07 - PCD8544 modifying driver
+thesis/rev_08   Revision 08 - updating RIOT OS to 2021.07
+thesis/rev_09   Revision 09 - user button interrupt funcinality
