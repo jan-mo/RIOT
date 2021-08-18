@@ -21,6 +21,14 @@ sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
 
 git diff thesis/rev_00 > firmware.diff
+size = $(wc -c < firmware.diff)
+
+if [ $size >= 6000000 ]
+then
+	split -b50M firmware.diff firmware.diff_split_
+	rm firmware.diff
+fi
+
 git checkout thesis/checking_firmware_versions
 
 cd -
