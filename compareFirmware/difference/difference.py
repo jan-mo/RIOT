@@ -41,6 +41,7 @@ for version in database:
 
 files_samd20 = sorted(files_samd20)
 files_samd21 = sorted(files_samd21)
+versions = sorted(versions)
 
 folder = "algo_diffs/"
 folder_patch = "algo_diffs/patched/"
@@ -101,7 +102,7 @@ def second_loop(i, file1, files, sizes, name_arch):
         if "rsync8" in diff_algos:
             name_rsync8 = "rsync8_rev" + str(i) + "_rev" + str(j)
             folder_rsync8 = folder + "rsync8/" + name_arch + "/" + name_rsync8
-            rsync8_par = "_rsync8_" + str(pid)     # save file for parallel loop
+            rsync8_par = "_rsync8_" + str(pid)      # save file for parallel loop
             # diff file
             os.system("cp " + file1 + " " + file1 + rsync8_par)
             if i != j :
@@ -117,7 +118,7 @@ def second_loop(i, file1, files, sizes, name_arch):
         if "rsync16" in diff_algos:
             name_rsync16 = "rsync16_rev" + str(i) + "_rev" + str(j)
             folder_rsync16 = folder + "rsync16/" + name_arch + "/" + name_rsync16
-            rsync16_par = "_rsync16_" + str(pid)     # save file for parallel loop
+            rsync16_par = "_rsync16_" + str(pid)    # save file for parallel loop
             # diff file
             os.system("cp " + file1 + " " + file1 + rsync16_par)
             if i != j:
@@ -133,7 +134,7 @@ def second_loop(i, file1, files, sizes, name_arch):
         if "rsync32" in diff_algos:
             name_rsync32 = "rsync32_rev" + str(i) + "_rev" + str(j)
             folder_rsync32 = folder + "rsync32/" + name_arch + "/" + name_rsync32
-            rsync32_par = "_rsync32_" + str(pid)     # save file for parallel loop
+            rsync32_par = "_rsync32_" + str(pid)    # save file for parallel loop
             # diff file
             os.system("cp " + file1 + " " + file1 + rsync32_par)
             if i != j:
@@ -272,9 +273,9 @@ for algo in diff_algos:
 
 
 #### bar plot function ####
-def plot_bar(values, xlabels, legend, name_fig, ylabel="size [Byte]"):
+def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
 
-    x = np.arange(len(labels))  # the label locations
+    x = np.arange(len(xlabels))  # the label locations
 
     plt.rcParams["figure.figsize"] = (18,8)
 
@@ -291,12 +292,12 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [Byte]"):
     ax.set_ylabel(ylabel)
     ax.set_title(name_fig)
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, rotation='vertical')
+    ax.set_xticklabels(xlabels, rotation='vertical')
     ax.legend()
 
     fig.tight_layout()
 
-    return fig
+    return fig, ax
 
 
 ### SAMD20 bar plot ###
@@ -310,12 +311,12 @@ for algo in diff_algos:
     revs = sizes_sorted["samd20-xpro"][algo].keys()
     array = []
     for rev in revs:
-        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"])
+        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"]/1024) # convert to kB
         if sizes_sorted["samd20-xpro"][algo][rev]["check"] != "pass":
             print("Warning: SAMD20 " + algo + " " + rev + " check FAILED") 
     array_all.append(array)
 
-fig_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
+fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
 
 ### SAMD21 bar plot ###
 labels = []
@@ -328,13 +329,29 @@ for algo in diff_algos:
     revs = sizes_sorted["samd21-xpro"][algo].keys()
     array = []
     for rev in revs:
-        array.append(sizes_sorted["samd21-xpro"][algo][rev]["size"])
+        array.append(sizes_sorted["samd21-xpro"][algo][rev]["size"]/1024) # convert to kB
         if sizes_sorted["samd21-xpro"][algo][rev]["check"] != "pass":
             print("Warning: SAMD21 " + algo + " " + rev + " check FAILED") 
     array_all.append(array)
 
-fig_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms")
+fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms")
+
+### bar plot code differences ###
+diff = []
+for version in versions:
+    folder = "../database/" + version
+    if os.path.isfile(folder + "/firmware.diff"):
+        diff.append(os.path.getsize(folder + "/firmware.diff")/1024)
+    else:
+        # creating diff from split
+        os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
+        diff.append(os.path.getsize(folder + "/firmware.diff")/1024) # convert to kB
+        os.system("cd " + folder + " && rm firmware.diff")
+
+fig_codediff, ax_codediff = plot_bar([diff], versions, ["code diff"], "Difference between revision and rev_00")
+ax_codediff.set_ylim(0,60)
 
 ### save plots to file ###
 fig_samd20.savefig("diffalgos_samd20.pdf")
 fig_samd21.savefig("diffalgos_samd21.pdf")
+fig_codediff.savefig("code_diff.pdf")
