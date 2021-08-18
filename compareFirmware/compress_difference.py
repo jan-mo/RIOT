@@ -2,5 +2,5 @@
 
 import os
 
-os.system("cd compression && ./compress.py")
+os.system("cd compression && ./compress.py && ./compress.py > compress.txt")
 os.system("cd difference && ./difference.py")
