@@ -338,17 +338,21 @@ fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro dif
 
 ### bar plot code differences ###
 diff = []
-for version in versions:
+for i, version in enumerate(versions):
     folder = "../database/" + version
     if os.path.isfile(folder + "/firmware.diff"):
         diff.append(os.path.getsize(folder + "/firmware.diff")/1024)
+        if i > 1:
+            diff[i] = diff[i] - diff[i-1]
     else:
         # creating diff from split
         os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
         diff.append(os.path.getsize(folder + "/firmware.diff")/1024) # convert to kB
         os.system("cd " + folder + " && rm firmware.diff")
+        if i > 1:
+            diff[i] = diff[i] - diff[i-1]
 
-fig_codediff, ax_codediff = plot_bar([diff], versions, ["code diff"], "Difference between revision and rev_00")
+fig_codediff, ax_codediff = plot_bar([diff], versions, ["code diff"], "Difference between revision and previous revision")
 ax_codediff.set_ylim(0,60)
 
 ### save plots to file ###
