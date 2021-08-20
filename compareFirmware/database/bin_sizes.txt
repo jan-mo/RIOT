@@ -1,0 +1,23 @@
+SAMD21
+-rw-r--r-- 1 arch arch   61052 19. Aug 18:14 rev_09.bin
+-rw-r--r-- 1 arch arch   60948 19. Aug 18:14 rev_08.bin
+-rw-r--r-- 1 arch arch   60848 19. Aug 18:14 rev_07.bin
+-rw-r--r-- 1 arch arch   60888 19. Aug 18:14 rev_06.bin
+-rw-r--r-- 1 arch arch   60136 19. Aug 18:14 rev_05.bin
+-rw-r--r-- 1 arch arch   56488 19. Aug 18:14 rev_04.bin
+-rw-r--r-- 1 arch arch   56488 19. Aug 18:14 rev_03.bin
+-rw-r--r-- 1 arch arch   17220 19. Aug 18:14 rev_02.bin
+-rw-r--r-- 1 arch arch   17552 19. Aug 18:14 rev_01.bin
+-rw-r--r-- 1 arch arch   15532 19. Aug 18:14 rev_00.bin
+
+SAMD20
+-rw-r--r-- 1 arch arch   61120 19. Aug 18:14 rev_09.bin
+-rw-r--r-- 1 arch arch   61016 19. Aug 18:14 rev_08.bin
+-rw-r--r-- 1 arch arch   60916 19. Aug 18:14 rev_07.bin
+-rw-r--r-- 1 arch arch   60956 19. Aug 18:14 rev_06.bin
+-rw-r--r-- 1 arch arch   60204 19. Aug 18:14 rev_05.bin
+-rw-r--r-- 1 arch arch   56556 19. Aug 18:14 rev_04.bin
+-rw-r--r-- 1 arch arch   56556 19. Aug 18:14 rev_03.bin
+-rw-r--r-- 1 arch arch   17348 19. Aug 18:14 rev_02.bin
+-rw-r--r-- 1 arch arch   17680 19. Aug 18:14 rev_01.bin
+-rw-r--r-- 1 arch arch   15656 19. Aug 18:14 rev_00.bin
