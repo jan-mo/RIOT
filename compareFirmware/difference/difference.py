@@ -2,8 +2,6 @@
 
 import os, sys, json, distro
 from shutil import move, copyfile
-import matplotlib.pyplot as plt
-import numpy as np
 # parallel processing
 from pathos.multiprocessing import ProcessingPool as Pool
 from pathos.helpers import mp as helper
@@ -149,24 +147,30 @@ def second_loop(i, file1, files, sizes, name_arch):
         #### check patch and calc sizes ####
         if "diff" in diff_algos:
             sizes["diff"][name_diff] = {"size":os.path.getsize(folder_diff),
-                                        "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_diff) else "fail"}
+                                        "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_diff) else "fail",
+                                        "normalized":os.path.getsize(folder_diff)/os.path.getsize(file2)}
         if "bsdiff" in diff_algos:
             sizes["bsdiff"][name_bsdiff] = {"size":os.path.getsize(folder_bsdiff),
-                                            "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_bsdiff) else "fail"}
+                                            "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_bsdiff) else "fail",
+                                            "normalized":os.path.getsize(folder_bsdiff)/os.path.getsize(file2)}
         if "xdelta3" in diff_algos:
             sizes["xdelta3"][name_xdelta3] = {"size":os.path.getsize(folder_xdelta3),
-                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_xdelta3) else "fail"}
+                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_xdelta3) else "fail",
+                                              "normalized":os.path.getsize(folder_xdelta3)/os.path.getsize(file2)}
         if "bdelta" in diff_algos:
             sizes["bdelta"][name_bdelta] = os.path.getsize(folder + name_bdelta)
         if "rsync8" in diff_algos:
             sizes["rsync8"][name_rsync8] = {"size":os.path.getsize(folder_rsync8),
-                                            "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync8) else "fail"}
+                                            "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync8) else "fail",
+                                            "normalized":os.path.getsize(folder_rsync8)/os.path.getsize(file2)}
         if "rsync16" in diff_algos:        
             sizes["rsync16"][name_rsync16] = {"size":os.path.getsize(folder_rsync16),
-                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync16) else "fail"}
+                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync16) else "fail",
+                                              "normalized":os.path.getsize(folder_rsync16)/os.path.getsize(file2)}
         if "rsync32" in diff_algos:        
             sizes["rsync32"][name_rsync32] = {"size":os.path.getsize(folder_rsync32),
-                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync32) else "fail"}
+                                              "check":"pass" if os.path.getsize(file2) == os.path.getsize(folder_patch + name_rsync32) else "fail",
+                                              "normalized":os.path.getsize(folder_rsync32)/os.path.getsize(file2)}
     return [sizes]
 
 
@@ -271,91 +275,10 @@ for algo in diff_algos:
     for i in sorted(sizes_all_arch["samd21-xpro"][algo]):
         sizes_sorted["samd21-xpro"][algo][i] = sizes_all_arch["samd21-xpro"][algo][i]
 
+### saving to JSON-file ###
+with open("sizes_sorted.save", 'w') as out:
+    json.dump(sizes_sorted, out)
 
-#### bar plot function ####
-def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
-
-    x = np.arange(len(xlabels))  # the label locations
-
-    plt.rcParams["figure.figsize"] = (18,8)
-
-    fig, ax = plt.subplots()
-
-    width = 0.1
-    length = len(legend)
-
-    for i, value in enumerate(values):
-        offset = x + ((i-length/2) * width + width/2) if i < length/2 else x + ((i-length/2+1) * width - width/2)
-        ax.bar(offset, value, width, label=legend[i])
-
-    # Add some text for labels, title and custom x-axis tick labels, etc.
-    ax.set_ylabel(ylabel)
-    ax.set_title(name_fig)
-    ax.set_xticks(x)
-    ax.set_xticklabels(xlabels, rotation='vertical')
-    ax.legend()
-
-    fig.tight_layout()
-
-    return fig, ax
-
-
-### SAMD20 bar plot ###
-labels = []
-revs = sizes_sorted["samd20-xpro"][diff_algos[0]].keys()
-for elem in revs:
-    labels.append(elem[5:])
-
-array_all = []
-for algo in diff_algos:
-    revs = sizes_sorted["samd20-xpro"][algo].keys()
-    array = []
-    for rev in revs:
-        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"]/1024) # convert to kB
-        if sizes_sorted["samd20-xpro"][algo][rev]["check"] != "pass":
-            print("Warning: SAMD20 " + algo + " " + rev + " check FAILED") 
-    array_all.append(array)
-
-fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
-
-### SAMD21 bar plot ###
-labels = []
-revs = sizes_sorted["samd21-xpro"][diff_algos[0]].keys()
-for elem in revs:
-    labels.append(elem[5:])
-
-array_all = []
-for algo in diff_algos:
-    revs = sizes_sorted["samd21-xpro"][algo].keys()
-    array = []
-    for rev in revs:
-        array.append(sizes_sorted["samd21-xpro"][algo][rev]["size"]/1024) # convert to kB
-        if sizes_sorted["samd21-xpro"][algo][rev]["check"] != "pass":
-            print("Warning: SAMD21 " + algo + " " + rev + " check FAILED") 
-    array_all.append(array)
-
-fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms")
-
-### bar plot code differences ###
-diff = []
-for i, version in enumerate(versions):
-    folder = "../database/" + version
-    if os.path.isfile(folder + "/firmware.diff"):
-        diff.append(os.path.getsize(folder + "/firmware.diff")/1024)
-        if i > 1:
-            diff[i] = diff[i] - diff[i-1]
-    else:
-        # creating diff from split
-        os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
-        diff.append(os.path.getsize(folder + "/firmware.diff")/1024) # convert to kB
-        os.system("cd " + folder + " && rm firmware.diff")
-        if i > 1:
-            diff[i] = diff[i] - diff[i-1]
-
-fig_codediff, ax_codediff = plot_bar([diff], versions, ["code diff"], "Difference between revision and previous revision")
-ax_codediff.set_ylim(0,60)
-
-### save plots to file ###
-fig_samd20.savefig("diffalgos_samd20.pdf")
-fig_samd21.savefig("diffalgos_samd21.pdf")
-fig_codediff.savefig("code_diff.pdf")
+### saving versions ###
+with open("versions.save", 'w') as out:
+    json.dump(versions, out)
