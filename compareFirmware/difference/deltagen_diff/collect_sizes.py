@@ -52,7 +52,3 @@ for folder in folder_samd21:
 ### saving to JSON-file ###
 with open("sizes_sorted.save", 'w') as out:
     json.dump(sizes, out)
-
-### saving versions ###
-with open("versions.save", 'w') as out:
-    json.dump(["deltagen"], out)
