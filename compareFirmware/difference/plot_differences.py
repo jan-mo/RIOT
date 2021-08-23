@@ -6,7 +6,7 @@ import numpy as np
 
 
 # used differencing algos
-diff_algos = [ "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32"] # bdelta - not implemented right
+diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "deltagen"] # bdelta - not implemented right
 
 ### load data ###
 with open("sizes_sorted.save", 'r') as json_file:
@@ -14,6 +14,13 @@ with open("sizes_sorted.save", 'r') as json_file:
 with open("versions.save", 'r') as file:
     versions = json.load(file)
 
+### load deltagen data ###
+with open("deltagen_diff/sizes_sorted.save", 'r') as json_file:
+    sizes_sorted_deltagen = json.load(json_file)
+
+### combine the data ###
+sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
+sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
 
 #### bar plot function ####
 def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
@@ -48,7 +55,7 @@ labels = []
 revs = sizes_sorted["samd20-xpro"][diff_algos[0]].keys()
 for elem in revs:
     tmp = elem.split("_")
-    labels.append(tmp[-2] + "_" + tmp[-1])
+    labels.append("rev" + tmp[2] + "_rev" + tmp[4])
 
 array_all = []
 norm_all = []
@@ -72,7 +79,7 @@ labels = []
 revs = sizes_sorted["samd21-xpro"][diff_algos[0]].keys()
 for elem in revs:
     tmp = elem.split("_")
-    labels.append(tmp[-2] + "_" + tmp[-1])
+    labels.append("rev" + tmp[2] + "_rev" + tmp[4])
 
 array_all = []
 norm_all = []
@@ -111,7 +118,6 @@ log_diff = []
 for elem in diff:
     if elem < 0.0:
         elem = -elem
-    print(elem)
     if elem != 0.0:
         log_diff.append(math.log(elem))
     else:

@@ -53,13 +53,13 @@ os.system("mkdir " + folder_patch)
 def second_loop(i, file1, files, sizes, name_arch):
     # getting PID
     pid = helper.current_process().pid
-    print(name_arch + " differences of Rev_" + str(i) + " PID:" + str(pid))
+    print(name_arch + " differences of Rev_" + str(i).zfill(2) + " PID:" + str(pid))
 
     for j, file2 in enumerate(files):
 
         #### diff ####
         if "diff" in diff_algos:
-            name_diff = "diff_rev" + str(i) + "_rev" + str(j)
+            name_diff = "diff_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_diff = folder + "diff/" + name_arch + "/" + name_diff
             # diff file
             os.system("diff -a " + file1 + " " + file2 + " > " + folder_diff)
@@ -69,7 +69,7 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### bsdiff ####
         if "bsdiff" in diff_algos:
-            name_bsdiff = "bsdiff_rev" + str(i) + "_rev" + str(j)
+            name_bsdiff = "bsdiff_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_bsdiff = folder + "bsdiff/" + name_arch + "/" + name_bsdiff
             # diff file
             os.system("bsdiff " + file1 + " " + file2 + " " + folder_bsdiff)
@@ -78,16 +78,16 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### xdelta3 ####
         if "xdelta3" in diff_algos:
-            name_xdelta3 = "xdelta3_rev" + str(i) + "_rev" + str(j)
+            name_xdelta3 = "xdelta3_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_xdelta3 = folder + "xdelta3/" + name_arch + "/" + name_xdelta3
             # diff file
-            os.system("xdelta3 -e -s " + file1 + " " + file2 + " " + folder_xdelta3)
+            os.system("xdelta3 -e -S -N -D -R -s " + file1 + " " + file2 + " " + folder_xdelta3)
             # patch file
             os.system("xdelta3 -d -s " + file1 + " " + folder_xdelta3 + " " + folder_patch + name_xdelta3)
 
         #### bdelta ####
         if "bdelta" in diff_algos:
-            name_bdelta = "bdelta_rev" + str(i) + "_rev" + str(j)
+            name_bdelta = "bdelta_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_bdelta = folder + "bdelta/" + name_arch + "/" + name_bdelta
             # diff file
             print("bdelta " + file1 + " " + file2 + " " + folder_bdelta)
@@ -98,7 +98,7 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### rsync8 ####
         if "rsync8" in diff_algos:
-            name_rsync8 = "rsync8_rev" + str(i) + "_rev" + str(j)
+            name_rsync8 = "rsync8_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_rsync8 = folder + "rsync8/" + name_arch + "/" + name_rsync8
             rsync8_par = "_rsync8_" + str(pid)      # save file for parallel loop
             # diff file
@@ -114,7 +114,7 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### rsync16 ####
         if "rsync16" in diff_algos:
-            name_rsync16 = "rsync16_rev" + str(i) + "_rev" + str(j)
+            name_rsync16 = "rsync16_rev_" + str(i) + "_rev_" + str(j).zfill(2)
             folder_rsync16 = folder + "rsync16/" + name_arch + "/" + name_rsync16
             rsync16_par = "_rsync16_" + str(pid)    # save file for parallel loop
             # diff file
@@ -130,7 +130,7 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### rsync32 ####
         if "rsync32" in diff_algos:
-            name_rsync32 = "rsync32_rev" + str(i) + "_rev" + str(j)
+            name_rsync32 = "rsync32_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             folder_rsync32 = folder + "rsync32/" + name_arch + "/" + name_rsync32
             rsync32_par = "_rsync32_" + str(pid)    # save file for parallel loop
             # diff file
