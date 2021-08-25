@@ -74,7 +74,33 @@ for algo in diff_algos:
 fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
 fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro differencing algorithms (normalized)", "size reduction")
 
-### SAMD21 bar plot ###
+# save and close figures
+fig_samd20.savefig("plots/diffalgos_samd20_all.pdf")
+fig_norm20.savefig("plots/norm_diffalgos_samd20_all.pdf")
+plt.close("all")
+
+# plot single rev_xx
+figures_array = []
+figures_norm = []
+num_revs = int(math.sqrt(len(revs)))
+for rev in range(num_revs):
+    label = labels[rev*num_revs:rev*num_revs+num_revs]
+    array = []
+    norm = []
+    for algo in range(len(array_all)):
+        array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
+        norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
+
+    fig, ax = plot_bar(array, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2))
+    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2) + " (normalized)", "size reduction")
+
+    ### save and close figures ###
+    fig.savefig("plots/diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
+    fig_norm.savefig("plots/norm_diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
+    plt.close("all")
+
+
+### SAMD21 relative bar plot ###
 labels = []
 revs = sizes_sorted["samd21-xpro"][diff_algos[0]].keys()
 for elem in revs:
@@ -88,15 +114,40 @@ for algo in diff_algos:
     array = []
     norm = []
     for rev in revs:
-        array.append(sizes_sorted["samd21-xpro"][algo][rev]["size"]/1024)   # convert to kB
-        norm.append(sizes_sorted["samd21-xpro"][algo][rev]["normalized"])   # normalizing data
+        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"] - sizes_sorted["samd21-xpro"][algo][rev]["size"])   # in Bytes
+        norm.append(sizes_sorted["samd20-xpro"][algo][rev]["normalized"] - sizes_sorted["samd21-xpro"][algo][rev]["normalized"])   # normalizing data
         if sizes_sorted["samd21-xpro"][algo][rev]["check"] != "pass":
             print("Warning: SAMD21 " + algo + " " + rev + " check FAILED") 
     array_all.append(array)
     norm_all.append(norm)
 
-fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms")
-fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro differencing algorithms (normalized)", "size reduction")
+fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro", "size [Byte]")
+fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro (normalized)", "size reduction")
+
+### save and close figures ###
+fig_samd21.savefig("plots/diffalgos_samd21_relative_all.pdf")
+fig_norm21.savefig("plots/norm_diffalgos_samd21_relative_all.pdf")
+plt.close("all")
+
+
+# plot single rev_xx
+num_revs = int(math.sqrt(len(revs)))
+for rev in range(num_revs):
+    label = labels[rev*num_revs:rev*num_revs+num_revs]
+    array = []
+    norm = []
+    for algo in range(len(array_all)):
+        array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
+        norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
+
+    fig, ax1 = plot_bar(array, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2), "size [Byte]")
+    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "size reduction")
+
+    ### save and close figures ###
+    fig.savefig("plots/diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
+    fig_norm.savefig("plots/norm_diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
+    plt.close("all")
+
 
 ### bar plot code differences ###
 diff = []
@@ -123,14 +174,7 @@ for elem in diff:
     else:
         log_diff.append(elem)
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions, ["code diff"], "Difference between revision and previous revision")
-#ax_codediff.set_ylim(0,60)
+fig_codediff, ax_codediff = plot_bar([log_diff], versions, ["code diff"], "Difference [in kB] between revision and previous revision")
 
-### save plots to file ###
-fig_samd20.savefig("diffalgos_samd20.pdf")
-fig_samd21.savefig("diffalgos_samd21.pdf")
-
-fig_norm20.savefig("norm_diffalgos_samd20.pdf")
-fig_norm21.savefig("norm_diffalgos_samd21.pdf")
-
-fig_codediff.savefig("code_diff.pdf")
+### save and close figures ###
+fig_codediff.savefig("plots/code_diff.pdf")
