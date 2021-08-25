@@ -160,7 +160,7 @@ for i, version in enumerate(versions):
     else:
         # creating diff from split
         os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
-        diff.append(os.path.getsize(folder + "/firmware.diff")) # convert to kB
+        diff.append(os.path.getsize(folder + "/firmware.diff"))
         os.system("cd " + folder + " && rm firmware.diff")
         if i > 1:
             diff[i] = diff[i] - diff[i-1]
@@ -174,7 +174,7 @@ for elem in diff:
     else:
         log_diff.append(elem)
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions, ["code diff"], "Difference [in kB] between revision and previous revision")
+fig_codediff, ax_codediff = plot_bar([log_diff], versions, ["code diff"], "Difference between revision and previous revision", "log of size-difference")
 
 ### save and close figures ###
 fig_codediff.savefig("plots/code_diff.pdf")
