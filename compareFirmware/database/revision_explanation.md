@@ -43,3 +43,6 @@ All revisions are explained and the core functionality is listed
 ### rev_08
 - updating RIOT OS to newer version
 - update from 2021.04 to 2021.07
+
+### rev_09
+- modifying interrupt functionality of user button

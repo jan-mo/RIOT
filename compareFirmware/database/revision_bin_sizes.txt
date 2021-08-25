@@ -1,0 +1,23 @@
+SAMD20 bin sizes [Byte]:
+15656	./rev_00/samd20-xpro/rev_00.bin
+17348	./rev_02/samd20-xpro/rev_02.bin
+17680	./rev_01/samd20-xpro/rev_01.bin
+56556	./rev_03/samd20-xpro/rev_03.bin
+56556	./rev_04/samd20-xpro/rev_04.bin
+60204	./rev_05/samd20-xpro/rev_05.bin
+60916	./rev_07/samd20-xpro/rev_07.bin
+60956	./rev_06/samd20-xpro/rev_06.bin
+61016	./rev_08/samd20-xpro/rev_08.bin
+61120	./rev_09/samd20-xpro/rev_09.bin
+
+SAMD21 bin sizes [Byte]:
+15532	./rev_00/samd21-xpro/rev_00.bin
+17220	./rev_02/samd21-xpro/rev_02.bin
+17552	./rev_01/samd21-xpro/rev_01.bin
+56488	./rev_03/samd21-xpro/rev_03.bin
+56488	./rev_04/samd21-xpro/rev_04.bin
+60136	./rev_05/samd21-xpro/rev_05.bin
+60848	./rev_07/samd21-xpro/rev_07.bin
+60888	./rev_06/samd21-xpro/rev_06.bin
+60948	./rev_08/samd21-xpro/rev_08.bin
+61052	./rev_09/samd21-xpro/rev_09.bin
