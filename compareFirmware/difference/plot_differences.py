@@ -6,7 +6,7 @@ import numpy as np
 
 
 # used differencing algos
-diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "deltagen"] # bdelta - not implemented right
+diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat", "deltagen"] # bdelta - not implemented right
 
 ### load data ###
 with open("sizes_sorted.save", 'r') as json_file:
@@ -14,13 +14,14 @@ with open("sizes_sorted.save", 'r') as json_file:
 with open("versions.save", 'r') as file:
     versions = json.load(file)
 
-### load deltagen data ###
-with open("deltagen_diff/sizes_sorted.save", 'r') as json_file:
-    sizes_sorted_deltagen = json.load(json_file)
+if "deltagen" in diff_algos:
+    ### load deltagen data ###
+    with open("deltagen_diff/sizes_sorted.save", 'r') as json_file:
+        sizes_sorted_deltagen = json.load(json_file)
 
-### combine the data ###
-sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
-sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
+    ### combine the data ###
+    sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
+    sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
 
 #### bar plot function ####
 def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
