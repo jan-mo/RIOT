@@ -119,9 +119,9 @@ def second_loop(i, file1, files, sizes, name_arch):
 
         #### rsync16 ####
         if "rsync16" in diff_algos:
-            name_rsync16 = "rsync16_rev_" + str(i) + "_rev_" + str(j).zfill(2)
+            name_rsync16 = "rsync16_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
             patch_rsync16 = folder + "rsync16/" + name_arch + "/" + name_rsync16
-            restore_rsyn16 = folder_restore + name_rsync16
+            restore_rsync16 = folder_restore + name_rsync16
             rsync16_par = "_rsync16_" + str(pid)    # save file for parallel loop
             # diff file
             os.system("cp " + file1 + " " + file1 + rsync16_par)
@@ -137,7 +137,7 @@ def second_loop(i, file1, files, sizes, name_arch):
         #### rsync32 ####
         if "rsync32" in diff_algos:
             name_rsync32 = "rsync32_rev_" + str(i).zfill(2) + "_rev_" + str(j).zfill(2)
-            folder_rsync32 = folder + "rsync32/" + name_arch + "/" + name_rsync32
+            patch_rsync32 = folder + "rsync32/" + name_arch + "/" + name_rsync32
             restore_rsync32 = folder_restore + name_rsync32
             rsync32_par = "_rsync32_" + str(pid)    # save file for parallel loop
             # diff file
@@ -157,9 +157,10 @@ def second_loop(i, file1, files, sizes, name_arch):
             patch_detools_none = folder + "detools_none/" + name_arch + "/" + name_detools_none
             restore_detools_none = folder_restore + name_detools_none
             # diff file
-            os.system("python -m detools create_patch -c none "  + file1 + " " + file2 + " " + patch_detools_none)
+            os.system("python -m detools create_patch -a bsdiff -c none "  + file1 + " " + file2 + " " + patch_detools_none + " > silent")
             # patch file
-            os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_none + " " + restore_detools_none)
+            os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_none + " " + restore_detools_none + " > silent")
+            os.system("rm -f silent")
 
         ### detools heatshrink compression ###
         if "detools_heat" in diff_algos:
@@ -167,9 +168,10 @@ def second_loop(i, file1, files, sizes, name_arch):
             patch_detools_heat = folder + "detools_heat/" + name_arch + "/" + name_detools_heat
             restore_detools_heat = folder_restore + name_detools_heat
             # diff file
-            os.system("python -m detools create_patch -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat)
+            os.system("python -m detools create_patch -a bsdiff -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
             # patch file
-            os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat)
+            os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
+            os.system("rm -f silent")
 
 
         #### check patch and calc sizes ####

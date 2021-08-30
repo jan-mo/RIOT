@@ -73,7 +73,7 @@ for algo in diff_algos:
     norm_all.append(norm)
 
 fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
-fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro differencing algorithms (normalized)", "size reduction")
+fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro differencing algorithms (normalized)", "difference / target size")
 
 # save and close figures
 fig_samd20.savefig("plots/diffalgos_samd20_all.pdf")
@@ -81,8 +81,6 @@ fig_norm20.savefig("plots/norm_diffalgos_samd20_all.pdf")
 plt.close("all")
 
 # plot single rev_xx
-figures_array = []
-figures_norm = []
 num_revs = int(math.sqrt(len(revs)))
 for rev in range(num_revs):
     label = labels[rev*num_revs:rev*num_revs+num_revs]
@@ -93,12 +91,38 @@ for rev in range(num_revs):
         norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
     fig, ax = plot_bar(array, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2))
-    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2) + " (normalized)", "size reduction")
+    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2) + " (normalized)", "difference / target size")
 
     ### save and close figures ###
-    fig.savefig("plots/diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
-    fig_norm.savefig("plots/norm_diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
+    fig.savefig("plots/all_revs/diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
+    fig_norm.savefig("plots/all_revs/norm_diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
     plt.close("all")
+
+# plot diagonal
+num_revs = int(math.sqrt(len(revs)))
+label = []
+for rev in range(num_revs-1):
+    label.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+
+array_diag = []
+norm_diag = []
+for algo in diff_algos:
+    array = []
+    norm = []
+    for name in label:
+        curr_name = algo + "_" + name
+        array.append(sizes_sorted["samd20-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
+        norm.append(sizes_sorted["samd20-xpro"][algo][curr_name]["normalized"])   # normalizing data
+    array_diag.append(array)
+    norm_diag.append(norm)
+
+fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD20-xpro differencing algorithms")
+fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD20-xpro differencing algorithms Revision (normalized)", "difference / target size")
+
+### save and close figures ###
+fig.savefig("plots/diffalgos_samd20_diagonal.pdf")
+fig_norm.savefig("plots/norm_diffalgos_samd20_diagonal.pdf")
+plt.close("all")
 
 
 ### SAMD21 relative bar plot ###
@@ -123,7 +147,7 @@ for algo in diff_algos:
     norm_all.append(norm)
 
 fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro", "size [Byte]")
-fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro (normalized)", "size reduction")
+fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro (normalized)", "difference / target size")
 
 ### save and close figures ###
 fig_samd21.savefig("plots/diffalgos_samd21_relative_all.pdf")
@@ -142,12 +166,38 @@ for rev in range(num_revs):
         norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
     fig, ax1 = plot_bar(array, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2), "size [Byte]")
-    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "size reduction")
+    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "difference / target size")
 
     ### save and close figures ###
-    fig.savefig("plots/diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
-    fig_norm.savefig("plots/norm_diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
+    fig.savefig("plots/all_revs/diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
+    fig_norm.savefig("plots/all_revs/norm_diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
     plt.close("all")
+
+# plot diagonal
+num_revs = int(math.sqrt(len(revs)))
+label = []
+for rev in range(num_revs-1):
+    label.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+
+array_diag = []
+norm_diag = []
+for algo in diff_algos:
+    array = []
+    norm = []
+    for name in label:
+        curr_name = algo + "_" + name
+        array.append(sizes_sorted["samd21-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
+        norm.append(sizes_sorted["samd21-xpro"][algo][curr_name]["normalized"])   # normalizing data
+    array_diag.append(array)
+    norm_diag.append(norm)
+
+fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD21-xpro differencing algorithms")
+fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD21-xpro differencing algorithms Revision (normalized)", "difference / target size")
+
+### save and close figures ###
+fig.savefig("plots/diffalgos_samd21_diagonal.pdf")
+fig_norm.savefig("plots/norm_diffalgos_samd21_diagonal.pdf")
+plt.close("all")
 
 
 ### bar plot code differences ###
