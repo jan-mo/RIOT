@@ -319,6 +319,9 @@ typedef enum {
     NETDEV_NRF24L01P_NG,
     NETDEV_SOCKET_ZEP,
     NETDEV_SX126X,
+    NETDEV_CC2420,
+    NETDEV_ETHOS,
+    NETDEV_SLIPDEV,
     /* add more if needed */
 } netdev_type_t;
 /** @} */

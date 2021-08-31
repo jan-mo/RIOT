@@ -109,6 +109,44 @@ static const uart_conf_t uart_config[] = {
 #define UART_NUMOF        ARRAY_SIZE(uart_config)
 /** @} */
 
+/**
+ * @name I2C configuration
+ * @{
+ */
+static const i2c_conf_t i2c_config[] = {
+    {   /* J1 */
+        .dev                = &TWIC,
+        .pwr                = PWR_RED_REG(PWR_PORT_C, PR_TWI_bm),
+        .sda_pin            = GPIO_PIN(PORT_C, 0),
+        .scl_pin            = GPIO_PIN(PORT_C, 1),
+        .speed              = I2C_SPEED_NORMAL,
+        .int_lvl            = CPU_INT_LVL_LOW,
+    },
+};
+
+#define I2C_0_ISR           TWIC_TWIM_vect
+
+#define I2C_NUMOF           ARRAY_SIZE(i2c_config)
+/** @} */
+
+/**
+ * @name    SPI configuration
+ * @{
+ */
+static const spi_conf_t spi_config[] = {
+    {
+        .dev            = &SPIC,
+        .pwr            = PWR_RED_REG(PWR_PORT_C, PR_SPI_bm),
+        .sck_pin        = GPIO_PIN(PORT_C, 7),
+        .miso_pin       = GPIO_PIN(PORT_C, 6),
+        .mosi_pin       = GPIO_PIN(PORT_C, 5),
+        .ss_pin         = GPIO_PIN(PORT_C, 4),
+    },
+};
+
+#define SPI_NUMOF         ARRAY_SIZE(spi_config)
+/** @} */
+
 #ifdef __cplusplus
 }
 #endif

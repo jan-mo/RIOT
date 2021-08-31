@@ -4,6 +4,7 @@ PSEUDOMODULES += at_urc_isr_low
 PSEUDOMODULES += at_urc_isr_medium
 PSEUDOMODULES += at_urc_isr_highest
 PSEUDOMODULES += at24c%
+PSEUDOMODULES += at86rf215_timestamp
 PSEUDOMODULES += atomic_utils
 PSEUDOMODULES += base64url
 PSEUDOMODULES += board_software_reset
@@ -19,13 +20,15 @@ PSEUDOMODULES += cord_ep_standalone
 PSEUDOMODULES += core_%
 PSEUDOMODULES += cortexm_fpu
 PSEUDOMODULES += cortexm_svc
+PSEUDOMODULES += cpp
 PSEUDOMODULES += cpu_check_address
-PSEUDOMODULES += crypto_%	# crypto_aes or crypto_3des
 PSEUDOMODULES += dbgpin
 PSEUDOMODULES += devfs_%
 PSEUDOMODULES += dhcpv6_%
+PSEUDOMODULES += dhcpv6_client_dns
 PSEUDOMODULES += ecc_%
 PSEUDOMODULES += event_%
+PSEUDOMODULES += event_timeout_ztimer
 PSEUDOMODULES += evtimer_mbox
 PSEUDOMODULES += evtimer_on_ztimer
 PSEUDOMODULES += fmt_%
@@ -73,6 +76,7 @@ PSEUDOMODULES += ieee802154_submac
 PSEUDOMODULES += ina3221_alerts
 PSEUDOMODULES += l2filter_blacklist
 PSEUDOMODULES += l2filter_whitelist
+PSEUDOMODULES += libstdcpp
 PSEUDOMODULES += lis2dh12_i2c
 PSEUDOMODULES += lis2dh12_int
 PSEUDOMODULES += lis2dh12_spi
@@ -127,6 +131,7 @@ PSEUDOMODULES += sched_cb
 PSEUDOMODULES += semtech_loramac_rx
 PSEUDOMODULES += shell_hooks
 PSEUDOMODULES += slipdev_stdio
+PSEUDOMODULES += slipdev_l2addr
 PSEUDOMODULES += sock
 PSEUDOMODULES += sock_async
 PSEUDOMODULES += sock_aux_local
@@ -262,6 +267,11 @@ PSEUDOMODULES += si7006
 PSEUDOMODULES += si7013
 PSEUDOMODULES += si7020
 PSEUDOMODULES += si7021
+PSEUDOMODULES += si7050
+PSEUDOMODULES += si7051
+PSEUDOMODULES += si7053
+PSEUDOMODULES += si7054
+PSEUDOMODULES += si7055
 
 #include variants of tmp00x drivers as pseudo modules
 PSEUDOMODULES += tmp006
@@ -301,6 +311,9 @@ PSEUDOMODULES += skald_eddystone
 # define optimized read function of DS18 driver as a pseudo module
 PSEUDOMODULES += ds18_optimized
 
+PSEUDOMODULES += crypto_aes_128
+PSEUDOMODULES += crypto_aes_192
+PSEUDOMODULES += crypto_aes_256
 # By using this pseudomodule, T tables will be precalculated.
 PSEUDOMODULES += crypto_aes_precalculated
 # This pseudomodule causes a loop in AES to be unrolled (more flash, less CPU)

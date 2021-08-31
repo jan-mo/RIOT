@@ -12,6 +12,7 @@ config CPU_STM32
     select HAS_PERIPH_GPIO
     select HAS_PERIPH_GPIO_IRQ
     select HAS_PERIPH_TIMER_PERIODIC
+    select HAS_PERIPH_RTT_OVERFLOW
     select HAS_PERIPH_UART_MODECFG
     select HAS_PERIPH_UART_NONBLOCKING
 
@@ -34,5 +35,13 @@ orsource "kconfigs/Kconfig.clk"
 orsource "kconfigs/*/Kconfig"
 orsource "kconfigs/*/Kconfig.lines"
 orsource "kconfigs/*/Kconfig.models"
+
+if TEST_KCONFIG
+
+rsource "periph/Kconfig"
+rsource "stmclk/Kconfig"
+rsource "vectors/Kconfig"
+
+endif # TEST_KCONFIG
 
 source "$(RIOTCPU)/cortexm_common/Kconfig"
