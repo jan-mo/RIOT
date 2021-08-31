@@ -157,7 +157,7 @@ void lis_func_init(void) {
     }
 
     /* change LIS settings */
-    lis2dh12_set_powermode(&dev_lis, LIS2DH12_POWER_LOW);
+    lis2dh12_set_resolution(&dev_lis, LIS2DH12_POWER_LOW);
     lis2dh12_set_datarate(&dev_lis, LIS2DH12_RATE_100HZ);
     lis2dh12_set_scale(&dev_lis, LIS2DH12_SCALE_2G);
 
@@ -184,19 +184,19 @@ static int lis_read(int argc, char **argv) {
     char buffer[PCD8544_COLS] = {0};
 
 #ifdef MODULE_LIS2DH12_SPI
-    int16_t data[3] = {0};
-    lis2dh12_read(&dev_lis, data);
+    lis2dh12_fifo_data_t data = {0};
+    lis2dh12_read(&dev_lis, &data);
 
-    DEBUG("X: %d  Y: %d  Z: %d\n", data[0], data[1], data[2]);
+    DEBUG("X: %d  Y: %d  Z: %d\n", data.axis.x, data.axis.y, data.axis.z);
 
     /* print to display */
-    sprintf(buffer, "X: %d", data[0]);
+    sprintf(buffer, "X: %d", data.axis.x);
     pcd8544_write_l(&dev_pcd, 1, buffer);
 
-    sprintf(buffer, "Y: %d", data[1]);
+    sprintf(buffer, "Y: %d", data.axis.y);
     pcd8544_write_l(&dev_pcd, 2, buffer);
 
-    sprintf(buffer, "Z: %d", data[2]);
+    sprintf(buffer, "Z: %d", data.axis.z);
     pcd8544_write_l(&dev_pcd, 3, buffer);
 
 #elif MODULE_LIS3DH
@@ -229,19 +229,19 @@ void *lis_read_periodic(void *arg)
     while (1) {
         /* read LIS data */
 #ifdef MODULE_LIS2DH12_SPI
-        int16_t data[3] = {0};
+        lis2dh12_fifo_data_t data = {0};
 
-        lis2dh12_read(&dev_lis, data);
-        DEBUG("X: %d  Y: %d  Z: %d\n", data[0], data[1], data[2]);
+        lis2dh12_read(&dev_lis, &data);
+        DEBUG("X: %d  Y: %d  Z: %d\n", data.axis.x, data.axis.y, data.axis.z);
 
         /* print to display */
-        sprintf(buffer, "X: %d", data[0]);
+        sprintf(buffer, "X: %d", data.axis.x);
         pcd8544_write_l(&dev_pcd, 1, buffer);
 
-        sprintf(buffer, "Y: %d", data[1]);
+        sprintf(buffer, "Y: %d", data.axis.y);
         pcd8544_write_l(&dev_pcd, 2, buffer);
 
-        sprintf(buffer, "Z: %d", data[2]);
+        sprintf(buffer, "Z: %d", data.axis.z);
         pcd8544_write_l(&dev_pcd, 3, buffer);
 
 #elif MODULE_LIS3DH
