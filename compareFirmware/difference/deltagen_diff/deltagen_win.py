@@ -2,6 +2,11 @@
 
 import os
 
+### define the revs that need to be calculated     ###
+###   - calculates the defined rev with all others ###
+###   - setting rev = ["all"] for full calculation ###
+revs = ['rev_07', 'rev_08','rev_09','rev_10']
+
 # database
 folder_database = '../../database/'
 database = os.listdir(folder_database)
@@ -21,6 +26,11 @@ versions = sorted(versions)
 
 
 ### calculate DG diff ###
-for rev1 in versions:
-    for rev2 in versions:
-        os.system(".\deltagen_diff.bat " + rev1 + " " + rev2)
+if "all" in revs:
+    for rev1 in versions:
+        for rev2 in versions:
+            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2)
+else:
+    for rev1 in revs:
+        for rev2 in versions:
+            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2)
