@@ -334,17 +334,49 @@ static int display_invert(int argc, char **argv) {
 
 /* write to specific line and column of display */
 static int display_write(int argc, char **argv) {
-    uint8_t x, y;
+    uint8_t line, column;
 
     if (argc < 4) {
         printf("usage: %s LINE COLUMN STRING\n", argv[0]);
         return -1;
     }
 
+    line = atoi(argv[1]);
+    column = atoi(argv[2]);
+
+    pcd8544_write_s(&dev_pcd, column, line, argv[3]);
+    return 0;
+}
+
+/* writes a specific pixel on display */
+static int display_pixel(int argc, char **argv) {
+    uint8_t x, y;
+
+    if (argc < 3) {
+        printf("usage: %s POSX POSY\n", argv[0]);
+        return -1;
+    }
+
     x = atoi(argv[1]);
     y = atoi(argv[2]);
 
-    pcd8544_write_s(&dev_pcd, y, x, argv[3]);
+    pcd8544_write_pixel(&dev_pcd, x, y);
+    return 0;
+}
+
+/* removes a specific pixel on display */
+static int display_pixel_clear(int argc, char **argv) {
+    uint8_t x, y;
+
+    if (argc < 3) {
+        printf("usage: %s POSX POSY\n", argv[0]);
+        return -1;
+    }
+
+    x = atoi(argv[1]);
+    y = atoi(argv[2]);
+
+    pcd8544_clear_pixel(&dev_pcd, x, y);
     return 0;
 }
 
@@ -356,6 +388,8 @@ static const shell_command_t shell_commands[] = {
     { "disp_invert", "Invert display", display_invert },
     { "disp_write", "Write string to display", display_write},
     { "disp_clear", "Clear display", display_clear },
+    { "pixel", "Writes a pixel at given position", display_pixel},
+    { "pixel_clear", "Writes a pixel at given position", display_pixel_clear},
     { "lis_read", "Read acceleration data", lis_read },
     { "lis_read_periodic", "Periodic read of acceleration data", lis_thread_wakeup },
     { "adc_read", "Read ADC value, stops periodic read", adc_read},

@@ -199,6 +199,8 @@ static const uint8_t _riot[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+static uint8_t pixel_save[PCD8544_RES_X][PCD8544_ROWS] = {{0x00}};
+
 static inline void lock(const pcd8544_t *dev)
 {
     spi_acquire(dev->spi, dev->cs, SPI_MODE, SPI_CLK);
@@ -320,11 +322,62 @@ void pcd8544_write_img(const pcd8544_t *dev, const uint8_t img[])
     done(dev);
 }
 
+void pcd8544_write_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y){
+    /* check position */
+    if (x >= PCD8544_RES_X || y >= PCD8544_RES_Y) {
+        return;
+    }
+    /* set position */
+    lock(dev);
+    _set_x(dev, x);
+
+    /* calc y position */
+    uint8_t data, y_line;
+
+    y_line = y / 8;
+    _set_y(dev, y_line);
+
+    /* check pixel array */
+    data = 1 << (y % 8);
+    pixel_save[x][y_line] = pixel_save[x][y_line] | data;
+    data = pixel_save[x][y_line];
+
+    /* write pixel */
+    _write(dev, MODE_DTA, data);
+    done(dev);
+}
+
+void pcd8544_clear_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y){
+    /* check position */
+    if (x >= PCD8544_RES_X || y >= PCD8544_RES_Y) {
+        return;
+    }
+    /* set position */
+    lock(dev);
+    _set_x(dev, x);
+
+    /* calc y position */
+    uint8_t data, y_line;
+
+    y_line = y / 8;
+    _set_y(dev, y_line);
+
+    /* check pixel array */
+    data = 1 << (y % 8);
+    pixel_save[x][y_line] = pixel_save[x][y_line] & ~data;
+    data = pixel_save[x][y_line];
+
+    /* write pixel */
+    _write(dev, MODE_DTA, data);
+    done(dev);
+}
+
+
 void pcd8544_write_c(const pcd8544_t *dev, uint8_t x, uint8_t y, char c)
 {
     /* check position */
     if (x >= PCD8544_COLS || y >= PCD8544_ROWS) {
-        return ;
+        return;
     }
     /* set position */
     lock(dev);

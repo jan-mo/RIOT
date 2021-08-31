@@ -123,6 +123,28 @@ void pcd8544_set_bias(const pcd8544_t *dev, uint8_t bias);
 void pcd8544_write_img(const pcd8544_t *dev, const uint8_t img[]);
 
 /**
+ * @brief   Sets a single pixel on the display
+ *
+ * The position of the pixel is specified in columns (x) and rows (y)
+ *
+ * @param[in] dev           device descriptor of display to use
+ * @param[in] x             column_px absolute position to write pixel [0 - 83]
+ * @param[in] y             row_px absolute position to write pixel [0 - 47]
+ */
+void pcd8544_write_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y);
+
+/**
+ * @brief   Removes a single pixel on the display
+ *
+ * The position of the pixel is specified in columns (x) and rows (y)
+ *
+ * @param[in] dev           device descriptor of display to use
+ * @param[in] x             column_px absolute position to clear pixel [0 - 83]
+ * @param[in] y             row_px absolute position to clear pixel [0 - 47]
+ */
+void pcd8544_clear_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y);
+
+/**
  * @brief   Write a single ASCII character to the display
  *
  * The position of the character is specified in columns (x) and rows (y)
