@@ -142,7 +142,14 @@ static int adc_thread_wakeup (int argc, char **argv){
 /* interrupt callback for user button */
 void button_int_cb(void* arg) {
     (void)arg;
+
+    gpio_irq_disable(BTN0_PIN);
     puts("interrupt received.");
+    pcd8544_clear(&dev_pcd);
+    pcd8544_write_s(&dev_pcd, 1, 2, "Button_inter.");
+    xtimer_usleep(350 * MILLI_SECOND);
+    pcd8544_clear(&dev_pcd);
+    gpio_irq_enable(BTN0_PIN);
 }
 
 /* LIS init function */
