@@ -5,7 +5,7 @@ import os
 ### define the revs that need to be calculated     ###
 ###   - calculates the defined rev with all others ###
 ###   - setting rev = ["all"] for full calculation ###
-revs = ['rev_07', 'rev_08','rev_09','rev_10']
+revs = ['all']
 
 # database
 folder_database = '../../database/'
