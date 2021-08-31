@@ -18,7 +18,9 @@ for version in database:
 
 versions = sorted(versions)
 
-for rev2 in versions[1:]:
+for rev2 in versions:
+    if "rev_00" == rev2:
+        continue
     rev1 = rev2[:-2] + str(int(rev2[-2:])-1).zfill(2)
     os.system("git diff thesis/" + rev1 + " thesis/" + rev2 + " > previous.diff")
     size = os.path.getsize("previous.diff")
