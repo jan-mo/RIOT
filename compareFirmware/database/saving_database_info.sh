@@ -1,5 +1,6 @@
 
 # saving revision information to file
+git fetch --tags -f
 git tag -n thesis/rev* > revision_tags.txt
 
 # saving size of revision bin-files
