@@ -6,5 +6,6 @@ thesis/rev_04   Revision 04 - change ADC_LINE
 thesis/rev_05   Revision 05 - PCD8544 and display values
 thesis/rev_06   Revision 06 - periodic read for LIS and ADC
 thesis/rev_07   Revision 07 - PCD8544 modifying driver
-thesis/rev_08   Revision 08 - updating RIOT OS to 2021.07
-thesis/rev_09   Revision 09 - user button interrupt functionality
+thesis/rev_08   Revision 08 - LIS3DH and LIS2DH12 support
+thesis/rev_09   Revision 09 - updating RIOT OS to 2021.07
+thesis/rev_10   Revision 10 - user button interrupt functionality
