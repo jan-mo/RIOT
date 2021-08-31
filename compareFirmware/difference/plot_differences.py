@@ -217,11 +217,10 @@ for i, version in enumerate(versions):
             diff[i] = diff[i] - diff[i-1]
 
 log_diff = []
-for elem in diff:
-    if elem < 0.0:
-        elem = -elem
+for i, elem in enumerate(diff):
     if elem != 0.0:
-        log_diff.append(math.log(elem))
+        print("UNIX diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
+        log_diff.append(math.log(abs(elem)))
     else:
         log_diff.append(elem)
 
