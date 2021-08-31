@@ -20,8 +20,12 @@ if "deltagen" in diff_algos:
         sizes_sorted_deltagen = json.load(json_file)
 
     ### combine the data ###
-    sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
-    sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
+    if len(sizes_sorted_deltagen["samd20-xpro"]["deltagen"].keys()) == len(sizes_sorted["samd20-xpro"][diff_algos[0]].keys()):
+        sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
+        sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
+    else:
+        print("Error: Revisions in sizes_deltagen and sizes does not match!")
+        exit()
 
 #### bar plot function ####
 def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
