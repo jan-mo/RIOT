@@ -105,15 +105,17 @@ for rev in range(num_revs):
 # plot diagonal
 num_revs = int(math.sqrt(len(revs)))
 label = []
+names = []
 for rev in range(num_revs-1):
-    label.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+    names.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+    label.append("rev" + str(rev).zfill(2) + "_rev" + str(rev+1).zfill(2))
 
 array_diag = []
 norm_diag = []
 for algo in diff_algos:
     array = []
     norm = []
-    for name in label:
+    for name in names:
         curr_name = algo + "_" + name
         array.append(sizes_sorted["samd20-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
         norm.append(sizes_sorted["samd20-xpro"][algo][curr_name]["normalized"])   # normalizing data
@@ -180,15 +182,17 @@ for rev in range(num_revs):
 # plot diagonal
 num_revs = int(math.sqrt(len(revs)))
 label = []
+names = []
 for rev in range(num_revs-1):
-    label.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+    names.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
+    label.append("rev" + str(rev).zfill(2) + "_rev" + str(rev+1).zfill(2))
 
 array_diag = []
 norm_diag = []
 for algo in diff_algos:
     array = []
     norm = []
-    for name in label:
+    for name in names:
         curr_name = algo + "_" + name
         array.append(sizes_sorted["samd21-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
         norm.append(sizes_sorted["samd21-xpro"][algo][curr_name]["normalized"])   # normalizing data
@@ -207,25 +211,26 @@ plt.close("all")
 ### bar plot code differences ###
 # calculating diff sizes
 diff = []
-for i, version in enumerate(versions):
+for version in versions:
+    if "rev_00" == version:
+        continue
     folder = "../database/" + version
-    if os.path.isfile(folder + "/firmware.diff"):
-        diff.append(os.path.getsize(folder + "/firmware.diff"))
+    if os.path.isfile(folder + "/previous.diff"):
+        diff.append(os.path.getsize(folder + "/previous.diff"))
     else:
         # creating diff from split
-        os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
-        diff.append(os.path.getsize(folder + "/firmware.diff"))
-        os.system("cd " + folder + " && rm firmware.diff")
+        os.system("cd " + folder + " && cat previous.diff_* > previous.diff")
+        diff.append(os.path.getsize(folder + "/previous.diff"))
+        os.system("cd " + folder + " && rm previous.diff")
 
 log_diff = []
-for i, elem in enumerate(diff[1:]):
+versions_diff = []
+for i, elem in enumerate(diff):
     print("UNIX diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
-    if elem != 0.0:
-        log_diff.append(math.log(abs(elem)))
-    else:
-        log_diff.append(elem)
+    log_diff.append(math.log(abs(elem)))
+    versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions, ["code diff"], "Difference between revision and previous revision", "log of size-difference")
+fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["code diff"], "Difference between revision and previous revision", "log of size-difference")
 
 ### save and close figures ###
 fig_codediff.savefig("plots/code_diff.pdf")
