@@ -205,25 +205,22 @@ plt.close("all")
 
 
 ### bar plot code differences ###
+# calculating diff sizes
 diff = []
 for i, version in enumerate(versions):
     folder = "../database/" + version
     if os.path.isfile(folder + "/firmware.diff"):
         diff.append(os.path.getsize(folder + "/firmware.diff"))
-        if i > 1:
-            diff[i] = diff[i] - diff[i-1]
     else:
         # creating diff from split
         os.system("cd " + folder + " && cat firmware.diff_* > firmware.diff")
         diff.append(os.path.getsize(folder + "/firmware.diff"))
         os.system("cd " + folder + " && rm firmware.diff")
-        if i > 1:
-            diff[i] = diff[i] - diff[i-1]
 
 log_diff = []
-for i, elem in enumerate(diff):
+for i, elem in enumerate(diff[1:]):
+    print("UNIX diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
     if elem != 0.0:
-        print("UNIX diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
         log_diff.append(math.log(abs(elem)))
     else:
         log_diff.append(elem)

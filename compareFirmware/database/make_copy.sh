@@ -26,6 +26,9 @@ git diff thesis/rev_00 > firmware.diff
 
 git checkout thesis/checking_firmware_versions
 
-cd -
+cd ../compareFirmware/database
 ./__copy_bin_elf.py ${version}
-cd ../database
+cd ..
+cd database
+
+./__diff_previous.py ${version}
