@@ -5,7 +5,7 @@ import os
 ### define the revs that need to be calculated     ###
 ###   - calculates the defined rev with all others ###
 ###   - setting rev = ["all"] for full calculation ###
-revs = ['all']
+revs = ['rev_10']
 
 # database
 folder_database = '../../database/'
@@ -33,4 +33,7 @@ if "all" in revs:
 else:
     for rev1 in revs:
         for rev2 in versions:
+            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2)
+    for rev1 in versions:
+        for rev2 in revs:
             os.system(".\deltagen_diff.bat " + rev1 + " " + rev2)
