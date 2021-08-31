@@ -1,4 +1,6 @@
 # save current version in git stash
+git status
+echo ""
 echo "Stash current git (necessary)? [y/N]"
 read answer
 
@@ -21,7 +23,6 @@ sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
 
 git diff thesis/rev_00 > firmware.diff
-size = $(wc -c < firmware.diff)
 
 git checkout thesis/checking_firmware_versions
 

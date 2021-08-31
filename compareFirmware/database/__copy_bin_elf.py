@@ -42,7 +42,7 @@ for board in boards:
 # save diff of firmware version
 move(src + '../firmware.diff', name + '/firmware.diff')
 
-if os.path.getsize(name + "/firmware.diff") >= 6000000:
+if os.path.getsize(name + "/firmware.diff") >= 50000000:
     os.system("split -b50M " + name + "/firmware.diff " + name + "/firmware.diff_split_")
     os.system("rm " + name + "/firmware.diff")
 
