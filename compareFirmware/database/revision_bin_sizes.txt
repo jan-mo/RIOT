@@ -10,6 +10,7 @@ SAMD20 bin sizes [Byte]:
 61060	./rev_08/samd20-xpro/rev_08.bin
 61248	./rev_09/samd20-xpro/rev_09.bin
 61352	./rev_10/samd20-xpro/rev_10.bin
+63644	./rev_11/samd20-xpro/rev_11.bin
 
 SAMD21 bin sizes [Byte]:
 15532	./rev_00/samd21-xpro/rev_00.bin
@@ -23,3 +24,4 @@ SAMD21 bin sizes [Byte]:
 60992	./rev_08/samd21-xpro/rev_08.bin
 61180	./rev_09/samd21-xpro/rev_09.bin
 61284	./rev_10/samd21-xpro/rev_10.bin
+63576	./rev_11/samd21-xpro/rev_11.bin

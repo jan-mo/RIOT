@@ -50,3 +50,6 @@ All revisions are explained and the core functionality is listed
 
 ### rev_10
 - modifying interrupt functionality of user button
+
+### rev_11
+- adding graphical view for ADC or LIS data
