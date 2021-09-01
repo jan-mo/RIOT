@@ -123,26 +123,30 @@ void pcd8544_set_bias(const pcd8544_t *dev, uint8_t bias);
 void pcd8544_write_img(const pcd8544_t *dev, const uint8_t img[]);
 
 /**
- * @brief   Sets a single pixel on the display
+ * @brief   Sets a single stackedpixel on the display
  *
- * The position of the pixel is specified in columns (x) and rows (y)
+ * The position of the 8 stacked pixels is specified in columns (x) and rows (y)
+ * Writes 8 pixels that are defined in data to the memory of the display
  *
  * @param[in] dev           device descriptor of display to use
  * @param[in] x             column_px absolute position to write pixel [0 - 83]
- * @param[in] y             row_px absolute position to write pixel [0 - 47]
+ * @param[in] y             row from display to write pixel [0 - 5]
+ * @param[in] data          definition of 8 stacked pixels (y direction)
  */
-void pcd8544_write_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y);
+void pcd8544_write_stackedpixel(const pcd8544_t *dev, uint8_t x, uint8_t y_line, uint8_t data);
 
 /**
- * @brief   Removes a single pixel on the display
+ * @brief   Removes a single stackedpixel on the display
  *
- * The position of the pixel is specified in columns (x) and rows (y)
+ * The position of the 8 stacked pixels is specified in columns (x) and rows (y)
+ * Clears 8 pixels that are defined in data to the memory of the display
  *
  * @param[in] dev           device descriptor of display to use
  * @param[in] x             column_px absolute position to clear pixel [0 - 83]
- * @param[in] y             row_px absolute position to clear pixel [0 - 47]
+ * @param[in] y             row from display to clear pixel [0 - 5]
+ * @param[in] data          definition of 8 stacked pixels (y direction)
  */
-void pcd8544_clear_pixel(const pcd8544_t *dev, uint8_t x, uint8_t y);
+void pcd8544_clear_stackedpixel(const pcd8544_t *dev, uint8_t x, uint8_t y_line, uint8_t data);
 
 /**
  * @brief   Write a single ASCII character to the display

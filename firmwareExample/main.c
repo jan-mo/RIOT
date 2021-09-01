@@ -7,7 +7,7 @@
  */
 
 /**
- * @ingroup     examples
+ * @ingroup     firmwareExample
  * @{
  *
  * @file
@@ -51,9 +51,17 @@
 #include "pcd8544.h"
 static pcd8544_t dev_pcd;
 
+/* plotting graph */
+#include "graphplot.h"
+bool GRAPHPLOT_ENABLE = false;
+
 /* timings */
 #define SECOND          1000000
 #define MILLI_SECOND    1000
+/* values */
+#define INTERRUPT_WAIT      (350 * MILLI_SECOND)
+#define ADC_thread_delay    (300 * MILLI_SECOND)
+#define LIS_thread_delay    (200 * MILLI_SECOND)
 
 /* debug config */
 #define ENABLE_DEBUG 0
@@ -71,13 +79,11 @@ static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
 char adc_thread_stack[THREAD_STACKSIZE_MAIN];
 kernel_pid_t ADC_thread_pid;
 bool ADC_thread_sleep = false;
-uint32_t ADC_thread_delay = 800 * MILLI_SECOND;
 
 /* LIS threading */
 char lis_thread_stack[THREAD_STACKSIZE_MAIN];
 kernel_pid_t LIS_thread_pid;
 bool LIS_thread_sleep = false;
-uint32_t LIS_thread_delay = 450 * MILLI_SECOND;
 
 /* toggles the user LED */
 static int led_toggle(int argc, char **argv) {
@@ -87,12 +93,21 @@ static int led_toggle(int argc, char **argv) {
     return 1;
 }
 
+/* clears full display and pixel array for graphplot */
+void __clear_display(void) {
+    graphplot_clear();
+    pcd8544_clear(&dev_pcd);
+}
+
 /* read ADC (differential mode) */
 static int adc_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
+    __clear_display();
+
     ADC_thread_sleep = true;
+    GRAPHPLOT_ENABLE = false;
     char buffer[PCD8544_COLS] = {0};
 
     int sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
@@ -111,16 +126,35 @@ void *adc_read_periodic(void *arg)
     (void) arg;
     int sample = 0;
     char buffer[PCD8544_COLS] = {0};
+    uint8_t time_ticks = GRAPHPLOT_OFFSET_X;
 
     while (1) {
         /* read ADC data */
         sample = adc_sample(ADC_LINE(ADC_SAMPLE_LINE), ADC_RES_10BIT);
+
         DEBUG("ADC value: %d\n", sample);
-        /* print to display */
-        sprintf(buffer, "ADC: %d", sample);
-        pcd8544_write_l(&dev_pcd, 0, buffer);
+
+        /* checking max time_ticks */
+        if (time_ticks >= PCD8544_RES_X - GRAPHPLOT_OFFSET_X) {
+            /* reset */
+            time_ticks = GRAPHPLOT_OFFSET_X;
+            if (GRAPHPLOT_ENABLE)
+                graphplot_diagram(&dev_pcd, 0);
+        }
+
+        if (!GRAPHPLOT_ENABLE) {
+            /* print to display */
+            sprintf(buffer, "ADC: %d", sample);
+            pcd8544_write_l(&dev_pcd, 0, buffer);
+        }
+        else {
+            /* print to graph */
+            graphplot_write_coordinate(&dev_pcd, time_ticks, sample);
+        }
 
         xtimer_usleep(ADC_thread_delay);
+        time_ticks++;
+
         if (ADC_thread_sleep)
             thread_sleep();
     }
@@ -133,7 +167,10 @@ static int adc_thread_wakeup (int argc, char **argv){
     (void)argc;
     (void)argv;
 
+    __clear_display();
+
     ADC_thread_sleep = false;
+    GRAPHPLOT_ENABLE = false;
     thread_wakeup(ADC_thread_pid);
 
     return 0;
@@ -147,7 +184,7 @@ void button_int_cb(void* arg) {
     puts("interrupt received.");
     pcd8544_clear(&dev_pcd);
     pcd8544_write_s(&dev_pcd, 1, 2, "Button_inter.");
-    xtimer_usleep(350 * MILLI_SECOND);
+    xtimer_usleep(INTERRUPT_WAIT);
     pcd8544_clear(&dev_pcd);
     gpio_irq_enable(BTN0_PIN);
 }
@@ -176,8 +213,8 @@ void lis_func_init(void) {
         puts("lis3dh [Failed]");
     }
 
-    lis3dh_set_odr(&dev_lis, lis3dh_params[0].odr);
-    lis3dh_set_scale(&dev_lis, lis3dh_params[0].scale);
+    lis3dh_set_odr(&dev_lis, LIS3DH_ODR_100Hz);
+    lis3dh_set_scale(&dev_lis, 2);
     lis3dh_set_axes(&dev_lis, LIS3DH_AXES_XYZ);
 #endif
 }
@@ -187,7 +224,10 @@ static int lis_read(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
+    __clear_display();
+
     LIS_thread_sleep = true;
+    GRAPHPLOT_ENABLE = false;
     char buffer[PCD8544_COLS] = {0};
 
 #ifdef MODULE_LIS2DH12_SPI
@@ -231,7 +271,9 @@ void *lis_read_periodic(void *arg)
 {
     (void) arg;
 
+    int16_t value_x, value_y, value_z;
     char buffer[PCD8544_COLS] = {0};
+    uint8_t time_ticks = GRAPHPLOT_OFFSET_X;
 
     while (1) {
         /* read LIS data */
@@ -239,36 +281,50 @@ void *lis_read_periodic(void *arg)
         lis2dh12_fifo_data_t data = {0};
 
         lis2dh12_read(&dev_lis, &data);
-        DEBUG("X: %d  Y: %d  Z: %d\n", data.axis.x, data.axis.y, data.axis.z);
-
-        /* print to display */
-        sprintf(buffer, "X: %d", data.axis.x);
-        pcd8544_write_l(&dev_pcd, 1, buffer);
-
-        sprintf(buffer, "Y: %d", data.axis.y);
-        pcd8544_write_l(&dev_pcd, 2, buffer);
-
-        sprintf(buffer, "Z: %d", data.axis.z);
-        pcd8544_write_l(&dev_pcd, 3, buffer);
+        value_x = data.axis.x;
+        value_y = data.axis.y;
+        value_z = data.axis.z;
 
 #elif MODULE_LIS3DH
         lis3dh_data_t data = {0};
 
         lis3dh_read_xyz(&dev_lis, &data);
-        DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
-
-        /* print to display */
-        sprintf(buffer, "X: %d", data.acc_x);
-        pcd8544_write_l(&dev_pcd, 1, buffer);
-
-        sprintf(buffer, "Y: %d", data.acc_y);
-        pcd8544_write_l(&dev_pcd, 2, buffer);
-
-        sprintf(buffer, "Z: %d", data.acc_z);
-        pcd8544_write_l(&dev_pcd, 3, buffer);
+        value_x = data.acc_x;
+        value_y = data.acc_y;
+        value_z = data.acc_z;
 #endif
 
+        DEBUG("X: %d  Y: %d  Z: %d\n", value_x, value_y, value_z);
+
+        /* checking max time_ticks */
+        if (time_ticks >= PCD8544_RES_X - GRAPHPLOT_OFFSET_X) {
+            /* reset */
+            time_ticks = GRAPHPLOT_OFFSET_X;
+            if (GRAPHPLOT_ENABLE)
+                graphplot_diagram(&dev_pcd, 1);
+        }
+
+        if (!GRAPHPLOT_ENABLE) {
+            /* print to display */
+            sprintf(buffer, "X: %d", value_x);
+            pcd8544_write_l(&dev_pcd, 1, buffer);
+
+            sprintf(buffer, "Y: %d", value_y);
+            pcd8544_write_l(&dev_pcd, 2, buffer);
+
+            sprintf(buffer, "Z: %d", value_z);
+            pcd8544_write_l(&dev_pcd, 3, buffer);
+        }
+        else {
+            /* print to graph */
+            graphplot_write_coordinate(&dev_pcd, time_ticks, value_x);
+            graphplot_write_coordinate(&dev_pcd, time_ticks, value_y);
+            graphplot_write_coordinate(&dev_pcd, time_ticks, value_z);
+        }
+
         xtimer_usleep(LIS_thread_delay);
+        time_ticks++;
+
         if (LIS_thread_sleep)
             thread_sleep();
     }
@@ -281,7 +337,10 @@ static int lis_thread_wakeup (int argc, char **argv){
     (void)argc;
     (void)argv;
 
+    __clear_display();
+
     LIS_thread_sleep = false;
+    GRAPHPLOT_ENABLE = false;
     thread_wakeup(LIS_thread_pid);
 
     return 0;
@@ -310,7 +369,7 @@ static int display_clear(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
-    pcd8544_clear(&dev_pcd);
+    __clear_display();
     return 0;
 }
 
@@ -360,7 +419,7 @@ static int display_pixel(int argc, char **argv) {
     x = atoi(argv[1]);
     y = atoi(argv[2]);
 
-    pcd8544_write_pixel(&dev_pcd, x, y);
+    graphplot_write_pixel(&dev_pcd, x, y);
     return 0;
 }
 
@@ -376,7 +435,43 @@ static int display_pixel_clear(int argc, char **argv) {
     x = atoi(argv[1]);
     y = atoi(argv[2]);
 
-    pcd8544_clear_pixel(&dev_pcd, x, y);
+    graphplot_clear_pixel(&dev_pcd, x, y);
+    return 0;
+}
+
+/* plot diagram on display */
+static int display_graph_adc(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    /* display the diagram */
+    graphplot_diagram(&dev_pcd, 0);
+    graphplot_set_min_max(0, 1200);
+
+    /* stops ADC and LIS threads */
+    LIS_thread_sleep = true;
+    ADC_thread_sleep = false;
+    GRAPHPLOT_ENABLE = true;
+    thread_wakeup(ADC_thread_pid);
+
+    return 0;
+}
+
+/* plot diagram on display */
+static int display_graph_lis(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    /* display the diagram */
+    graphplot_diagram(&dev_pcd, 1);
+    graphplot_set_min_max(-1500, 1500);
+
+    /* stops ADC and LIS threads */
+    LIS_thread_sleep = false;
+    ADC_thread_sleep = true;
+    GRAPHPLOT_ENABLE = true;
+    thread_wakeup(LIS_thread_pid);
+
     return 0;
 }
 
@@ -389,7 +484,9 @@ static const shell_command_t shell_commands[] = {
     { "disp_write", "Write string to display", display_write},
     { "disp_clear", "Clear display", display_clear },
     { "pixel", "Writes a pixel at given position", display_pixel},
-    { "pixel_clear", "Writes a pixel at given position", display_pixel_clear},
+    { "pixel_clear", "Removes a pixel at given position", display_pixel_clear},
+    { "graph_lis", "Plots the diagram image and displays the LIS data over time period", display_graph_lis},
+    { "graph_adc", "Plots the diagram image and displays the LIS data over time period", display_graph_adc},
     { "lis_read", "Read acceleration data", lis_read },
     { "lis_read_periodic", "Periodic read of acceleration data", lis_thread_wakeup },
     { "adc_read", "Read ADC value, stops periodic read", adc_read},
