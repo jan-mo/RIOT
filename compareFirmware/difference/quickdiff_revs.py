@@ -39,15 +39,7 @@ folder = "algo_diffs/"
 folder_restore = "algo_diffs/restore/"
 
 ### clear algo_diffs folder ###
-os.system("sudo rm -r " + folder)
-os.system("mkdir " + folder)
 os.system("mkdir " + folder_restore)
-
-### create algo folders ###
-for algo in diff_algos:
-    os.system("mkdir " + folder + algo)
-    os.system("mkdir " + folder + algo + "/samd20-xpro/")
-    os.system("mkdir " + folder + algo + "/samd21-xpro/")
 
 ### SAMD20-xpro ###
 name_arch = "samd20-xpro"
@@ -83,7 +75,7 @@ for i, file1 in enumerate(files_samd20[:-1]):
         patch_xdelta3 = folder + "xdelta3/" + name_arch + "/" + name_xdelta3
         restore_xdelta3 = folder_restore + name_xdelta3
         # diff file
-        os.system("xdelta3 -e -S -N -D -R -s " + file1 + " " + file2 + " " + patch_xdelta3)
+        os.system("xdelta3 -f -e -S -N -D -R -s " + file1 + " " + file2 + " " + patch_xdelta3)
         # patch file
         os.system("xdelta3 -d -s " + file1 + " " + patch_xdelta3 + " " + restore_xdelta3)
         if os.path.getsize(restore_xdelta3) == os.path.getsize(file2):
