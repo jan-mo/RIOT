@@ -41,8 +41,12 @@ All revisions are explained and the core functionality is listed
 - added functionality to write full line
 
 ### rev_08
+- LIS support for LIS3DH and LIS2DH12
+- can be defined by setting the specific `USEMODULE`
+
+### rev_09
 - updating RIOT OS to newer version
 - update from 2021.04 to 2021.07
 
-### rev_09
+### rev_10
 - modifying interrupt functionality of user button
