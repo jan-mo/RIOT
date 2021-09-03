@@ -31,17 +31,11 @@
 
 /* acceleration sensor config */
 #ifdef MODULE_LIS2DH12_SPI
-    #define LIS2DH12_PARAM_SPI  SPI_DEV(2)
-    #define LIS2DH12_PARAM_CS   GPIO_PIN(PB, 17)
     #include "lis2dh12.h"
     #include "lis2dh12_params.h"
     #include "lis2dh12_registers.h"
     static lis2dh12_t dev_lis;
 #elif MODULE_LIS3DH
-    #define LIS3DH_PARAM_SPI  (SPI_DEV(1))
-    #define LIS3DH_PARAM_CS   (GPIO_PIN(PA, 17))
-    #define LIS3DH_PARAM_INT1 (GPIO_PIN(PB, 11))
-    #define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
     #include "lis3dh.h"
     #include "lis3dh_params.h"
     static lis3dh_t dev_lis;
@@ -54,6 +48,10 @@ static pcd8544_t dev_pcd;
 /* plotting graph */
 #include "graphplot.h"
 bool GRAPHPLOT_ENABLE = false;
+
+/* WINC1500 config */
+#include "atwinc15x0.h"
+#include "atwinc15x0_params.h"
 
 /* timings */
 #define SECOND          1000000

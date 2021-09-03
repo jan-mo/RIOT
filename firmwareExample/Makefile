@@ -18,10 +18,15 @@ USEMODULE += lis2dh12_spi
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
 
+# WINC1500 WIFI
+USEMODULE += atwinc15x0
+CFLAGS += -DWIFI_SSID=\"***\" -DWIFI_PASS=\"***\"
+
 USEMODULE += gnrc_netdev_default
 USEMODULE += auto_init_gnrc_netif
 USEMODULE += gnrc_ipv6
 USEMODULE += gnrc_icmpv6_error
+USEMODULE += gnrc_ipv6_router_default
 USEMODULE += gnrc_udp
 USEMODULE += gnrc_icmpv6_echo
 

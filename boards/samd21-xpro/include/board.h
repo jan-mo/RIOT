@@ -63,6 +63,33 @@ extern "C" {
 /** @} */
 
 /**
+ * @name LIS acceleration pin definitions
+ * @{
+ */
+ #ifdef MODULE_LIS2DH12_SPI
+    #define LIS2DH12_PARAM_SPI  SPI_DEV(1)
+    #define LIS2DH12_PARAM_CS   GPIO_PIN(PA, 17)
+#elif MODULE_LIS3DH
+    #define LIS3DH_PARAM_SPI    SPI_DEV(1)
+    #define LIS3DH_PARAM_CS     GPIO_PIN(PA, 17)
+    #define LIS3DH_PARAM_INT1   GPIO_PIN(PB, 11)
+    #define LIS3DH_PARAM_INT2   GPIO_PIN(PB, 10)
+#endif
+/** @} */
+
+/**
+ * @name WIFI WINC1500 pin definitions
+ * @{
+ */
+#define ATWINC15X0_PARAM_SPI            (SPI_DEV(2))
+#define ATWINC15X0_PARAM_RESET_PIN      (GPIO_PIN(PB, 30))
+#define ATWINC15X0_PARAM_WAKE_PIN       (GPIO_PIN(PA, 15))
+#define ATWINC15X0_PARAM_IRQ_PIN        (GPIO_PIN(PA, 28))
+#define ATWINC15X0_PARAM_CHIP_EN_PIN    (GPIO_PIN(PA, 27))
+#define ATWINC15X0_PARAM_SSN_PIN        (GPIO_PIN(PB, 17))
+/** @} */
+
+/**
  * @brief Initialize board specific hardware, including clock, LEDs and std-IO
  */
 void board_init(void);
