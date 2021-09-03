@@ -20,6 +20,8 @@ GNRC_NETIF_NUMOF := 1
 
 # WINC1500 WIFI
 USEMODULE += atwinc15x0
+# set the right SSID and PW for our WIFI
+USEMODULE += SET_SSID_AND_PW_OF_WIFI # reminder to set the SSID and PW in next line CFLAGS
 CFLAGS += -DWIFI_SSID=\"***\" -DWIFI_PASS=\"***\"
 
 USEMODULE += gnrc_netdev_default
