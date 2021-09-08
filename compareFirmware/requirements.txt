@@ -2,6 +2,7 @@
 matplotlib
 numpy
 pathos
+detools
 
 # compress.py
 tabulate

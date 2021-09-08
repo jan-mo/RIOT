@@ -157,7 +157,7 @@ def second_loop(i, file1, files, sizes, name_arch):
             patch_detools_none = folder + "detools_none/" + name_arch + "/" + name_detools_none
             restore_detools_none = folder_restore + name_detools_none
             # diff file
-            os.system("python -m detools create_patch -a bsdiff -c none "  + file1 + " " + file2 + " " + patch_detools_none + " > silent")
+            os.system("python -m detools create_patch -c none -t hdiffpatch -a hdiffpatch "  + file1 + " " + file2 + " " + patch_detools_none + " > silent")
             # patch file
             os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_none + " " + restore_detools_none + " > silent")
             os.system("rm -f silent")
@@ -168,7 +168,7 @@ def second_loop(i, file1, files, sizes, name_arch):
             patch_detools_heat = folder + "detools_heat/" + name_arch + "/" + name_detools_heat
             restore_detools_heat = folder_restore + name_detools_heat
             # diff file
-            os.system("python -m detools create_patch -a bsdiff -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
+            os.system("python -m detools create_patch -a bsdiff -c heatshrink  "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
             # patch file
             os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
             os.system("rm -f silent")

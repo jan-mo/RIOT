@@ -28,11 +28,23 @@ if "deltagen" in diff_algos:
         exit()
 
 #### bar plot function ####
-def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]"):
+def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8)):
 
     x = np.arange(len(xlabels))  # the label locations
 
-    plt.rcParams["figure.figsize"] = (18,8)
+    plt.rcParams["figure.figsize"] = figsize
+
+    SMALL_SIZE = 10
+    MEDIUM_SIZE = 12
+    BIGGER_SIZE = 13
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
     fig, ax = plt.subplots()
 
@@ -76,8 +88,8 @@ for algo in diff_algos:
     array_all.append(array)
     norm_all.append(norm)
 
-fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro differencing algorithms")
-fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro differencing algorithms (normalized)", "difference / target size")
+fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro Differencing Algorithms")
+fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro Differencing Algorithms (normalized)", "size of difference / target size")
 
 # save and close figures
 fig_samd20.savefig("plots/diffalgos_samd20_all.pdf")
@@ -94,8 +106,8 @@ for rev in range(num_revs):
         array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
         norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
-    fig, ax = plot_bar(array, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2))
-    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro differencing algorithms Revision " + str(rev).zfill(2) + " (normalized)", "difference / target size")
+    fig, ax = plot_bar(array, label, diff_algos, "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2))
+    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2) + " (normalized)", "size of difference / target size")
 
     ### save and close figures ###
     fig.savefig("plots/all_revs/diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
@@ -122,8 +134,8 @@ for algo in diff_algos:
     array_diag.append(array)
     norm_diag.append(norm)
 
-fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD20-xpro differencing algorithms")
-fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD20-xpro differencing algorithms Revision (normalized)", "difference / target size")
+fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD20-xpro Differencing Algorithms")
+fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD20-xpro Differencing Algorithms (normalized)", "size of difference / target size")
 
 ### save and close figures ###
 fig.savefig("plots/diffalgos_samd20_diagonal.pdf")
@@ -152,8 +164,8 @@ for algo in diff_algos:
     array_all.append(array)
     norm_all.append(norm)
 
-fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro", "size [Byte]")
-fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro (normalized)", "difference / target size")
+fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro", "size [Byte]")
+fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro (normalized)", "size of difference / target size")
 
 ### save and close figures ###
 fig_samd21.savefig("plots/diffalgos_samd21_relative_all.pdf")
@@ -171,8 +183,8 @@ for rev in range(num_revs):
         array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
         norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
-    fig, ax1 = plot_bar(array, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2), "size [Byte]")
-    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "difference / target size")
+    fig, ax1 = plot_bar(array, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2), "size [Byte]")
+    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "size of difference / target size")
 
     ### save and close figures ###
     fig.savefig("plots/all_revs/diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
@@ -207,10 +219,11 @@ for algo in diff_algos:
     array_diag_relative.append(array_relative)
     norm_diag_relative.append(norm_relative)
 
-fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD21-xpro differencing algorithms")
-fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD21-xpro differencing algorithms Revision (normalized)", "difference / target size")
-fig_relative, ax = plot_bar(array_diag_relative, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro", "size [Byte]")
-fig_norm_relative, ax = plot_bar(norm_diag_relative, label, diff_algos, "SAMD21-xpro differencing algorithms relative to SAMD20-xpro (normalized)", "difference / target size")
+fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD21-xpro Differencing Algorithms")
+fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD21-xpro Differencing Algorithms (normalized)", "size of difference / target size")
+
+fig_relative, ax = plot_bar(array_diag_relative, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro", "size [Byte]")
+fig_norm_relative, ax = plot_bar(norm_diag_relative, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro (normalized)", "size of difference / target size")
 
 ### save and close figures ###
 fig.savefig("plots/diffalgos_samd21_diagonal.pdf")
@@ -242,7 +255,7 @@ for i, elem in enumerate(diff):
     log_diff.append(math.log(abs(elem)))
     versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["code diff"], "Difference between revision and previous revision", "log of size-difference")
+fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [kB]", figsize = (10,6))
 
 ### save and close figures ###
 fig_codediff.savefig("plots/code_diff.pdf")
