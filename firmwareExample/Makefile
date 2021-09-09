@@ -17,13 +17,6 @@ USEMODULE += lis2dh12_spi
 
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
-
-# WINC1500 WIFI
-USEMODULE += atwinc15x0
-# set the right SSID and PW for our WIFI
-USEMODULE += SET_SSID_AND_PW_OF_WIFI # reminder to set the SSID and PW in next line CFLAGS
-CFLAGS += -DWIFI_SSID=\"***\" -DWIFI_PASS=\"***\"
-
 USEMODULE += gnrc_netdev_default
 USEMODULE += auto_init_gnrc_netif
 USEMODULE += gnrc_ipv6
@@ -35,6 +28,17 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += ps
 USEMODULE += netstats_l2
 USEMODULE += netstats_ipv6
+
+# riotboot/suit
+#USEMODULE += nanocoap_sock sock_util
+USEMODULE += suit
+BUILD_FILES += $(SLOT_RIOT_ELFS:%.elf=%.bin)
+
+# WINC1500 WIFI
+USEMODULE += atwinc15x0
+# set the right SSID and PW for our WIFI
+#USEMODULE += SET_SSID_AND_PW_OF_WIFI # reminder to set the SSID and PW in next line CFLAGS
+CFLAGS += -DWIFI_SSID=\"***\" -DWIFI_PASS=\"***\"
 
 # PCD8544
 USEMODULE += pcd8544
