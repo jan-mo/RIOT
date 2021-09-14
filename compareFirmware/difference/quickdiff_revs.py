@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.9
 
 import os
+from __finding_versions import database_files
 
 ###
 ### calculates quick differences in firmware-database (only bsdiff and xdelta3)
@@ -10,30 +11,11 @@ import os
 diff_algos = ["bsdiff", "xdelta3"]
 
 # database
-database = os.listdir('../database')
 versions = []
 files_samd20 = []
 files_samd21 = []
 
-### searching path for samd20 and samd21 ###
-for version in database:
-    if os.path.isdir(os.path.join('../database/' + version)):
-        # exclude suit_updater
-        if version == "suit_updater":
-            continue;
-
-        # collection all versions
-        versions.append(version)
-        files_samd20.append('../database/' + version + '/samd20-xpro/' + version + '.bin')
-        files_samd21.append('../database/' + version + '/samd21-xpro/' + version + '.bin')
-
-        # remove old files
-        os.system("rm -rf ../database/" + version + '/samd20-xpro/' + version + '.bin_*')
-        os.system("rm -rf ../database/" + version + '/samd21-xpro/' + version + '.bin_*')
-
-files_samd20 = sorted(files_samd20)
-files_samd21 = sorted(files_samd21)
-versions = sorted(versions)
+[files_samd20, files_samd21, versions] = database_files()
 
 folder = "algo_diffs/"
 folder_restore = "algo_diffs/restore/"

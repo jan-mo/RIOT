@@ -2,6 +2,8 @@
 
 import os, sys, json, distro
 from shutil import move, copyfile
+from __finding_versions import database_files
+
 # parallel processing
 from pathos.multiprocessing import ProcessingPool as Pool
 from pathos.helpers import mp as helper
@@ -12,34 +14,15 @@ from pathos.helpers import mp as helper
 
 # used differencing algos
 diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"] # bdelta - not implemented right
-pkg_arch = ["diffutils bsdiff xdelta3 rsync"]
-pkg_ubuntu = ["diffutils bsdiff xdelta3 rsync"]
+pkg_arch = "diffutils bsdiff xdelta3 rsync"
+pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
 # database
-database = os.listdir('../database')
 versions = []
 files_samd20 = []
 files_samd21 = []
 
-### searching path for samd20 and samd21 ###
-for version in database:
-    if os.path.isdir(os.path.join('../database/' + version)):
-        # exclude suit_updater
-        if version == "suit_updater":
-            continue;
-
-        # collection all versions
-        versions.append(version)
-        files_samd20.append('../database/' + version + '/samd20-xpro/' + version + '.bin')
-        files_samd21.append('../database/' + version + '/samd21-xpro/' + version + '.bin')
-
-        # remove old files
-        os.system("rm -rf ../database/" + version + '/samd20-xpro/' + version + '.bin_*')
-        os.system("rm -rf ../database/" + version + '/samd21-xpro/' + version + '.bin_*')
-
-files_samd20 = sorted(files_samd20)
-files_samd21 = sorted(files_samd21)
-versions = sorted(versions)
+[files_samd20, files_samd21, versions] = database_files()
 
 folder = "algo_diffs/"
 folder_restore = "algo_diffs/restore/"
@@ -229,7 +212,7 @@ for algo in diff_algos:
 
 ### checking difftools installed ###
 ### supporting Ubuntu (apt-get) and Arch (yay)
-dist = distro.linux_distribution()
+dist = distro.name()
 if dist == "Arch Linux":
     os.system("yay -S " + pkg_arch)
 elif dist == "Ubuntu":
