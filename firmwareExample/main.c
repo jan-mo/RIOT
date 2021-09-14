@@ -473,6 +473,9 @@ static int display_graph_lis(int argc, char **argv) {
     return 0;
 }
 
+/* udp - sending and receiving messages */
+extern int udp_cmd(int argc, char **argv);
+
 /* shell commands */
 static const shell_command_t shell_commands[] = {
     { "disp_on", "Turn on the display", display_on },
@@ -490,6 +493,7 @@ static const shell_command_t shell_commands[] = {
     { "adc_read", "Read ADC value, stops periodic read", adc_read},
     { "adc_read_periodic", "Periodic read of ADC value", adc_thread_wakeup},
     { "led_toggle", "Toggles the LED0 status", led_toggle},
+    { "udp", "send data over UDP and listen on UDP ports", udp_cmd },
     { NULL, NULL, NULL }
 };
 
