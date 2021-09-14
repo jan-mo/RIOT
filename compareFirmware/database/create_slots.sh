@@ -16,12 +16,14 @@ fi
 echo "Enter firmware revision:"
 read version
 
+cp riotboot_patch.sh ../../
 git checkout thesis/${version}
-cd ../../firmwareExample/
-sudo rm -r bin/
+cd ../../
 
 # update revision to add riotboot
 ./riotboot_patch.sh
+cd firmwareExample/
+sudo rm -r bin/
 
 sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
