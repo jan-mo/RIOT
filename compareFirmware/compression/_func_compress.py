@@ -78,8 +78,8 @@ def compress_database(method, option = None):
     # create path for samd20 and samd21
     for version in data:
         if os.path.isdir(os.path.join('../database/' + version)):
-            # exclude suit_updater
-            if version == "suit_updater":
+            # exclude riotboot
+            if version == "riotboot":
                 continue;
 
             versions.append(version)
