@@ -22,6 +22,7 @@ cd ../../
 
 # update revision to add riotboot
 ./riotboot_patch.sh
+rm riotboot_patch.sh
 cd firmwareExample/
 sudo rm -r bin/
 
