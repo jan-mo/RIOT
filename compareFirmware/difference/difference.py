@@ -46,7 +46,7 @@ for algo in diff_algos:
 ### supporting Ubuntu (apt-get) and Arch (yay)
 dist = distro.name()
 if dist == "Arch Linux":
-    os.system("yay -S " + pkg_arch)
+    os.system("yay -S --noconfirm " + pkg_arch)
 elif dist == "Ubuntu":
     os.system("sudo apt-get install " + pkg_arch)
 
@@ -64,12 +64,7 @@ results_samd21 = diff.calc_diffs(files_samd21, sizes_samd21, "samd21-xpro")
 
 ### clear data ###
 os.system("rm -r " + folder_restore)
-os.system("rm " + folder + "rsync8/" + "samd20-xpro" + "/*.sh")
-os.system("rm " + folder + "rsync16/" + "samd20-xpro" + "/*.sh")
-os.system("rm " + folder + "rsync32/" + "samd20-xpro" + "/*.sh")
-os.system("rm " + folder + "rsync8/" + "samd21-xpro" + "/*.sh")
-os.system("rm " + folder + "rsync16/" + "samd21-xpro" + "/*.sh")
-os.system("rm " + folder + "rsync32/" + "samd21-xpro" + "/*.sh")
+os.system("rm " + folder + "*/*/*.sh")
 
 ### build one dict ###
 sizes_all_arch = dict()
@@ -85,7 +80,6 @@ for result in results_samd20:
         for algo in diff_algos:
             for key in elem[algo].keys():
                 sizes_all_arch["samd20-xpro"][algo][key] = elem[algo][key]
-            
 
 ### add samd21 to dict ###
 for result in results_samd21:
