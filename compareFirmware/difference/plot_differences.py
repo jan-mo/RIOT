@@ -1,9 +1,8 @@
 #!/usr/bin/env python3.9
 
 import json, os, math
-import matplotlib.pyplot as plt
 
-from __plot_functions import plot_bar
+from __plot_functions import plot_bar, plot_function, plot_function_relative
 
 
 # used differencing algos
@@ -28,170 +27,108 @@ if "deltagen" in diff_algos:
         print("Error: Revisions in sizes_deltagen and sizes does not match!")
         exit()
 
+
 ### SAMD20 bar plot ###
+MCU = "samd20-xpro"
+
+### all
+# getting keys
+keys_algo = sizes_sorted[MCU][diff_algos[0]]
+num_revs = int(math.sqrt(len(keys_algo)))
+
+
+# setting labels and key for all algos
 labels = []
-revs = sizes_sorted["samd20-xpro"][diff_algos[0]].keys()
-for elem in revs:
-    tmp = elem.split("_")
-    labels.append("rev" + tmp[2] + "_rev" + tmp[4])
+for key in keys_algo:
+    tmp = key.split("_")
+    labels.append(tmp[-4] + tmp[-3] + "_" + tmp[-2] + tmp[-1])
 
-array_all = []
-norm_all = []
+keys = dict()
 for algo in diff_algos:
-    revs = sizes_sorted["samd20-xpro"][algo].keys()
-    array = []
-    norm = []
-    for rev in revs:
-        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"]/1024)   # convert to kB
-        norm.append(sizes_sorted["samd20-xpro"][algo][rev]["normalized"])   # normalizing data
-        if sizes_sorted["samd20-xpro"][algo][rev]["check"] != "pass":
-            print("Warning: SAMD20 " + algo + " " + rev + " check FAILED") 
-    array_all.append(array)
-    norm_all.append(norm)
+    keys[algo] = sizes_sorted[MCU][algo].keys()
 
-fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, "SAMD20-xpro Differencing Algorithms")
-fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, "SAMD20-xpro Differencing Algorithms (normalized)", "size of difference / target size")
+plot_function(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_all.pdf", "plots/", "SAMD20-xpro Differencing Algorithms")
 
-# save and close figures
-fig_samd20.savefig("plots/diffalgos_samd20_all.pdf")
-fig_norm20.savefig("plots/norm_diffalgos_samd20_all.pdf")
-plt.close("all")
-
-# plot single rev_xx
-num_revs = int(math.sqrt(len(revs)))
+### plot single rev against others
+# setting labels and key for all algos
 for rev in range(num_revs):
     label = labels[rev*num_revs:rev*num_revs+num_revs]
-    array = []
-    norm = []
-    for algo in range(len(array_all)):
-        array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
-        norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
-    fig, ax = plot_bar(array, label, diff_algos, "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2))
-    fig_norm, ax = plot_bar(norm, label, diff_algos, "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2) + " (normalized)", "size of difference / target size")
+    keys = dict()
+    for algo in diff_algos:
+        revs = list(sizes_sorted[MCU][algo].keys())
+        keys[algo] = revs[rev*num_revs:rev*num_revs+num_revs]
 
-    ### save and close figures ###
-    fig.savefig("plots/all_revs/diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
-    fig_norm.savefig("plots/all_revs/norm_diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf")
-    plt.close("all")
+    plot_function(diff_algos, keys, label, sizes_sorted, MCU, "diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf", "plots/all_revs/", "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2))
 
 # plot diagonal
-num_revs = int(math.sqrt(len(revs)))
-label = []
+# setting labels and key for all algos
+labels = []
 names = []
-for rev in range(num_revs-1):
-    names.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
-    label.append("rev" + str(rev).zfill(2) + "_rev" + str(rev+1).zfill(2))
+for num in range(num_revs-1):
+    names.append("rev_" + str(num).zfill(2) + "_rev_" + str(num+1).zfill(2))
+    labels.append("rev" + str(num).zfill(2) + "_rev" + str(num+1).zfill(2))
 
-array_diag = []
-norm_diag = []
+keys = dict()
 for algo in diff_algos:
-    array = []
-    norm = []
+    key = []
     for name in names:
-        curr_name = algo + "_" + name
-        array.append(sizes_sorted["samd20-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
-        norm.append(sizes_sorted["samd20-xpro"][algo][curr_name]["normalized"])   # normalizing data
-    array_diag.append(array)
-    norm_diag.append(norm)
+        key.append(algo + "_" + name)
+    keys[algo] = key
 
-fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD20-xpro Differencing Algorithms")
-fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD20-xpro Differencing Algorithms (normalized)", "size of difference / target size")
-
-### save and close figures ###
-fig.savefig("plots/diffalgos_samd20_diagonal.pdf")
-fig_norm.savefig("plots/norm_diffalgos_samd20_diagonal.pdf")
-plt.close("all")
+plot_function(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "plots/", "SAMD20-xpro Differencing Algorithms diagonal")
 
 
 ### SAMD21 relative bar plot ###
+MCU = "samd21-xpro"
+
+### all
+# getting keys
+keys_algo = sizes_sorted[MCU][diff_algos[0]]
+num_revs = int(math.sqrt(len(keys_algo)))
+
+
+# setting labels and key for all algos
 labels = []
-revs = sizes_sorted["samd21-xpro"][diff_algos[0]].keys()
-for elem in revs:
-    tmp = elem.split("_")
-    labels.append("rev" + tmp[2] + "_rev" + tmp[4])
+for key in keys_algo:
+    tmp = key.split("_")
+    labels.append(tmp[-4] + tmp[-3] + "_" + tmp[-2] + tmp[-1])
 
-array_all = []
-norm_all = []
+keys = dict()
 for algo in diff_algos:
-    revs = sizes_sorted["samd21-xpro"][algo].keys()
-    array = []
-    norm = []
-    for rev in revs:
-        array.append(sizes_sorted["samd20-xpro"][algo][rev]["size"] - sizes_sorted["samd21-xpro"][algo][rev]["size"])   # in Bytes
-        norm.append(sizes_sorted["samd20-xpro"][algo][rev]["normalized"] - sizes_sorted["samd21-xpro"][algo][rev]["normalized"])   # normalizing data
-        if sizes_sorted["samd21-xpro"][algo][rev]["check"] != "pass":
-            print("Warning: SAMD21 " + algo + " " + rev + " check FAILED") 
-    array_all.append(array)
-    norm_all.append(norm)
+    keys[algo] = sizes_sorted[MCU][algo].keys()
 
-fig_samd21, ax_samd21 = plot_bar(array_all, labels, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro", "size [Byte]")
-fig_norm21, ax_norm21 = plot_bar(norm_all, labels, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro (normalized)", "size of difference / target size")
-
-### save and close figures ###
-fig_samd21.savefig("plots/diffalgos_samd21_relative_all.pdf")
-fig_norm21.savefig("plots/norm_diffalgos_samd21_relative_all.pdf")
-plt.close("all")
-
+plot_function_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_relative_all.pdf", "plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro")
 
 # plot single rev_xx
-num_revs = int(math.sqrt(len(revs)))
+# setting labels and key for all algos
 for rev in range(num_revs):
     label = labels[rev*num_revs:rev*num_revs+num_revs]
-    array = []
-    norm = []
-    for algo in range(len(array_all)):
-        array.append(array_all[algo][rev*num_revs:rev*num_revs+num_revs])
-        norm.append(norm_all[algo][rev*num_revs:rev*num_revs+num_revs])
 
-    fig, ax1 = plot_bar(array, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2), "size [Byte]")
-    fig_norm, ax2 = plot_bar(norm, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2) + " (normalized)", "size of difference / target size")
+    keys = dict()
+    for algo in diff_algos:
+        revs = list(sizes_sorted[MCU][algo].keys())
+        keys[algo] = revs[rev*num_revs:rev*num_revs+num_revs]
 
-    ### save and close figures ###
-    fig.savefig("plots/all_revs/diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
-    fig_norm.savefig("plots/all_revs/norm_diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf")
-    plt.close("all")
+    plot_function_relative(diff_algos, keys, label, sizes_sorted, "diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf", "plots/all_revs/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2))
 
 # plot diagonal
-num_revs = int(math.sqrt(len(revs)))
-label = []
+# setting labels and key for all algos
+labels = []
 names = []
-for rev in range(num_revs-1):
-    names.append("rev_" + str(rev).zfill(2) + "_rev_" + str(rev+1).zfill(2))
-    label.append("rev" + str(rev).zfill(2) + "_rev" + str(rev+1).zfill(2))
+for num in range(num_revs-1):
+    names.append("rev_" + str(num).zfill(2) + "_rev_" + str(num+1).zfill(2))
+    labels.append("rev" + str(num).zfill(2) + "_rev" + str(num+1).zfill(2))
 
-array_diag = []
-norm_diag = []
-array_diag_relative = []
-norm_diag_relative = []
+keys = dict()
 for algo in diff_algos:
-    array = []
-    norm = []
-    array_relative = []
-    norm_relative = []
+    key = []
     for name in names:
-        curr_name = algo + "_" + name
-        array.append(sizes_sorted["samd21-xpro"][algo][curr_name]["size"]/1024)   # convert to kB
-        norm.append(sizes_sorted["samd21-xpro"][algo][curr_name]["normalized"])   # normalizing data
-        array_relative.append(sizes_sorted["samd20-xpro"][algo][curr_name]["size"] - sizes_sorted["samd21-xpro"][algo][curr_name]["size"])   # in Bytes
-        norm_relative.append(sizes_sorted["samd20-xpro"][algo][curr_name]["normalized"] - sizes_sorted["samd21-xpro"][algo][curr_name]["normalized"])   # normalizing data
-    array_diag.append(array)
-    norm_diag.append(norm)
-    array_diag_relative.append(array_relative)
-    norm_diag_relative.append(norm_relative)
+        key.append(algo + "_" + name)
+    keys[algo] = key
 
-fig, ax = plot_bar(array_diag, label, diff_algos, "SAMD21-xpro Differencing Algorithms")
-fig_norm, ax = plot_bar(norm_diag, label, diff_algos, "SAMD21-xpro Differencing Algorithms (normalized)", "size of difference / target size")
-
-fig_relative, ax = plot_bar(array_diag_relative, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro", "size [Byte]")
-fig_norm_relative, ax = plot_bar(norm_diag_relative, label, diff_algos, "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro (normalized)", "size of difference / target size")
-
-### save and close figures ###
-fig.savefig("plots/diffalgos_samd21_diagonal.pdf")
-fig_norm.savefig("plots/norm_diffalgos_samd21_diagonal.pdf")
-fig_relative.savefig("plots/diffalgos_samd21_diagonal_relative.pdf")
-fig_norm_relative.savefig("plots/norm_diffalgos_samd21_diagonal_relative.pdf")
-plt.close("all")
+plot_function(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd21_diagonal.pdf", "plots/", "SAMD21-xpro Differencing Algorithms diagonal")
+plot_function_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_diagonal_relative.pdf", "plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro diagonal")
 
 
 ### bar plot code differences ###
@@ -216,7 +153,7 @@ for i, elem in enumerate(diff):
     log_diff.append(math.log(abs(elem)))
     versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [kB]", figsize = (10,6))
+fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [kB]", figsize = (10,6), width = 0.4)
 
 ### save and close figures ###
 fig_codediff.savefig("plots/code_diff.pdf")

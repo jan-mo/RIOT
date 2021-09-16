@@ -225,16 +225,18 @@ class calcDiff:
         sizes = []
         arch = []
         # updating from slot0 to slot1
-        for file in files_slot0:
-            file1.append(file)
-            files.append(files_slot1)
+        # files_slot0 holds every even revision
+        for i in range(len(files_slot0)):
+            file1.append(files_slot0[i])
+            files.append([files_slot1[i]])
             sizes.append(sizes_all)
             arch.append(name_MCU)
 
         # updating from slot1 to slot0
-        for file in files_slot1:
-            file1.append(file)
-            files.append(files_slot0)
+        # files_slot1 holds every odd revision
+        for i in range(len(files_slot1)-1):
+            file1.append(files_slot1[i])
+            files.append([files_slot0[i+1]])
             sizes.append(sizes_all)
             arch.append(name_MCU)
 
@@ -250,6 +252,7 @@ class calcDiff:
         sizes = []
         arch = []
         # updating from slot0 to slot0
+        # files_slot0 holds every even revision
         for i in range(len(files_slot0)-1):
             file1.append(files_slot0[i])
             files.append([files_slot0[i+1]])
@@ -257,6 +260,7 @@ class calcDiff:
             arch.append(name_MCU)
 
         # updating from slot1 to slot1
+        # files_slot1 holds every odd revision
         for i in range(len(files_slot1)-1):
             file1.append(files_slot1[i])
             files.append([files_slot1[i+1]])

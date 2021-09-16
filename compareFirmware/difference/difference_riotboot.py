@@ -41,10 +41,10 @@ slots1_samd20 = []
 slots0_samd21 = []
 slots1_samd21 = []
 
+# slot0 holds every even revision, slot1 every odd
 for i in range(int(len(files_samd20)/4)):
-    slots0_samd20.append(files_samd20[i*4])
-    slots1_samd20.append(files_samd20[i*4+3])
-
+    slots0_samd20.append(files_samd20[i*4])     # even numbers
+    slots1_samd20.append(files_samd20[i*4+3])   # odd numbers
 for i in range(int(len(files_samd21)/4)):
     slots0_samd21.append(files_samd21[i*4])
     slots1_samd21.append(files_samd21[i*4+3])
@@ -168,4 +168,4 @@ with open("versions.save", 'w') as out:
 ### clear data ###
 os.system("rm -r " + folder_restore)
 os.system("rm " + folder + "*/*/*.sh")
-os.system("rm ../database/riotboot/*/*/*.bin_*")
+os.system("rm -f ../database/riotboot/*/*/*.bin_*")
