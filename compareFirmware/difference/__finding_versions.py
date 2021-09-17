@@ -44,8 +44,8 @@ def database_files_riotboot():
     ### searching path for samd20 and samd21 ###
     for version in database:
         if os.path.isdir(os.path.join(path_database + version)):
-            # exclude riotboot
-            if version == "riotboot":
+            # exclude test folder
+            if version == "test":
                 continue;
 
             # collection all versions
