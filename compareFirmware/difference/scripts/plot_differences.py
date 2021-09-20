@@ -4,19 +4,25 @@ import json, os, math
 
 from __plot_functions import plot_bar, plot_function_diff, plot_function_diff_relative
 
+###
+### script plots all differences in revisions
+### the plots are stored in 'plots/'
+### calculates difference between one revision and all other plots
+### calculates diagonal of revisions and also SAMD20 relative to SAMD21
+###
 
 # used differencing algos
 diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat", "deltagen"] # bdelta - not implemented right
 
 ### load data ###
-with open("sizes_sorted.save", 'r') as json_file:
+with open("../output/sizes_sorted.save", 'r') as json_file:
     sizes_sorted = json.load(json_file)
-with open("versions.save", 'r') as file:
+with open("../output/versions.save", 'r') as file:
     versions = json.load(file)
 
 if "deltagen" in diff_algos:
     ### load deltagen data ###
-    with open("deltagen_diff/sizes_sorted.save", 'r') as json_file:
+    with open("../deltagen_diff/sizes_sorted.save", 'r') as json_file:
         sizes_sorted_deltagen = json.load(json_file)
 
     ### combine the data ###
@@ -47,7 +53,7 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted[MCU][algo].keys()
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_all.pdf", "plots/", "SAMD20-xpro Differencing Algorithms")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_all.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms")
 
 ### plot single rev against others
 # setting labels and key for all algos
@@ -59,7 +65,7 @@ for rev in range(num_revs):
         revs = list(sizes_sorted[MCU][algo].keys())
         keys[algo] = revs[rev*num_revs:rev*num_revs+num_revs]
 
-    plot_function_diff(diff_algos, keys, label, sizes_sorted, MCU, "diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf", "plots/all_revs/", "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2))
+    plot_function_diff(diff_algos, keys, label, sizes_sorted, MCU, "diffalgos_samd20_rev_" + str(rev).zfill(2) + ".pdf", "../plots/all_revs/", "SAMD20-xpro Differencing Algorithms Revision " + str(rev).zfill(2))
 
 # plot diagonal
 # setting labels and key for all algos
@@ -76,7 +82,7 @@ for algo in diff_algos:
         key.append(algo + "_" + name)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "plots/", "SAMD20-xpro Differencing Algorithms diagonal")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal")
 
 
 ### SAMD21 relative bar plot ###
@@ -98,7 +104,7 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted[MCU][algo].keys()
 
-plot_function_diff_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_relative_all.pdf", "plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro")
+plot_function_diff_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_relative_all.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro")
 
 # plot single rev_xx
 # setting labels and key for all algos
@@ -110,7 +116,7 @@ for rev in range(num_revs):
         revs = list(sizes_sorted[MCU][algo].keys())
         keys[algo] = revs[rev*num_revs:rev*num_revs+num_revs]
 
-    plot_function_diff_relative(diff_algos, keys, label, sizes_sorted, "diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf", "plots/all_revs/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2))
+    plot_function_diff_relative(diff_algos, keys, label, sizes_sorted, "diffalgos_samd21_relative_rev_" + str(rev).zfill(2) + ".pdf", "../plots/all_revs/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro Revision " + str(rev).zfill(2))
 
 # plot diagonal
 # setting labels and key for all algos
@@ -127,8 +133,8 @@ for algo in diff_algos:
         key.append(algo + "_" + name)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd21_diagonal.pdf", "plots/", "SAMD21-xpro Differencing Algorithms diagonal")
-plot_function_diff_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_diagonal_relative.pdf", "plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro diagonal")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd21_diagonal.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms diagonal")
+plot_function_diff_relative(diff_algos, keys, labels, sizes_sorted, "diffalgos_samd21_diagonal_relative.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms relative to SAMD20-xpro diagonal")
 
 
 ### bar plot code differences ###
@@ -137,7 +143,7 @@ diff = []
 for version in versions:
     if "rev_00" == version:
         continue
-    folder = "../database/" + version
+    folder = "../../database/" + version
     if os.path.isfile(folder + "/previous.diff"):
         diff.append(os.path.getsize(folder + "/previous.diff"))
     else:
@@ -156,4 +162,4 @@ for i, elem in enumerate(diff):
 fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [kB]", figsize = (10,6), width = 0.4)
 
 ### save and close figures ###
-fig_codediff.savefig("plots/code_diff.pdf")
+fig_codediff.savefig("../plots/code_diff.pdf")

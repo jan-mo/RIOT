@@ -7,8 +7,8 @@ from __calc_diffs import calcDiff
 # used differencing algos
 diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"]
 
-folder = "algo_diffs_slots/"
-folder_restore = "algo_diffs_slots/restore/"
+folder = "../algo_diffs_slots/"
+folder_restore = "../algo_diffs_slots/restore/"
 
 # database
 versions = []

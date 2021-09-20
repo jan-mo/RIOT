@@ -2,20 +2,25 @@
 
 import os
 
+###
+### finds all revision in database
+### database_files finds all revision except riotboot folder
+### database_files_riotboot finds the revision for riotboot
+###
 
 def database_files():
     versions = []
     files_samd20 = []
     files_samd21 = []
 
-    path_database = "../database/"
+    path_database = "../../database/"
     database = os.listdir(path_database)
     
     ### searching path for samd20 and samd21 ###
     for version in database:
         if os.path.isdir(os.path.join(path_database + version)):
             # exclude riotboot
-            if version == "riotboot":
+            if version == 'riotboot' or version == 'output' or version == 'scripts':
                 continue;
 
             # collection all versions
@@ -38,14 +43,14 @@ def database_files_riotboot():
     files_samd20 = []
     files_samd21 = []
 
-    path_database = "../database/riotboot/"
+    path_database = "../../database/riotboot/"
     database = os.listdir(path_database)
     
     ### searching path for samd20 and samd21 ###
     for version in database:
         if os.path.isdir(os.path.join(path_database + version)):
             # exclude test folder
-            if version == "test":
+            if version == 'test':
                 continue;
 
             # collection all versions

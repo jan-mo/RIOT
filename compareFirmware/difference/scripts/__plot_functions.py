@@ -3,7 +3,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#### bar plot function ####
+###
+### 
+###
+
+#### simple bar plot function ####
 def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8), width = 0.1):
 
     x = np.arange(len(xlabels))  # the label locations
@@ -15,12 +19,12 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     BIGGER_SIZE = 13
 
     plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
-    plt.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
-    plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
-    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
-    plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-    plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
-    plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # font-size of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # font-size of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # font-size of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # font-size of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
 
     fig, ax = plt.subplots()
 
@@ -41,7 +45,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
 
     return fig, ax
 
-
+### plots the differences from given keys ###
 def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name):
     array_all = []
     norm_all = []
@@ -65,7 +69,7 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
     fig_norm20.savefig(path + "norm_" + file)
     plt.close("all")
 
-
+### plots the relative differences ###
 def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, fig_name):
     array_all = []
     norm_all = []

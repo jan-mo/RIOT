@@ -21,8 +21,8 @@ files_samd21 = []
 
 [files_samd20, files_samd21, versions] = database_files()
 
-folder = "algo_diffs/"
-folder_restore = "algo_diffs/restore/"
+folder = "../algo_diffs/"
+folder_restore = "../algo_diffs/restore/"
 
 ### clear algo_diffs folder ###
 os.system("sudo rm -r " + folder)

@@ -6,6 +6,10 @@ import os
 from pathos.multiprocessing import ProcessingPool as Pool
 from pathos.helpers import mp as helper
 
+###
+### creates a class calcDiff to calculate all differences in given files
+### in __init__ diff_algos, source folder and restore folder are set
+###
 
 class calcDiff:
 
