@@ -3,6 +3,11 @@
 from tabulate import tabulate
 from _func_compress import compress_database
 
+###
+### This script compresses all revisions with given compression method
+### make sure all revisions are stored in the database
+###
+
 # compress functions
 compress_func = ["zlib","gzip","hs","bz2","lzma"]
 

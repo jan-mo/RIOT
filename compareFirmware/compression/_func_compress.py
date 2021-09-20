@@ -5,7 +5,7 @@ import heatshrink2 as hs
 import os
 
 ###
-### methods are zlib, gzip, hs (heatshrink2)
+### methods are zlib, gzip, hs (heatshrink2), bz2 and lzma
 ### option for specific method
 ###
 def __all_compress_functions(file, method, option = None):
@@ -65,6 +65,9 @@ def __all_decompress_functions(file, method, option = None):
     return decompress
 
 
+###
+### compresses all revisions in database
+###
 def compress_database(method, option = None):
     # list all files in database
     data = os.listdir('../database')
