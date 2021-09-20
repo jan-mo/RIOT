@@ -15,34 +15,35 @@ src = '../../../firmwareExample/bin/'
 boards = ['samd20-xpro', 'samd21-xpro']
 
 # firmware_name
-name = '../' + sys.argv[1]
+name = sys.argv[1]
+name_folder = '../' + name
 
 # check if firmware already exists
 try:
-    os.mkdir(name)
+    os.mkdir(name_folder)
 except FileExistsError:
     print("ERROR: Firmware version exists!")
     sys.exit()
 
 for board in boards:
     # create board folder
-    os.mkdir(name + '/' + board)
+    os.mkdir(name_folder + '/' + board)
 
     # copy bin files
-    copyfile(src + board + '/firmware_example.bin', name + '/' + board + '/' + name + '.bin')
+    copyfile(src + board + '/firmware_example.bin', name_folder + '/' + board + '/' + name + '.bin')
 
     #copy elf files
-    copyfile(src + board + '/firmware_example.elf', name + '/' + board + '/' + name + '.elf')
+    copyfile(src + board + '/firmware_example.elf', name_folder + '/' + board + '/' + name + '.elf')
 
     #copy map files
-    copyfile(src + board + '/firmware_example.map', name + '/' + board + '/' + name + '.map')
+    copyfile(src + board + '/firmware_example.map', name_folder + '/' + board + '/' + name + '.map')
 
 
 # save diff of firmware version
-os.system("mv " + src + '../firmware.diff ' + name + '/firmware.diff')
+os.system("mv " + src + '../firmware.diff ' + name_folder + '/firmware.diff')
 
-if os.path.getsize(name + "/firmware.diff") >= 50000000:
-    os.system("split -b50M " + name + "/firmware.diff " + name + "/firmware.diff_split_")
-    os.system("rm " + name + "/firmware.diff")
+if os.path.getsize(name_folder + "/firmware.diff") >= 50000000:
+    os.system("split -b50M " + name_folder + "/firmware.diff " + name_folder + "/firmware.diff_split_")
+    os.system("rm " + name_folder + "/firmware.diff")
 
 print('Done!')
