@@ -6,6 +6,9 @@ from sys import path
 path.append("../difference/")
 from __plot_functions import plot_function_matches
 
+###
+### plots the distinctions in revision, alternating and every second update
+###
 
 ### load data ###
 with open("diffs_matches.save", 'r') as json_file:

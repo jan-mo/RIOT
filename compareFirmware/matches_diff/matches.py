@@ -2,6 +2,12 @@
 
 import os, subprocess, json
 
+###
+### calculates the distinction between the revision and with enabled slots
+### calculates just between the revision, with alternating slots and with every second revision (update in same slot)
+### results are stored in 'diffs_matches.save'
+###
+
 from sys import path
 path.append("../difference/")
 from __finding_versions import database_files, database_files_riotboot
