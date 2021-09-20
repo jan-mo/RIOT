@@ -2,7 +2,7 @@
 
 import json, os, math
 
-from __plot_functions import plot_bar, plot_function
+from __plot_functions import plot_bar, plot_function_diff
 
 
 # used differencing algos
@@ -55,7 +55,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot0")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot0")
 
 ### slot1
 labels = []
@@ -75,7 +75,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot1.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot1")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot1.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot1")
 
 
 ### SAMD21 bar plot ###
@@ -102,7 +102,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot0")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot0")
 
 ### slot1
 labels = []
@@ -122,7 +122,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot1.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot1")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot1.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot1")
 
 
 
@@ -144,7 +144,7 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in alternating slots")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "plots/slots/", "SAMD20-xpro Differencing Algorithms updates in alternating slots")
 
 
 ### SAMD21 bar plot ###
@@ -162,6 +162,6 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots")
 
 print("Done!")

@@ -42,7 +42,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     return fig, ax
 
 
-def plot_function(diff_algos, keys, labels, values, MCU, file, path, fig_name):
+def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -57,8 +57,8 @@ def plot_function(diff_algos, keys, labels, values, MCU, file, path, fig_name):
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, fig_name)
-    fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
+    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name)
+    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
 
     # save and close figures
     fig_samd20.savefig(path + file)
@@ -66,7 +66,7 @@ def plot_function(diff_algos, keys, labels, values, MCU, file, path, fig_name):
     plt.close("all")
 
 
-def plot_function_relative(diff_algos, keys, labels, values, file, path, fig_name):
+def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, fig_name):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -80,10 +80,69 @@ def plot_function_relative(diff_algos, keys, labels, values, file, path, fig_nam
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, labels, diff_algos, fig_name, "size [Byte]")
-    fig_norm20, ax_norm20 = plot_bar(norm_all, labels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
+    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, "size [Byte]")
+    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
 
     # save and close figures
     fig_samd20.savefig(path + file)
     fig_norm20.savefig(path + "norm_" + file)
+    plt.close("all")
+
+
+# plots chunks, bytes_changed and bytes_inserted
+# values must include chunks, changed and inserted
+def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
+
+    chunks_samd20 = []
+    bytes_changed_samd20 = []
+    bytes_inserted_samd20 = []
+    xlabels_samd20 = []
+
+    chunks_samd21 = []
+    bytes_changed_samd21 = []
+    bytes_inserted_samd21 = []
+    xlabels_samd21 = []
+
+    for value in values_samd20:
+        tmp = value.split("_")
+        if "slot0" in tmp:
+            xlabels_samd20.append("rev" + tmp[1] + "_rev" + tmp[3])
+        elif "slot1" in tmp:
+            xlabels_samd20.append("rev" + tmp[1] + "_rev" + tmp[3])
+        else:
+            xlabels_samd20.append("rev" + tmp[1] + "_rev" + tmp[2])
+        chunks_samd20.append(values_samd20[value]["chunks"])
+        bytes_changed_samd20.append(values_samd20[value]["changed"])
+        bytes_inserted_samd20.append(values_samd20[value]["inserted"])
+
+    for value in values_samd21:
+        tmp = value.split("_")
+        if "slot0" in tmp:
+            xlabels_samd21.append("rev" + tmp[1] + "_rev" + tmp[3])
+        elif "slot1" in tmp:
+            xlabels_samd21.append("rev" + tmp[1] + "_rev" + tmp[3])
+        else:
+            xlabels_samd21.append("rev" + tmp[1] + "_rev" + tmp[2])
+        chunks_samd21.append(values_samd21[value]["chunks"])
+        bytes_changed_samd21.append(values_samd21[value]["changed"])
+        bytes_inserted_samd21.append(values_samd21[value]["inserted"])
+
+    if xlabels_samd20 != xlabels_samd21:
+        print("Waring: Labels SAMD20 and SAMD21 are not equal!")
+    else:
+        xlabels = xlabels_samd20
+
+    legend = ["SAMD20-xpro", "SAMD21-xpro"]
+    chunks = [chunks_samd20, chunks_samd21]
+    bytes_changed = [bytes_changed_samd20, bytes_changed_samd21]
+    bytes_inserted = [bytes_inserted_samd20, bytes_inserted_samd21]
+
+    fig_chunks, ax_chunks = plot_bar(chunks, xlabels, legend, fig_name + " number of chunks", ylabel="#chunks", figsize = (12,6), width = 0.2)
+    fig_changed, ax_changed = plot_bar(bytes_changed, xlabels, legend, fig_name + " changed bytes", ylabel="changed Bytes", figsize = (12,6), width = 0.2)
+    fig_inserted, ax_inserted = plot_bar(bytes_inserted, xlabels, legend, fig_name + " inserted bytes", ylabel="inserted Bytes", figsize = (12,6), width = 0.2)
+
+    # save and close figures
+    fig_chunks.savefig(path + "chunks_" + file)
+    fig_changed.savefig(path + "changed_" + file)
+    fig_inserted.savefig(path + "inserted_" + file)
     plt.close("all")
