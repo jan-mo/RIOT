@@ -82,7 +82,7 @@ def compress_database(method, option = None):
     for version in data:
         if os.path.isdir(os.path.join('../database/' + version)):
             # exclude riotboot
-            if version == "riotboot":
+            if version == 'riotboot' or version == 'output' or version == 'scripts':
                 continue;
 
             versions.append(version)
