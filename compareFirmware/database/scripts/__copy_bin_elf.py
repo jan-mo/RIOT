@@ -15,7 +15,7 @@ src = '../../../firmwareExample/bin/'
 boards = ['samd20-xpro', 'samd21-xpro']
 
 # firmware_name
-name = sys.argv[1]
+name = '../' + sys.argv[1]
 
 # check if firmware already exists
 try:
@@ -23,7 +23,6 @@ try:
 except FileExistsError:
     print("ERROR: Firmware version exists!")
     sys.exit()
-
 
 for board in boards:
     # create board folder
