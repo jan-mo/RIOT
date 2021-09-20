@@ -1,3 +1,8 @@
+
+###
+### modifies the current version to use riotboot and Makefile for slot0 and slot1
+###
+
 echo "FEATURES_PROVIDED += riotboot" >> boards/samd20-xpro/Makefile.features
 echo "FEATURES_PROVIDED += riotboot" >> boards/samd21-xpro/Makefile.features
 echo "USEMODULE += suit" > firmwareExample/tmp

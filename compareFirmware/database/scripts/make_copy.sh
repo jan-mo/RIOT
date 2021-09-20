@@ -1,3 +1,8 @@
+
+###
+### 
+###
+
 # save current version in git stash
 git status
 echo ""
@@ -16,8 +21,8 @@ fi
 echo "Enter firmware revision:"
 read version
 
+cd ../../../firmwareExample/
 git checkout thesis/${version}
-cd ../../firmwareExample/
 
 sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
@@ -26,9 +31,9 @@ git diff thesis/rev_00 > firmware.diff
 
 git checkout thesis/checking_firmware_versions
 
-cd ../compareFirmware/database
+cd ../compareFirmware/database/scripts
 ./__copy_bin_elf.py ${version}
-cd ..
-cd database
+cd ../../
+cd database/scripts
 
 ./__diff_previous.py ${version}

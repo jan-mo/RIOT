@@ -2,11 +2,15 @@
 
 import os
 
+###
+### calculates the difference between current and previous revision
+###
+
 # database
-database = os.listdir(".")
+database = os.listdir("../")
 versions = []
 
-### searching path for samd20 and samd21 ###
+# searching path for samd20 and samd21 ###
 for version in database:
     if os.path.isdir(version):
         # exclude suit_updater

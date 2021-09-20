@@ -1,16 +1,16 @@
 #!/usr/bin/env python3.9
 
-# make sure that firmware is compiled for both boards
-# make sure diff file is up to date
-#
-# for automatic use, run './make_copy.sh'
-
-
 import os, sys
 from shutil import move, copyfile
 
+###
+### make sure that firmware is compiled for both boards
+### make sure diff file is up to date
+###
+### for automatic use, run './make_copy.sh'
+###
 
-src = '../../firmwareExample/bin/'
+src = '../../../firmwareExample/bin/'
 
 boards = ['samd20-xpro', 'samd21-xpro']
 

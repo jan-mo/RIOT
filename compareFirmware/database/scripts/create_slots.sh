@@ -1,3 +1,8 @@
+
+###
+### generates and compiles riotboot for current revision with slot0 and slot1
+###
+
 # save current version in git stash
 git status
 echo ""
@@ -16,9 +21,9 @@ fi
 echo "Enter firmware revision:"
 read version
 
-cp riotboot_patch.sh ../../
+cp ../riotboot/riotboot_patch.sh ../../../
 git checkout thesis/${version}
-cd ../../
+cd ../../../
 
 # update revision to add riotboot
 ./riotboot_patch.sh
