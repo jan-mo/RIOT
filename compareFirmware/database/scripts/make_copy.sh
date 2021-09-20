@@ -1,6 +1,7 @@
 
 ###
-### 
+### builds the firmware for samd20 and samd21
+### copies all data to database
 ###
 
 # save current version in git stash
@@ -21,8 +22,9 @@ fi
 echo "Enter firmware revision:"
 read version
 
-cd ../../../firmwareExample/
+cd ../../../
 git checkout thesis/${version}
+cd firmwareExample
 
 sudo make -j BOARD=samd20-xpro
 sudo make -j BOARD=samd21-xpro
