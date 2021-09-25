@@ -14,7 +14,7 @@ versions = []
 for version in database:
     if os.path.isdir(version):
         # exclude suit_updater
-        if version == "suit_updater":
+        if version == 'riotboot' or version == 'scripts' or version == 'output':
             continue;
 
         # collection all versions
