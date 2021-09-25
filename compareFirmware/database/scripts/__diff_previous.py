@@ -33,6 +33,6 @@ for rev2 in versions:
     if size >= 50000000:
         os.system("split -b50M " + "previous.diff " + "previous.diff_split_")
         os.system("rm previous.diff")
-        os.system("mv previous.diff_split_* " + rev2)
+        os.system("mv previous.diff_split_* " + "../" + rev2)
     else:
-        os.system("mv previous.diff " + rev2)
+        os.system("mv previous.diff " + "../" + rev2)
