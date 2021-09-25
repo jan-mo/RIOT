@@ -35,7 +35,8 @@ git checkout thesis/checking_firmware_versions
 
 cd ../compareFirmware/database/scripts
 ./__copy_bin_elf.py ${version}
-cd ../../
-cd database/scripts
 
-./__diff_previous.py ${version}
+cd ../scripts
+./__diff_previous.py
+
+cd ../scripts
