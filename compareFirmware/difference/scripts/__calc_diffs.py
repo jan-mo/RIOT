@@ -70,17 +70,17 @@ class calcDiff:
                 # patch file
                 os.system("xdelta3 -d -s " + file1 + " " + patch_xdelta3 + " " + restore_xdelta3)
 
-            #### bdelta ####
-            if "bdelta" in self.diff_algos:
-                name_bdelta = "bdelta_" + name_file1 + "_" + name_file2
-                patch_bdelta = self.folder + "bdelta/" + name_arch + "/" + name_bdelta
-                restore_bdelta = self.folder_restore + name_bsdiff
+            #### zdelta ####
+            if "zdelta" in self.diff_algos:
+                name_zdelta = "zdelta_" + name_file1 + "_" + name_file2
+                patch_zdelta = self.folder + "zdelta/" + name_arch + "/" + name_zdelta
+                restore_zdelta = self.folder_restore + name_zdelta
+                ### make shure zdelta is installed!!!!
+                zdelta_path = "./../../../../zdelta/"
                 # diff file
-                print("bdelta " + file1 + " " + file2 + " " + patch_bdelta)
-                os.system("bdelta " + file1 + " " + file2 + " " + patch_bdelta)
+                os.system(zdelta_path + "zdc " + file1 + " " + file2 + " " + patch_zdelta)
                 # patch file
-                print("bpatch " + file1 + " " + restore_bdelta + " " + patch_bdelta)
-                os.system("bpatch " + file1 + " " + restore_bdelta + " " + patch_bdelta)
+                os.system(zdelta_path + "zdu " + file1 + " " + patch_zdelta + " " + restore_zdelta)
 
             #### rsync8 ####
             if "rsync8" in self.diff_algos:
@@ -175,8 +175,10 @@ class calcDiff:
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_xdelta3) else "fail",
                                                   "normalized":os.path.getsize(patch_xdelta3)/os.path.getsize(file2)}
 
-            if "bdelta" in self.diff_algos:
-                sizes["bdelta"][name_bdelta] = os.path.getsize(folder + name_bdelta)
+            if "zdelta" in self.diff_algos:
+                sizes["zdelta"][name_zdelta] = {"size":os.path.getsize(patch_zdelta),
+                                                  "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_zdelta) else "fail",
+                                                  "normalized":os.path.getsize(patch_zdelta)/os.path.getsize(file2)}
 
             if "rsync8" in self.diff_algos:
                 sizes["rsync8"][name_rsync8] = {"size":os.path.getsize(patch_rsync8),

@@ -10,7 +10,7 @@ from __calc_diffs import calcDiff
 ###
 
 # used differencing algos
-diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"] # bdelta - not implemented right
+diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat"]
 pkg_arch = "diffutils bsdiff xdelta3 rsync"
 pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
@@ -102,9 +102,9 @@ for algo in diff_algos:
         sizes_sorted["samd21-xpro"][algo][i] = sizes_all_arch["samd21-xpro"][algo][i]
 
 ### saving to JSON-file ###
-with open("sizes_sorted.save", 'w') as out:
+with open("../output/sizes_sorted.save", 'w') as out:
     json.dump(sizes_sorted, out)
 
 ### saving versions ###
-with open("versions.save", 'w') as out:
+with open("../output/versions.save", 'w') as out:
     json.dump(versions, out)

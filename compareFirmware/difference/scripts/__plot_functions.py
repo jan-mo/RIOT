@@ -46,7 +46,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     return fig, ax
 
 ### plots the differences from given keys ###
-def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name):
+def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, width = 0.1):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -61,8 +61,8 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name)
-    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
+    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, width = width)
+    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", width = width)
 
     # save and close figures
     fig_samd20.savefig(path + file)
@@ -70,7 +70,7 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
     plt.close("all")
 
 ### plots the relative differences ###
-def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, fig_name):
+def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, fig_name, width = 0.1):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -84,8 +84,8 @@ def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, f
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, "size [Byte]")
-    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
+    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, "size [Byte]", width = width)
+    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", width = width)
 
     # save and close figures
     fig_samd20.savefig(path + file)

@@ -100,11 +100,11 @@ for algo in diff_algos:
         sizes_sorted["samd21-xpro"][algo][i] = sizes_all_arch["samd21-xpro"][algo][i]
 
 ### saving to JSON-file ###
-with open("sizes_sorted_alternating_slots.save", 'w') as out:
+with open("../output/sizes_sorted_alternating_slots.save", 'w') as out:
     json.dump(sizes_sorted, out)
 
 ### saving versions ###
-with open("versions.save", 'w') as out:
+with open("../output/versions.save", 'w') as out:
     json.dump(versions, out)
 
 
@@ -158,11 +158,11 @@ for algo in diff_algos:
         sizes_sorted["samd21-xpro"][algo][i] = sizes_all_arch["samd21-xpro"][algo][i]
 
 ### saving to JSON-file ###
-with open("sizes_sorted_same_slots.save", 'w') as out:
+with open("../output/sizes_sorted_same_slots.save", 'w') as out:
     json.dump(sizes_sorted, out)
 
 ### saving versions ###
-with open("versions.save", 'w') as out:
+with open("../output/versions.save", 'w') as out:
     json.dump(versions, out)
 
 ### clear data ###

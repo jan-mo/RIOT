@@ -12,7 +12,7 @@ from __plot_functions import plot_bar, plot_function_diff, plot_function_diff_re
 ###
 
 # used differencing algos
-diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat", "deltagen"] # bdelta - not implemented right
+diff_algos = [ "diff", "rsync8", "rsync16", "rsync32", "bsdiff", "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
 
 ### load data ###
 with open("../output/sizes_sorted.save", 'r') as json_file:
@@ -82,7 +82,7 @@ for algo in diff_algos:
         key.append(algo + "_" + name)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal", width = 0.08)
 
 
 ### SAMD21 relative bar plot ###
@@ -155,7 +155,7 @@ for version in versions:
 log_diff = []
 versions_diff = []
 for i, elem in enumerate(diff):
-    print("UNIX diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
+    print("UNIX code-diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
     log_diff.append(math.log(abs(elem)))
     versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
