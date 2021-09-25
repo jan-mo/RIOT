@@ -1,0 +1,107 @@
+diff --git a/firmwareExample/Makefile b/firmwareExample/Makefile
+index e0edec6c4f..aa80af2d2a 100644
+--- a/firmwareExample/Makefile
++++ b/firmwareExample/Makefile
+@@ -12,9 +12,19 @@ USEMODULE += shell_commands
+ FEATURES_REQUIRED += periph_adc
+ FEATURES_REQUIRED += periph_gpio_irq
+ 
++# acceleration sensor
++USEMODULE += lis3dh
++
+ # gnrc_networking
+ GNRC_NETIF_NUMOF := 1
+ 
++USEMODULE += gnrc_netdev_default
++USEMODULE += auto_init_gnrc_netif
++USEMODULE += gnrc_ipv6
++USEMODULE += gnrc_icmpv6_error
++USEMODULE += gnrc_udp
++USEMODULE += gnrc_icmpv6_echo
++
+ USEMODULE += ps
+ USEMODULE += netstats_l2
+ USEMODULE += netstats_ipv6
+diff --git a/firmwareExample/main.c b/firmwareExample/main.c
+index 8389ec7cb2..295a73f8f5 100644
+--- a/firmwareExample/main.c
++++ b/firmwareExample/main.c
+@@ -26,7 +26,21 @@
+ #include "periph/adc.h"
+ #include "board.h"
+ 
+-#define ADC_SAMPLE_LINE 0
++/* acceleration sensor */
++#include "lis3dh.h"
++/* define LIS3DH params */
++#define LIS3DH_PARAM_SPI  (SPI_DEV(1))
++#define LIS3DH_PARAM_CS   (GPIO_PIN(PA, 17))
++#define LIS3DH_PARAM_INT1 (GPIO_PIN(PB, 11))
++#define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
++#include "lis3dh_params.h"
++
++static lis3dh_t dev;
++
++#define ENABLE_DEBUG 0
++#include "debug.h"
++
++#define ADC_SAMPLE_LINE 1
+ 
+ #define MAIN_QUEUE_SIZE (8)
+ static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
+@@ -54,10 +68,43 @@ void button_int_cb(void* arg){
+     puts("interrupt received.");
+ }
+ 
++/* LIS3DH init function */
++void lis3dh_func_init(void) {
++
++    /* init lis */
++    if (lis3dh_init(&dev, &lis3dh_params[0]) == 0) {
++        puts("lis3dh [Initialized]");
++    }
++    else {
++        puts("lis3dh [Failed]");
++    }
++
++    lis3dh_set_odr(&dev, lis3dh_params[0].odr);
++    lis3dh_set_scale(&dev, lis3dh_params[0].scale);
++    lis3dh_set_axes(&dev, LIS3DH_AXES_XYZ);
++
++}
++
++/* read LIS values */
++static int lis3dh_read(int argc, char **argv)
++{
++    (void)argc;
++    (void)argv;
++
++    lis3dh_data_t data;
++
++    lis3dh_read_xyz(&dev, &data);
++
++    printf("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
++
++    return 0;
++}
++
+ /* shell commands */
+ static const shell_command_t shell_commands[] = {
+-    { "toggle_LED", "toggles the LED status of LED0", toggle_LED},
+-    { "adc", "reads the ADC0", read_ADC},
++    { "toggle_LED", "toggles the LED status of LED0", toggle_LED },
++    { "adc", "reads the ADC0", read_ADC },
++    { "lis_read", "Read acceleration data", lis3dh_read },
+     { NULL, NULL, NULL }
+ };
+ 
+@@ -81,6 +128,9 @@ int main(void)
+     /* initializes the message queue */
+     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
+ 
++    /* init acceleration sensor */
++    lis3dh_func_init();
++
+     /* start shell */
+     puts("All up, running the shell now");
+     char line_buf[SHELL_DEFAULT_BUFSIZE];
