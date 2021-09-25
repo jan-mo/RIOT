@@ -1,0 +1,177 @@
+diff --git a/firmwareExample/Makefile b/firmwareExample/Makefile
+index dc52d70ced..dc96c613eb 100644
+--- a/firmwareExample/Makefile
++++ b/firmwareExample/Makefile
+@@ -13,7 +13,7 @@ FEATURES_REQUIRED += periph_adc
+ FEATURES_REQUIRED += periph_gpio_irq
+ 
+ # acceleration sensor
+-USEMODULE += lis3dh
++USEMODULE += lis2dh12_spi
+ 
+ # gnrc_networking
+ GNRC_NETIF_NUMOF := 1
+diff --git a/firmwareExample/main.c b/firmwareExample/main.c
+index b2557d9a55..d35f04020e 100644
+--- a/firmwareExample/main.c
++++ b/firmwareExample/main.c
+@@ -30,13 +30,22 @@
+ #include "periph/gpio.h"
+ 
+ /* acceleration sensor config */
+-#include "lis3dh.h"
+-#define LIS3DH_PARAM_SPI  (SPI_DEV(1))
+-#define LIS3DH_PARAM_CS   (GPIO_PIN(PA, 17))
+-#define LIS3DH_PARAM_INT1 (GPIO_PIN(PB, 11))
+-#define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
+-#include "lis3dh_params.h"
+-static lis3dh_t dev_lis;
++#ifdef MODULE_LIS2DH12_SPI
++    #define LIS2DH12_PARAM_SPI  SPI_DEV(2)
++    #define LIS2DH12_PARAM_CS   GPIO_PIN(PB, 17)
++    #include "lis2dh12.h"
++    #include "lis2dh12_params.h"
++    #include "lis2dh12_registers.h"
++    static lis2dh12_t dev_lis;
++#elif MODULE_LIS3DH
++    #define LIS3DH_PARAM_SPI  (SPI_DEV(1))
++    #define LIS3DH_PARAM_CS   (GPIO_PIN(PA, 17))
++    #define LIS3DH_PARAM_INT1 (GPIO_PIN(PB, 11))
++    #define LIS3DH_PARAM_INT2 (GPIO_PIN(PB, 10))
++    #include "lis3dh.h"
++    #include "lis3dh_params.h"
++    static lis3dh_t dev_lis;
++#endif
+ 
+ /* display PCD8544 */
+ #include "pcd8544.h"
+@@ -136,8 +145,23 @@ void button_int_cb(void* arg) {
+     puts("interrupt received.");
+ }
+ 
+-/* LIS3DH init function */
+-void lis3dh_func_init(void) {
++/* LIS init function */
++void lis_func_init(void) {
++
++#ifdef MODULE_LIS2DH12_SPI
++    if (lis2dh12_init(&dev_lis, &lis2dh12_params[0]) == 0) {
++        puts("lis2dh12 [Initialized]");
++    }
++    else {
++        puts("lis2dh12 [Failed]");
++    }
++
++    /* change LIS settings */
++    lis2dh12_set_powermode(&dev_lis, LIS2DH12_POWER_LOW);
++    lis2dh12_set_datarate(&dev_lis, LIS2DH12_RATE_100HZ);
++    lis2dh12_set_scale(&dev_lis, LIS2DH12_SCALE_2G);
++
++#elif MODULE_LIS3DH
+     if (lis3dh_init(&dev_lis, &lis3dh_params[0]) == 0) {
+         puts("lis3dh [Initialized]");
+     }
+@@ -148,17 +172,35 @@ void lis3dh_func_init(void) {
+     lis3dh_set_odr(&dev_lis, lis3dh_params[0].odr);
+     lis3dh_set_scale(&dev_lis, lis3dh_params[0].scale);
+     lis3dh_set_axes(&dev_lis, LIS3DH_AXES_XYZ);
++#endif
+ }
+ 
+ /* read LIS values */
+-static int lis3dh_read(int argc, char **argv) {
++static int lis_read(int argc, char **argv) {
+     (void)argc;
+     (void)argv;
+ 
+     LIS_thread_sleep = true;
++    char buffer[PCD8544_COLS] = {0};
++
++#ifdef MODULE_LIS2DH12_SPI
++    int16_t data[3] = {0};
++    lis2dh12_read(&dev_lis, data);
+ 
++    DEBUG("X: %d  Y: %d  Z: %d\n", data[0], data[1], data[2]);
++
++    /* print to display */
++    sprintf(buffer, "X: %d", data[0]);
++    pcd8544_write_l(&dev_pcd, 1, buffer);
++
++    sprintf(buffer, "Y: %d", data[1]);
++    pcd8544_write_l(&dev_pcd, 2, buffer);
++
++    sprintf(buffer, "Z: %d", data[2]);
++    pcd8544_write_l(&dev_pcd, 3, buffer);
++
++#elif MODULE_LIS3DH
+     lis3dh_data_t data = {0};
+-    char buffer[PCD8544_COLS] = {0};
+ 
+     lis3dh_read_xyz(&dev_lis, &data);
+     DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
+@@ -172,6 +214,7 @@ static int lis3dh_read(int argc, char **argv) {
+ 
+     sprintf(buffer, "Z: %d", data.acc_z);
+     pcd8544_write_l(&dev_pcd, 3, buffer);
++#endif
+ 
+     return 0;
+ }
+@@ -180,11 +223,30 @@ static int lis3dh_read(int argc, char **argv) {
+ void *lis_read_periodic(void *arg)
+ {
+     (void) arg;
+-    lis3dh_data_t data = {0};
++
+     char buffer[PCD8544_COLS] = {0};
+ 
+     while (1) {
+         /* read LIS data */
++#ifdef MODULE_LIS2DH12_SPI
++        int16_t data[3] = {0};
++
++        lis2dh12_read(&dev_lis, data);
++        DEBUG("X: %d  Y: %d  Z: %d\n", data[0], data[1], data[2]);
++
++        /* print to display */
++        sprintf(buffer, "X: %d", data[0]);
++        pcd8544_write_l(&dev_pcd, 1, buffer);
++
++        sprintf(buffer, "Y: %d", data[1]);
++        pcd8544_write_l(&dev_pcd, 2, buffer);
++
++        sprintf(buffer, "Z: %d", data[2]);
++        pcd8544_write_l(&dev_pcd, 3, buffer);
++
++#elif MODULE_LIS3DH
++        lis3dh_data_t data = {0};
++
+         lis3dh_read_xyz(&dev_lis, &data);
+         DEBUG("X: %d  Y: %d  Z: %d\n", data.acc_x, data.acc_y, data.acc_z);
+ 
+@@ -197,6 +259,7 @@ void *lis_read_periodic(void *arg)
+ 
+         sprintf(buffer, "Z: %d", data.acc_z);
+         pcd8544_write_l(&dev_pcd, 3, buffer);
++#endif
+ 
+         xtimer_usleep(LIS_thread_delay);
+         if (LIS_thread_sleep)
+@@ -286,7 +349,7 @@ static const shell_command_t shell_commands[] = {
+     { "disp_invert", "Invert display", display_invert },
+     { "disp_write", "Write string to display", display_write},
+     { "disp_clear", "Clear display", display_clear },
+-    { "lis_read", "Read acceleration data", lis3dh_read },
++    { "lis_read", "Read acceleration data", lis_read },
+     { "lis_read_periodic", "Periodic read of acceleration data", lis_thread_wakeup },
+     { "adc_read", "Read ADC value, stops periodic read", adc_read},
+     { "adc_read_periodic", "Periodic read of ADC value", adc_thread_wakeup},
+@@ -320,7 +383,7 @@ int main(void) {
+     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
+ 
+     /* initializes acceleration sensor */
+-    lis3dh_func_init();
++    lis_func_init();
+     /* starting sleeping LIS thread */
+     LIS_thread_pid = thread_create( lis_thread_stack, sizeof(lis_thread_stack),
+                         THREAD_PRIORITY_MAIN - 1, THREAD_CREATE_SLEEPING,
