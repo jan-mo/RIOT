@@ -9,7 +9,7 @@ import os, subprocess, json
 ###
 
 from sys import path
-path.append("../difference/")
+path.append("../../difference/scripts/")
 from __finding_versions import database_files, database_files_riotboot
 
 # load database with revisions and slots
@@ -18,7 +18,7 @@ from __finding_versions import database_files, database_files_riotboot
 
 ### convert bin-files for line based diff ###
 files_all = files_samd20 + files_samd20_riotboot + files_samd21 + files_samd21_riotboot
-new_path = "converted_bins/"
+new_path = "../converted_bins/"
 
 # clear older files
 os.system("rm -r " + new_path)
@@ -45,7 +45,7 @@ for file in files_all:
 
 
 ### diff between all converted data ###
-diff_path = "diff_converted_bins/"
+diff_path = "../diff_converted_bins/"
 
 # clear older files
 os.system("rm -r " + diff_path)
@@ -188,5 +188,5 @@ for idx in range(len(versions)-1):
 
 
 ### saving diffs ###
-with open("diffs_matches.save", 'w') as out:
+with open("../output/diffs_matches.save", 'w') as out:
     json.dump(diffs_all, out)
