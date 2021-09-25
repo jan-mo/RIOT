@@ -7,8 +7,10 @@ import os
 ###
 
 # database
-database = os.listdir("../../")
+database = os.listdir("../")
 versions = []
+
+print("Calculating size.")
 
 # searching path for samd20 and samd21 ###
 for version in database:
