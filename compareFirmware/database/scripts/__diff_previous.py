@@ -23,6 +23,7 @@ for version in database:
         versions.append(version)
 
 versions = sorted(versions)
+print(versions)
 
 for rev2 in versions:
     if "rev_00" == rev2:
