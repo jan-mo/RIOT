@@ -10,11 +10,9 @@ import os
 database = os.listdir("../")
 versions = []
 
-print("Calculating size.")
-
 # searching path for samd20 and samd21 ###
 for version in database:
-    if os.path.isdir(version):
+    if os.path.isdir("../" + version):
         # exclude riotboot, scripts and output folder
         if version == 'riotboot' or version == 'scripts' or version == 'output':
             continue;
@@ -23,7 +21,6 @@ for version in database:
         versions.append(version)
 
 versions = sorted(versions)
-print(versions)
 
 for rev2 in versions:
     if "rev_00" == rev2:
