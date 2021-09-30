@@ -14,12 +14,14 @@
 
 # Revision Explanation
 The `firmware.diff` file in every reversion, consists of the diff between `rev_00` and the current revision.
-The revision `rev_00` is the default version and every other firmware version can be restored.
-The script `__restore_revision.sh` patches the `rev_00` default version.
-You can build a new revision and automatically create the diff file, by running `make_copy.sh`.
+The revision `rev_00` is the default version and every other firmware version can be restored with this file.
+In `previous.diff`, the difference to the previous version is given. This can be used to find the C-code
+differences for every revision.
+You can compile a new revision and automatically create the diff file, by running `make_copy.sh`. A new folder
+for the given revision is created.
 
 ## Revision Overview and Functionality
-All revisions are explained and the core functionality is listed
+The already compiled revisions are explained and the main update content is listed.
 
 ### rev_00
 - default version
