@@ -168,4 +168,4 @@ with open("../output/versions.save", 'w') as out:
 ### clear data ###
 os.system("rm -r " + folder_restore)
 os.system("rm " + folder + "*/*/*.sh")
-os.system("rm -f ../database/riotboot/*/*/*.bin_*")
+os.system("rm -f ../data_basis/riotboot/*/*/*.bin_*")

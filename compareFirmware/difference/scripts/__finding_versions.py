@@ -13,7 +13,7 @@ def database_files():
     files_samd20 = []
     files_samd21 = []
 
-    path_database = "../../database/"
+    path_database = "../../data_basis/"
     database = os.listdir(path_database)
     
     ### searching path for samd20 and samd21 ###
@@ -43,7 +43,7 @@ def database_files_riotboot():
     files_samd20 = []
     files_samd21 = []
 
-    path_database = "../../database/riotboot/"
+    path_database = "../../data_basis/riotboot/"
     database = os.listdir(path_database)
     
     ### searching path for samd20 and samd21 ###

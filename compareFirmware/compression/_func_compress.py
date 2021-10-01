@@ -70,7 +70,7 @@ def __all_decompress_functions(file, method, option = None):
 ###
 def compress_database(method, option = None):
     # list all files in database
-    data = os.listdir('../database')
+    data = os.listdir('../data_basis')
     versions = []
     folders_samd20 = []
     folders_samd21 = []
@@ -80,14 +80,14 @@ def compress_database(method, option = None):
 
     # create path for samd20 and samd21
     for version in data:
-        if os.path.isdir(os.path.join('../database/' + version)):
+        if os.path.isdir(os.path.join('../data_basis/' + version)):
             # exclude riotboot
             if version == 'riotboot' or version == 'output' or version == 'scripts':
                 continue;
 
             versions.append(version)
-            folders_samd20.append('../database/' + version + '/samd20-xpro/')
-            folders_samd21.append('../database/' + version + '/samd21-xpro/')
+            folders_samd20.append('../data_basis/' + version + '/samd20-xpro/')
+            folders_samd21.append('../data_basis/' + version + '/samd21-xpro/')
 
     # samd20-xpro
     for i, folder in enumerate(folders_samd20):

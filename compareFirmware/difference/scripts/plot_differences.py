@@ -143,7 +143,7 @@ diff = []
 for version in versions:
     if "rev_00" == version:
         continue
-    folder = "../../database/" + version
+    folder = "../../data_basis/" + version
     if os.path.isfile(folder + "/previous.diff"):
         diff.append(os.path.getsize(folder + "/previous.diff"))
     else:

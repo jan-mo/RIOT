@@ -33,7 +33,7 @@ git diff thesis/rev_00 > firmware.diff
 
 git checkout thesis/checking_firmware_versions
 
-cd ../compareFirmware/database/scripts
+cd ../compareFirmware/data_basis/scripts
 ./__copy_bin_elf.py ${version}
 
 cd ../scripts

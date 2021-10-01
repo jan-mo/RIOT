@@ -98,15 +98,16 @@ def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, f
 def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
 
     chunks_samd20 = []
-    bytes_changed_samd20 = []
-    bytes_inserted_samd20 = []
+    bytes_deleted_samd20 = []
+    bytes_added_samd20 = []
     xlabels_samd20 = []
 
     chunks_samd21 = []
-    bytes_changed_samd21 = []
-    bytes_inserted_samd21 = []
+    bytes_deleted_samd21 = []
+    bytes_added_samd21 = []
     xlabels_samd21 = []
 
+    ### SAMD20
     for value in values_samd20:
         tmp = value.split("_")
         if "slot0" in tmp:
@@ -116,9 +117,10 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
         else:
             xlabels_samd20.append("rev" + tmp[1] + "_rev" + tmp[2])
         chunks_samd20.append(values_samd20[value]["chunks"])
-        bytes_changed_samd20.append(values_samd20[value]["changed"])
-        bytes_inserted_samd20.append(values_samd20[value]["inserted"])
+        bytes_deleted_samd20.append(values_samd20[value]["deleted"])
+        bytes_added_samd20.append(values_samd20[value]["added"])
 
+    ### SAMD21
     for value in values_samd21:
         tmp = value.split("_")
         if "slot0" in tmp:
@@ -128,8 +130,8 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
         else:
             xlabels_samd21.append("rev" + tmp[1] + "_rev" + tmp[2])
         chunks_samd21.append(values_samd21[value]["chunks"])
-        bytes_changed_samd21.append(values_samd21[value]["changed"])
-        bytes_inserted_samd21.append(values_samd21[value]["inserted"])
+        bytes_deleted_samd21.append(values_samd21[value]["deleted"])
+        bytes_added_samd21.append(values_samd21[value]["added"])
 
     if xlabels_samd20 != xlabels_samd21:
         print("Waring: Labels SAMD20 and SAMD21 are not equal!")
@@ -138,15 +140,15 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
 
     legend = ["SAMD20-xpro", "SAMD21-xpro"]
     chunks = [chunks_samd20, chunks_samd21]
-    bytes_changed = [bytes_changed_samd20, bytes_changed_samd21]
-    bytes_inserted = [bytes_inserted_samd20, bytes_inserted_samd21]
+    bytes_deleted = [bytes_deleted_samd20, bytes_deleted_samd21]
+    bytes_added = [bytes_added_samd20, bytes_added_samd21]
 
     fig_chunks, ax_chunks = plot_bar(chunks, xlabels, legend, fig_name + " number of chunks", ylabel="#chunks", figsize = (12,6), width = 0.2)
-    fig_changed, ax_changed = plot_bar(bytes_changed, xlabels, legend, fig_name + " changed bytes", ylabel="changed Bytes", figsize = (12,6), width = 0.2)
-    fig_inserted, ax_inserted = plot_bar(bytes_inserted, xlabels, legend, fig_name + " inserted bytes", ylabel="inserted Bytes", figsize = (12,6), width = 0.2)
+    fig_changed, ax_changed = plot_bar(bytes_deleted, xlabels, legend, fig_name + " deleted bytes", ylabel="deleted Bytes", figsize = (12,6), width = 0.2)
+    fig_inserted, ax_inserted = plot_bar(bytes_added, xlabels, legend, fig_name + " added bytes", ylabel="added Bytes", figsize = (12,6), width = 0.2)
 
     # save and close figures
     fig_chunks.savefig(path + "chunks_" + file)
-    fig_changed.savefig(path + "changed_" + file)
-    fig_inserted.savefig(path + "inserted_" + file)
+    fig_changed.savefig(path + "deleted_" + file)
+    fig_inserted.savefig(path + "added_" + file)
     plt.close("all")
