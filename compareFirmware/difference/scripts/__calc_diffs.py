@@ -13,10 +13,11 @@ from pathos.helpers import mp as helper
 
 class calcDiff:
 
-    def __init__(self, source, restore, diff_algos):
+    def __init__(self, source, restore, diff_algos, git_folder):
         self.folder = source
         self.folder_restore = restore
         self.diff_algos = diff_algos
+        self.git_folder = git_folder
 
     ### calculate all differences ###
     def second_loop(self, file1, files, sizes, name_arch):
@@ -75,12 +76,24 @@ class calcDiff:
                 name_zdelta = "zdelta_" + name_file1 + "_" + name_file2
                 patch_zdelta = self.folder + "zdelta/" + name_arch + "/" + name_zdelta
                 restore_zdelta = self.folder_restore + name_zdelta
-                ### make shure zdelta is installed!!!!
-                zdelta_path = "./../../../../zdelta/"
+                ### make sure zdelta is installed!!!!
+                zdelta_path = "./" + self.git_folder + "zdelta/"
                 # diff file
                 os.system(zdelta_path + "zdc " + file1 + " " + file2 + " " + patch_zdelta)
                 # patch file
                 os.system(zdelta_path + "zdu " + file1 + " " + patch_zdelta + " " + restore_zdelta)
+
+            #### vcdiff ####
+            if "vcdiff" in self.diff_algos:
+                name_vcdiff = "vcdiff_" + name_file1 + "_" + name_file2
+                patch_vcdiff = self.folder + "vcdiff/" + name_arch + "/" + name_bsdiff
+                restore_vcdiff = self.folder_restore + name_bsdiff
+                ### make sure zdelta is installed!!!!
+                vcdiff_path = "./" + self.git_folder + "vcdiff/"
+                # diff file
+                os.system(vcdiff_path + "vcdiff encode -dictionary " + file1 + " < " + file2 + " > " + patch_vcdiff)
+                # patch file
+                os.system(vcdiff_path + "vcdiff decode -dictionary " + file1 + " < " + patch_vcdiff + " > " + restore_vcdiff)
 
             #### rsync8 ####
             if "rsync8" in self.diff_algos:
@@ -179,6 +192,11 @@ class calcDiff:
                 sizes["zdelta"][name_zdelta] = {"size":os.path.getsize(patch_zdelta),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_zdelta) else "fail",
                                                   "normalized":os.path.getsize(patch_zdelta)/os.path.getsize(file2)}
+
+            if "vcdiff" in self.diff_algos:
+                sizes["vcdiff"][name_vcdiff] = {"size":os.path.getsize(patch_vcdiff),
+                                                  "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_vcdiff) else "fail",
+                                                  "normalized":os.path.getsize(patch_vcdiff)/os.path.getsize(file2)}
 
             if "rsync8" in self.diff_algos:
                 sizes["rsync8"][name_rsync8] = {"size":os.path.getsize(patch_rsync8),

@@ -10,7 +10,7 @@ from __calc_diffs import calcDiff
 ###
 
 # used differencing algos
-diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat"]
+diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
 pkg_arch = "diffutils bsdiff xdelta3 rsync"
 pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
@@ -51,7 +51,8 @@ elif dist == "Ubuntu":
     os.system("sudo apt-get install " + pkg_arch)
 
 ### calc diff of files ###
-diff = calcDiff(folder, folder_restore, diff_algos)
+git_folder = "../../../../"
+diff = calcDiff(folder, folder_restore, diff_algos, git_folder)
 
 ### samd20-xpro ###
 results_samd20 = diff.calc_diffs(files_samd20, sizes_samd20, "samd20-xpro")

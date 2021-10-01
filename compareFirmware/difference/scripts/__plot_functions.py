@@ -45,6 +45,90 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
 
     return fig, ax
 
+#### simple line plot function ####
+def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8)):
+
+    plt.rcParams["figure.figsize"] = figsize
+
+    SMALL_SIZE = 10
+    MEDIUM_SIZE = 12
+    BIGGER_SIZE = 13
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # font-size of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # font-size of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # font-size of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # font-size of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
+
+    fig, ax = plt.subplots()
+
+    for i, value in enumerate(values):
+        plt.plot(xlabels, value, "o--", label = legend[i])
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel(ylabel)
+    ax.set_title(name_fig)
+    x = np.arange(len(xlabels))  # the label locations
+    ax.set_xticks(x)
+    ax.set_xticklabels(xlabels, rotation='vertical')
+    ax.legend()
+
+    fig.tight_layout()
+
+    return fig, ax
+
+### simple plot of heatmap ####
+def plot_heatmap(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8)):
+
+    plt.rcParams["figure.figsize"] = figsize
+
+    SMALL_SIZE = 10
+    MEDIUM_SIZE = 12
+    BIGGER_SIZE = 13
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # font-size of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # font-size of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # font-size of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # font-size of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(values)
+
+    # We want to show all ticks...
+    ax.set_xticks(np.arange(len(xlabels)))
+    ax.set_yticks(np.arange(len(legend)))
+    # ... and label them with the respective list entries
+    ax.set_xticklabels(xlabels)
+    ax.set_yticklabels(legend)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(legend)):
+        for j in range(len(xlabels)):
+            text = ax.text(j, i, str(values[i][j]),
+                           ha="center", va="center", color="b")
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    #ax.set_ylabel(ylabel)
+    ax.set_title(name_fig)
+    #x = np.arange(len(xlabels))  # the label locations
+    #ax.set_xticks(x)
+    #ax.set_xticklabels(xlabels, rotation='vertical')
+    #ax.legend()
+
+    fig.tight_layout()
+
+    return fig, ax
+
+
 ### plots the differences from given keys ###
 def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, width = 0.1):
     array_all = []
@@ -61,8 +145,8 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, width = width)
-    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", width = width)
+    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name)
+    fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size")
 
     # save and close figures
     fig_samd20.savefig(path + file)
