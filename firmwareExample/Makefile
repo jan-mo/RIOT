@@ -27,6 +27,10 @@ USEMODULE += gnrc_icmpv6_echo
 # process status
 USEMODULE += ps
 
+# riotboot/suit
+USEMODULE += suit
+BUILD_FILES += $(SLOT_RIOT_ELFS:%.elf=%.bin)
+
 # WINC1500 WIFI
 USEMODULE += atwinc15x0
 ### this includes the settings for WIFI
