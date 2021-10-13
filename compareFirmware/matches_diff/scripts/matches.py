@@ -103,8 +103,11 @@ for idx in range(len(versions)-1):
     idx1 = idx
     idx2 = idx + 1
     diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+    size = os.path.getsize(path + diff_name)
+    size = round(size/1024, 2)
+
     # save to dict
-    diffs_all["samd20-xpro"]["revisions"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+    diffs_all["samd20-xpro"]["revisions"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
 
     offset = len_revs_samd20
     # slots every second rev
@@ -114,31 +117,39 @@ for idx in range(len(versions)-1):
         idx2 = offset + idx * 2 + 4
         if idx2 < (offset + len_slots_samd20):
             diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+            size = os.path.getsize(path + diff_name)
+            size = round(size/1024, 2)
             # save to dict
-            diffs_all["samd20-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+            diffs_all["samd20-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # odd slots in slot1
     else:
         idx1 = offset + (idx - 1) * 2 + 3
         idx2 = offset + (idx - 1) * 2 + 3 + 4
         if idx2 < (offset + len_slots_samd20):
             diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+            size = os.path.getsize(path + diff_name)
+            size = round(size/1024, 2)
             # save to dict
-            diffs_all["samd20-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+            diffs_all["samd20-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # slots alternating
     # even count
     if (idx % 2) == 0:
         idx1 = offset + idx * 2
         idx2 = offset + idx * 2 + 3
         diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
         # save to dict
-        diffs_all["samd20-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+        diffs_all["samd20-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # odd count
     else:
         idx1 = offset + idx * 2 + 1
         idx2 = offset + idx * 2 - 1 + 3
         diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
         # save to dict
-        diffs_all["samd20-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+        diffs_all["samd20-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
 
 
     # samd21-xpro
@@ -149,8 +160,10 @@ for idx in range(len(versions)-1):
     idx1 = idx + offset
     idx2 = idx + offset + 1
     diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+    size = os.path.getsize(path + diff_name)
+    size = round(size/1024, 2)
     # save to dict
-    diffs_all["samd21-xpro"]["revisions"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+    diffs_all["samd21-xpro"]["revisions"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
 
     offset = len_revs_samd20 + len_slots_samd20 + len_revs_samd21
     # slots every second rev
@@ -160,31 +173,39 @@ for idx in range(len(versions)-1):
         idx2 = offset + idx * 2 + 4
         if idx2 < (offset + len_slots_samd21):
             diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+            size = os.path.getsize(path + diff_name)
+            size = round(size/1024, 2)
             # save to dict
-            diffs_all["samd21-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+            diffs_all["samd21-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # odd slots in slot1
     else:
         idx1 = offset + (idx - 1) * 2 + 3
         idx2 = offset + (idx - 1) * 2 + 3 + 4
         if idx2 < (offset + len_slots_samd21):
             diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+            size = os.path.getsize(path + diff_name)
+            size = round(size/1024, 2)
             # save to dict
-            diffs_all["samd21-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+            diffs_all["samd21-xpro"]["slots"]["second"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # slots alternating
     # even count
     if (idx % 2) == 0:
         idx1 = offset + idx * 2
         idx2 = offset + idx * 2 + 3
         diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
         # save to dict
-        diffs_all["samd21-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+        diffs_all["samd21-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
     # odd count
     else:
         idx1 = offset + idx * 2 + 1
         idx2 = offset + idx * 2 - 1 + 3
         diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
         # save to dict
-        diffs_all["samd21-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added}
+        diffs_all["samd21-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
 
 
 ### saving diffs ###

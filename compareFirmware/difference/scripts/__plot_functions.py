@@ -184,11 +184,13 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     chunks_samd20 = []
     bytes_deleted_samd20 = []
     bytes_added_samd20 = []
+    sizes_diff_samd20 = []
     xlabels_samd20 = []
 
     chunks_samd21 = []
     bytes_deleted_samd21 = []
     bytes_added_samd21 = []
+    sizes_diff_samd21 = []
     xlabels_samd21 = []
 
     ### SAMD20
@@ -203,6 +205,7 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
         chunks_samd20.append(values_samd20[value]["chunks"])
         bytes_deleted_samd20.append(values_samd20[value]["deleted"])
         bytes_added_samd20.append(values_samd20[value]["added"])
+        sizes_diff_samd20.append(values_samd20[value]["size"])
 
     ### SAMD21
     for value in values_samd21:
@@ -216,6 +219,7 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
         chunks_samd21.append(values_samd21[value]["chunks"])
         bytes_deleted_samd21.append(values_samd21[value]["deleted"])
         bytes_added_samd21.append(values_samd21[value]["added"])
+        sizes_diff_samd21.append(values_samd21[value]["size"])
 
     if xlabels_samd20 != xlabels_samd21:
         print("Waring: Labels SAMD20 and SAMD21 are not equal!")
@@ -226,13 +230,16 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     chunks = [chunks_samd20, chunks_samd21]
     bytes_deleted = [bytes_deleted_samd20, bytes_deleted_samd21]
     bytes_added = [bytes_added_samd20, bytes_added_samd21]
+    sizes_diff = [sizes_diff_samd20, sizes_diff_samd21]
 
     fig_chunks, ax_chunks = plot_bar(chunks, xlabels, legend, fig_name + " number of chunks", ylabel="#chunks", figsize = (12,6), width = 0.2)
-    fig_changed, ax_changed = plot_bar(bytes_deleted, xlabels, legend, fig_name + " deleted bytes", ylabel="deleted Bytes", figsize = (12,6), width = 0.2)
-    fig_inserted, ax_inserted = plot_bar(bytes_added, xlabels, legend, fig_name + " added bytes", ylabel="added Bytes", figsize = (12,6), width = 0.2)
+    fig_deleted, ax_deleted = plot_bar(bytes_deleted, xlabels, legend, fig_name + " deleted bytes", ylabel="deleted Bytes", figsize = (12,6), width = 0.2)
+    fig_added, ax_added = plot_bar(bytes_added, xlabels, legend, fig_name + " added bytes", ylabel="added Bytes", figsize = (12,6), width = 0.2)
+    fig_sizes, ax_sizes = plot_bar(sizes_diff, xlabels, legend, fig_name + " sizes of diff", ylabel="size [kB]", figsize = (12,6), width = 0.2)
 
     # save and close figures
     fig_chunks.savefig(path + "chunks_" + file)
-    fig_changed.savefig(path + "deleted_" + file)
-    fig_inserted.savefig(path + "added_" + file)
+    fig_deleted.savefig(path + "deleted_" + file)
+    fig_added.savefig(path + "added_" + file)
+    fig_sizes.savefig(path + "size_" + file)
     plt.close("all")
