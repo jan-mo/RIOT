@@ -39,7 +39,7 @@ git stash
 git checkout thesis/checking_firmware_versions
 
 # copy slots to revision folder
-cd ../compareFirmware/database
+cd ../compareFirmware/data_basis
 mkdir riotboot/${version}
 mkdir riotboot/${version}/samd20-xpro
 mkdir riotboot/${version}/samd21-xpro
