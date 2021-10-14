@@ -1,5 +1,6 @@
 # difference.py
 matplotlib
+seaborn
 numpy
 pathos
 detools
