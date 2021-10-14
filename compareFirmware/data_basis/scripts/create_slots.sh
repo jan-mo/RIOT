@@ -54,7 +54,7 @@ git checkout thesis/checking_firmware_versions
 cd ../compareFirmware/data_basis
 if [ -d riotboot/${version} ]
 then
-    echo "Directory riotboot/${version} exists."
+    echo "Directory riotboot/${version} exists. Overwrite!"
 else
     mkdir riotboot/${version}
     mkdir riotboot/${version}/samd20-xpro
