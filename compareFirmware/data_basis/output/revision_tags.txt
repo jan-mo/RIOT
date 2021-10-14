@@ -10,3 +10,4 @@ thesis/rev_08   Revision 08 - LIS3DH and LIS2DH12 support
 thesis/rev_09   Revision 09 - updating RIOT OS to 2021.07
 thesis/rev_10   Revision 10 - user button interrupt functionality
 thesis/rev_11   Revision 11 - graphical view for ADC or LIS
+thesis/rev_12   Revision 12 - enable WIFI module
