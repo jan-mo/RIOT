@@ -14,7 +14,7 @@ from __plot_functions import plot_bar, plot_function_diff, plot_function_diff_re
 ###
 
 # used differencing algos
-diff_algos = ["UNIX diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
+diff_algos = ["diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
 
 ### load data ###
 with open("../output/sizes_sorted.save", 'r') as json_file:

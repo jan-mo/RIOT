@@ -12,7 +12,7 @@ from __plot_functions import plot_bar, plot_function_diff
 ###
 
 # used differencing algos
-diff_algos = ["UNIX diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
+diff_algos = ["diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat"]
 
 ### load data ###
 with open("../output/sizes_sorted_same_slots.save", 'r') as json_file:
@@ -22,18 +22,19 @@ with open("../output/sizes_sorted_alternating_slots.save", 'r') as json_file:
 with open("../output/versions.save", 'r') as file:
     versions = json.load(file)
 
-if "deltagen" in diff_algos:
-    ### load deltagen data ###
-    with open("../deltagen_diff/sizes_sorted.save", 'r') as json_file:
-        sizes_sorted_deltagen = json.load(json_file)
-
-    ### combine the data ###
-    if len(sizes_sorted_deltagen["samd20-xpro"]["deltagen"].keys()) == len(sizes_sorted["samd20-xpro"][diff_algos[0]].keys()):
-        sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
-        sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
-    else:
-        print("Error: Revisions in sizes_deltagen and sizes does not match!")
-        exit()
+### slots are not implemented in deltagen script ###
+#if "deltagen" in diff_algos:
+#    ### load deltagen data ###
+#    with open("../deltagen_diff/sizes_sorted.save", 'r') as json_file:
+#        sizes_sorted_deltagen = json.load(json_file)
+#
+#    ### combine the data ###
+#    if len(sizes_sorted_deltagen["samd20-xpro"]["deltagen"].keys()) == len(sizes_sorted["samd20-xpro"][diff_algos[0]].keys()):
+#        sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
+#        sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
+#    else:
+#        print("Error: Revisions in sizes_deltagen and sizes does not match!")
+#        exit()
 
 ### update same slot ### 
 
