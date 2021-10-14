@@ -46,7 +46,7 @@ class SearchDatabase:
         for version in data:
             if os.path.isdir(os.path.join(self.path_database + version)):
                 # exclude folders
-                if revision in self.exclude_folders:
+                if version in self.exclude_folders:
                     continue;
 
                 versions.append(version)
@@ -70,7 +70,7 @@ class SearchDatabase:
         for version in database:
             if os.path.isdir(os.path.join(self.path_database + version)):
                 # exclude folders
-                if revision in self.exclude_folders:
+                if version in self.exclude_folders:
                     continue;
 
                 # collection all versions
