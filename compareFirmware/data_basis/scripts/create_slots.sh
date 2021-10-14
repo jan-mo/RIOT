@@ -9,13 +9,25 @@ echo ""
 echo "Stash current git (necessary)? [y/N]"
 read answer
 
-if [ -z "$answer" ] || [ $answer != y ]
+# ignore git stash, for DEBUGGING ONLY !!!
+if [ -z "$answer" ]
 then
     echo "Stash is necessary!"
     exit
-else
+
+elif [ $answer == ignore ]
+then
+    echo "Stash is necessary!"
+    echo "Ignored for DEBUGGING, checkout firmwareExample is not possible!"
+
+elif [ $answer == y ]
+then
     git stash
     echo "Git was stashed!"
+
+else
+    echo "Stash is necessary!"
+    exit
 fi
 
 echo "Enter firmware revision:"
@@ -40,9 +52,15 @@ git checkout thesis/checking_firmware_versions
 
 # copy slots to revision folder
 cd ../compareFirmware/data_basis
-mkdir riotboot/${version}
-mkdir riotboot/${version}/samd20-xpro
-mkdir riotboot/${version}/samd21-xpro
+if [ -d riotboot/${version} ]
+then
+    echo "Directory riotboot/${version} exists."
+else
+    mkdir riotboot/${version}
+    mkdir riotboot/${version}/samd20-xpro
+    mkdir riotboot/${version}/samd21-xpro
+fi
+
 cp ../../firmwareExample/bin/samd20-xpro/firmware_example-slot0.bin ./riotboot/${version}/samd20-xpro/${version}_slot0.bin
 cp ../../firmwareExample/bin/samd20-xpro/firmware_example-slot1.bin ./riotboot/${version}/samd20-xpro/${version}_slot1.bin
 cp ../../firmwareExample/bin/samd21-xpro/firmware_example-slot0.bin ./riotboot/${version}/samd21-xpro/${version}_slot0.bin
