@@ -250,7 +250,11 @@ class calcDiff:
         arch = []
         # updating from slot0 to slot1
         # files_slot0 holds every even revision
-        for i in range(len(files_slot0)):
+        length = len(files_slot0)
+        # check same length for both slots
+        if length > len(files_slot1)-1:
+            length = length -1
+        for i in range(length):
             file1.append(files_slot0[i])
             files.append([files_slot1[i]])
             sizes.append(sizes_all)
@@ -258,7 +262,11 @@ class calcDiff:
 
         # updating from slot1 to slot0
         # files_slot1 holds every odd revision
-        for i in range(len(files_slot1)-1):
+        length = len(files_slot1)-1
+        # check same length for both slots
+        if length < len(files_slot0)-1:
+            length = length + 1
+        for i in range(length):
             file1.append(files_slot1[i])
             files.append([files_slot0[i+1]])
             sizes.append(sizes_all)

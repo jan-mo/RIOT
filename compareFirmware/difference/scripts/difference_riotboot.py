@@ -8,7 +8,7 @@ path.append("../../_helper_functions/")
 from __finding_versions import SearchDatabase
 
 # used differencing algos
-diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"]
+diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
 
 folder = "../algo_diffs_slots/"
 folder_restore = "../algo_diffs_slots/restore/"
@@ -42,14 +42,19 @@ slots0_samd21 = []
 slots1_samd21 = []
 
 # slot0 holds every even revision, slot1 every odd
-for i in range(int(len(files_samd20)/4)):
+length = int(len(versions)/2 + 0.5) # half round up
+for i in range(length):
     slots0_samd20.append(files_samd20[i*4])     # even numbers
-    slots1_samd20.append(files_samd20[i*4+3])   # odd numbers
-for i in range(int(len(files_samd21)/4)):
+    # check if odd or even version number
+    if (i*4+3) < len(files_samd20):
+        slots1_samd20.append(files_samd20[i*4+3])   # odd numbers
+for i in range(length):
     slots0_samd21.append(files_samd21[i*4])
-    slots1_samd21.append(files_samd21[i*4+3])
+    if (i*4+3) < len(files_samd21):
+        slots1_samd21.append(files_samd21[i*4+3])
 
-diff = calcDiff(folder, folder_restore, diff_algos)
+git_folder = "../../../../"
+diff = calcDiff(folder, folder_restore, diff_algos, git_folder)
 
 ### getting alternating slots ###
 #samd20
