@@ -1,11 +1,11 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3.9
 
 import os, json
 
 folder_samd20 = sorted(os.listdir("samd20-xpro/"))
 folder_samd21 = sorted(os.listdir("samd21-xpro/"))
 
-database = "../../database/"
+database = "../../data_basis/"
 
 
 sizes = dict()
