@@ -10,7 +10,12 @@ echo ""
 echo "Stash current git (necessary)? [y/N]"
 read answer
 
-if [ -z "$answer" ] || [ $answer != y ]
+# ignore git stash, for DEBUGGING ONLY !!!
+if [ $answer == ignore ]
+then
+    echo "Stash is necessary!"
+    echo "Ignored for DEBUGGING, checkout firmwareExample is not possible!"
+elif [ -z "$answer" ] || [ $answer != y ]
 then
     echo "Stash is necessary!"
     exit
@@ -22,7 +27,11 @@ fi
 echo "Enter firmware revision:"
 read version
 
-cd ../../../
+# check revision exists
+cd ../
+[ -d ${version} ] && echo "Directory ${version} exists." && exit
+
+cd ../../
 git checkout thesis/${version}
 cd firmwareExample
 
