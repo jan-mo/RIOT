@@ -35,9 +35,7 @@ read version
 
 # check revision exists
 cd ../
-[ -d ${version} ] && echo "Directory ${version} exists."
-echo "Continue? [y/N]" && read input
-[ -z "$input" ] || [ $input != y ] && exit
+[ -d ${version} ] && echo "Directory ${version} exists." && echo "Continue? [y/N]" && read input && [ -z "$input" ] || [ $input != y ] && exit
 
 cd ../../
 git checkout thesis/${version}
