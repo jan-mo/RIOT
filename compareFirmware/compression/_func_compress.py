@@ -4,6 +4,10 @@ import zlib, gzip, bz2, lzma
 import heatshrink2 as hs
 import os
 
+from sys import path
+path.append("../_helper_functions/")
+from __finding_versions import SearchDatabase
+
 ###
 ### methods are zlib, gzip, hs (heatshrink2), bz2 and lzma
 ### option for specific method
@@ -69,25 +73,12 @@ def __all_decompress_functions(file, method, option = None):
 ### compresses all revisions in database
 ###
 def compress_database(method, option = None):
-    # list all files in database
-    data = os.listdir('../data_basis')
-    versions = []
-    folders_samd20 = []
-    folders_samd21 = []
+    # find all folders in database
+    Database = SearchDatabase("../data_basis/")
+    [folders_samd20,folders_samd21,versions] = Database.database_get_revision_folders()
 
     results_samd20 = dict()
     results_samd21 = dict()
-
-    # create path for samd20 and samd21
-    for version in data:
-        if os.path.isdir(os.path.join('../data_basis/' + version)):
-            # exclude riotboot
-            if version == 'riotboot' or version == 'output' or version == 'scripts':
-                continue;
-
-            versions.append(version)
-            folders_samd20.append('../data_basis/' + version + '/samd20-xpro/')
-            folders_samd21.append('../data_basis/' + version + '/samd21-xpro/')
 
     # samd20-xpro
     for i, folder in enumerate(folders_samd20):

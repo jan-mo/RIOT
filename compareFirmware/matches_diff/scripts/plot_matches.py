@@ -3,7 +3,7 @@
 import os, json
 
 from sys import path
-path.append("../../difference/scripts/")
+path.append("../../_helper_functions/")
 from __plot_functions import plot_function_matches
 
 ###

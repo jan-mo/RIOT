@@ -1,8 +1,11 @@
 #!/usr/bin/env python3.9
 
 import os, json
-from __finding_versions import database_files_riotboot
 from __calc_diffs import calcDiff
+
+from sys import path
+path.append("../../_helper_functions/")
+from __finding_versions import SearchDatabase
 
 # used differencing algos
 diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"]
@@ -10,12 +13,9 @@ diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "deto
 folder = "../algo_diffs_slots/"
 folder_restore = "../algo_diffs_slots/restore/"
 
-# database
-versions = []
-files_samd20 = []
-files_samd21 = []
-
-[files_samd20, files_samd21, versions] = database_files_riotboot()
+# get all files of database
+Database = SearchDatabase("../../data_basis/")
+[files_samd20, files_samd21, versions] = Database.database_files_riotboot()
 
 ### clear algo_diffs folder ###
 os.system("sudo rm -r " + folder)

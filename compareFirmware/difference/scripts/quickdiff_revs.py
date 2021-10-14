@@ -1,7 +1,10 @@
 #!/usr/bin/env python3.9
 
 import os
-from __finding_versions import database_files
+
+from sys import path
+path.append("../../_helper_functions/")
+from __finding_versions import SearchDatabase
 
 ###
 ### calculates quick differences in firmware-database (only bsdiff and xdelta3)
@@ -10,12 +13,9 @@ from __finding_versions import database_files
 # used differencing algos
 diff_algos = ["bsdiff", "xdelta3"]
 
-# database
-versions = []
-files_samd20 = []
-files_samd21 = []
-
-[files_samd20, files_samd21, versions] = database_files()
+# get all files of database
+Database = SearchDatabase("../../data_basis/")
+[files_samd20, files_samd21, versions] = Database.database_files()
 
 folder = "../algo_diffs/"
 folder_restore = "../algo_diffs/restore/"

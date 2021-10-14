@@ -2,8 +2,11 @@
 
 import os, sys, json, distro
 from shutil import move, copyfile
-from __finding_versions import database_files
 from __calc_diffs import calcDiff
+
+from sys import path
+path.append("../../_helper_functions/")
+from __finding_versions import SearchDatabase
 
 ###
 ### calculates differences in firmware-database
@@ -14,12 +17,9 @@ diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdel
 pkg_arch = "diffutils bsdiff xdelta3 rsync"
 pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
-# database
-versions = []
-files_samd20 = []
-files_samd21 = []
-
-[files_samd20, files_samd21, versions] = database_files()
+# get all files of database
+Database = SearchDatabase("../../data_basis/")
+[files_samd20, files_samd21, versions] = Database.database_files()
 
 folder = "../algo_diffs/"
 folder_restore = "../algo_diffs/restore/"

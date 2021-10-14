@@ -2,25 +2,17 @@
 
 import os
 
+from sys import path
+path.append("../../_helper_functions/")
+from __finding_versions import SearchDatabase
+
 ###
 ### calculates the difference between current and previous revision
 ###
 
-# database
-database = os.listdir("../")
-versions = []
-
-# searching path for samd20 and samd21 ###
-for version in database:
-    if os.path.isdir("../" + version):
-        # exclude riotboot, scripts and output folder
-        if version == 'riotboot' or version == 'scripts' or version == 'output':
-            continue;
-
-        # collection all versions
-        versions.append(version)
-
-versions = sorted(versions)
+# searching revisions for samd20 and samd21
+Database = SearchDatabase("../")
+versions = Database.database_get_revisions()
 
 for rev2 in versions:
     if "rev_00" == rev2:

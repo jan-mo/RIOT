@@ -9,12 +9,13 @@ import os, subprocess, json
 ###
 
 from sys import path
-path.append("../../difference/scripts/")
-from __finding_versions import database_files, database_files_riotboot
+path.append("../../_helper_functions/")
+from __finding_versions import SearchDatabase
 
 # load database with revisions and slots
-[files_samd20, files_samd21, versions] = database_files()
-[files_samd20_riotboot, files_samd21_riotboot, versions] = database_files_riotboot()
+Database = SearchDatabase("../../data_basis/")
+[files_samd20, files_samd21, versions] = Database.database_files()
+[files_samd20_riotboot, files_samd21_riotboot, versions] = Database.database_files_riotboot()
 
 ### convert bin-files for line based diff ###
 files_all = files_samd20 + files_samd20_riotboot + files_samd21 + files_samd21_riotboot

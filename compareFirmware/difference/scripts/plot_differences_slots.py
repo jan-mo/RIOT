@@ -2,6 +2,8 @@
 
 import json, os, math
 
+from sys import path
+path.append("../../_helper_functions/")
 from __plot_functions import plot_bar, plot_function_diff
 
 ###
@@ -10,7 +12,7 @@ from __plot_functions import plot_bar, plot_function_diff
 ###
 
 # used differencing algos
-diff_algos = [ "diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "detools_none", "detools_heat"] # "deltagen" # bdelta - not implemented right
+diff_algos = ["UNIX diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
 
 ### load data ###
 with open("../output/sizes_sorted_same_slots.save", 'r') as json_file:
