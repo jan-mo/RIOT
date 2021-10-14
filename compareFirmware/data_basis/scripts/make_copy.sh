@@ -7,21 +7,27 @@
 # save current version in git stash
 git status
 echo ""
-echo "Stash current git (necessary)? [y/N]"
-read answer
+echo "Stash current git (necessary)? [y/N]" && read answer
 
 # ignore git stash, for DEBUGGING ONLY !!!
-if [ $answer == ignore ]
-then
-    echo "Stash is necessary!"
-    echo "Ignored for DEBUGGING, checkout firmwareExample is not possible!"
-elif [ -z "$answer" ] || [ $answer != y ]
+if [ -z "$answer" ]
 then
     echo "Stash is necessary!"
     exit
-else
+
+elif [ $answer == ignore ]
+then
+    echo "Stash is necessary!"
+    echo "Ignored for DEBUGGING, checkout firmwareExample is not possible!"
+
+elif [ $answer == y ]
+then
     git stash
     echo "Git was stashed!"
+
+else
+    echo "Stash is necessary!"
+    exit
 fi
 
 echo "Enter firmware revision:"
@@ -29,7 +35,9 @@ read version
 
 # check revision exists
 cd ../
-[ -d ${version} ] && echo "Directory ${version} exists." && exit
+[ -d ${version} ] && echo "Directory ${version} exists."
+echo "Continue? [y/N]" && read input
+[ -z "$input" ] || [ $input != y ] && exit
 
 cd ../../
 git checkout thesis/${version}

@@ -19,15 +19,18 @@ name = sys.argv[1]
 name_folder = '../' + name
 
 # check if firmware already exists
-try:
+revisions = os.listdir("../")
+folder_exists = False
+if name in revisions:
+    print("Revision " + name + " gets overwritten.")
+    folder_exists = True
+else:
     os.mkdir(name_folder)
-except FileExistsError:
-    print("ERROR: Firmware version exists!")
-    sys.exit()
 
 for board in boards:
     # create board folder
-    os.mkdir(name_folder + '/' + board)
+    if not folder_exists:
+        os.mkdir(name_folder + '/' + board)
 
     # copy bin files
     copyfile(src + board + '/firmware_example.bin', name_folder + '/' + board + '/' + name + '.bin')
