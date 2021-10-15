@@ -12,7 +12,7 @@ from __plot_functions import plot_bar, plot_function_diff
 ###
 
 # used differencing algos
-diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat"]
+diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
 
 ### load data ###
 with open("../output/sizes_sorted_same_slots.save", 'r') as json_file:
@@ -22,19 +22,50 @@ with open("../output/sizes_sorted_alternating_slots.save", 'r') as json_file:
 with open("../output/versions.save", 'r') as file:
     versions = json.load(file)
 
-### slots are not implemented in deltagen script ###
-#if "deltagen" in diff_algos:
-#    ### load deltagen data ###
-#    with open("../deltagen_diff/sizes_sorted.save", 'r') as json_file:
-#        sizes_sorted_deltagen = json.load(json_file)
-#
-#    ### combine the data ###
-#    if len(sizes_sorted_deltagen["samd20-xpro"]["deltagen"].keys()) == len(sizes_sorted["samd20-xpro"][diff_algos[0]].keys()):
-#        sizes_sorted["samd20-xpro"].update(sizes_sorted_deltagen["samd20-xpro"])
-#        sizes_sorted["samd21-xpro"].update(sizes_sorted_deltagen["samd21-xpro"])
-#    else:
-#        print("Error: Revisions in sizes_deltagen and sizes does not match!")
-#        exit()
+### combine deltagen with alternating and same  ###
+if "deltagen" in diff_algos:
+    ### load deltagen data ###
+    with open("../deltagen_diff/sizes_sorted_riotboot.save", 'r') as json_file:
+        sizes_sorted_deltagen = json.load(json_file)
+
+    ### combine the data ###
+    if len(sizes_sorted_deltagen["samd20-xpro"]["deltagen"].keys()) >= (len(sizes_sorted_same["samd20-xpro"][diff_algos[0]].keys()) + len(sizes_sorted_alternating["samd20-xpro"][diff_algos[0]].keys())):
+        # samd20-xpro
+        board = "samd20-xpro"
+        # adding alternating
+        sizes_sorted_alternating[board]["deltagen"] = dict()
+        keys_alternating = sizes_sorted_alternating["samd20-xpro"]["rsync8"].keys()
+        for key in keys_alternating:
+            # convert key in deltagen
+            conv_key = "deltagen" + key[6:]
+            sizes_sorted_alternating[board]["deltagen"][conv_key] = sizes_sorted_deltagen[board]["deltagen"][conv_key]
+        # adding same_slots
+        sizes_sorted_same[board]["deltagen"] = dict()
+        keys_same = sizes_sorted_same[board]["rsync8"].keys()
+        for key in keys_same:
+            # convert key in deltagen
+            conv_key = "deltagen" + key[6:]
+            sizes_sorted_same[board]["deltagen"][conv_key] = sizes_sorted_deltagen[board]["deltagen"][conv_key]
+
+        # samd21-xpro
+        board = "samd21-xpro"
+        # adding alternating
+        sizes_sorted_alternating[board]["deltagen"] = dict()
+        keys_alternating = sizes_sorted_alternating["samd20-xpro"]["rsync8"].keys()
+        for key in keys_alternating:
+            # convert key in deltagen
+            conv_key = "deltagen" + key[6:]
+            sizes_sorted_alternating[board]["deltagen"][conv_key] = sizes_sorted_deltagen[board]["deltagen"][conv_key]
+        # adding same_slots
+        sizes_sorted_same[board]["deltagen"] = dict()
+        keys_same = sizes_sorted_same[board]["rsync8"].keys()
+        for key in keys_same:
+            # convert key in deltagen
+            conv_key = "deltagen" + key[6:]
+            sizes_sorted_same[board]["deltagen"][conv_key] = sizes_sorted_deltagen[board]["deltagen"][conv_key]
+    else:
+        print("Error: Revisions in sizes_deltagen_riotboot are not enough!")
+        exit()
 
 ### update same slot ### 
 
