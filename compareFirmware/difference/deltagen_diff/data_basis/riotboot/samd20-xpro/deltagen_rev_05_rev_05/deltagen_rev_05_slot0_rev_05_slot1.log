@@ -1,0 +1,959 @@
+
+There are 200 non-matching segments with total length of 2976
+-- Found 200 segments that have changed...
+-- Searching for matching segments...
+-- Done searching...
+------------------------------------------
+
+-- Generating operations...
+--- Found segment that must be added. Length: 12 , address: 0x4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 108 , address: 0x38
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xC0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x130
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x1D8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x23C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0x27C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 20 , address: 0x360
+--- Found segment that will be moved from address: 0x374 to address: 0x374 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x37C
+--- Found a word to insert to address: 0x380
+--- Found segment that must be added. Length: 4 , address: 0x384
+
+--- OPTIMIZING...
+
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 12 , address: 0x39C
+--- Found a word to insert to address: 0x3A8
+--- Found segment that must be added. Length: 12 , address: 0x3AC
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found word that must be inserted. Length: 4 , address: 0x45C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x488
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x57C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x780
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7D8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x818
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x880
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x920
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9B8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xA34
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xB8C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0xCA0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xD14
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xD3C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xDE8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xF0C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xF1C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xF74
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x1098
+--- Found a word to insert to address: 0x10A8
+--- Found segment that must be added. Length: 12 , address: 0x10AC
+--- Found a word to insert to address: 0x10B8
+--- Found segment that must be added. Length: 24 , address: 0x10BC
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found word that must be inserted. Length: 4 , address: 0x10E8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x12D0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x13F0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x1430
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x15BC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x164C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x176C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x1970
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x19F0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x1A9C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x1BC0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0x1F0C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x2034
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x218C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2288
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x23B0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2624
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x266C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2814
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 24 , address: 0x2888
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x28DC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2950
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2964
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2A7C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2C7C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2CC4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2DDC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2EA4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x2FB0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x30A8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x313C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x3240
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x32F0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 28 , address: 0x3430
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x34C4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x34DC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x3B70
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x3ECC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x3F28
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0x41C0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4228
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 20 , address: 0x4364
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4530
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x45E8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4728
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x47F0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4884
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x48A4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x4964
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0x4A58
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x4B04
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4B54
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4C14
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4C44
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4CD8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4DC0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4DF4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x4FF8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x5240
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x5320
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x53F4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x5524
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x5620
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x5800
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x5A6C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x5C80
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x5CFC
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x6080
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x61EC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6364
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x63E0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x6404
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x645C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6500
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x67B4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6988
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x69F0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6CD4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6D00
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x6DE8
+--- Found a word to insert to address: 0x6DF8
+--- Found segment that must be added. Length: 12 , address: 0x6DFC
+--- Found a word to insert to address: 0x6E08
+--- Found segment that must be added. Length: 12 , address: 0x6E0C
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found word that must be inserted. Length: 4 , address: 0x6E78
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x6F5C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x705C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x70B8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x72C8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7330
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x739C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7434
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x743C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x74E8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7520
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x7590
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x75AC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x75E0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7654
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x76A8
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x76D0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x76EC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7704
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x77EC
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x788C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x78E4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7948
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7AC0
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7B08
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7C5C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x7C70
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 28 , address: 0x7F6C
+--- Found segment that will be moved from address: 0x7F88 to address: 0x7F88 of length 12
+--- Found segment that must be added. Length: 20 , address: 0x7F94
+
+--- OPTIMIZING...
+
+---- Optimized COPY and ADD operations to preceding ADD...
+--- Found segment that must be added. Length: 8 , address: 0x817C
+--- Found a word to insert to address: 0x8184
+--- Found segment that must be added. Length: 20 , address: 0x8188
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 16 , address: 0x81D0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x820C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x8248
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 36 , address: 0x854C
+--- Found a word to insert to address: 0x8570
+--- Found segment that must be added. Length: 4 , address: 0x8574
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 12 , address: 0x8640
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x8660
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 60 , address: 0x86F0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 20 , address: 0x8760
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x8788
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x87B8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0x87F4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 24 , address: 0x8868
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 32 , address: 0x892C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x89B8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 20 , address: 0x8A24
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 20 , address: 0x8AA8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 76 , address: 0x8D00
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 112 , address: 0x9070
+--- Found a word to insert to address: 0x90E0
+--- Found segment that must be added. Length: 36 , address: 0x90E4
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 172 , address: 0x9460
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 172 , address: 0x97F4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 52 , address: 0x99B0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 24 , address: 0x9A0C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9A40
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 24 , address: 0x9B88
+--- Found a word to insert to address: 0x9BA0
+--- Found segment that must be added. Length: 36 , address: 0x9BA4
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 8 , address: 0x9C00
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9C1C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9C38
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9C74
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0x9F00
+--- Found a word to insert to address: 0x9F10
+--- Found segment that must be added. Length: 24 , address: 0x9F14
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found word that must be inserted. Length: 4 , address: 0x9F44
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x9FBC
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0x9FC4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xA288
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xA290
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xA3AC
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0xA518
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xA534
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xA9D4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 8 , address: 0xAA00
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0xAA44
+--- Found segment that will be moved from address: 0xAA54 to address: 0xAA54 of length 12
+--- Found segment that must be added. Length: 4 , address: 0xAA60
+
+--- OPTIMIZING...
+
+---- Optimized COPY and ADD operations to preceding ADD...
+--- Found segment that must be added. Length: 8 , address: 0xAB38
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xABC8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xACE4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 16 , address: 0xAD28
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xAFD8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xB0BC
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xB130
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xB39C
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xB4CC
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xB588
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xB678
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0xB758
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xBA8C
+--- Found a word to insert to address: 0xBA98
+--- Found segment that must be added. Length: 4 , address: 0xBA9C
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 8 , address: 0xBD9C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 24 , address: 0xC048
+--- Found a word to insert to address: 0xC060
+--- Found segment that must be added. Length: 4 , address: 0xC064
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 20 , address: 0xC18C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 108 , address: 0xC470
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 52 , address: 0xC5E4
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 28 , address: 0xC8A0
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 32 , address: 0xE618
+--- Found a word to insert to address: 0xE638
+--- Found segment that must be added. Length: 4 , address: 0xE63C
+--- Found a word to insert to address: 0xE640
+--- Found segment that must be added. Length: 4 , address: 0xE644
+--- Found a word to insert to address: 0xE648
+--- Found segment that must be added. Length: 4 , address: 0xE64C
+--- Found a word to insert to address: 0xE650
+--- Found segment that must be added. Length: 4 , address: 0xE654
+--- Found a word to insert to address: 0xE658
+--- Found segment that must be added. Length: 4 , address: 0xE65C
+--- Found a word to insert to address: 0xE660
+--- Found segment that must be added. Length: 4 , address: 0xE664
+--- Found a word to insert to address: 0xE668
+--- Found segment that must be added. Length: 4 , address: 0xE66C
+--- Found a word to insert to address: 0xE670
+--- Found segment that must be added. Length: 4 , address: 0xE674
+--- Found a word to insert to address: 0xE678
+--- Found segment that must be added. Length: 4 , address: 0xE67C
+--- Found a word to insert to address: 0xE680
+--- Found segment that must be added. Length: 4 , address: 0xE684
+--- Found a word to insert to address: 0xE688
+--- Found segment that must be added. Length: 4 , address: 0xE68C
+--- Found a word to insert to address: 0xE690
+--- Found segment that must be added. Length: 4 , address: 0xE694
+--- Found a word to insert to address: 0xE698
+--- Found segment that must be added. Length: 4 , address: 0xE69C
+--- Found a word to insert to address: 0xE6A0
+--- Found segment that must be added. Length: 4 , address: 0xE6A4
+--- Found a word to insert to address: 0xE6A8
+--- Found segment that must be added. Length: 4 , address: 0xE6AC
+--- Found a word to insert to address: 0xE6B0
+--- Found segment that must be added. Length: 4 , address: 0xE6B4
+--- Found a word to insert to address: 0xE6B8
+--- Found segment that must be added. Length: 4 , address: 0xE6BC
+--- Found a word to insert to address: 0xE6C0
+--- Found segment that must be added. Length: 4 , address: 0xE6C4
+--- Found a word to insert to address: 0xE6C8
+--- Found segment that must be added. Length: 4 , address: 0xE6CC
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that must be added. Length: 120 , address: 0xEAD8
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 12 , address: 0xEDD0
+
+--- OPTIMIZING...
+
+-- Done...
+------------------------------------------
+
+-- Generating file 'data_basis\riotboot\samd20-xpro\deltagen_rev_05_rev_05\deltagen_rev_05_slot0_rev_05_slot1'...
+--- Data succesfully generated
+--- Generating checksum CRC-16
+--- Generated CRC-16
+--- Finalizing delta file
+--- Writing file 'data_basis\riotboot\samd20-xpro\deltagen_rev_05_rev_05\deltagen_rev_05_slot0_rev_05_slot1'
+
+-- OPERATION SUCCESFULL ...
+Elapsed time: 00:00:00.2494306
+------------------------------------------
+

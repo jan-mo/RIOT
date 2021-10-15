@@ -34,4 +34,4 @@ else:
             os.system(".\deltagen_diff_riotboot.bat " + rev1 + " " + rev2 + " " + databasis)
 
 # collecting sizes
-# os.system("python _collect_sizes.py")
+os.system("python _collect_sizes.py")
