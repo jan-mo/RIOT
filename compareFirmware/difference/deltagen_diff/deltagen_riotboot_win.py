@@ -3,7 +3,7 @@
 import os
 
 from sys import path
-path.append("..\..\_helper_functions")
+path.append("../../_helper_functions/")
 from __finding_versions import SearchDatabase
 
 ### define the revs that need to be calculated     ###
@@ -11,9 +11,9 @@ from __finding_versions import SearchDatabase
 ###   - setting rev = ["all"] for full calculation ###
 revs = ['all']
 
-databasis = "data_basis"
+databasis = "data_basis\\riotboot"
 
-Database = SearchDatabase("../../" + databasis)
+Database = SearchDatabase("../../data_basis/riotboot")
 versions = Database.database_get_revisions()
 
 os.system("mkdir " + databasis)
@@ -24,14 +24,14 @@ os.system("mkdir " + databasis + "/samd21-xpro")
 if "all" in revs:
     for rev1 in versions:
         for rev2 in versions:
-            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2 + " " + databasis)
+            os.system(".\deltagen_diff_riotboot.bat " + rev1 + " " + rev2 + " " + databasis)
 else:
     for rev1 in revs:
         for rev2 in versions:
-            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2 + " " + databasis)
+            os.system(".\deltagen_diff_riotboot.bat " + rev1 + " " + rev2 + " " + databasis)
     for rev1 in versions:
         for rev2 in revs:
-            os.system(".\deltagen_diff.bat " + rev1 + " " + rev2 + " " + databasis)
+            os.system(".\deltagen_diff_riotboot.bat " + rev1 + " " + rev2 + " " + databasis)
 
 # collecting sizes
-os.system("python _collect_sizes.py")
+# os.system("python _collect_sizes.py")
