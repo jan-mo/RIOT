@@ -2,6 +2,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns; sns.set_theme()
+import pandas as pd
 
 ###
 ### 
@@ -80,7 +82,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
     return fig, ax
 
 ### simple plot of heatmap ####
-def plot_heatmap(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8)):
+def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels, board, name_fig, ylabels, figsize = (18,8)):
 
     plt.rcParams["figure.figsize"] = figsize
 
@@ -96,33 +98,20 @@ def plot_heatmap(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize 
     plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
     plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
 
+    data = pd.DataFrame(index = ylabels)
+
+    for i in range(len(xlabels)):
+        chunks[i] = float(format(chunks[i]/100, '.4f'))
+        bytes_added[i] = float(format(bytes_added[i]/1024, '.4f'))
+        bytes_deleted[i] = float(format(bytes_deleted[i]/1024, '.4f'))
+        sizes_diff[i] = float(format(sizes_diff[i]/10, '.4f'))
+
+    data[xlabels] = [chunks, bytes_added, bytes_deleted, sizes_diff]
+
     fig, ax = plt.subplots()
-    im = ax.imshow(values)
-
-    # We want to show all ticks...
-    ax.set_xticks(np.arange(len(xlabels)))
-    ax.set_yticks(np.arange(len(legend)))
-    # ... and label them with the respective list entries
-    ax.set_xticklabels(xlabels)
-    ax.set_yticklabels(legend)
-
-    # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-             rotation_mode="anchor")
-
-    # Loop over data dimensions and create text annotations.
-    for i in range(len(legend)):
-        for j in range(len(xlabels)):
-            text = ax.text(j, i, str(values[i][j]),
-                           ha="center", va="center", color="b")
-
-    # Add some text for labels, title and custom x-axis tick labels, etc.
-    #ax.set_ylabel(ylabel)
-    ax.set_title(name_fig)
-    #x = np.arange(len(xlabels))  # the label locations
-    #ax.set_xticks(x)
-    #ax.set_xticklabels(xlabels, rotation='vertical')
-    #ax.legend()
+    ax = sns.heatmap(data, annot = True,vmin=0, vmax=50)
+    ax.set_xticklabels(xlabels, rotation = 45)
+    ax.set_title(board + " " + name_fig)
 
     fig.tight_layout()
 
@@ -226,20 +215,10 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     else:
         xlabels = xlabels_samd20
 
-    legend = ["SAMD20-xpro", "SAMD21-xpro"]
-    chunks = [chunks_samd20, chunks_samd21]
-    bytes_deleted = [bytes_deleted_samd20, bytes_deleted_samd21]
-    bytes_added = [bytes_added_samd20, bytes_added_samd21]
-    sizes_diff = [sizes_diff_samd20, sizes_diff_samd21]
-
-    fig_chunks, ax_chunks = plot_bar(chunks, xlabels, legend, fig_name + " number of chunks", ylabel="#chunks", figsize = (12,6), width = 0.2)
-    fig_deleted, ax_deleted = plot_bar(bytes_deleted, xlabels, legend, fig_name + " deleted bytes", ylabel="deleted Bytes", figsize = (12,6), width = 0.2)
-    fig_added, ax_added = plot_bar(bytes_added, xlabels, legend, fig_name + " added bytes", ylabel="added Bytes", figsize = (12,6), width = 0.2)
-    fig_sizes, ax_sizes = plot_bar(sizes_diff, xlabels, legend, fig_name + " sizes of diff", ylabel="size [kB]", figsize = (12,6), width = 0.2)
+    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["#chunks [*100]", "added Bytes [kB]", "deleted Bytes [kB]", "size of diff [*10 kB]"], figsize = (12,6))
+    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["#chunks [*100]", "added Bytes [kB]", "deleted Bytes [kB]", "size of diff [*10 kB]"], figsize = (12,6))
 
     # save and close figures
-    fig_chunks.savefig(path + "chunks_" + file)
-    fig_deleted.savefig(path + "deleted_" + file)
-    fig_added.savefig(path + "added_" + file)
-    fig_sizes.savefig(path + "size_" + file)
+    fig_samd20.savefig(path + "matches_samd20_" + file)
+    fig_samd21.savefig(path + "matches_samd21_" + file)
     plt.close("all")
