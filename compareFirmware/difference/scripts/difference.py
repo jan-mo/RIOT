@@ -13,9 +13,13 @@ from __finding_versions import SearchDatabase
 ###
 
 # used differencing algos
-diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
+diff_algos = ["diff", "byte_diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
 pkg_arch = "diffutils bsdiff xdelta3 rsync"
 pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
+
+# check if script for matches_diff is executed
+if "byte_diff" in diff_algos:
+    print("Info: execute /matches_diff/scripts/matches.py to convert the binaries!")
 
 # get all files of database
 Database = SearchDatabase("../../data_basis/")

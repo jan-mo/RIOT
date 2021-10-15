@@ -51,6 +51,20 @@ class calcDiff:
                 os.system("cp " + file1 + " " + restore_diff)
                 os.system("patch --quiet " + restore_diff + " " + patch_diff)
 
+            #### byte_diff ####
+            if "byte_diff" in self.diff_algos:
+                name_byte_diff = "byte_diff_" + name_file1 + "_" + name_file2
+                patch_byte_diff = self.folder + "byte_diff/" + name_arch + "/" + name_byte_diff
+                restore_byte_diff = self.folder_restore + name_byte_diff
+                # converted files
+                path_conv_file1 = "../../matches_diff/converted_bins/" + name_arch + "/" + name_file1 + ".bin_conv"
+                path_conv_file2 = "../../matches_diff/converted_bins/" + name_arch + "/" + name_file2 + ".bin_conv"
+                # diff file
+                os.system("diff -a " + path_conv_file1 + " " + path_conv_file2 + " > " + patch_byte_diff)
+                # patch file
+                os.system("cp " + path_conv_file1 + " " + restore_byte_diff)
+                os.system("patch --quiet " + restore_byte_diff + " " + patch_byte_diff)
+
             #### bsdiff ####
             if "bsdiff" in self.diff_algos:
                 name_bsdiff = "bsdiff_" + name_file1 + "_" + name_file2
@@ -177,6 +191,11 @@ class calcDiff:
                 sizes["diff"][name_diff] = {"size":os.path.getsize(patch_diff),
                                             "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_diff) else "fail",
                                             "normalized":os.path.getsize(patch_diff)/os.path.getsize(file2)}
+
+            if "byte_diff" in self.diff_algos:
+                sizes["byte_diff"][name_byte_diff] = {"size":os.path.getsize(patch_byte_diff),
+                                                      "check":"pass" if os.path.getsize(path_conv_file2) == os.path.getsize(restore_byte_diff) else "fail",
+                                                      "normalized":os.path.getsize(patch_byte_diff)/os.path.getsize(path_conv_file2)}
 
             if "bsdiff" in self.diff_algos:
                 sizes["bsdiff"][name_bsdiff] = {"size":os.path.getsize(patch_bsdiff),

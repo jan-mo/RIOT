@@ -8,7 +8,7 @@ path.append("../../_helper_functions/")
 from __finding_versions import SearchDatabase
 
 # used differencing algos
-diff_algos = ["diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
+diff_algos = ["diff", "byte_diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
 
 folder = "../algo_diffs_slots/"
 folder_restore = "../algo_diffs_slots/restore/"
