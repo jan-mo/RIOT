@@ -1,0 +1,2236 @@
+
+There are 11 non-matching segments with total length of 60788
+-- Found 11 segments that have changed...
+-- Searching for matching segments...
+-- Done searching...
+------------------------------------------
+
+-- Generating operations...
+--- Found segment that must be added. Length: 12 , address: 0x4
+
+--- OPTIMIZING...
+
+--- Found word that must be inserted. Length: 4 , address: 0x2C
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 120 , address: 0x38
+
+--- OPTIMIZING...
+
+--- Found segment that must be added. Length: 36 , address: 0xC0
+--- Found a word to insert to address: 0xE4
+--- Found segment that must be added. Length: 12 , address: 0xE8
+--- Found a word to insert to address: 0xF4
+--- Found segment that must be added. Length: 4 , address: 0xF8
+--- Found a word to insert to address: 0xFC
+--- Found segment that must be added. Length: 24 , address: 0x100
+--- Found a word to insert to address: 0x118
+--- Found segment that must be added. Length: 24 , address: 0x11C
+--- Found a word to insert to address: 0x134
+--- Found segment that must be added. Length: 16 , address: 0x138
+--- Found a word to insert to address: 0x148
+--- Found segment that must be added. Length: 8 , address: 0x14C
+--- Found segment that will be moved from address: 0x168 to address: 0x154 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x160
+--- Found a word to insert to address: 0x164
+--- Found segment that must be added. Length: 32 , address: 0x168
+--- Found a word to insert to address: 0x188
+--- Found segment that must be added. Length: 48 , address: 0x18C
+--- Found a word to insert to address: 0x1BC
+--- Found segment that must be added. Length: 36 , address: 0x1C0
+--- Found a word to insert to address: 0x1E4
+--- Found segment that will be moved from address: 0x21C to address: 0x1E8 of length 8
+--- Found segment that must be added. Length: 16 , address: 0x1F0
+--- Found a word to insert to address: 0x200
+--- Found segment that must be added. Length: 4 , address: 0x204
+--- Found a word to insert to address: 0x208
+--- Found segment that must be added. Length: 4 , address: 0x20C
+--- Found a word to insert to address: 0x210
+--- Found segment that must be added. Length: 4 , address: 0x214
+--- Found a word to insert to address: 0x218
+--- Found segment that must be added. Length: 4 , address: 0x21C
+--- Found a word to insert to address: 0x220
+--- Found segment that must be added. Length: 4 , address: 0x224
+--- Found a word to insert to address: 0x228
+--- Found segment that must be added. Length: 4 , address: 0x22C
+--- Found segment that will be moved from address: 0x268 to address: 0x230 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x240
+--- Found segment that will be moved from address: 0x27C to address: 0x244 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x260
+--- Found segment that will be moved from address: 0x29C to address: 0x264 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x274
+--- Found a word to insert to address: 0x278
+--- Found segment that must be added. Length: 4 , address: 0x27C
+--- Found a word to insert to address: 0x280
+--- Found a word to insert to address: 0x284
+--- Found a word to insert to address: 0x288
+--- Found segment that must be added. Length: 4 , address: 0x28C
+--- Found segment that will be moved from address: 0x2C8 to address: 0x290 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x29C
+--- Found segment that will be moved from address: 0x2D8 to address: 0x2A0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x2A8
+--- Found a word to insert to address: 0x2AC
+--- Found segment that must be added. Length: 4 , address: 0x2B0
+--- Found segment that will be moved from address: 0x2EC to address: 0x2B4 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x2BC
+--- Found a word to insert to address: 0x2C0
+--- Found segment that must be added. Length: 28 , address: 0x2C4
+--- Found a word to insert to address: 0x2E0
+--- Found segment that must be added. Length: 88 , address: 0x2E4
+--- Found a word to insert to address: 0x33C
+--- Found segment that must be added. Length: 4 , address: 0x340
+--- Found a word to insert to address: 0x344
+--- Found segment that must be added. Length: 8 , address: 0x348
+--- Found a word to insert to address: 0x350
+--- Found segment that must be added. Length: 16 , address: 0x354
+--- Found segment that will be moved from address: 0x3C8 to address: 0x364 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x374
+--- Found segment that will be moved from address: 0x3DC to address: 0x378 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x380
+--- Found a word to insert to address: 0x384
+--- Found segment that must be added. Length: 4 , address: 0x388
+--- Found a word to insert to address: 0x38C
+--- Found segment that must be added. Length: 4 , address: 0x390
+--- Found a word to insert to address: 0x394
+--- Found segment that must be added. Length: 4 , address: 0x398
+--- Found segment that will be moved from address: 0x400 to address: 0x39C of length 8
+--- Found segment that must be added. Length: 12 , address: 0x3A4
+--- Found segment that will be moved from address: 0x414 to address: 0x3B0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x3B8
+--- Found a word to insert to address: 0x3BC
+--- Found segment that must be added. Length: 4 , address: 0x3C0
+--- Found a word to insert to address: 0x3C4
+--- Found segment that must be added. Length: 4 , address: 0x3C8
+--- Found segment that will be moved from address: 0x430 to address: 0x3CC of length 20
+--- Found segment that must be added. Length: 8 , address: 0x3E0
+--- Found a word to insert to address: 0x3E8
+--- Found segment that must be added. Length: 4 , address: 0x3EC
+--- Found segment that will be moved from address: 0x454 to address: 0x3F0 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x438
+--- Found segment that will be moved from address: 0x4A0 to address: 0x43C of length 12
+--- Found segment that must be added. Length: 4 , address: 0x448
+--- Found segment that will be moved from address: 0x4B0 to address: 0x44C of length 8
+--- Found segment that must be added. Length: 8 , address: 0x454
+--- Found a word to insert to address: 0x45C
+--- Found segment that must be added. Length: 4 , address: 0x460
+--- Found a word to insert to address: 0x464
+--- Found segment that must be added. Length: 8 , address: 0x468
+--- Found segment that will be moved from address: 0x4D4 to address: 0x470 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x478
+--- Found segment that will be moved from address: 0x4E0 to address: 0x47C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x484
+--- Found segment that will be moved from address: 0x4EC to address: 0x488 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x490
+--- Found a word to insert to address: 0x494
+--- Found segment that must be added. Length: 4 , address: 0x498
+--- Found a word to insert to address: 0x49C
+--- Found segment that must be added. Length: 8 , address: 0x4A0
+--- Found segment that will be moved from address: 0x50C to address: 0x4A8 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x4B0
+--- Found a word to insert to address: 0x4B4
+--- Found segment that must be added. Length: 4 , address: 0x4B8
+--- Found a word to insert to address: 0x4BC
+--- Found segment that must be added. Length: 20 , address: 0x4C0
+--- Found segment that will be moved from address: 0x538 to address: 0x4D4 of length 8
+--- Found segment that must be added. Length: 12 , address: 0x4DC
+--- Found segment that will be moved from address: 0x54C to address: 0x4E8 of length 12
+--- Found segment that must be added. Length: 8 , address: 0x4F4
+--- Found a word to insert to address: 0x4FC
+--- Found a word to insert to address: 0x500
+--- Found segment that must be added. Length: 8 , address: 0x504
+--- Found segment that will be moved from address: 0x570 to address: 0x50C of length 16
+--- Found segment that must be added. Length: 8 , address: 0x51C
+--- Found a word to insert to address: 0x524
+--- Found a word to insert to address: 0x528
+--- Found segment that must be added. Length: 12 , address: 0x52C
+--- Found a word to insert to address: 0x538
+--- Found segment that must be added. Length: 8 , address: 0x53C
+--- Found segment that will be moved from address: 0x5A8 to address: 0x544 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x560
+--- Found segment that will be moved from address: 0x5C8 to address: 0x564 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x570
+--- Found segment that will be moved from address: 0x5D8 to address: 0x574 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x5CC
+--- Found segment that will be moved from address: 0x634 to address: 0x5D0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x5D8
+--- Found segment that will be moved from address: 0x640 to address: 0x5DC of length 40
+--- Found segment that must be added. Length: 12 , address: 0x604
+--- Found segment that will be moved from address: 0x674 to address: 0x610 of length 228
+--- Found segment that must be added. Length: 8 , address: 0x6F4
+--- Found segment that will be moved from address: 0x760 to address: 0x6FC of length 100
+--- Found segment that must be added. Length: 8 , address: 0x760
+--- Found segment that will be moved from address: 0x7CC to address: 0x768 of length 160
+--- Found segment that must be added. Length: 12 , address: 0x808
+--- Found segment that will be moved from address: 0x878 to address: 0x814 of length 36
+--- Found segment that must be added. Length: 8 , address: 0x838
+--- Found segment that will be moved from address: 0x8A4 to address: 0x840 of length 60
+--- Found segment that must be added. Length: 4 , address: 0x87C
+--- Found segment that will be moved from address: 0x8E4 to address: 0x880 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x8B0
+--- Found segment that will be moved from address: 0x918 to address: 0x8B4 of length 68
+--- Found segment that must be added. Length: 12 , address: 0x8F8
+--- Found segment that will be moved from address: 0x968 to address: 0x904 of length 76
+--- Found segment that must be added. Length: 8 , address: 0x950
+--- Found segment that will be moved from address: 0x9BC to address: 0x958 of length 56
+--- Found segment that must be added. Length: 8 , address: 0x990
+--- Found segment that will be moved from address: 0x9FC to address: 0x998 of length 96
+--- Found segment that must be added. Length: 8 , address: 0x9F8
+--- Found segment that will be moved from address: 0xA64 to address: 0xA00 of length 104
+--- Found segment that must be added. Length: 4 , address: 0xA68
+--- Found segment that will be moved from address: 0xAD0 to address: 0xA6C of length 12
+--- Found segment that must be added. Length: 12 , address: 0xA78
+--- Found a word to insert to address: 0xA84
+--- Found segment that must be added. Length: 4 , address: 0xA88
+--- Found segment that will be moved from address: 0xAF0 to address: 0xA8C of length 8
+--- Found segment that must be added. Length: 24 , address: 0xA94
+--- Found segment that will be moved from address: 0xB10 to address: 0xAAC of length 72
+--- Found segment that must be added. Length: 4 , address: 0xAF4
+--- Found segment that will be moved from address: 0xB5C to address: 0xAF8 of length 56
+--- Found segment that must be added. Length: 8 , address: 0xB30
+--- Found segment that will be moved from address: 0xB9C to address: 0xB38 of length 108
+--- Found segment that must be added. Length: 16 , address: 0xBA4
+--- Found a word to insert to address: 0xBB4
+--- Found a word to insert to address: 0xBB8
+--- Found segment that must be added. Length: 4 , address: 0xBBC
+--- Found segment that will be moved from address: 0xC24 to address: 0xBC0 of length 116
+--- Found a word to insert to address: 0xC34
+--- Found segment that must be added. Length: 4 , address: 0xC38
+--- Found segment that will be moved from address: 0xCA0 to address: 0xC3C of length 48
+--- Found segment that must be added. Length: 8 , address: 0xC6C
+--- Found segment that will be moved from address: 0xCD8 to address: 0xC74 of length 52
+--- Found segment that must be added. Length: 12 , address: 0xCA8
+--- Found a word to insert to address: 0xCB4
+--- Found segment that will be moved from address: 0xD1C to address: 0xCB8 of length 28
+--- Found segment that must be added. Length: 4 , address: 0xCD4
+--- Found segment that will be moved from address: 0xD3C to address: 0xCD8 of length 48
+--- Found segment that must be added. Length: 4 , address: 0xD08
+--- Found segment that will be moved from address: 0xD70 to address: 0xD0C of length 68
+--- Found segment that must be added. Length: 4 , address: 0xD50
+--- Found segment that will be moved from address: 0xDB8 to address: 0xD54 of length 48
+--- Found segment that must be added. Length: 4 , address: 0xD84
+--- Found segment that will be moved from address: 0xDEC to address: 0xD88 of length 240
+--- Found segment that must be added. Length: 4 , address: 0xE78
+--- Found a word to insert to address: 0xE7C
+--- Found segment that will be moved from address: 0xEE4 to address: 0xE80 of length 24
+--- Found segment that must be added. Length: 8 , address: 0xE98
+--- Found segment that will be moved from address: 0xF04 to address: 0xEA0 of length 140
+--- Found segment that must be added. Length: 4 , address: 0xF2C
+--- Found a word to insert to address: 0xF30
+--- Found segment that must be added. Length: 4 , address: 0xF34
+--- Found segment that will be moved from address: 0xF9C to address: 0xF38 of length 168
+--- Found segment that must be added. Length: 4 , address: 0xFE0
+--- Found segment that will be moved from address: 0x1048 to address: 0xFE4 of length 160
+--- Found segment that must be added. Length: 4 , address: 0x1084
+--- Found segment that will be moved from address: 0x10EC to address: 0x1088 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x109C
+--- Found segment that will be moved from address: 0x1104 to address: 0x10A0 of length 100
+--- Found segment that must be added. Length: 4 , address: 0x1104
+--- Found segment that will be moved from address: 0x116C to address: 0x1108 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x1114
+--- Found segment that will be moved from address: 0x117C to address: 0x1118 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x1148
+--- Found segment that will be moved from address: 0x11B0 to address: 0x114C of length 32
+--- Found segment that must be added. Length: 4 , address: 0x116C
+--- Found segment that will be moved from address: 0x11D4 to address: 0x1170 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1178
+--- Found segment that will be moved from address: 0x11E0 to address: 0x117C of length 24
+--- Found segment that must be added. Length: 4 , address: 0x1194
+--- Found segment that will be moved from address: 0x11FC to address: 0x1198 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x11A4
+--- Found a word to insert to address: 0x11A8
+--- Found segment that must be added. Length: 4 , address: 0x11AC
+--- Found a word to insert to address: 0x11B0
+--- Found segment that must be added. Length: 4 , address: 0x11B4
+--- Found segment that will be moved from address: 0x121C to address: 0x11B8 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x11D4
+--- Found a word to insert to address: 0x11D8
+--- Found segment that must be added. Length: 4 , address: 0x11DC
+--- Found a word to insert to address: 0x11E0
+--- Found segment that must be added. Length: 4 , address: 0x11E4
+--- Found segment that will be moved from address: 0x124C to address: 0x11E8 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x11F8
+--- Found segment that will be moved from address: 0x1260 to address: 0x11FC of length 88
+--- Found segment that must be added. Length: 4 , address: 0x1254
+--- Found segment that will be moved from address: 0x12BC to address: 0x1258 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x1264
+--- Found segment that will be moved from address: 0x12CC to address: 0x1268 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x1274
+--- Found segment that will be moved from address: 0x12DC to address: 0x1278 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1280
+--- Found segment that will be moved from address: 0x12E8 to address: 0x1284 of length 12
+--- Found segment that must be added. Length: 32 , address: 0x1290
+--- Found a word to insert to address: 0x12B0
+--- Found segment that must be added. Length: 24 , address: 0x12B4
+--- Found segment that will be moved from address: 0x1330 to address: 0x12CC of length 20
+--- Found a word to insert to address: 0x12E0
+--- Found segment that will be moved from address: 0x1348 to address: 0x12E4 of length 220
+--- Found segment that must be added. Length: 8 , address: 0x13C0
+--- Found segment that will be moved from address: 0x142C to address: 0x13C8 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x1410
+--- Found segment that will be moved from address: 0x1478 to address: 0x1414 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x1444
+--- Found segment that will be moved from address: 0x14AC to address: 0x1448 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1450
+--- Found segment that will be moved from address: 0x14B8 to address: 0x1454 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x145C
+--- Found segment that will be moved from address: 0x14C4 to address: 0x1460 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1468
+--- Found segment that will be moved from address: 0x14D0 to address: 0x146C of length 16
+--- Found segment that must be added. Length: 4 , address: 0x147C
+--- Found segment that will be moved from address: 0x14E4 to address: 0x1480 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1488
+--- Found segment that will be moved from address: 0x14F0 to address: 0x148C of length 44
+--- Found segment that must be added. Length: 4 , address: 0x14B8
+--- Found segment that will be moved from address: 0x1520 to address: 0x14BC of length 100
+--- Found segment that must be added. Length: 4 , address: 0x1520
+--- Found segment that will be moved from address: 0x1588 to address: 0x1524 of length 60
+--- Found segment that must be added. Length: 4 , address: 0x1560
+--- Found segment that will be moved from address: 0x15C8 to address: 0x1564 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x1588
+--- Found segment that will be moved from address: 0x15F0 to address: 0x158C of length 60
+--- Found segment that must be added. Length: 4 , address: 0x15C8
+--- Found segment that will be moved from address: 0x1630 to address: 0x15CC of length 36
+--- Found segment that must be added. Length: 4 , address: 0x15F0
+--- Found segment that will be moved from address: 0x1658 to address: 0x15F4 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x1600
+--- Found segment that will be moved from address: 0x1668 to address: 0x1604 of length 92
+--- Found segment that must be added. Length: 4 , address: 0x1660
+--- Found segment that will be moved from address: 0x16C8 to address: 0x1664 of length 204
+--- Found segment that must be added. Length: 4 , address: 0x1730
+--- Found segment that will be moved from address: 0x1798 to address: 0x1734 of length 32
+--- Found segment that must be added. Length: 8 , address: 0x1754
+--- Found segment that will be moved from address: 0x17C0 to address: 0x175C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x178C
+--- Found segment that will be moved from address: 0x17F4 to address: 0x1790 of length 84
+--- Found segment that must be added. Length: 4 , address: 0x17E4
+--- Found segment that will be moved from address: 0x184C to address: 0x17E8 of length 136
+--- Found segment that must be added. Length: 4 , address: 0x1870
+--- Found segment that will be moved from address: 0x18D8 to address: 0x1874 of length 144
+--- Found segment that must be added. Length: 4 , address: 0x1904
+--- Found segment that will be moved from address: 0x196C to address: 0x1908 of length 512
+--- Found segment that must be added. Length: 4 , address: 0x1B08
+--- Found segment that will be moved from address: 0x1B70 to address: 0x1B0C of length 112
+--- Found segment that must be added. Length: 4 , address: 0x1B7C
+--- Found segment that will be moved from address: 0x1BE4 to address: 0x1B80 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x1B88
+--- Found segment that will be moved from address: 0x1BF0 to address: 0x1B8C of length 168
+--- Found segment that must be added. Length: 4 , address: 0x1C34
+--- Found segment that will be moved from address: 0x1C9C to address: 0x1C38 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x1C84
+--- Found segment that will be moved from address: 0x1CEC to address: 0x1C88 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x1CA4
+--- Found segment that will be moved from address: 0x1D0C to address: 0x1CA8 of length 52
+--- Found segment that must be added. Length: 8 , address: 0x1CDC
+--- Found segment that will be moved from address: 0x1D48 to address: 0x1CE4 of length 116
+--- Found segment that must be added. Length: 8 , address: 0x1D58
+--- Found segment that will be moved from address: 0x1DC4 to address: 0x1D60 of length 436
+--- Found segment that must be added. Length: 4 , address: 0x1F14
+--- Found segment that will be moved from address: 0x1F7C to address: 0x1F18 of length 228
+--- Found segment that must be added. Length: 4 , address: 0x1FFC
+--- Found segment that will be moved from address: 0x2064 to address: 0x2000 of length 140
+--- Found segment that must be added. Length: 4 , address: 0x208C
+--- Found segment that will be moved from address: 0x20F4 to address: 0x2090 of length 20
+--- Found segment that must be added. Length: 12 , address: 0x20A4
+--- Found segment that will be moved from address: 0x2114 to address: 0x20B0 of length 280
+--- Found segment that must be added. Length: 16 , address: 0x21C8
+--- Found segment that will be moved from address: 0x223C to address: 0x21D8 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x21FC
+--- Found segment that will be moved from address: 0x2264 to address: 0x2200 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x220C
+--- Found segment that will be moved from address: 0x2274 to address: 0x2210 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x2228
+--- Found a word to insert to address: 0x222C
+--- Found segment that must be added. Length: 4 , address: 0x2230
+--- Found segment that will be moved from address: 0x2298 to address: 0x2234 of length 64
+--- Found segment that must be added. Length: 8 , address: 0x2274
+--- Found segment that will be moved from address: 0x22E0 to address: 0x227C of length 52
+--- Found segment that must be added. Length: 4 , address: 0x22B0
+--- Found segment that will be moved from address: 0x2318 to address: 0x22B4 of length 112
+--- Found segment that must be added. Length: 4 , address: 0x2324
+--- Found segment that will be moved from address: 0x238C to address: 0x2328 of length 212
+--- Found segment that must be added. Length: 4 , address: 0x23FC
+--- Found segment that will be moved from address: 0x2464 to address: 0x2400 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x2408
+--- Found segment that will be moved from address: 0x2470 to address: 0x240C of length 20
+--- Found segment that must be added. Length: 8 , address: 0x2420
+--- Found segment that will be moved from address: 0x248C to address: 0x2428 of length 116
+--- Found segment that must be added. Length: 4 , address: 0x249C
+--- Found segment that will be moved from address: 0x2504 to address: 0x24A0 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x24C0
+--- Found a word to insert to address: 0x24C4
+--- Found segment that must be added. Length: 4 , address: 0x24C8
+--- Found segment that will be moved from address: 0x2530 to address: 0x24CC of length 8
+--- Found segment that must be added. Length: 4 , address: 0x24D4
+--- Found segment that will be moved from address: 0x253C to address: 0x24D8 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x2504
+--- Found segment that will be moved from address: 0x256C to address: 0x2508 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x2548
+--- Found segment that will be moved from address: 0x25B0 to address: 0x254C of length 172
+--- Found segment that must be added. Length: 4 , address: 0x25F8
+--- Found segment that will be moved from address: 0x2660 to address: 0x25FC of length 240
+--- Found segment that must be added. Length: 4 , address: 0x26EC
+--- Found segment that will be moved from address: 0x2754 to address: 0x26F0 of length 204
+--- Found segment that must be added. Length: 8 , address: 0x27BC
+--- Found segment that will be moved from address: 0x2828 to address: 0x27C4 of length 52
+--- Found segment that must be added. Length: 4 , address: 0x27F8
+--- Found segment that will be moved from address: 0x1BE4 to address: 0x27FC of length 8
+--- Found segment that must be added. Length: 4 , address: 0x2804
+--- Found segment that will be moved from address: 0x286C to address: 0x2808 of length 152
+--- Found segment that must be added. Length: 12 , address: 0x28A0
+--- Found segment that will be moved from address: 0x2910 to address: 0x28AC of length 256
+--- Found segment that must be added. Length: 4 , address: 0x29AC
+--- Found segment that will be moved from address: 0x2A14 to address: 0x29B0 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x29CC
+--- Found segment that will be moved from address: 0x2A34 to address: 0x29D0 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x29F0
+--- Found a word to insert to address: 0x29F4
+--- Found segment that must be added. Length: 4 , address: 0x29F8
+--- Found segment that will be moved from address: 0x2A60 to address: 0x29FC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x2A18
+--- Found a word to insert to address: 0x2A1C
+--- Found segment that must be added. Length: 4 , address: 0x2A20
+--- Found a word to insert to address: 0x2A24
+--- Found segment that must be added. Length: 16 , address: 0x2A28
+--- Found segment that will be moved from address: 0x2A9C to address: 0x2A38 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x2A60
+--- Found segment that will be moved from address: 0x2AC8 to address: 0x2A64 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x2A74
+--- Found segment that will be moved from address: 0x2ADC to address: 0x2A78 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x2A94
+--- Found segment that will be moved from address: 0x2AFC to address: 0x2A98 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x2AA8
+--- Found segment that will be moved from address: 0x2B10 to address: 0x2AAC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x2AC8
+--- Found segment that will be moved from address: 0x2B30 to address: 0x2ACC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x2AE8
+--- Found segment that will be moved from address: 0x2B50 to address: 0x2AEC of length 16
+--- Found segment that must be added. Length: 8 , address: 0x2AFC
+--- Found segment that will be moved from address: 0x2B68 to address: 0x2B04 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x2B10
+--- Found segment that will be moved from address: 0x2B78 to address: 0x2B14 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x2B20
+--- Found segment that will be moved from address: 0x2B88 to address: 0x2B24 of length 92
+--- Found segment that must be added. Length: 8 , address: 0x2B80
+--- Found segment that will be moved from address: 0x2BEC to address: 0x2B88 of length 40
+--- Found segment that must be added. Length: 8 , address: 0x2BB0
+--- Found segment that will be moved from address: 0x2C1C to address: 0x2BB8 of length 88
+--- Found segment that must be added. Length: 12 , address: 0x2C10
+--- Found segment that will be moved from address: 0x2C80 to address: 0x2C1C of length 80
+--- Found segment that must be added. Length: 8 , address: 0x2C6C
+--- Found segment that will be moved from address: 0x2CD8 to address: 0x2C74 of length 164
+--- Found segment that must be added. Length: 8 , address: 0x2D18
+--- Found segment that will be moved from address: 0x2D84 to address: 0x2D20 of length 244
+--- Found segment that must be added. Length: 8 , address: 0x2E14
+--- Found segment that will be moved from address: 0x2E80 to address: 0x2E1C of length 32
+--- Found segment that must be added. Length: 4 , address: 0x2E3C
+--- Found segment that will be moved from address: 0x2EA4 to address: 0x2E40 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x2E54
+--- Found a word to insert to address: 0x2E58
+--- Found segment that must be added. Length: 4 , address: 0x2E5C
+--- Found segment that will be moved from address: 0x2EC4 to address: 0x2E60 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x2EB8
+--- Found segment that will be moved from address: 0x2F20 to address: 0x2EBC of length 32
+--- Found segment that must be added. Length: 4 , address: 0x2EDC
+--- Found segment that will be moved from address: 0x2F44 to address: 0x2EE0 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x2EF0
+--- Found segment that will be moved from address: 0x2F58 to address: 0x2EF4 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x2F20
+--- Found segment that will be moved from address: 0x2F88 to address: 0x2F24 of length 76
+--- Found segment that must be added. Length: 8 , address: 0x2F70
+--- Found segment that will be moved from address: 0x2FDC to address: 0x2F78 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x2FD0
+--- Found segment that will be moved from address: 0x3038 to address: 0x2FD4 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x2FF8
+--- Found segment that will be moved from address: 0x3060 to address: 0x2FFC of length 48
+--- Found segment that must be added. Length: 4 , address: 0x302C
+--- Found segment that will be moved from address: 0x3094 to address: 0x3030 of length 12
+--- Found segment that must be added. Length: 8 , address: 0x303C
+--- Found segment that will be moved from address: 0x30A8 to address: 0x3044 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x3060
+--- Found segment that will be moved from address: 0x30C8 to address: 0x3064 of length 92
+--- Found segment that must be added. Length: 4 , address: 0x30C0
+--- Found segment that will be moved from address: 0x3128 to address: 0x30C4 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x3110
+--- Found segment that will be moved from address: 0x3178 to address: 0x3114 of length 52
+--- Found segment that must be added. Length: 8 , address: 0x3148
+--- Found segment that will be moved from address: 0x2F1C to address: 0x3150 of length 12
+--- Found segment that will be moved from address: 0x31C0 to address: 0x315C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x318C
+--- Found a word to insert to address: 0x3190
+--- Found segment that will be moved from address: 0x31F8 to address: 0x3194 of length 40
+--- Found a word to insert to address: 0x31BC
+--- Found segment that must be added. Length: 4 , address: 0x31C0
+--- Found segment that will be moved from address: 0x3228 to address: 0x31C4 of length 20
+--- Found a word to insert to address: 0x31D8
+--- Found segment that must be added. Length: 4 , address: 0x31DC
+--- Found segment that will be moved from address: 0x3244 to address: 0x31E0 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x3204
+--- Found segment that will be moved from address: 0x326C to address: 0x3208 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x3230
+--- Found segment that will be moved from address: 0x3298 to address: 0x3234 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x323C
+--- Found segment that will be moved from address: 0x32A8 to address: 0x3244 of length 144
+--- Found segment that must be added. Length: 4 , address: 0x32D4
+--- Found a word to insert to address: 0x32D8
+--- Found segment that must be added. Length: 4 , address: 0x32DC
+--- Found segment that will be moved from address: 0x3344 to address: 0x32E0 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x3338
+--- Found segment that will be moved from address: 0x33A0 to address: 0x333C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x336C
+--- Found segment that will be moved from address: 0x33D4 to address: 0x3370 of length 104
+--- Found segment that must be added. Length: 16 , address: 0x33D8
+--- Found segment that will be moved from address: 0x344C to address: 0x33E8 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x3418
+--- Found segment that will be moved from address: 0x3480 to address: 0x341C of length 76
+--- Found segment that must be added. Length: 4 , address: 0x3468
+--- Found segment that will be moved from address: 0x34D0 to address: 0x346C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x3488
+--- Found segment that will be moved from address: 0x34F0 to address: 0x348C of length 236
+--- Found segment that must be added. Length: 4 , address: 0x3578
+--- Found segment that will be moved from address: 0x35E0 to address: 0x357C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x3584
+--- Found segment that will be moved from address: 0x35EC to address: 0x3588 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x359C
+--- Found segment that will be moved from address: 0x3604 to address: 0x35A0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x35A8
+--- Found segment that will be moved from address: 0x3610 to address: 0x35AC of length 12
+--- Found segment that must be added. Length: 4 , address: 0x35B8
+--- Found a word to insert to address: 0x35BC
+--- Found segment that must be added. Length: 4 , address: 0x35C0
+--- Found a word to insert to address: 0x35C4
+--- Found segment that must be added. Length: 24 , address: 0x35C8
+--- Found a word to insert to address: 0x35E0
+--- Found segment that will be moved from address: 0x3648 to address: 0x35E4 of length 56
+--- Found segment that must be added. Length: 8 , address: 0x361C
+--- Found segment that will be moved from address: 0x3688 to address: 0x3624 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x3638
+--- Found segment that will be moved from address: 0x36A0 to address: 0x363C of length 32
+--- Found segment that must be added. Length: 4 , address: 0x365C
+--- Found segment that will be moved from address: 0x36C4 to address: 0x3660 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x3668
+--- Found segment that will be moved from address: 0x1BE4 to address: 0x366C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x3674
+--- Found segment that will be moved from address: 0x36DC to address: 0x3678 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x369C
+--- Found segment that will be moved from address: 0x3704 to address: 0x36A0 of length 340
+--- Found segment that must be added. Length: 4 , address: 0x37F4
+--- Found segment that will be moved from address: 0x385C to address: 0x37F8 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x3824
+--- Found segment that will be moved from address: 0x388C to address: 0x3828 of length 120
+--- Found segment that must be added. Length: 4 , address: 0x38A0
+--- Found segment that will be moved from address: 0x3908 to address: 0x38A4 of length 236
+--- Found segment that must be added. Length: 4 , address: 0x3990
+--- Found segment that will be moved from address: 0x39F8 to address: 0x3994 of length 884
+--- Found segment that must be added. Length: 4 , address: 0x3D08
+--- Found segment that will be moved from address: 0x3D70 to address: 0x3D0C of length 16
+--- Found segment that must be added. Length: 4 , address: 0x3D1C
+--- Found segment that will be moved from address: 0x3D84 to address: 0x3D20 of length 160
+--- Found segment that must be added. Length: 4 , address: 0x3DC0
+--- Found segment that will be moved from address: 0x3E28 to address: 0x3DC4 of length 228
+--- Found segment that must be added. Length: 4 , address: 0x3EA8
+--- Found segment that will be moved from address: 0x3F10 to address: 0x3EAC of length 404
+--- Found segment that must be added. Length: 4 , address: 0x4040
+--- Found segment that will be moved from address: 0x40A8 to address: 0x4044 of length 32
+--- Found segment that must be added. Length: 8 , address: 0x4064
+--- Found segment that will be moved from address: 0x40D0 to address: 0x406C of length 84
+--- Found segment that must be added. Length: 4 , address: 0x40C0
+--- Found segment that will be moved from address: 0x4128 to address: 0x40C4 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x40D8
+--- Found segment that will be moved from address: 0x4140 to address: 0x40DC of length 112
+--- Found segment that must be added. Length: 4 , address: 0x414C
+--- Found segment that will be moved from address: 0x41B4 to address: 0x4150 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x4180
+--- Found segment that will be moved from address: 0x41E8 to address: 0x4184 of length 240
+--- Found segment that must be added. Length: 8 , address: 0x4274
+--- Found segment that will be moved from address: 0x42E0 to address: 0x427C of length 24
+--- Found segment that must be added. Length: 4 , address: 0x4294
+--- Found segment that will be moved from address: 0x42FC to address: 0x4298 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x42B8
+--- Found segment that will be moved from address: 0x4320 to address: 0x42BC of length 12
+--- Found segment that must be added. Length: 4 , address: 0x42C8
+--- Found segment that will be moved from address: 0x4330 to address: 0x42CC of length 140
+--- Found segment that must be added. Length: 12 , address: 0x4358
+--- Found segment that will be moved from address: 0x43C8 to address: 0x4364 of length 92
+--- Found segment that must be added. Length: 4 , address: 0x43C0
+--- Found segment that will be moved from address: 0x4428 to address: 0x43C4 of length 60
+--- Found segment that must be added. Length: 4 , address: 0x4400
+--- Found segment that will be moved from address: 0x4468 to address: 0x4404 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x444C
+--- Found segment that will be moved from address: 0x44B4 to address: 0x4450 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x445C
+--- Found segment that will be moved from address: 0x44C4 to address: 0x4460 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x448C
+--- Found segment that will be moved from address: 0x44F4 to address: 0x4490 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x44AC
+--- Found a word to insert to address: 0x44B0
+--- Found segment that must be added. Length: 4 , address: 0x44B4
+--- Found segment that will be moved from address: 0x451C to address: 0x44B8 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x44C4
+--- Found segment that will be moved from address: 0x452C to address: 0x44C8 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x44D0
+--- Found segment that will be moved from address: 0x4538 to address: 0x44D4 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x44DC
+--- Found a word to insert to address: 0x44E4
+--- Found segment that must be added. Length: 4 , address: 0x44E8
+--- Found a word to insert to address: 0x44EC
+--- Found segment that must be added. Length: 4 , address: 0x44F0
+--- Found a word to insert to address: 0x44F4
+--- Found segment that must be added. Length: 20 , address: 0x44F8
+--- Found a word to insert to address: 0x450C
+--- Found segment that will be moved from address: 0x4574 to address: 0x4510 of length 68
+--- Found segment that must be added. Length: 4 , address: 0x4554
+--- Found segment that will be moved from address: 0x45BC to address: 0x4558 of length 84
+--- Found segment that must be added. Length: 4 , address: 0x45AC
+--- Found segment that will be moved from address: 0x4614 to address: 0x45B0 of length 124
+--- Found segment that must be added. Length: 4 , address: 0x462C
+--- Found segment that will be moved from address: 0x4694 to address: 0x4630 of length 152
+--- Found segment that must be added. Length: 4 , address: 0x46C8
+--- Found segment that will be moved from address: 0x4730 to address: 0x46CC of length 64
+--- Found segment that must be added. Length: 4 , address: 0x470C
+--- Found segment that will be moved from address: 0x4774 to address: 0x4710 of length 112
+--- Found segment that must be added. Length: 12 , address: 0x4780
+--- Found segment that will be moved from address: 0x47F0 to address: 0x478C of length 308
+--- Found segment that must be added. Length: 4 , address: 0x48C0
+--- Found segment that will be moved from address: 0x4928 to address: 0x48C4 of length 196
+--- Found segment that must be added. Length: 4 , address: 0x4988
+--- Found segment that will be moved from address: 0x49F0 to address: 0x498C of length 100
+--- Found segment that must be added. Length: 4 , address: 0x49F0
+--- Found a word to insert to address: 0x49F4
+--- Found segment that must be added. Length: 4 , address: 0x49F8
+--- Found segment that will be moved from address: 0x4A60 to address: 0x49FC of length 32
+--- Found segment that must be added. Length: 4 , address: 0x4A1C
+--- Found segment that will be moved from address: 0x4A84 to address: 0x4A20 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x4A3C
+--- Found segment that will be moved from address: 0x4AA4 to address: 0x4A40 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x4A88
+--- Found segment that will be moved from address: 0x4AF0 to address: 0x4A8C of length 20
+--- Found segment that must be added. Length: 4 , address: 0x4AA0
+--- Found segment that will be moved from address: 0x4B08 to address: 0x4AA4 of length 88
+--- Found segment that must be added. Length: 8 , address: 0x4AFC
+--- Found segment that will be moved from address: 0x4B68 to address: 0x4B04 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x4B50
+--- Found segment that will be moved from address: 0x4BB8 to address: 0x4B54 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x4B5C
+--- Found segment that will be moved from address: 0x4BC4 to address: 0x4B60 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x4B6C
+--- Found segment that will be moved from address: 0x4BD4 to address: 0x4B70 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x4B8C
+--- Found segment that will be moved from address: 0x4BF4 to address: 0x4B90 of length 96
+--- Found segment that must be added. Length: 12 , address: 0x4BF0
+--- Found segment that will be moved from address: 0x4C60 to address: 0x4BFC of length 64
+--- Found a word to insert to address: 0x4C3C
+--- Found segment that must be added. Length: 4 , address: 0x4C40
+--- Found segment that will be moved from address: 0x4CA8 to address: 0x4C44 of length 88
+--- Found segment that must be added. Length: 8 , address: 0x4C9C
+--- Found segment that will be moved from address: 0x4D08 to address: 0x4CA4 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x4CEC
+--- Found segment that will be moved from address: 0x4D54 to address: 0x4CF0 of length 144
+--- Found segment that must be added. Length: 4 , address: 0x4D80
+--- Found segment that will be moved from address: 0x4DE8 to address: 0x4D84 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x4DA0
+--- Found segment that will be moved from address: 0x1BE4 to address: 0x4DA4 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x4DAC
+--- Found segment that will be moved from address: 0x3694 to address: 0x4DB0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x4DB8
+--- Found segment that will be moved from address: 0x36A0 to address: 0x4DBC of length 32
+--- Found segment that must be added. Length: 4 , address: 0x4DDC
+--- Found segment that will be moved from address: 0x4E44 to address: 0x4DE0 of length 144
+--- Found segment that must be added. Length: 4 , address: 0x4E70
+--- Found segment that will be moved from address: 0x4ED8 to address: 0x4E74 of length 84
+--- Found a word to insert to address: 0x4EC8
+--- Found segment that will be moved from address: 0x4F30 to address: 0x4ECC of length 20
+--- Found segment that must be added. Length: 4 , address: 0x4EE0
+--- Found segment that will be moved from address: 0x4F48 to address: 0x4EE4 of length 8
+--- Found a word to insert to address: 0x4EEC
+--- Found segment that will be moved from address: 0x4F54 to address: 0x4EF0 of length 104
+--- Found segment that must be added. Length: 4 , address: 0x4F58
+--- Found segment that will be moved from address: 0x4FC0 to address: 0x4F5C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x4F8C
+--- Found segment that will be moved from address: 0x4FF4 to address: 0x4F90 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x4FB0
+--- Found segment that will be moved from address: 0x5018 to address: 0x4FB4 of length 52
+--- Found segment that must be added. Length: 4 , address: 0x4FE8
+--- Found segment that will be moved from address: 0x5050 to address: 0x4FEC of length 420
+--- Found segment that must be added. Length: 4 , address: 0x5190
+--- Found segment that will be moved from address: 0x51F8 to address: 0x5194 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x519C
+--- Found segment that will be moved from address: 0x5204 to address: 0x51A0 of length 188
+--- Found segment that must be added. Length: 4 , address: 0x525C
+--- Found segment that will be moved from address: 0x52C4 to address: 0x5260 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x52A0
+--- Found segment that will be moved from address: 0x5308 to address: 0x52A4 of length 160
+--- Found segment that must be added. Length: 4 , address: 0x5344
+--- Found segment that will be moved from address: 0x53AC to address: 0x5348 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x536C
+--- Found segment that will be moved from address: 0x53D4 to address: 0x5370 of length 104
+--- Found segment that must be added. Length: 8 , address: 0x53D8
+--- Found segment that will be moved from address: 0x5444 to address: 0x53E0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x53E8
+--- Found segment that will be moved from address: 0x5450 to address: 0x53EC of length 104
+--- Found segment that must be added. Length: 4 , address: 0x5454
+--- Found segment that will be moved from address: 0x54BC to address: 0x5458 of length 92
+--- Found segment that must be added. Length: 8 , address: 0x54B4
+--- Found segment that will be moved from address: 0x5520 to address: 0x54BC of length 60
+--- Found segment that must be added. Length: 4 , address: 0x54F8
+--- Found segment that will be moved from address: 0x5560 to address: 0x54FC of length 40
+--- Found segment that must be added. Length: 4 , address: 0x5524
+--- Found segment that will be moved from address: 0x558C to address: 0x5528 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x5570
+--- Found segment that will be moved from address: 0x55D8 to address: 0x5574 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x558C
+--- Found segment that will be moved from address: 0x55F4 to address: 0x5590 of length 68
+--- Found segment that must be added. Length: 4 , address: 0x55D4
+--- Found segment that will be moved from address: 0x563C to address: 0x55D8 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x55F4
+--- Found segment that will be moved from address: 0x565C to address: 0x55F8 of length 116
+--- Found segment that must be added. Length: 4 , address: 0x566C
+--- Found segment that will be moved from address: 0x56D4 to address: 0x5670 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x5690
+--- Found segment that will be moved from address: 0x56F8 to address: 0x5694 of length 36
+--- Found segment that must be added. Length: 16 , address: 0x56B8
+--- Found segment that will be moved from address: 0x572C to address: 0x56C8 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x56F0
+--- Found segment that will be moved from address: 0x5758 to address: 0x56F4 of length 188
+--- Found segment that must be added. Length: 4 , address: 0x57B0
+--- Found a word to insert to address: 0x57B4
+--- Found segment that must be added. Length: 4 , address: 0x57B8
+--- Found segment that will be moved from address: 0x5820 to address: 0x57BC of length 104
+--- Found segment that must be added. Length: 4 , address: 0x5824
+--- Found segment that will be moved from address: 0x588C to address: 0x5828 of length 116
+--- Found a word to insert to address: 0x589C
+--- Found a word to insert to address: 0x58A0
+--- Found segment that must be added. Length: 4 , address: 0x58A4
+--- Found segment that will be moved from address: 0x590C to address: 0x58A8 of length 36
+--- Found segment that must be added. Length: 8 , address: 0x58CC
+--- Found a word to insert to address: 0x58D4
+--- Found segment that will be moved from address: 0x593C to address: 0x58D8 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x58FC
+--- Found segment that will be moved from address: 0x5964 to address: 0x5900 of length 148
+--- Found a word to insert to address: 0x5994
+--- Found segment that must be added. Length: 4 , address: 0x5998
+--- Found segment that will be moved from address: 0x5A00 to address: 0x599C of length 60
+--- Found segment that must be added. Length: 4 , address: 0x59D8
+--- Found segment that will be moved from address: 0x5A40 to address: 0x59DC of length 68
+--- Found segment that must be added. Length: 4 , address: 0x5A20
+--- Found segment that will be moved from address: 0x5A88 to address: 0x5A24 of length 68
+--- Found segment that must be added. Length: 4 , address: 0x5A68
+--- Found segment that will be moved from address: 0x5AD0 to address: 0x5A6C of length 148
+--- Found segment that must be added. Length: 4 , address: 0x5B00
+--- Found segment that will be moved from address: 0x5B68 to address: 0x5B04 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x5B0C
+--- Found segment that will be moved from address: 0x5B74 to address: 0x5B10 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x5B50
+--- Found segment that will be moved from address: 0x5BB8 to address: 0x5B54 of length 128
+--- Found segment that must be added. Length: 4 , address: 0x5BD4
+--- Found segment that will be moved from address: 0x5C3C to address: 0x5BD8 of length 40
+--- Found segment that must be added. Length: 8 , address: 0x5C00
+--- Found segment that will be moved from address: 0x5C6C to address: 0x5C08 of length 512
+--- Found segment that must be added. Length: 4 , address: 0x5E08
+--- Found segment that will be moved from address: 0x20F4 to address: 0x5E0C of length 12
+--- Found segment that must be added. Length: 4 , address: 0x5E18
+--- Found segment that will be moved from address: 0x5E80 to address: 0x5E1C of length 116
+--- Found segment that must be added. Length: 16 , address: 0x5E90
+--- Found segment that will be moved from address: 0x5F04 to address: 0x5EA0 of length 120
+--- Found segment that must be added. Length: 4 , address: 0x5F18
+--- Found segment that will be moved from address: 0x5F80 to address: 0x5F1C of length 112
+--- Found segment that must be added. Length: 4 , address: 0x5F8C
+--- Found segment that will be moved from address: 0x5FF4 to address: 0x5F90 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x5F98
+--- Found segment that will be moved from address: 0x6000 to address: 0x5F9C of length 96
+--- Found segment that must be added. Length: 8 , address: 0x5FFC
+--- Found segment that will be moved from address: 0x6068 to address: 0x6004 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6014
+--- Found segment that will be moved from address: 0x607C to address: 0x6018 of length 304
+--- Found segment that must be added. Length: 4 , address: 0x6148
+--- Found segment that will be moved from address: 0x61B0 to address: 0x614C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x6168
+--- Found segment that will be moved from address: 0x61D0 to address: 0x616C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x619C
+--- Found segment that will be moved from address: 0x6204 to address: 0x61A0 of length 208
+--- Found segment that must be added. Length: 4 , address: 0x6270
+--- Found segment that will be moved from address: 0x62D8 to address: 0x6274 of length 108
+--- Found segment that must be added. Length: 4 , address: 0x62E0
+--- Found a word to insert to address: 0x62E4
+--- Found segment that must be added. Length: 4 , address: 0x62E8
+--- Found segment that will be moved from address: 0x6350 to address: 0x62EC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x6308
+--- Found segment that will be moved from address: 0x6370 to address: 0x630C of length 68
+--- Found segment that must be added. Length: 4 , address: 0x6350
+--- Found segment that will be moved from address: 0x63B8 to address: 0x6354 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x635C
+--- Found segment that will be moved from address: 0x63C8 to address: 0x6364 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6374
+--- Found segment that will be moved from address: 0x63DC to address: 0x6378 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x6380
+--- Found segment that will be moved from address: 0x63EC to address: 0x6388 of length 80
+--- Found segment that must be added. Length: 4 , address: 0x63D8
+--- Found segment that will be moved from address: 0x6440 to address: 0x63DC of length 160
+--- Found segment that must be added. Length: 4 , address: 0x647C
+--- Found a word to insert to address: 0x6480
+--- Found segment that must be added. Length: 4 , address: 0x6484
+--- Found a word to insert to address: 0x6488
+--- Found segment that must be added. Length: 16 , address: 0x648C
+--- Found a word to insert to address: 0x649C
+--- Found segment that must be added. Length: 8 , address: 0x64A0
+--- Found segment that will be moved from address: 0x6824 to address: 0x64A8 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x64B0
+--- Found a word to insert to address: 0x64B4
+--- Found a word to insert to address: 0x64B8
+--- Found a word to insert to address: 0x64BC
+--- Found segment that will be moved from address: 0x4F90 to address: 0x64C0 of length 12
+--- Found segment that must be added. Length: 8 , address: 0x64CC
+--- Found a word to insert to address: 0x64D4
+--- Found segment that must be added. Length: 104 , address: 0x64D8
+--- Found a word to insert to address: 0x6540
+--- Found a word to insert to address: 0x6544
+--- Found a word to insert to address: 0x6548
+--- Found segment that must be added. Length: 20 , address: 0x654C
+--- Found a word to insert to address: 0x6560
+--- Found a word to insert to address: 0x6564
+--- Found segment that must be added. Length: 32 , address: 0x6568
+--- Found a word to insert to address: 0x6588
+--- Found segment that must be added. Length: 12 , address: 0x658C
+--- Found a word to insert to address: 0x6598
+--- Found segment that must be added. Length: 36 , address: 0x659C
+--- Found a word to insert to address: 0x65C0
+--- Found a word to insert to address: 0x65C4
+--- Found segment that must be added. Length: 24 , address: 0x65C8
+--- Found segment that will be moved from address: 0x6638 to address: 0x65E0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x65E8
+--- Found a word to insert to address: 0x65EC
+--- Found segment that must be added. Length: 40 , address: 0x65F0
+--- Found a word to insert to address: 0x6618
+--- Found segment that must be added. Length: 16 , address: 0x661C
+--- Found a word to insert to address: 0x662C
+--- Found segment that must be added. Length: 12 , address: 0x6630
+--- Found segment that will be moved from address: 0x4F8C to address: 0x663C of length 8
+--- Found a word to insert to address: 0x6644
+--- Found segment that must be added. Length: 12 , address: 0x6648
+--- Found a word to insert to address: 0x6654
+--- Found segment that must be added. Length: 36 , address: 0x6658
+--- Found a word to insert to address: 0x667C
+--- Found segment that must be added. Length: 8 , address: 0x6680
+--- Found a word to insert to address: 0x6688
+--- Found segment that must be added. Length: 64 , address: 0x668C
+--- Found a word to insert to address: 0x66CC
+--- Found segment that must be added. Length: 4 , address: 0x66D0
+--- Found segment that will be moved from address: 0x66A0 to address: 0x66D4 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x66E0
+--- Found a word to insert to address: 0x66E4
+--- Found segment that must be added. Length: 4 , address: 0x66E8
+--- Found segment that will be moved from address: 0x66B8 to address: 0x66EC of length 16
+--- Found segment that must be added. Length: 4 , address: 0x66FC
+--- Found segment that will be moved from address: 0x66CC to address: 0x6700 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x6724
+--- Found segment that will be moved from address: 0x66F4 to address: 0x6728 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x6750
+--- Found segment that will be moved from address: 0x6720 to address: 0x6754 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x6768
+--- Found segment that will be moved from address: 0x6738 to address: 0x676C of length 36
+--- Found segment that must be added. Length: 4 , address: 0x6790
+--- Found segment that will be moved from address: 0x6760 to address: 0x6794 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x67A0
+--- Found segment that will be moved from address: 0x6770 to address: 0x67A4 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x67B4
+--- Found a word to insert to address: 0x67B8
+--- Found segment that must be added. Length: 4 , address: 0x67BC
+--- Found segment that will be moved from address: 0x678C to address: 0x67C0 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x67C8
+--- Found segment that will be moved from address: 0x679C to address: 0x67D0 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x6810
+--- Found segment that will be moved from address: 0x67E0 to address: 0x6814 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x681C
+--- Found segment that will be moved from address: 0x67E0 to address: 0x6820 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x6828
+--- Found segment that will be moved from address: 0x67F8 to address: 0x682C of length 52
+--- Found segment that must be added. Length: 4 , address: 0x6860
+--- Found segment that will be moved from address: 0x6830 to address: 0x6864 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x687C
+--- Found segment that will be moved from address: 0x684C to address: 0x6880 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x688C
+--- Found segment that will be moved from address: 0x685C to address: 0x6890 of length 8
+--- Found a word to insert to address: 0x6898
+--- Found segment that will be moved from address: 0x6868 to address: 0x689C of length 256
+--- Found segment that must be added. Length: 4 , address: 0x699C
+--- Found segment that will be moved from address: 0x696C to address: 0x69A0 of length 100
+--- Found segment that must be added. Length: 4 , address: 0x6A04
+--- Found segment that will be moved from address: 0x69D4 to address: 0x6A08 of length 40
+--- Found a word to insert to address: 0x6A30
+--- Found segment that must be added. Length: 12 , address: 0x6A34
+--- Found a word to insert to address: 0x6A40
+--- Found segment that must be added. Length: 12 , address: 0x6A44
+--- Found a word to insert to address: 0x6A50
+--- Found segment that must be added. Length: 12 , address: 0x6A54
+--- Found a word to insert to address: 0x6A60
+--- Found segment that must be added. Length: 12 , address: 0x6A64
+--- Found a word to insert to address: 0x6A70
+--- Found segment that must be added. Length: 4 , address: 0x6A74
+--- Found a word to insert to address: 0x6A78
+--- Found a word to insert to address: 0x6A7C
+--- Found segment that must be added. Length: 4 , address: 0x6A80
+--- Found a word to insert to address: 0x6A84
+--- Found a word to insert to address: 0x6A88
+--- Found segment that must be added. Length: 4 , address: 0x6A8C
+--- Found a word to insert to address: 0x6A90
+--- Found a word to insert to address: 0x6A94
+--- Found segment that must be added. Length: 4 , address: 0x6A98
+--- Found a word to insert to address: 0x6A9C
+--- Found segment that must be added. Length: 4 , address: 0x6AA0
+--- Found a word to insert to address: 0x6AA4
+--- Found segment that will be moved from address: 0x6A34 to address: 0x6AA8 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x6AF0
+--- Found a word to insert to address: 0x6AF4
+--- Found segment that must be added. Length: 4 , address: 0x6AF8
+--- Found a word to insert to address: 0x6AFC
+--- Found segment that must be added. Length: 4 , address: 0x6B00
+--- Found a word to insert to address: 0x6B04
+--- Found segment that must be added. Length: 4 , address: 0x6B08
+--- Found a word to insert to address: 0x6B0C
+--- Found segment that will be moved from address: 0x6A9C to address: 0x6B10 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x6B18
+--- Found a word to insert to address: 0x6B1C
+--- Found a word to insert to address: 0x6B20
+--- Found a word to insert to address: 0x6B24
+--- Found segment that must be added. Length: 4 , address: 0x6B28
+--- Found segment that will be moved from address: 0x6AB8 to address: 0x6B2C of length 12
+--- Found segment that must be added. Length: 4 , address: 0x6B38
+--- Found segment that will be moved from address: 0x6AC8 to address: 0x6B3C of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6B4C
+--- Found segment that will be moved from address: 0x6ADC to address: 0x6B50 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x6B58
+--- Found segment that will be moved from address: 0x6AE8 to address: 0x6B5C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x6B64
+--- Found a word to insert to address: 0x6B68
+--- Found segment that must be added. Length: 4 , address: 0x6B6C
+--- Found a word to insert to address: 0x6B70
+--- Found segment that must be added. Length: 4 , address: 0x6B74
+--- Found a word to insert to address: 0x6B78
+--- Found segment that must be added. Length: 4 , address: 0x6B7C
+--- Found segment that will be moved from address: 0x6B0C to address: 0x6B80 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x6B88
+--- Found segment that will be moved from address: 0x6B1C to address: 0x6B90 of length 220
+--- Found segment that must be added. Length: 4 , address: 0x6C6C
+--- Found segment that will be moved from address: 0x6BFC to address: 0x6C70 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x6C90
+--- Found segment that will be moved from address: 0x6C20 to address: 0x6C94 of length 124
+--- Found segment that must be added. Length: 4 , address: 0x6D10
+--- Found segment that will be moved from address: 0x6CA0 to address: 0x6D14 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x6D28
+--- Found segment that will be moved from address: 0x6CB8 to address: 0x6D2C of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6D3C
+--- Found segment that will be moved from address: 0x6CCC to address: 0x6D40 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x6D54
+--- Found segment that will be moved from address: 0x6CE4 to address: 0x6D58 of length 56
+--- Found segment that must be added. Length: 8 , address: 0x6D90
+--- Found a word to insert to address: 0x6D98
+--- Found segment that must be added. Length: 4 , address: 0x6D9C
+--- Found segment that will be moved from address: 0x6D2C to address: 0x6DA0 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x6DC8
+--- Found segment that will be moved from address: 0x6D58 to address: 0x6DCC of length 24
+--- Found segment that must be added. Length: 4 , address: 0x6DE4
+--- Found segment that will be moved from address: 0x6D74 to address: 0x6DE8 of length 84
+--- Found segment that must be added. Length: 48 , address: 0x6E3C
+--- Found segment that will be moved from address: 0x6DF8 to address: 0x6E6C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x6E74
+--- Found segment that will be moved from address: 0x6E04 to address: 0x6E78 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x6E8C
+--- Found a word to insert to address: 0x6E90
+--- Found segment that must be added. Length: 4 , address: 0x6E94
+--- Found segment that will be moved from address: 0x6E24 to address: 0x6E98 of length 52
+--- Found segment that must be added. Length: 4 , address: 0x6ECC
+--- Found segment that will be moved from address: 0x6E5C to address: 0x6ED0 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6EE0
+--- Found segment that will be moved from address: 0x6E70 to address: 0x6EE4 of length 84
+--- Found segment that must be added. Length: 4 , address: 0x6F38
+--- Found segment that will be moved from address: 0x6EC8 to address: 0x6F3C of length 72
+--- Found segment that must be added. Length: 4 , address: 0x6F84
+--- Found segment that will be moved from address: 0x6F14 to address: 0x6F88 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x6F9C
+--- Found segment that will be moved from address: 0x6F2C to address: 0x6FA0 of length 12
+--- Found segment that must be added. Length: 8 , address: 0x6FAC
+--- Found segment that will be moved from address: 0x6F40 to address: 0x6FB4 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x6FC4
+--- Found segment that will be moved from address: 0x6F54 to address: 0x6FC8 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x6FF0
+--- Found segment that will be moved from address: 0x6F80 to address: 0x6FF4 of length 132
+--- Found segment that must be added. Length: 4 , address: 0x7078
+--- Found segment that will be moved from address: 0x7008 to address: 0x707C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x7084
+--- Found a word to insert to address: 0x7088
+--- Found segment that must be added. Length: 4 , address: 0x708C
+--- Found segment that will be moved from address: 0x701C to address: 0x7090 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x70AC
+--- Found segment that will be moved from address: 0x703C to address: 0x70B0 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x7108
+--- Found segment that will be moved from address: 0x7098 to address: 0x710C of length 332
+--- Found segment that must be added. Length: 4 , address: 0x7258
+--- Found segment that will be moved from address: 0x71E8 to address: 0x725C of length 176
+--- Found segment that must be added. Length: 4 , address: 0x730C
+--- Found segment that will be moved from address: 0x729C to address: 0x7310 of length 8
+--- Found segment that must be added. Length: 8 , address: 0x7318
+--- Found segment that will be moved from address: 0x72AC to address: 0x7320 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x7350
+--- Found segment that will be moved from address: 0x72E0 to address: 0x7354 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x7380
+--- Found segment that will be moved from address: 0x7310 to address: 0x7384 of length 96
+--- Found segment that must be added. Length: 4 , address: 0x73E4
+--- Found a word to insert to address: 0x73E8
+--- Found segment that must be added. Length: 8 , address: 0x73EC
+--- Found segment that will be moved from address: 0x7380 to address: 0x73F4 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x7400
+--- Found segment that will be moved from address: 0x7390 to address: 0x7404 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x7450
+--- Found segment that will be moved from address: 0x73E0 to address: 0x7454 of length 48
+--- Found segment that must be added. Length: 12 , address: 0x7484
+--- Found segment that will be moved from address: 0x741C to address: 0x7490 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x74AC
+--- Found segment that will be moved from address: 0x743C to address: 0x74B0 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x74C8
+--- Found segment that will be moved from address: 0x7458 to address: 0x74CC of length 104
+--- Found segment that must be added. Length: 8 , address: 0x7534
+--- Found segment that will be moved from address: 0x74C8 to address: 0x753C of length 44
+--- Found segment that must be added. Length: 4 , address: 0x7568
+--- Found a word to insert to address: 0x756C
+--- Found segment that must be added. Length: 8 , address: 0x7570
+--- Found segment that will be moved from address: 0x7504 to address: 0x7578 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x7590
+--- Found segment that will be moved from address: 0x7520 to address: 0x7594 of length 72
+--- Found segment that must be added. Length: 8 , address: 0x75DC
+--- Found segment that will be moved from address: 0x7570 to address: 0x75E4 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x75F8
+--- Found segment that will be moved from address: 0x7588 to address: 0x75FC of length 48
+--- Found segment that must be added. Length: 4 , address: 0x762C
+--- Found segment that will be moved from address: 0x75BC to address: 0x7630 of length 112
+--- Found segment that must be added. Length: 12 , address: 0x76A0
+--- Found segment that will be moved from address: 0x7638 to address: 0x76AC of length 72
+--- Found segment that must be added. Length: 8 , address: 0x76F4
+--- Found segment that will be moved from address: 0x7688 to address: 0x76FC of length 32
+--- Found segment that must be added. Length: 4 , address: 0x771C
+--- Found segment that will be moved from address: 0x76AC to address: 0x7720 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x7738
+--- Found segment that will be moved from address: 0x76C8 to address: 0x773C of length 20
+--- Found segment that must be added. Length: 4 , address: 0x7750
+--- Found segment that will be moved from address: 0x76E0 to address: 0x7754 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x776C
+--- Found segment that will be moved from address: 0x76FC to address: 0x7770 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x777C
+--- Found segment that will be moved from address: 0x770C to address: 0x7780 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x77A0
+--- Found segment that will be moved from address: 0x7730 to address: 0x77A4 of length 148
+--- Found segment that must be added. Length: 8 , address: 0x7838
+--- Found segment that will be moved from address: 0x77CC to address: 0x7840 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x7848
+--- Found segment that will be moved from address: 0x77D8 to address: 0x784C of length 36
+--- Found segment that must be added. Length: 4 , address: 0x7870
+--- Found segment that will be moved from address: 0x7800 to address: 0x7874 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x7898
+--- Found segment that will be moved from address: 0x7828 to address: 0x789C of length 72
+--- Found segment that must be added. Length: 4 , address: 0x78E4
+--- Found a word to insert to address: 0x78E8
+--- Found segment that must be added. Length: 4 , address: 0x78EC
+--- Found segment that will be moved from address: 0x787C to address: 0x78F0 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x793C
+--- Found segment that will be moved from address: 0x72AC to address: 0x7940 of length 48
+--- Found segment that must be added. Length: 4 , address: 0x7970
+--- Found segment that will be moved from address: 0x72E0 to address: 0x7974 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x79A0
+--- Found segment that will be moved from address: 0x7930 to address: 0x79A4 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x79FC
+--- Found segment that will be moved from address: 0x798C to address: 0x7A00 of length 84
+--- Found segment that must be added. Length: 4 , address: 0x7A54
+--- Found segment that will be moved from address: 0x79E4 to address: 0x7A58 of length 172
+--- Found segment that must be added. Length: 4 , address: 0x7B04
+--- Found segment that will be moved from address: 0x7A94 to address: 0x7B08 of length 12
+--- Found a word to insert to address: 0x7B14
+--- Found segment that will be moved from address: 0x7AA4 to address: 0x7B18 of length 52
+--- Found segment that must be added. Length: 4 , address: 0x7B4C
+--- Found segment that will be moved from address: 0x7ADC to address: 0x7B50 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x7B70
+--- Found segment that will be moved from address: 0x7B00 to address: 0x7B74 of length 96
+--- Found segment that must be added. Length: 4 , address: 0x7BD4
+--- Found segment that will be moved from address: 0x7B64 to address: 0x7BD8 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x7C20
+--- Found segment that will be moved from address: 0x7BB0 to address: 0x7C24 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x7C34
+--- Found segment that will be moved from address: 0x7BC4 to address: 0x7C38 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x7C58
+--- Found segment that will be moved from address: 0x7BE8 to address: 0x7C5C of length 60
+--- Found segment that must be added. Length: 4 , address: 0x7C98
+--- Found segment that will be moved from address: 0x7C28 to address: 0x7C9C of length 12
+--- Found segment that must be added. Length: 8 , address: 0x7CA8
+--- Found segment that will be moved from address: 0x7C3C to address: 0x7CB0 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x7CC0
+--- Found segment that will be moved from address: 0x7C50 to address: 0x7CC4 of length 104
+--- Found segment that must be added. Length: 4 , address: 0x7D2C
+--- Found segment that will be moved from address: 0x7CBC to address: 0x7D30 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x7D3C
+--- Found a word to insert to address: 0x7D40
+--- Found segment that must be added. Length: 4 , address: 0x7D44
+--- Found segment that will be moved from address: 0x7CD4 to address: 0x7D48 of length 80
+--- Found segment that must be added. Length: 4 , address: 0x7D98
+--- Found segment that will be moved from address: 0x7D28 to address: 0x7D9C of length 12
+--- Found segment that must be added. Length: 4 , address: 0x7DA8
+--- Found segment that will be moved from address: 0x7D38 to address: 0x7DAC of length 8
+--- Found segment that must be added. Length: 4 , address: 0x7DB4
+--- Found segment that will be moved from address: 0x7D44 to address: 0x7DB8 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x7DD8
+--- Found segment that will be moved from address: 0x7D68 to address: 0x7DDC of length 8
+--- Found segment that must be added. Length: 4 , address: 0x7DE4
+--- Found a word to insert to address: 0x7DE8
+--- Found segment that must be added. Length: 4 , address: 0x7DEC
+--- Found segment that will be moved from address: 0x7D7C to address: 0x7DF0 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x7E08
+--- Found segment that will be moved from address: 0x7D98 to address: 0x7E0C of length 184
+--- Found segment that must be added. Length: 4 , address: 0x7EC4
+--- Found segment that will be moved from address: 0x7E54 to address: 0x7EC8 of length 24
+--- Found segment that must be added. Length: 12 , address: 0x7EE0
+--- Found segment that will be moved from address: 0x7E78 to address: 0x7EEC of length 200
+--- Found segment that must be added. Length: 4 , address: 0x7FB4
+--- Found a word to insert to address: 0x7FB8
+--- Found segment that must be added. Length: 28 , address: 0x7FBC
+--- Found segment that will be moved from address: 0x7F64 to address: 0x7FD8 of length 12
+--- Found segment that must be added. Length: 24 , address: 0x7FE4
+--- Found segment that will be moved from address: 0x7F88 to address: 0x7FFC of length 100
+--- Found segment that must be added. Length: 4 , address: 0x8060
+--- Found segment that will be moved from address: 0x7FF0 to address: 0x8064 of length 200
+--- Found segment that must be added. Length: 4 , address: 0x812C
+--- Found a word to insert to address: 0x8130
+--- Found segment that must be added. Length: 4 , address: 0x8134
+--- Found segment that will be moved from address: 0x80C4 to address: 0x8138 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x8190
+--- Found segment that will be moved from address: 0x8120 to address: 0x8194 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x819C
+--- Found segment that will be moved from address: 0x812C to address: 0x81A0 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x81B8
+--- Found segment that will be moved from address: 0x8148 to address: 0x81BC of length 12
+--- Found segment that must be added. Length: 12 , address: 0x81C8
+--- Found a word to insert to address: 0x81D4
+--- Found segment that must be added. Length: 24 , address: 0x81D8
+--- Found segment that will be moved from address: 0x817C to address: 0x81F0 of length 48
+--- Found segment that must be added. Length: 16 , address: 0x8220
+--- Found segment that will be moved from address: 0x81BC to address: 0x8230 of length 44
+--- Found segment that must be added. Length: 16 , address: 0x825C
+--- Found segment that will be moved from address: 0x81F8 to address: 0x826C of length 44
+--- Found segment that must be added. Length: 16 , address: 0x8298
+--- Found segment that will be moved from address: 0x8234 to address: 0x82A8 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x82B4
+--- Found segment that will be moved from address: 0x8244 to address: 0x82B8 of length 80
+--- Found segment that must be added. Length: 4 , address: 0x8308
+--- Found segment that will be moved from address: 0x8298 to address: 0x830C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x8314
+--- Found segment that will be moved from address: 0x82A4 to address: 0x8318 of length 120
+--- Found segment that must be added. Length: 4 , address: 0x8390
+--- Found segment that will be moved from address: 0x8320 to address: 0x8394 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x83AC
+--- Found segment that will be moved from address: 0x833C to address: 0x83B0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x83B8
+--- Found segment that will be moved from address: 0x8348 to address: 0x83BC of length 32
+--- Found segment that must be added. Length: 4 , address: 0x83DC
+--- Found segment that will be moved from address: 0x836C to address: 0x83E0 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x83E8
+--- Found segment that will be moved from address: 0x8378 to address: 0x83EC of length 32
+--- Found segment that must be added. Length: 8 , address: 0x840C
+--- Found segment that will be moved from address: 0x83A0 to address: 0x8414 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x841C
+--- Found segment that will be moved from address: 0x83AC to address: 0x8420 of length 84
+--- Found segment that must be added. Length: 4 , address: 0x8474
+--- Found segment that will be moved from address: 0x8404 to address: 0x8478 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x848C
+--- Found segment that will be moved from address: 0x841C to address: 0x8490 of length 68
+--- Found segment that must be added. Length: 4 , address: 0x84D4
+--- Found segment that will be moved from address: 0x8464 to address: 0x84D8 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x8518
+--- Found segment that will be moved from address: 0x84A8 to address: 0x851C of length 8
+--- Found segment that must be added. Length: 4 , address: 0x8524
+--- Found segment that will be moved from address: 0x84B4 to address: 0x8528 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x8580
+--- Found segment that will be moved from address: 0x8510 to address: 0x8584 of length 8
+--- Found segment that must be added. Length: 4 , address: 0x858C
+--- Found segment that will be moved from address: 0x851C to address: 0x8590 of length 8
+--- Found segment that must be added. Length: 40 , address: 0x8598
+--- Found a word to insert to address: 0x85C0
+--- Found segment that must be added. Length: 4 , address: 0x85C4
+--- Found segment that will be moved from address: 0x8554 to address: 0x85C8 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x85E0
+--- Found segment that will be moved from address: 0x8570 to address: 0x85E4 of length 20
+--- Found a word to insert to address: 0x85F8
+--- Found segment that will be moved from address: 0x8588 to address: 0x85FC of length 28
+--- Found a word to insert to address: 0x8618
+--- Found segment that will be moved from address: 0x85A8 to address: 0x861C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8638
+--- Found segment that will be moved from address: 0x85C8 to address: 0x863C of length 40
+--- Found segment that must be added. Length: 4 , address: 0x8664
+--- Found segment that will be moved from address: 0x85F4 to address: 0x8668 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x867C
+--- Found segment that will be moved from address: 0x860C to address: 0x8680 of length 12
+--- Found segment that must be added. Length: 16 , address: 0x868C
+--- Found segment that will be moved from address: 0x8628 to address: 0x869C of length 20
+--- Found segment that must be added. Length: 8 , address: 0x86B0
+--- Found segment that will be moved from address: 0x8644 to address: 0x86B8 of length 136
+--- Found segment that must be added. Length: 8 , address: 0x8740
+--- Found a word to insert to address: 0x8748
+--- Found segment that must be added. Length: 48 , address: 0x874C
+--- Found segment that will be moved from address: 0x8708 to address: 0x877C of length 52
+--- Found segment that must be added. Length: 20 , address: 0x87B0
+--- Found a word to insert to address: 0x87C4
+--- Found segment that must be added. Length: 4 , address: 0x87C8
+--- Found segment that will be moved from address: 0x8758 to address: 0x87CC of length 12
+--- Found segment that must be added. Length: 4 , address: 0x87D8
+--- Found segment that will be moved from address: 0x8768 to address: 0x87DC of length 44
+--- Found segment that must be added. Length: 4 , address: 0x8808
+--- Found segment that will be moved from address: 0x8798 to address: 0x880C of length 20
+--- Found segment that must be added. Length: 4 , address: 0x8820
+--- Found segment that will be moved from address: 0x87B0 to address: 0x8824 of length 32
+--- Found segment that must be added. Length: 12 , address: 0x8844
+--- Found segment that will be moved from address: 0x87DC to address: 0x8850 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x885C
+--- Found segment that will be moved from address: 0x87EC to address: 0x8860 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x887C
+--- Found segment that will be moved from address: 0x880C to address: 0x8880 of length 56
+--- Found segment that must be added. Length: 8 , address: 0x88B8
+--- Found a word to insert to address: 0x88C0
+--- Found segment that must be added. Length: 12 , address: 0x88C4
+--- Found segment that will be moved from address: 0x885C to address: 0x88D0 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x88E0
+--- Found segment that will be moved from address: 0x8870 to address: 0x88E4 of length 72
+--- Found segment that must be added. Length: 4 , address: 0x892C
+--- Found segment that will be moved from address: 0x88BC to address: 0x8930 of length 76
+--- Found segment that must be added. Length: 8 , address: 0x897C
+--- Found a word to insert to address: 0x8984
+--- Found segment that must be added. Length: 20 , address: 0x8988
+--- Found segment that will be moved from address: 0x8928 to address: 0x899C of length 64
+--- Found segment that must be added. Length: 4 , address: 0x89DC
+--- Found segment that will be moved from address: 0x896C to address: 0x89E0 of length 40
+--- Found segment that must be added. Length: 8 , address: 0x8A08
+--- Found segment that will be moved from address: 0x899C to address: 0x8A10 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x8A30
+--- Found segment that will be moved from address: 0x89C0 to address: 0x8A34 of length 64
+--- Found segment that must be added. Length: 4 , address: 0x8A74
+--- Found a word to insert to address: 0x8A78
+--- Found segment that must be added. Length: 12 , address: 0x8A7C
+--- Found segment that will be moved from address: 0x8A14 to address: 0x8A88 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x8A9C
+--- Found segment that will be moved from address: 0x8A2C to address: 0x8AA0 of length 88
+--- Found segment that must be added. Length: 4 , address: 0x8AF8
+--- Found a word to insert to address: 0x8AFC
+--- Found segment that must be added. Length: 12 , address: 0x8B00
+--- Found segment that will be moved from address: 0x8A98 to address: 0x8B0C of length 44
+--- Found segment that must be added. Length: 4 , address: 0x8B38
+--- Found segment that will be moved from address: 0x8AC8 to address: 0x8B3C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8B58
+--- Found segment that will be moved from address: 0x8AE8 to address: 0x8B5C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8B78
+--- Found segment that will be moved from address: 0x8B08 to address: 0x8B7C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8B98
+--- Found segment that will be moved from address: 0x8B28 to address: 0x8B9C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8BB8
+--- Found segment that will be moved from address: 0x8B48 to address: 0x8BBC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8BD8
+--- Found segment that will be moved from address: 0x8B68 to address: 0x8BDC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8BF8
+--- Found segment that will be moved from address: 0x8B88 to address: 0x8BFC of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8C18
+--- Found segment that will be moved from address: 0x8BA8 to address: 0x8C1C of length 48
+--- Found segment that must be added. Length: 4 , address: 0x8C4C
+--- Found segment that will be moved from address: 0x8BDC to address: 0x8C50 of length 44
+--- Found segment that must be added. Length: 4 , address: 0x8C7C
+--- Found segment that will be moved from address: 0x8C0C to address: 0x8C80 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x8CA4
+--- Found segment that will be moved from address: 0x8C34 to address: 0x8CA8 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8CC4
+--- Found segment that will be moved from address: 0x8C54 to address: 0x8CC8 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x8CEC
+--- Found segment that will be moved from address: 0x8C7C to address: 0x8CF0 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8D0C
+--- Found segment that will be moved from address: 0x8C9C to address: 0x8D10 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8D2C
+--- Found segment that will be moved from address: 0x8CBC to address: 0x8D30 of length 32
+--- Found segment that must be added. Length: 48 , address: 0x8D50
+--- Found a word to insert to address: 0x8D80
+--- Found segment that must be added. Length: 16 , address: 0x8D84
+--- Found a word to insert to address: 0x8D94
+--- Found segment that must be added. Length: 4 , address: 0x8D98
+--- Found segment that will be moved from address: 0x8D28 to address: 0x8D9C of length 168
+--- Found a word to insert to address: 0x8E44
+--- Found segment that will be moved from address: 0x8DD4 to address: 0x8E48 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x8E68
+--- Found segment that will be moved from address: 0x8DF8 to address: 0x8E6C of length 28
+--- Found segment that must be added. Length: 4 , address: 0x8E88
+--- Found segment that will be moved from address: 0x8E18 to address: 0x8E8C of length 60
+--- Found segment that must be added. Length: 4 , address: 0x8EC8
+--- Found segment that will be moved from address: 0x8E58 to address: 0x8ECC of length 40
+--- Found segment that must be added. Length: 4 , address: 0x8EF4
+--- Found segment that will be moved from address: 0x8E84 to address: 0x8EF8 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x8F1C
+--- Found segment that will be moved from address: 0x8EAC to address: 0x8F20 of length 40
+--- Found segment that must be added. Length: 4 , address: 0x8F48
+--- Found segment that will be moved from address: 0x8ED8 to address: 0x8F4C of length 36
+--- Found segment that must be added. Length: 4 , address: 0x8F70
+--- Found segment that will be moved from address: 0x8F00 to address: 0x8F74 of length 76
+--- Found segment that must be added. Length: 4 , address: 0x8FC0
+--- Found segment that will be moved from address: 0x8F50 to address: 0x8FC4 of length 224
+--- Found segment that must be added. Length: 4 , address: 0x90A4
+--- Found segment that will be moved from address: 0x9034 to address: 0x90A8 of length 24
+--- Found segment that must be added. Length: 8 , address: 0x90C0
+--- Found a word to insert to address: 0x90C8
+--- Found segment that must be added. Length: 24 , address: 0x90CC
+--- Found a word to insert to address: 0x90E4
+--- Found segment that must be added. Length: 24 , address: 0x90E8
+--- Found a word to insert to address: 0x9100
+--- Found a word to insert to address: 0x9104
+--- Found segment that must be added. Length: 16 , address: 0x9108
+--- Found a word to insert to address: 0x9118
+--- Found segment that must be added. Length: 20 , address: 0x911C
+--- Found a word to insert to address: 0x9130
+--- Found segment that must be added. Length: 4 , address: 0x9134
+--- Found a word to insert to address: 0x9138
+--- Found segment that must be added. Length: 20 , address: 0x913C
+--- Found a word to insert to address: 0x9150
+--- Found segment that must be added. Length: 4 , address: 0x9154
+--- Found segment that will be moved from address: 0x90E4 to address: 0x9158 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x9174
+--- Found segment that will be moved from address: 0x9104 to address: 0x9178 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x9184
+--- Found segment that will be moved from address: 0x9114 to address: 0x9188 of length 156
+--- Found segment that must be added. Length: 4 , address: 0x9224
+--- Found segment that will be moved from address: 0x91B4 to address: 0x9228 of length 32
+--- Found segment that must be added. Length: 4 , address: 0x9248
+--- Found segment that will be moved from address: 0x91D8 to address: 0x924C of length 296
+--- Found segment that must be added. Length: 4 , address: 0x9374
+--- Found segment that will be moved from address: 0x9304 to address: 0x9378 of length 248
+--- Found segment that must be added. Length: 4 , address: 0x9470
+--- Found segment that will be moved from address: 0x9400 to address: 0x9474 of length 60
+--- Found segment that must be added. Length: 36 , address: 0x94B0
+--- Found a word to insert to address: 0x94D4
+--- Found a word to insert to address: 0x94D8
+--- Found segment that must be added. Length: 72 , address: 0x94DC
+--- Found a word to insert to address: 0x9524
+--- Found segment that must be added. Length: 8 , address: 0x9528
+--- Found a word to insert to address: 0x9530
+--- Found segment that must be added. Length: 40 , address: 0x9534
+--- Found segment that will be moved from address: 0x94E8 to address: 0x955C of length 80
+--- Found segment that must be added. Length: 4 , address: 0x95AC
+--- Found segment that will be moved from address: 0x953C to address: 0x95B0 of length 332
+--- Found segment that must be added. Length: 4 , address: 0x96FC
+--- Found segment that will be moved from address: 0x968C to address: 0x9700 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x970C
+--- Found segment that will be moved from address: 0x969C to address: 0x9710 of length 56
+--- Found segment that must be added. Length: 4 , address: 0x9748
+--- Found segment that will be moved from address: 0x96D8 to address: 0x974C of length 36
+--- Found segment that must be added. Length: 4 , address: 0x9770
+--- Found segment that will be moved from address: 0x9700 to address: 0x9774 of length 60
+--- Found segment that must be added. Length: 4 , address: 0x97B0
+--- Found segment that will be moved from address: 0x9740 to address: 0x97B4 of length 24
+--- Found segment that must be added. Length: 4 , address: 0x97CC
+--- Found segment that will be moved from address: 0x975C to address: 0x97D0 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x97E4
+--- Found segment that will be moved from address: 0x9774 to address: 0x97E8 of length 92
+--- Found segment that must be added. Length: 148 , address: 0x9844
+--- Found a word to insert to address: 0x98D8
+--- Found segment that must be added. Length: 4 , address: 0x98DC
+--- Found a word to insert to address: 0x98E0
+--- Found segment that must be added. Length: 12 , address: 0x98E4
+--- Found segment that will be moved from address: 0x987C to address: 0x98F0 of length 204
+--- Found segment that must be added. Length: 4 , address: 0x99BC
+--- Found segment that will be moved from address: 0x994C to address: 0x99C0 of length 64
+--- Found segment that must be added. Length: 40 , address: 0x9A00
+--- Found a word to insert to address: 0x9A28
+--- Found segment that must be added. Length: 8 , address: 0x9A2C
+--- Found segment that will be moved from address: 0x99C0 to address: 0x9A34 of length 40
+--- Found segment that must be added. Length: 24 , address: 0x9A5C
+--- Found segment that will be moved from address: 0x9A00 to address: 0x9A74 of length 28
+--- Found segment that must be added. Length: 4 , address: 0x9A90
+--- Found segment that will be moved from address: 0x9A20 to address: 0x9A94 of length 324
+--- Found segment that must be added. Length: 24 , address: 0x9BD8
+--- Found a word to insert to address: 0x9BF0
+--- Found segment that must be added. Length: 20 , address: 0x9BF4
+--- Found a word to insert to address: 0x9C08
+--- Found segment that must be added. Length: 12 , address: 0x9C0C
+--- Found segment that will be moved from address: 0x9BA4 to address: 0x9C18 of length 56
+--- Found segment that must be added. Length: 4 , address: 0x9C50
+--- Found a word to insert to address: 0x9C54
+--- Found segment that will be moved from address: 0x9BE4 to address: 0x9C58 of length 20
+--- Found segment that must be added. Length: 4 , address: 0x9C6C
+--- Found a word to insert to address: 0x9C70
+--- Found segment that must be added. Length: 4 , address: 0x9C74
+--- Found segment that will be moved from address: 0x9C04 to address: 0x9C78 of length 16
+--- Found segment that must be added. Length: 4 , address: 0x9C88
+--- Found segment that will be moved from address: 0x9C18 to address: 0x9C8C of length 56
+--- Found segment that must be added. Length: 4 , address: 0x9CC4
+--- Found segment that will be moved from address: 0x9C54 to address: 0x9CC8 of length 36
+--- Found segment that must be added. Length: 4 , address: 0x9CEC
+--- Found segment that will be moved from address: 0x9C7C to address: 0x9CF0 of length 608
+--- Found segment that must be added. Length: 16 , address: 0x9F50
+--- Found a word to insert to address: 0x9F60
+--- Found segment that must be added. Length: 24 , address: 0x9F64
+--- Found segment that will be moved from address: 0x9F08 to address: 0x9F7C of length 24
+--- Found segment that must be added. Length: 4 , address: 0x9F94
+--- Found segment that will be moved from address: 0x9F24 to address: 0x9F98 of length 12
+--- Found segment that must be added. Length: 4 , address: 0x9FA4
+--- Found segment that will be moved from address: 0x9F34 to address: 0x9FA8 of length 492
+--- Found segment that must be added. Length: 4 , address: 0xA194
+--- Found segment that will be moved from address: 0xA124 to address: 0xA198 of length 60
+--- Found segment that must be added. Length: 4 , address: 0xA1D4
+--- Found a word to insert to address: 0xA1D8
+--- Found segment that must be added. Length: 4 , address: 0xA1DC
+--- Found segment that will be moved from address: 0xA16C to address: 0xA1E0 of length 36
+--- Found segment that must be added. Length: 4 , address: 0xA204
+--- Found segment that will be moved from address: 0xA194 to address: 0xA208 of length 8
+--- Found segment that must be added. Length: 4 , address: 0xA210
+--- Found a word to insert to address: 0xA214
+--- Found segment that must be added. Length: 4 , address: 0xA218
+--- Found segment that will be moved from address: 0xA1A8 to address: 0xA21C of length 108
+--- Found segment that must be added. Length: 4 , address: 0xA288
+--- Found segment that will be moved from address: 0xA218 to address: 0xA28C of length 152
+--- Found segment that must be added. Length: 8 , address: 0xA324
+--- Found a word to insert to address: 0xA32C
+--- Found segment that must be added. Length: 8 , address: 0xA330
+--- Found segment that will be moved from address: 0xA2C4 to address: 0xA338 of length 44
+--- Found a word to insert to address: 0xA364
+--- Found segment that must be added. Length: 4 , address: 0xA368
+--- Found segment that will be moved from address: 0xA2F8 to address: 0xA36C of length 124
+--- Found a word to insert to address: 0xA3E8
+--- Found segment that must be added. Length: 4 , address: 0xA3EC
+--- Found a word to insert to address: 0xA3F0
+--- Found segment that must be added. Length: 4 , address: 0xA3F4
+--- Found segment that will be moved from address: 0xA384 to address: 0xA3F8 of length 8
+--- Found segment that must be added. Length: 4 , address: 0xA400
+--- Found segment that will be moved from address: 0xA390 to address: 0xA404 of length 64
+--- Found segment that must be added. Length: 4 , address: 0xA444
+--- Found segment that will be moved from address: 0xA3D4 to address: 0xA448 of length 28
+--- Found segment that must be added. Length: 4 , address: 0xA464
+--- Found segment that will be moved from address: 0xA3F4 to address: 0xA468 of length 36
+--- Found segment that must be added. Length: 4 , address: 0xA48C
+--- Found segment that will be moved from address: 0xA41C to address: 0xA490 of length 12
+--- Found segment that must be added. Length: 12 , address: 0xA49C
+--- Found segment that will be moved from address: 0xA434 to address: 0xA4A8 of length 20
+--- Found segment that must be added. Length: 4 , address: 0xA4BC
+--- Found segment that will be moved from address: 0xA44C to address: 0xA4C0 of length 1180
+--- Found segment that must be added. Length: 12 , address: 0xA95C
+--- Found segment that will be moved from address: 0xA8F4 to address: 0xA968 of length 32
+--- Found segment that must be added. Length: 8 , address: 0xA988
+--- Found segment that will be moved from address: 0xA91C to address: 0xA990 of length 60
+--- Found segment that must be added. Length: 16 , address: 0xA9CC
+--- Found segment that will be moved from address: 0xA968 to address: 0xA9DC of length 12
+--- Found segment that must be added. Length: 4 , address: 0xA9E8
+--- Found segment that will be moved from address: 0xA978 to address: 0xA9EC of length 56
+--- Found segment that must be added. Length: 4 , address: 0xAA24
+--- Found segment that will be moved from address: 0xA9B4 to address: 0xAA28 of length 12
+--- Found segment that must be added. Length: 4 , address: 0xAA34
+--- Found segment that will be moved from address: 0xA9C4 to address: 0xAA38 of length 12
+--- Found segment that must be added. Length: 4 , address: 0xAA44
+--- Found segment that will be moved from address: 0xA9D4 to address: 0xAA48 of length 12
+--- Found segment that must be added. Length: 4 , address: 0xAA54
+--- Found segment that will be moved from address: 0xA9E4 to address: 0xAA58 of length 104
+--- Found segment that must be added. Length: 8 , address: 0xAAC0
+--- Found segment that will be moved from address: 0xAA54 to address: 0xAAC8 of length 136
+--- Found segment that must be added. Length: 4 , address: 0xAB50
+--- Found segment that will be moved from address: 0xAAE0 to address: 0xAB54 of length 280
+--- Found segment that must be added. Length: 12 , address: 0xAC6C
+--- Found segment that will be moved from address: 0xAC04 to address: 0xAC78 of length 20
+--- Found segment that must be added. Length: 4 , address: 0xAC8C
+--- Found segment that will be moved from address: 0xAC1C to address: 0xAC90 of length 32
+--- Found segment that must be added. Length: 16 , address: 0xACB0
+--- Found segment that will be moved from address: 0xAC4C to address: 0xACC0 of length 252
+--- Found segment that must be added. Length: 4 , address: 0xADBC
+--- Found segment that will be moved from address: 0xAD4C to address: 0xADC0 of length 52
+--- Found segment that must be added. Length: 4 , address: 0xADF4
+--- Found a word to insert to address: 0xADF8
+--- Found segment that must be added. Length: 4 , address: 0xADFC
+--- Found segment that will be moved from address: 0xAD8C to address: 0xAE00 of length 108
+--- Found segment that must be added. Length: 4 , address: 0xAE6C
+--- Found a word to insert to address: 0xAE70
+--- Found segment that must be added. Length: 4 , address: 0xAE74
+--- Found a word to insert to address: 0xAE78
+--- Found segment that will be moved from address: 0xAE08 to address: 0xAE7C of length 228
+--- Found segment that must be added. Length: 12 , address: 0xAF60
+--- Found segment that will be moved from address: 0xAEF8 to address: 0xAF6C of length 216
+--- Found segment that must be added. Length: 12 , address: 0xB044
+--- Found segment that will be moved from address: 0xAFDC to address: 0xB050 of length 104
+--- Found segment that must be added. Length: 12 , address: 0xB0B8
+--- Found segment that will be moved from address: 0xB050 to address: 0xB0C4 of length 72
+--- Found segment that must be added. Length: 4 , address: 0xB10C
+--- Found segment that will be moved from address: 0xB09C to address: 0xB110 of length 52
+--- Found segment that must be added. Length: 4 , address: 0xB144
+--- Found segment that will be moved from address: 0xB0D4 to address: 0xB148 of length 20
+--- Found segment that must be added. Length: 4 , address: 0xB15C
+--- Found segment that will be moved from address: 0xB0EC to address: 0xB160 of length 12
+--- Found segment that must be added. Length: 4 , address: 0xB16C
+--- Found segment that will be moved from address: 0xB0FC to address: 0xB170 of length 40
+--- Found segment that must be added. Length: 4 , address: 0xB198
+--- Found segment that will be moved from address: 0xB128 to address: 0xB19C of length 392
+--- Found segment that must be added. Length: 4 , address: 0xB324
+--- Found segment that will be moved from address: 0xB2B4 to address: 0xB328 of length 300
+--- Found segment that must be added. Length: 4 , address: 0xB454
+--- Found segment that will be moved from address: 0xB3E4 to address: 0xB458 of length 184
+--- Found segment that must be added. Length: 12 , address: 0xB510
+--- Found segment that will be moved from address: 0xB4A8 to address: 0xB51C of length 228
+--- Found segment that must be added. Length: 12 , address: 0xB600
+--- Found segment that will be moved from address: 0xB598 to address: 0xB60C of length 40
+--- Found segment that must be added. Length: 4 , address: 0xB634
+--- Found segment that will be moved from address: 0xB5C4 to address: 0xB638 of length 136
+--- Found segment that must be added. Length: 4 , address: 0xB6C0
+--- Found segment that will be moved from address: 0xB650 to address: 0xB6C4 of length 28
+--- Found segment that must be added. Length: 4 , address: 0xB6E0
+--- Found segment that will be moved from address: 0xB670 to address: 0xB6E4 of length 12
+--- Found a word to insert to address: 0xB6F0
+--- Found segment that will be moved from address: 0xB680 to address: 0xB6F4 of length 12
+--- Found a word to insert to address: 0xB700
+--- Found segment that will be moved from address: 0xB690 to address: 0xB704 of length 784
+--- Found segment that must be added. Length: 12 , address: 0xBA14
+--- Found a word to insert to address: 0xBA20
+--- Found segment that must be added. Length: 4 , address: 0xBA24
+--- Found segment that will be moved from address: 0xB9B4 to address: 0xBA28 of length 764
+--- Found segment that must be added. Length: 8 , address: 0xBD24
+--- Found segment that will be moved from address: 0xBCB8 to address: 0xBD2C of length 676
+--- Found segment that must be added. Length: 24 , address: 0xBFD0
+--- Found a word to insert to address: 0xBFE8
+--- Found segment that must be added. Length: 4 , address: 0xBFEC
+--- Found segment that will be moved from address: 0xBF7C to address: 0xBFF0 of length 292
+--- Found segment that must be added. Length: 20 , address: 0xC114
+--- Found segment that will be moved from address: 0xC0B4 to address: 0xC128 of length 64
+--- Found segment that must be added. Length: 4 , address: 0xC168
+--- Found segment that will be moved from address: 0xC0FC to address: 0xC16C of length 20
+--- Found segment that must be added. Length: 20 , address: 0xC180
+--- Found segment that will be moved from address: 0xE39C to address: 0xC194 of length 8
+--- Found segment that must be added. Length: 32 , address: 0xC19C
+--- Found a word to insert to address: 0xC1BC
+--- Found segment that must be added. Length: 64 , address: 0xC1C0
+--- Found a word to insert to address: 0xC200
+--- Found segment that must be added. Length: 12 , address: 0xC204
+--- Found a word to insert to address: 0xC210
+--- Found segment that must be added. Length: 56 , address: 0xC214
+--- Found segment that will be moved from address: 0xC340 to address: 0xC24C of length 8
+--- Found segment that must be added. Length: 4 , address: 0xC254
+--- Found segment that will be moved from address: 0xC1D8 to address: 0xC258 of length 8
+--- Found segment that must be added. Length: 4 , address: 0xC260
+--- Found a word to insert to address: 0xC264
+--- Found segment that must be added. Length: 8 , address: 0xC268
+--- Found a word to insert to address: 0xC270
+--- Found segment that must be added. Length: 24 , address: 0xC274
+--- Found a word to insert to address: 0xC28C
+--- Found segment that must be added. Length: 4 , address: 0xC290
+--- Found a word to insert to address: 0xC294
+--- Found segment that must be added. Length: 12 , address: 0xC298
+--- Found segment that will be moved from address: 0xC2F4 to address: 0xC2A4 of length 8
+--- Found segment that must be added. Length: 4 , address: 0xC2AC
+--- Found a word to insert to address: 0xC2B0
+--- Found segment that must be added. Length: 20 , address: 0xC2B4
+--- Found a word to insert to address: 0xC2C8
+--- Found a word to insert to address: 0xC2CC
+--- Found segment that must be added. Length: 12 , address: 0xC2D0
+--- Found a word to insert to address: 0xC2DC
+--- Found segment that must be added. Length: 16 , address: 0xC2E0
+--- Found a word to insert to address: 0xC2F0
+--- Found segment that must be added. Length: 4 , address: 0xC2F4
+--- Found a word to insert to address: 0xC2F8
+--- Found segment that must be added. Length: 4 , address: 0xC2FC
+--- Found a word to insert to address: 0xC300
+--- Found segment that must be added. Length: 4 , address: 0xC304
+--- Found a word to insert to address: 0xC308
+--- Found segment that will be moved from address: 0xC2F4 to address: 0xC30C of length 12
+--- Found segment that must be added. Length: 8 , address: 0xC318
+--- Found a word to insert to address: 0xC320
+--- Found segment that must be added. Length: 4 , address: 0xC324
+--- Found a word to insert to address: 0xC328
+--- Found segment that must be added. Length: 12 , address: 0xC32C
+--- Found a word to insert to address: 0xC338
+--- Found segment that must be added. Length: 4 , address: 0xC33C
+--- Found a word to insert to address: 0xC340
+--- Found segment that will be moved from address: 0xC2F4 to address: 0xC344 of length 12
+--- Found segment that must be added. Length: 20 , address: 0xC350
+--- Found a word to insert to address: 0xC364
+--- Found segment that will be moved from address: 0xC27C to address: 0xC368 of length 12
+--- Found segment that must be added. Length: 12 , address: 0xC374
+--- Found segment that will be moved from address: 0xC2F4 to address: 0xC380 of length 8
+--- Found a word to insert to address: 0xC388
+--- Found segment that must be added. Length: 20 , address: 0xC38C
+--- Found a word to insert to address: 0xC3A0
+--- Found segment that must be added. Length: 4 , address: 0xC3A4
+--- Found a word to insert to address: 0xC3A8
+--- Found segment that must be added. Length: 8 , address: 0xC3AC
+--- Found a word to insert to address: 0xC3B4
+--- Found segment that must be added. Length: 4 , address: 0xC3B8
+--- Found a word to insert to address: 0xC3BC
+--- Found segment that must be added. Length: 4 , address: 0xC3C0
+--- Found a word to insert to address: 0xC3C4
+--- Found a word to insert to address: 0xC3C8
+--- Found segment that will be moved from address: 0xC324 to address: 0xC3CC of length 16
+--- Found segment that must be added. Length: 8 , address: 0xC3DC
+--- Found segment that will be moved from address: 0xC31C to address: 0xC3E4 of length 8
+--- Found segment that must be added. Length: 20 , address: 0xC3EC
+--- Found a word to insert to address: 0xC400
+--- Found segment that must be added. Length: 8 , address: 0xC404
+--- Found a word to insert to address: 0xC40C
+--- Found segment that must be added. Length: 4 , address: 0xC410
+--- Found segment that will be moved from address: 0xC1D8 to address: 0xC414 of length 8
+--- Found segment that must be added. Length: 4 , address: 0xC41C
+--- Found a word to insert to address: 0xC420
+--- Found segment that must be added. Length: 48 , address: 0xC424
+--- Found a word to insert to address: 0xC454
+--- Found segment that must be added. Length: 4 , address: 0xC458
+--- Found a word to insert to address: 0xC45C
+--- Found segment that must be added. Length: 36 , address: 0xC460
+--- Found a word to insert to address: 0xC484
+--- Found segment that must be added. Length: 36 , address: 0xC488
+--- Found a word to insert to address: 0xC4AC
+--- Found segment that must be added. Length: 32 , address: 0xC4B0
+--- Found a word to insert to address: 0xC4D0
+--- Found segment that must be added. Length: 20 , address: 0xC4D4
+--- Found segment that will be moved from address: 0xC480 to address: 0xC4E8 of length 268
+--- Found segment that must be added. Length: 48 , address: 0xC5F4
+--- Found a word to insert to address: 0xC624
+--- Found segment that will be moved from address: 0xC5C0 to address: 0xC628 of length 648
+--- Found segment that must be added. Length: 28 , address: 0xC8B0
+--- Found segment that will be moved from address: 0xC864 to address: 0xC8CC of length 892
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that will be moved from address: 0xCBF0 to address: 0xCC58 of length 48
+
+--- OPTIMIZING...
+
+--- Found segment that will be moved from address: 0xCC3C to address: 0xCCA4 of length 56
+
+--- OPTIMIZING...
+
+--- Found segment that will be moved from address: 0xCC88 to address: 0xCCF0 of length 64
+
+--- OPTIMIZING...
+
+--- Found segment that will be moved from address: 0xCCDC to address: 0xCD44 of length 56
+
+--- OPTIMIZING...
+
+--- Found segment that will be moved from address: 0xCD30 to address: 0xCD98 of length 6308
+--- Found segment that must be added. Length: 32 , address: 0xE63C
+--- Found a word to insert to address: 0xE65C
+--- Found segment that must be added. Length: 4 , address: 0xE660
+--- Found a word to insert to address: 0xE664
+--- Found segment that must be added. Length: 4 , address: 0xE668
+--- Found a word to insert to address: 0xE66C
+--- Found segment that must be added. Length: 4 , address: 0xE670
+--- Found a word to insert to address: 0xE674
+--- Found segment that must be added. Length: 4 , address: 0xE678
+--- Found a word to insert to address: 0xE67C
+--- Found segment that must be added. Length: 4 , address: 0xE680
+--- Found a word to insert to address: 0xE684
+--- Found segment that must be added. Length: 4 , address: 0xE688
+--- Found a word to insert to address: 0xE68C
+--- Found segment that must be added. Length: 4 , address: 0xE690
+--- Found a word to insert to address: 0xE694
+--- Found segment that must be added. Length: 4 , address: 0xE698
+--- Found a word to insert to address: 0xE69C
+--- Found segment that must be added. Length: 4 , address: 0xE6A0
+--- Found a word to insert to address: 0xE6A4
+--- Found segment that must be added. Length: 4 , address: 0xE6A8
+--- Found a word to insert to address: 0xE6AC
+--- Found segment that must be added. Length: 4 , address: 0xE6B0
+--- Found a word to insert to address: 0xE6B4
+--- Found segment that must be added. Length: 4 , address: 0xE6B8
+--- Found a word to insert to address: 0xE6BC
+--- Found segment that must be added. Length: 4 , address: 0xE6C0
+--- Found a word to insert to address: 0xE6C4
+--- Found segment that must be added. Length: 4 , address: 0xE6C8
+--- Found a word to insert to address: 0xE6CC
+--- Found segment that must be added. Length: 4 , address: 0xE6D0
+--- Found a word to insert to address: 0xE6D4
+--- Found segment that must be added. Length: 4 , address: 0xE6D8
+--- Found a word to insert to address: 0xE6DC
+--- Found segment that must be added. Length: 4 , address: 0xE6E0
+--- Found a word to insert to address: 0xE6E4
+--- Found segment that must be added. Length: 4 , address: 0xE6E8
+--- Found a word to insert to address: 0xE6EC
+--- Found segment that must be added. Length: 4 , address: 0xE6F0
+--- Found segment that will be moved from address: 0xE68C to address: 0xE6F4 of length 1032
+--- Found segment that must be added. Length: 120 , address: 0xEAFC
+--- Found segment that will be moved from address: 0xEB0C to address: 0xEB74 of length 420
+
+--- OPTIMIZING...
+
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+--- Found segment that will be moved from address: 0xEBC8 to address: 0xED2C of length 88
+
+--- OPTIMIZING...
+
+--- Found segment that will be moved from address: 0xED2C to address: 0xED94 of length 20
+--- Found segment that must be added. Length: 4 , address: 0xEDA8
+--- Found segment that will be moved from address: 0xED44 to address: 0xEDAC of length 12
+--- Found segment that must be added. Length: 8 , address: 0xEDB8
+--- Found a word to insert to address: 0xEDC0
+--- Found segment that must be added. Length: 4 , address: 0xEDC4
+--- Found segment that will be moved from address: 0xED60 to address: 0xEDC8 of length 24
+--- Found segment that must be added. Length: 12 , address: 0xEDE0
+--- Found segment that will be moved from address: 0xED84 to address: 0xEDEC of length 84
+
+--- OPTIMIZING...
+
+---- Optimized COPY and ADD operations to preceding ADD...
+---- Optimized 2 ADD/INSERT operations by merging...
+---- Optimized 2 ADD/INSERT operations by merging...
+-- Done...
+------------------------------------------
+
+-- Generating file 'data_basis\samd21-xpro\deltagen_rev_06_rev_08\deltagen_rev_06_rev_08'...
+--- Data succesfully generated
+--- Generating checksum CRC-16
+--- Generated CRC-16
+--- Finalizing delta file
+--- Writing file 'data_basis\samd21-xpro\deltagen_rev_06_rev_08\deltagen_rev_06_rev_08'
+
+-- OPERATION SUCCESFULL ...
+Elapsed time: 00:00:02.6000717
+------------------------------------------
+
