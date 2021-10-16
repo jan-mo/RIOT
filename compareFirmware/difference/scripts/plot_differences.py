@@ -177,11 +177,12 @@ for version in versions:
 log_diff = []
 versions_diff = []
 for i, elem in enumerate(diff):
-    print("UNIX code-diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(round(elem/1024, 2)) + "kB")
-    log_diff.append(math.log(abs(elem)))
+    value = round(elem/1024, 2)
+    print("UNIX code-diff between rev_" + str(i).zfill(2) + " and rev_" + str(i+1).zfill(2) + ": " + str(value) + "kB")
+    log_diff.append(math.log10(abs(elem)))
     versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [kB]", figsize = (10,6), width = 0.4)
+fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [Byte]", figsize = (10,6), width = 0.4)
 
 ### save and close figures ###
 fig_codediff.savefig("../plots/code_diff.pdf")
