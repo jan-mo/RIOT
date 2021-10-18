@@ -62,10 +62,12 @@ diffs_all["samd20-xpro"]["revisions"] = dict()
 diffs_all["samd20-xpro"]["slots"] = dict()
 diffs_all["samd20-xpro"]["slots"]["second"] = dict()
 diffs_all["samd20-xpro"]["slots"]["alternating"] = dict()
+diffs_all["samd20-xpro"]["slots"]["same_revision"] = dict()
 diffs_all["samd21-xpro"]["revisions"] = dict()
 diffs_all["samd21-xpro"]["slots"] = dict()
 diffs_all["samd21-xpro"]["slots"]["second"] = dict()
 diffs_all["samd21-xpro"]["slots"]["alternating"] = dict()
+diffs_all["samd21-xpro"]["slots"]["same_revision"] = dict()
 
 # lengths
 len_revs_samd20 = len(files_samd20)
@@ -151,6 +153,23 @@ for idx in range(len(versions)-1):
         size = round(size/1024, 2)
         # save to dict
         diffs_all["samd20-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
+    # diff between same slots
+    idx1 = offset + idx * 2
+    idx2 = offset + idx * 2 + 1
+    diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+    size = os.path.getsize(path + diff_name)
+    size = round(size/1024, 2)
+    # save to dict
+    diffs_all["samd20-xpro"]["slots"]["same_revision"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
+    #adding last revision
+    if idx == (len(versions)-2):
+        idx1 = offset + (idx+1) * 2
+        idx2 = offset + (idx+1) * 2 + 1
+        diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
+        # save to dict
+        diffs_all["samd20-xpro"]["slots"]["same_revision"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
 
 
     # samd21-xpro
@@ -207,8 +226,28 @@ for idx in range(len(versions)-1):
         size = round(size/1024, 2)
         # save to dict
         diffs_all["samd21-xpro"]["slots"]["alternating"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
+    # diff between same slots
+    idx1 = offset + idx * 2
+    idx2 = offset + idx * 2 + 1
+    diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+    size = os.path.getsize(path + diff_name)
+    size = round(size/1024, 2)
+    # save to dict
+    diffs_all["samd21-xpro"]["slots"]["same_revision"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
+    #adding last revision
+    if idx == (len(versions)-2):
+        idx1 = offset + (idx+1) * 2
+        idx2 = offset + (idx+1) * 2 + 1
+        diff_name, nchunks, nbytes_removed, nbytes_added = __calc_matches(idx1, idx2, path, conv_files)
+        size = os.path.getsize(path + diff_name)
+        size = round(size/1024, 2)
+        # save to dict
+        diffs_all["samd21-xpro"]["slots"]["same_revision"][diff_name] = {"chunks":nchunks, "deleted":nbytes_removed, "added":nbytes_added, "size":size}
+
 
 
 ### saving diffs ###
 with open("../output/diffs_matches.save", 'w') as out:
     json.dump(diffs_all, out)
+
+print("Done!")

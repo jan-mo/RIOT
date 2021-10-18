@@ -25,3 +25,8 @@ plot_function_matches(matches_samd20["slots"]["alternating"], matches_samd21["sl
 
 ### plot slots second rev ###
 plot_function_matches(matches_samd20["slots"]["second"], matches_samd21["slots"]["second"], "compare characteristics of every second revision in same slot", "second.pdf", "../plots/")
+
+### plot same_revision rev ###
+plot_function_matches(matches_samd20["slots"]["same_revision"], matches_samd21["slots"]["same_revision"], "compare characteristics between the two different slots", "same_revision.pdf", "../plots/")
+
+print("Done!")
