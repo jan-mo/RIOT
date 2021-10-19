@@ -67,8 +67,10 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     fig, ax = plt.subplots()
 
+    line_style = ["o-", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
+
     for i, value in enumerate(values):
-        plt.plot(xlabels, value, "o--", label = legend[i])
+        plt.plot(xlabels, value, line_style[i], label = legend[i])
 
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel(ylabel)
@@ -105,16 +107,19 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
 
     data = pd.DataFrame(index = ylabels)
 
+    #zeros = []
+
     for i in range(len(xlabels)):
         chunks[i] = float(format(chunks[i]/100, '.4f'))
-        bytes_added[i] = float(format(bytes_added[i]/1024, '.4f'))
-        bytes_deleted[i] = float(format(bytes_deleted[i]/1024, '.4f'))
+        bytes_added[i] = float(format(bytes_added[i]/1000, '.4f'))
+        bytes_deleted[i] = float(format(bytes_deleted[i]/1000, '.4f'))
         sizes_diff[i] = float(format(sizes_diff[i]/10, '.4f'))
+        #zeros.append(None)
 
     data[xlabels] = [chunks, bytes_added, bytes_deleted, sizes_diff]
 
     fig, ax = plt.subplots()
-    ax = sns.heatmap(data, annot = True,vmin=0, vmax=50)
+    ax = sns.heatmap(data, annot = True, vmin = 0, vmax = 50, lw = 0.1, cbar = False)
     ax.set_xticklabels(xlabels, rotation = 45)
     ax.set_title(board + " " + name_fig)
 
@@ -220,8 +225,8 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     else:
         xlabels = xlabels_samd20
 
-    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["#chunks [*100]", "added Bytes [kB]", "deleted Bytes [kB]", "size of diff [*10 kB]"], figsize = (12,6))
-    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["#chunks [*100]", "added Bytes [kB]", "deleted Bytes [kB]", "size of diff [*10 kB]"], figsize = (12,6))
+    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["# chunks [x100]", "# added Bytes [x1000]", "# deleted Bytes [x1000]", "size of diff [x10 kB]"], figsize = (12,6))
+    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["# chunks [x100]", "# added Bytes [x1000]", "# deleted Bytes [x1000]", "size of diff [x10 kB]"], figsize = (12,6))
 
     # save and close figures
     fig_samd20.savefig(path + "matches_samd20_" + file)
