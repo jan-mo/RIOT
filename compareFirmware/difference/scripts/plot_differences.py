@@ -14,7 +14,7 @@ from __plot_functions import plot_bar, plot_function_diff, plot_function_diff_re
 ###
 
 # used differencing algos
-diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_none", "detools_heat", "deltagen"]
+diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_heat", "deltagen"]
 
 plot_diagonal = True # compare diff and byte_diff
 
