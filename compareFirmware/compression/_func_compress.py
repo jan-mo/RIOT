@@ -13,6 +13,9 @@ from __finding_versions import SearchDatabase
 ### option for specific method
 ###
 def __all_compress_functions(file, method, option = None):
+
+    folder_GIT = "../../../"
+
     if method == "zlib" and option:
         compress = zlib.compress(file, option)
     elif method == "zlib":
@@ -38,9 +41,25 @@ def __all_compress_functions(file, method, option = None):
     elif method == "lzma":
         compress = lzma.compress(file)
 
+    elif method == "miniz" and option:
+        f = open("temp/temp_in", 'wb')
+        f.write(file)
+        f.close()
+        os.system("./" + folder_GIT + "miniz/miniz_tester " + option + " c temp/temp_in temp/temp_out > temp/silent")
+        compress = open("temp/temp_out", 'rb').read()
+    elif method == "miniz":
+        f = open("temp/temp_in", 'wb')
+        f.write(file)
+        f.close()
+        os.system("./" + folder_GIT + "miniz/miniz_tester c " + file + " temp/temp_in temp/temp_out > temp/silent")
+        compress = open("temp/temp_out", 'rb').read()
+
     return compress
 
 def __all_decompress_functions(file, method, option = None):
+
+    folder_GIT = "../../../"
+
     if method == "zlib" and option:
         decompress = zlib.decompress(file, option)
     elif method == "zlib":
@@ -66,6 +85,19 @@ def __all_decompress_functions(file, method, option = None):
     elif method == "lzma":
         decompress = lzma.decompress(file)
 
+    elif method == "miniz" and option:
+        f = open("temp/temp_in", 'wb')
+        f.write(file)
+        f.close()
+        os.system("./" + folder_GIT + "miniz/miniz_tester " + option + " d temp/temp_in temp/temp_out > temp/silent")
+        decompress = open("temp/temp_out", 'rb').read()
+    elif method == "miniz":
+        f = open("temp/temp_in", 'wb')
+        f.write(file)
+        f.close()
+        os.system("./" + folder_GIT + "miniz/miniz_tester d " + file + " temp/temp_in temp/temp_out > temp/silent")
+        decompress = open("temp/temp_out", 'rb').read()
+
     return decompress
 
 
@@ -79,6 +111,9 @@ def compress_database(method, option = None):
 
     results_samd20 = dict()
     results_samd21 = dict()
+
+    # create temp folder
+    os.system("mkdir temp")
 
     # samd20-xpro
     for i, folder in enumerate(folders_samd20):
@@ -150,5 +185,9 @@ def compress_database(method, option = None):
         result["size_decomp"] = os.path.getsize(file_decomp)
         result["reduction"] = round(os.path.getsize(file_comp) / os.path.getsize(file_decomp) * 100, 2)
         results_samd21[str(versions[i])] = result
+
+
+    # remove all temp files
+    os.system("rm -r temp")
 
     return results_samd20, results_samd21

@@ -9,14 +9,17 @@ from _func_compress import compress_database
 ###
 
 # compress functions
-compress_func = ["zlib","gzip","hs","bz2","lzma"]
+compress_func = ["zlib","gzip","bz2","lzma","hs","miniz"]
 
 entries_samd20 = []
 entries_samd21 = []
 
 # compress database
 for comp in compress_func:
-    [SAMD20, SAMD21] = compress_database(comp)
+    if comp == "miniz":
+        [SAMD20, SAMD21] = compress_database(comp, "-m1")
+    else:
+        [SAMD20, SAMD21] = compress_database(comp)
 
     # calc SAMD20 and SAMD21 entries
     entry_samd20 = []
