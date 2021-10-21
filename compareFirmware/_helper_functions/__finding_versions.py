@@ -17,7 +17,7 @@ class SearchDatabase:
         if database[-1] != "/":
             database = database + "/"
         self.path_database = database
-        self.exclude_folders = ["riotboot", "output", "scripts"]
+        self.exclude_folders = ["riotboot", "output", "scripts", "plots"]
 
     def database_get_revisions(self):
         # database
