@@ -100,7 +100,7 @@ class calcDiff:
             #### vcdiff ####
             if "vcdiff" in self.diff_algos:
                 name_vcdiff = "vcdiff_" + name_file1 + "_" + name_file2
-                patch_vcdiff = self.folder + "vcdiff/" + name_arch + "/" + name_bsdiff
+                patch_vcdiff = self.folder + "vcdiff/" + name_arch + "/" + name_vcdiff
                 restore_vcdiff = self.folder_restore + name_bsdiff
                 ### make sure zdelta is installed!!!!
                 vcdiff_path = "./" + self.git_folder + "vcdiff/"
