@@ -83,7 +83,121 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
     # zoom y axis
     if zoom:
         plt.ylim(-0.025,1.0);
-    
+
+    fig.tight_layout()
+
+    return fig, ax
+
+def __convert_name_to_json_string(name):
+    if name == "bzip2":
+        return "bz2"
+    elif name == "heatshrink":
+        return "hs"
+    else:
+        return name
+
+### plots a line of compression and differencing algorithm with mean and standard deviation
+def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, ylabel, figsize=(10,6), zoom=False):
+
+    plt.rcParams["figure.figsize"] = figsize
+
+    SMALL_SIZE = 10
+    MEDIUM_SIZE = 12
+    BIGGER_SIZE = 13
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # font-size of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # font-size of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # font-size of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # font-size of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
+
+
+    fig, ax = plt.subplots()
+
+    data = pd.DataFrame()
+    data["values"] = []
+    data["diff_algos"] = []
+    data["compression"] = []
+    for diff in def_diff_algos:
+        diff = __convert_name_to_json_string(diff)
+        for comp in def_compression:
+            comp = __convert_name_to_json_string(comp)
+            for entry in list(data_json[diff][comp].keys()):
+                value = data_json[diff][comp][entry]["reduction"]
+                data = data.append({"values":value,"diff_algos":diff,"compression":comp}, ignore_index=True)
+
+    ax = sns.lineplot(
+        data=data,
+        x="diff_algos", y="values", hue="compression", style="compression",
+        markers=True, dashes=True
+    )
+
+    ax.set_ylabel(ylabel)
+
+    x = np.arange(len(def_diff_algos))  # the label locations
+    ax.set_xticks(x)
+    ax.set_xticklabels(def_diff_algos, rotation=45)
+    ax.set_xlabel(None)
+    ax.set_title(name_fig)
+
+    # zoom y axis
+    if zoom:
+        plt.ylim(15,125);
+
+    fig.tight_layout()
+
+    return fig, ax
+
+### plots a bar of compression algorithms with mean and standard deviation
+def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(10,6), zoom=False):
+
+    plt.rcParams["figure.figsize"] = figsize
+
+    SMALL_SIZE = 10
+    MEDIUM_SIZE = 12
+    BIGGER_SIZE = 13
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=BIGGER_SIZE)     # font-size of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # font-size of the x and y labels
+    plt.rc('xtick', labelsize=MEDIUM_SIZE)    # font-size of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # font-size of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend font-size
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # font-size of the figure title
+
+
+    fig, ax = plt.subplots()
+
+    data = pd.DataFrame()
+    data["values"] = []
+    data["compression"] = []
+    data["revisions"] = []
+    for comp in def_compression:
+        comp = __convert_name_to_json_string(comp)
+        for entry in list(data_json[comp].keys()):
+            value = data_json[comp][entry]["reduction"]
+            data = data.append({"values":value,"compression":comp, "revisions": entry}, ignore_index=True)
+
+    ax = sns.barplot(
+        data=data,
+        x="compression", y="values",
+        capsize=0.2
+    )
+
+    ax.set_ylabel(ylabel)
+
+    x = np.arange(len(def_compression))  # the label locations
+    ax.set_xticks(x)
+    ax.set_xticklabels(def_compression, rotation=45)
+    ax.set_xlabel(None)
+    ax.set_title(name_fig)
+
+    # zoom y axis
+    if zoom:
+        plt.ylim(20,100);
+
     fig.tight_layout()
 
     return fig, ax

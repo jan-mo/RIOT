@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.9
 
 import json, os
-from tabulate import tabulate
 from _func_compress import compress_files
 
 from sys import path
