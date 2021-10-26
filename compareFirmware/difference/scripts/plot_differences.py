@@ -40,6 +40,7 @@ if "deltagen" in diff_algos:
 
 ### SAMD20 bar plot ###
 MCU = "samd20-xpro"
+print("SAMD20")
 
 ### all
 # getting keys
@@ -110,6 +111,7 @@ if plot_diagonal:
 
 ### SAMD21 relative bar plot ###
 MCU = "samd21-xpro"
+print("SAMD21")
 
 ### all
 # getting keys

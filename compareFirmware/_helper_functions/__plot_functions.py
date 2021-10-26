@@ -41,7 +41,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     ax.set_title(name_fig)
     ax.set_xticks(x)
     ax.set_xticklabels(xlabels, rotation=45)
-    ax.legend()
+    ax.legend(ncol=3, loc = 'upper right')
 
     fig.tight_layout()
 
@@ -82,7 +82,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.0);
+        plt.ylim(-0.025,1.25);
 
     fig.tight_layout()
 
@@ -123,10 +123,11 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
     for diff in def_diff_algos:
         diff = __convert_name_to_json_string(diff)
         for comp in def_compression:
+            comp_old = comp
             comp = __convert_name_to_json_string(comp)
-            for entry in list(data_json[diff][comp].keys()):
+            for entry in data_json[diff][comp]:
                 value = data_json[diff][comp][entry]["reduction"]
-                data = data.append({"values":value,"diff_algos":diff,"compression":comp}, ignore_index=True)
+                data = data.append({"values":value,"diff_algos":diff,"compression":comp_old}, ignore_index=True)
 
     ax = sns.lineplot(
         data=data,
@@ -141,10 +142,11 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
     ax.set_xticklabels(def_diff_algos, rotation=45)
     ax.set_xlabel(None)
     ax.set_title(name_fig)
+    ax.legend(ncol=2)
 
     # zoom y axis
     if zoom:
-        plt.ylim(15,125);
+        plt.ylim(-0.025,1.25);
 
     fig.tight_layout()
 
@@ -176,7 +178,7 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
     data["revisions"] = []
     for comp in def_compression:
         comp = __convert_name_to_json_string(comp)
-        for entry in list(data_json[comp].keys()):
+        for entry in data_json[comp]:
             value = data_json[comp][entry]["reduction"]
             data = data.append({"values":value,"compression":comp, "revisions": entry}, ignore_index=True)
 
@@ -196,7 +198,7 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
 
     # zoom y axis
     if zoom:
-        plt.ylim(20,100);
+        plt.ylim(-0.025,1.25);
 
     fig.tight_layout()
 
@@ -234,6 +236,7 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
 
     fig, ax = plt.subplots()
     ax = sns.heatmap(data, annot = True, vmin = 0, vmax = 50, lw = 0.1, cbar = False)
+    ax.set_yticklabels(ylabels, rotation = 0, multialignment = "center")
     ax.set_xticklabels(xlabels, rotation = 45)
     ax.set_title(board + " " + name_fig)
 
@@ -339,9 +342,8 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     else:
         xlabels = xlabels_samd20
 
-    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["# chunks [x100]", "# added Bytes [x1000]", "# deleted Bytes [x1000]", "size of diff [x10 kB]"], figsize = (12,6))
-    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["# chunks [x100]", "# added Bytes [x1000]", "# deleted Bytes [x1000]", "size of diff [x10 kB]"], figsize = (12,6))
-
+    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added Bytes\n[x1000]", "# deleted Bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
+    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added Bytes\n[x1000]", "# deleted Bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
     # save and close figures
     fig_samd20.savefig(path + "matches_samd20_" + file)
     fig_samd21.savefig(path + "matches_samd21_" + file)

@@ -71,6 +71,7 @@ if "deltagen" in diff_algos:
 
 ### SAMD20 bar plot ###
 MCU = "samd20-xpro"
+print("SAMD20")
 ### slot0
 # getting keys
 keys_algo = sizes_sorted_same[MCU][diff_algos[0]]
@@ -118,6 +119,7 @@ plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_
 
 ### SAMD21 bar plot ###
 MCU = "samd21-xpro"
+print("SAMD21")
 ### slot0
 # getting keys
 keys_algo = sizes_sorted_same[MCU][diff_algos[0]]
