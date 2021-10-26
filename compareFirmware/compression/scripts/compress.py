@@ -41,13 +41,13 @@ for comp in compress_func:
 
     revisions_samd20 = sorted(SAMD20.keys())
     for revision in revisions_samd20:
-        entry_samd20.append(SAMD20[revision]["reduction"])
+        entry_samd20.append(SAMD20[revision]["reduction"]*100)
         if (SAMD20[revision]["result"] != "pass"):
             print("SAMD20: " + revision + " with " + comp + " failed!")
 
     revisions_samd21 = sorted(SAMD21.keys())
     for revision in revisions_samd21:
-        entry_samd21.append(SAMD21[revision]["reduction"])
+        entry_samd21.append(SAMD21[revision]["reduction"]*100)
         if (SAMD21[revision]["result"] != "pass"):
             print("SAMD21: " + revision + " with " + comp + " failed!")
 
@@ -58,8 +58,8 @@ for comp in compress_func:
 revisions_samd20.append("mean/std")
 revisions_samd21.append("mean/std")
 for i in range(len(entries_samd20)):
-    mean = round(statistics.mean(entries_samd20[i][1:]), 1)
-    std = round(statistics.stdev(entries_samd20[i][1:]), 1)
+    mean = round(statistics.mean(entries_samd20[i][1:]*100), 1)
+    std = round(statistics.stdev(entries_samd20[i][1:]*100), 1)
     entries_samd20[i].append(str(mean) + "/" + str(std))
 
     mean = round(statistics.mean(entries_samd21[i][1:]), 1)

@@ -136,7 +136,7 @@ def _compress_decompress_file(file_orig, name, processor, method, option):
         result["size_orig"] = os.path.getsize(file_orig)
         result["size_comp"] = os.path.getsize(file_comp)
         result["size_decomp"] = os.path.getsize(file_decomp)
-        result["reduction"] = round(os.path.getsize(file_comp) / os.path.getsize(file_decomp) * 100, 2)
+        result["reduction"] = round(os.path.getsize(file_comp) / os.path.getsize(file_decomp), 4)
 
         return result
 
