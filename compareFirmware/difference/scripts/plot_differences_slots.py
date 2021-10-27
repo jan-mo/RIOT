@@ -94,7 +94,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot0")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot0", zoom = True)
 
 ### slot1
 labels = []
@@ -114,7 +114,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot1.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot1")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot1.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot1", zoom = True)
 
 
 ### SAMD21 bar plot ###
@@ -142,7 +142,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot0")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot0", zoom = True)
 
 ### slot1
 labels = []
@@ -162,7 +162,7 @@ for algo in diff_algos:
         key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot1.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot1")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot1.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot1", zoom = True)
 
 
 
@@ -184,7 +184,7 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in alternating slots")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in alternating slots", zoom = True)
 
 
 ### SAMD21 bar plot ###
@@ -202,6 +202,6 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots")
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots", zoom = True)
 
 print("Done!")

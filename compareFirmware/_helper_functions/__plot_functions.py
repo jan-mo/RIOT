@@ -246,7 +246,7 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
 
 
 ### plots the differences from given keys ###
-def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, figsize = (10,6), width = 0.1, zoom = True):
+def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, figsize = (10,6), width = 0.1, zoom = False):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -261,12 +261,24 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = zoom)
+    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = False)
     fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", figsize = figsize, zoom = zoom)
 
     # save and close figures
     fig_samd20.savefig(path + file)
     fig_norm20.savefig(path + "norm_" + file)
+
+
+    if "diagonal" in fig_name or "slot" in fig_name:
+        print(fig_name + " (normalized)")
+        for i, diff in enumerate(diff_algos):
+            mean = np.mean(norm_all[i])
+            std = np.std(norm_all[i])
+            print(diff, ": ")
+            print("\t mean: ", round(mean*100,2), "%")
+            print("\t std: ", round(std*100,2), "%")
+        print()
+
     plt.close("all")
 
 ### plots the relative differences ###
