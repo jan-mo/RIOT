@@ -64,6 +64,9 @@ class calcDiff:
                 # patch file
                 os.system("cp " + path_conv_file1 + " " + restore_byte_diff)
                 os.system("patch --quiet " + restore_byte_diff + " " + patch_byte_diff)
+                # save patch byte diff, only added bytes
+                os.system("grep \"^>\" " + patch_byte_diff + " > " + patch_byte_diff + "_")
+                os.system("mv " + patch_byte_diff + "_ " + patch_byte_diff)
 
             #### bsdiff ####
             if "bsdiff" in self.diff_algos:
