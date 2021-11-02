@@ -82,7 +82,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.5);
+        plt.ylim(-0.025,1.55);
 
     fig.tight_layout()
 
@@ -129,10 +129,10 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
                 value = data_json[diff][comp][entry]["reduction"]
                 data = data.append({"values":value,"diff_algos":diff,"compression":comp_old}, ignore_index=True)
 
-    ax = sns.lineplot(
+    ax = sns.boxplot(
         data=data,
-        x="diff_algos", y="values", hue="compression", style="compression",
-        markers=True, dashes=True
+        x="diff_algos", y="values", hue="compression", #style="compression",
+        #markers=True, dashes=True
     )
 
     ax.set_ylabel(ylabel)
@@ -146,7 +146,7 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.5);
+        plt.ylim(-0.025,1.55);
 
     fig.tight_layout()
 
@@ -198,7 +198,7 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.5);
+        plt.ylim(-0.025,1.55);
 
     fig.tight_layout()
 
