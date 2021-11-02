@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set_theme()
 import pandas as pd
+from numpy import mean as estimate
 
 ###
 ### 
@@ -82,7 +83,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.55);
+        plt.ylim(-0.025, 1.55);
 
     fig.tight_layout()
 
@@ -129,10 +130,10 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
                 value = data_json[diff][comp][entry]["reduction"]
                 data = data.append({"values":value,"diff_algos":diff,"compression":comp_old}, ignore_index=True)
 
-    ax = sns.boxplot(
-        data=data,
-        x="diff_algos", y="values", hue="compression", #style="compression",
-        #markers=True, dashes=True
+    ax = sns.barplot(
+        data = data,
+        x = "diff_algos", y = "values", hue = "compression",
+        estimator = estimate
     )
 
     ax.set_ylabel(ylabel)
@@ -146,7 +147,7 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.55);
+        plt.ylim(-0.025, 1.35);
 
     fig.tight_layout()
 
@@ -183,9 +184,9 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
             data = data.append({"values":value,"compression":comp, "revisions": entry}, ignore_index=True)
 
     ax = sns.barplot(
-        data=data,
-        x="compression", y="values",
-        capsize=0.2
+        data = data,
+        x = "compression", y = "values",
+        capsize = 0.2, estimator = estimate
     )
 
     ax.set_ylabel(ylabel)
@@ -198,7 +199,7 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025,1.55);
+        plt.ylim(0.25, 1.05);
 
     fig.tight_layout()
 
@@ -354,8 +355,8 @@ def plot_function_matches(values_samd20, values_samd21, fig_name, file, path):
     else:
         xlabels = xlabels_samd20
 
-    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added Bytes\n[x1000]", "# deleted Bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
-    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added Bytes\n[x1000]", "# deleted Bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
+    fig_samd20, ax_samd20 = plot_heatmap_matches(chunks_samd20, bytes_deleted_samd20, bytes_added_samd20, sizes_diff_samd20, xlabels, "SAMD20-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added bytes\n[x1000]", "# deleted bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
+    fig_samd21, ax_samd21 = plot_heatmap_matches(chunks_samd21, bytes_deleted_samd21, bytes_added_samd21, sizes_diff_samd21, xlabels, "SAMD21-xpro", fig_name, ylabels=["# chunks\n[x100]", "# added bytes\n[x1000]", "# deleted bytes\n[x1000]", "size of diff\n[x10 kB]"], figsize = (12,6))
     # save and close figures
     fig_samd20.savefig(path + "matches_samd20_" + file)
     fig_samd21.savefig(path + "matches_samd21_" + file)
