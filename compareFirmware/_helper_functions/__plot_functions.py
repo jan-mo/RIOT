@@ -130,10 +130,10 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
                 value = data_json[diff][comp][entry]["reduction"]
                 data = data.append({"values":value,"diff_algos":diff,"compression":comp_old}, ignore_index=True)
 
-    ax = sns.barplot(
+    ax = sns.boxplot(
         data = data,
         x = "diff_algos", y = "values", hue = "compression",
-        estimator = estimate
+        #estimator = estimate
     )
 
     ax.set_ylabel(ylabel)
