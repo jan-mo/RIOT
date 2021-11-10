@@ -27,6 +27,8 @@
 #include "xtimer.h"
 #include "thread.h"
 
+
+#include "riotboot/slot.h"
 #include "periph/gpio.h"
 
 /* acceleration sensor config */
@@ -531,6 +533,10 @@ int main(void) {
         puts("Failed to initialize PCD8544 display");
         return 1;
     }
+
+    int current_slot = riotboot_slot_current();
+    printf("riotboot_test: running from slot %d\n", current_slot);
+    riotboot_slot_print_hdr(current_slot);
 
     /* display riot-logo for one second */
     pcd8544_clear(&dev_pcd);

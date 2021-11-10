@@ -17,7 +17,7 @@ USEMODULE += lis2dh12_spi
 
 # gnrc_networking
 GNRC_NETIF_NUMOF := 1
-USEMODULE += gnrc_netdev_default
+USEMODULE += netdev_default
 USEMODULE += auto_init_gnrc_netif
 USEMODULE += gnrc_ipv6
 USEMODULE += gnrc_udp
@@ -28,6 +28,8 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += ps
 
 # riotboot/suit
+FEATURES_REQUIRED += riotboot
+USEMODULE += riotboot_slot
 USEMODULE += suit
 BUILD_FILES += $(SLOT_RIOT_ELFS:%.elf=%.bin)
 
