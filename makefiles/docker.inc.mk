@@ -1,4 +1,4 @@
-export DOCKER_IMAGE ?= riot/riotbuild:latest
+export DOCKER_IMAGE ?= riot/riotbuild:2021.10
 export DOCKER_BUILD_ROOT ?= /data/riotbuild
 DOCKER_RIOTBASE ?= $(DOCKER_BUILD_ROOT)/riotbase
 # List of Docker-enabled make goals
@@ -52,6 +52,7 @@ export DOCKER_ENV_VARS += \
   LTO \
   OBJCOPY \
   OFLAGS \
+  PARTICLE_MONOFIRMWARE \
   PREFIX \
   QUIET \
   WERROR \
@@ -59,6 +60,7 @@ export DOCKER_ENV_VARS += \
   PROGRAMMER \
   RIOT_CI_BUILD \
   RIOT_VERSION \
+  RIOT_VERSION_CODE \
   SCANBUILD_ARGS \
   SCANBUILD_OUTPUTDIR \
   SIZE \

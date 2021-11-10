@@ -24,6 +24,7 @@ rsource "embunit/Kconfig"
 rsource "entropy_source/Kconfig"
 rsource "eepreg/Kconfig"
 rsource "event/Kconfig"
+rsource "fido2/Kconfig"
 rsource "fmt/Kconfig"
 rsource "frac/Kconfig"
 rsource "hashes/Kconfig"
@@ -69,6 +70,10 @@ config MODULE_LIBSTDCPP
     depends on HAS_LIBSTDCPP
     depends on HAS_CPP
     select MODULE_CPP
+
+config MODULE_ATOMIC_UTILS
+    bool "Atomic access utility functions"
+    depends on TEST_KCONFIG
 
 config MODULE_SYS
     bool

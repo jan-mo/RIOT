@@ -561,7 +561,11 @@ int sock_dtls_session_init(sock_dtls_t *sock, const sock_udp_ep_t *ep,
 
 void sock_dtls_session_destroy(sock_dtls_t *sock, sock_dtls_session_t *remote)
 {
-    dtls_close(sock->dtls_ctx, &remote->dtls_session);
+    dtls_peer_t *peer = dtls_get_peer(sock->dtls_ctx, &remote->dtls_session);
+    if (peer) {
+        /* dtls_reset_peer() also sends close_notify if not already sent */
+        dtls_reset_peer(sock->dtls_ctx, peer);
+    }
 }
 
 void sock_dtls_session_get_udp_ep(const sock_dtls_session_t *session,
@@ -809,7 +813,13 @@ static void _ep_to_session(const sock_udp_ep_t *ep, session_t *session)
     session->port = ep->port;
     session->size = sizeof(ipv6_addr_t) +       /* addr */
                     sizeof(unsigned short);     /* port */
-    session->ifindex = ep->netif;
+    if (ipv6_addr_is_link_local((ipv6_addr_t *)ep->addr.ipv6)) {
+        /* set ifindex for link-local addresses */
+        session->ifindex = ep->netif;
+    }
+    else {
+        session->ifindex = SOCK_ADDR_ANY_NETIF;
+    }
     memcpy(&session->addr, &ep->addr.ipv6, sizeof(ipv6_addr_t));
 }
 
