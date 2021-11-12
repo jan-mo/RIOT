@@ -443,8 +443,45 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
         sha256_final(&ctx, payload_digest);
     }
 
-    return (memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0) ?
-        SUIT_OK : SUIT_ERR_DIGEST_MISMATCH;
+    if (memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0)
+        return SUIT_OK;
+
+    else {
+        /* read payload */
+        uint8_t payload[payload_size];
+        suit_storage_read(storage, payload, 0, payload_size);
+
+        /* modify compression payload */
+        /* first 4 byte are different (depending on bsdiff) */
+        payload[0] = 0x42;
+        payload[1] = 0x53;
+        payload[2] = 0x44;
+        payload[3] = 0x49;
+
+        /* print payload content */
+        size_t size_buf = (payload_size >= 16*25) ? 16*25 : payload_size;
+        for (size_t ptr = 0; ptr < size_buf; ptr = ptr+16) {
+            printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
+                payload[ptr],payload[ptr+1],payload[ptr+2],payload[ptr+3],payload[ptr+4],payload[ptr+5],payload[ptr+6],payload[ptr+7],
+                payload[ptr+8],payload[ptr+9],payload[ptr+10],payload[ptr+11],payload[ptr+12],payload[ptr+13],payload[ptr+14],payload[ptr+15]);
+        }
+
+        /* calc checksum to verify compression */
+        sha256(payload, payload_size, payload_digest);
+        if (memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0) {
+            printf("checksum PASS\n");
+            printf("Compression detected!\n");
+
+            /* decompress payload */
+            // TODO write bsdiff implementation
+
+            return SUIT_OK;
+        }
+        else {
+            printf("checksum FAILED\n");
+            return SUIT_ERR_DIGEST_MISMATCH;
+        }
+    }
 }
 
 static int _dtv_verify_image_match(suit_manifest_t *manifest, int key,

@@ -76,7 +76,42 @@ def main(args):
             "file": filename,
             "uri": uri,
             "bootable": False,
+            "compression": "bsdiff",
         }
+
+        if component["compression"] == "bsdiff":
+            print("bsdiff")
+
+            # calc prev and current fw version
+            split_file = filename.split("/")
+            file = split_file[-1]
+            path = "/home/jan/GIT/RIOT/coaproot/fw/" + split_file[-2] + "/"
+            split_name = file.split("-")
+            split_name = split_name[-1]
+            split_name = split_name.split(".")
+            slot = split_name[0]
+            fw_versions = os.listdir(path)
+            fw_versions.sort()
+            fw_slot0 = []
+            fw_slot1 = []
+            for version in fw_versions:
+                if "slot0" in version:
+                    fw_slot0.append(version)
+                elif "slot1" in version:
+                    fw_slot1.append(version)
+            if "slot0" in file:
+                curr_fw = file
+                prev_fw = fw_slot1[-2]
+            elif "slot1" in file:
+                curr_fw = file
+                prev_fw = fw_slot0[-2]
+
+            print("curr: ", file)
+            print("prev: ", prev_fw)
+
+            file1 = "/home/jan/GIT/RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
+            file2 = "/home/jan/GIT/RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
+            os.system("bsdiff " + file1 + " " + file2 + " " + filename)
 
         if offset:
             component.update({"offset": offset})
