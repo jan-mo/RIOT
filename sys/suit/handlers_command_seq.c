@@ -26,6 +26,9 @@
 #include <nanocbor/nanocbor.h>
 #include <assert.h>
 
+#include "bspatch.h"
+#include "fmt.h"
+
 #include "hashes/sha256.h"
 
 #include "kernel_defines.h"
@@ -447,16 +450,18 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
         return SUIT_OK;
 
     else {
+        /* payload magic */
+        uint8_t magic_pay[4] = {0x45, 0x4e, 0x44, 0x53};
         /* read payload */
         uint8_t payload[payload_size];
         suit_storage_read(storage, payload, 0, payload_size);
 
         /* modify compression payload */
         /* first 4 byte are different (depending on bsdiff) */
-        payload[0] = 0x42;
-        payload[1] = 0x53;
-        payload[2] = 0x44;
-        payload[3] = 0x49;
+        payload[0] = magic_pay[0];
+        payload[1] = magic_pay[1];
+        payload[2] = magic_pay[2];
+        payload[3] = magic_pay[3];
 
         /* print payload content */
         size_t size_buf = (payload_size >= 16*25) ? 16*25 : payload_size;
@@ -473,7 +478,31 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("Compression detected!\n");
 
             /* decompress payload */
+            uint8_t header[24];
+            uint8_t *old, *new;
+            int64_t oldsize, newsize;
+
+            printf("Read header!\n");
+            suit_storage_read(storage, header, 0, 24);
+            header[0] = magic_pay[0];
+            header[1] = magic_pay[1];
+            header[2] = magic_pay[2];
+            header[3] = magic_pay[3];
+
+            /* Check for appropriate magic */
+            if (memcmp(header, "ENDSLEY/BSDIFF43", 16) != 0)
+                puts("Error header patch-file!\n");
+
+            newsize = offtin(header+16);
+            printf("newsize:\n");
+            print_u64_dec(newsize);
+            printf("\n");
+
             // TODO write bsdiff implementation
+            (void)oldsize;
+            (void)old;
+            (void)new;
+            //bspatch();
 
             return SUIT_OK;
         }
