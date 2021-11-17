@@ -92,32 +92,56 @@ def main(args):
                 path = path + elem + "/"
                 if "GIT" not in path_GIT:
                     path_GIT = path_GIT + elem + "/"
-            split_name = file.split("-")
-            split_name = split_name[-1]
-            split_name = split_name.split(".")
-            slot = split_name[0]
+            # find fw version
             fw_versions = os.listdir(path)
             fw_versions.sort()
-            fw_slot0 = []
-            fw_slot1 = []
+            fw_old_slot0 = ""
+            fw_old_slot1 = ""
             for version in fw_versions:
-                if "slot0" in version and ".riot.bin" in version:
-                    fw_slot0.append(version)
-                elif "slot1" in version and ".riot.bin" in version:
-                    fw_slot1.append(version)
-            if "slot0" in file:
-                curr_fw = file
-                prev_fw = fw_slot1[-2]
-            elif "slot1" in file:
-                curr_fw = file
-                prev_fw = fw_slot0[-2]
+                if "slot0_old" == version:
+                    fw_old_slot0 = version
+                elif "slot1_old" == version:
+                    fw_old_slot1 = version
+            # check older fw version
+            if fw_old_slot0 == "":
+                print("No old file detected, publish again!")
+                if "slot0" in file:
+                    os.system("cp " + filename + " " + path + "slot0_old")
+                elif "slot1" in file:
+                    os.system("cp " + filename + " " + path + "slot1_old")
+            elif fw_old_slot1 == "":
+                print("No old file detected, publish again!")
+                if "slot0" in file:
+                    os.system("cp " + filename + " " + path + "slot0_old")
+                elif "slot1" in file:
+                    os.system("cp " + filename + " " + path + "slot1_old")
+            else:
+                if "slot0" in file:
+                    curr_fw = file
+                    prev_fw = fw_old_slot1
+                elif "slot1" in file:
+                    curr_fw = file
+                    prev_fw = fw_old_slot0
 
-            print("curr: ", file)
-            print("prev: ", prev_fw)
+                print("curr: ", file)
+                print("prev: ", prev_fw)
 
-            file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
-            file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
-            os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
+                # save current fw
+                if "slot0" in file:
+                    os.system("cp " + filename + " " + path + "slot0_old_save")
+                elif "slot1" in file:
+                    os.system("cp " + filename + " " + path + "slot1_old_save")
+
+                # calc bsdiff patch
+                file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
+                file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
+                os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
+
+                # update old fw file
+                if "slot0" in file:
+                    os.system("cp " + path + "slot0_old_save" + " " + path + "slot0_old")
+                elif "slot1" in file:
+                    os.system("cp " + path + "slot1_old_save" + " " + path + "slot1_old")
 
         if offset:
             component.update({"offset": offset})
