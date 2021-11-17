@@ -27,6 +27,10 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += shell
 USEMODULE += shell_commands
 
+# heatshrink for decompression
+USEPKG += heatshrink
+INCLUDE += $(RIOTPKG)/heatshrink/...
+
 # Set this to 1 to enable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
 # development process:
