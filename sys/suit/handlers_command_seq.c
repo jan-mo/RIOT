@@ -413,7 +413,7 @@ static int _get_digest(nanocbor_value_t *bstr, const uint8_t **digest, size_t
 }
 
 static int _validate_payload(suit_component_t *component, const uint8_t *digest,
-                             size_t payload_size)
+                             size_t payload_size, suit_manifest_t* manifest)
 {
     uint8_t payload_digest[SHA256_DIGEST_LENGTH];
     suit_storage_t *storage = component->storage_backend;
@@ -480,7 +480,6 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("Compression detected!\n");
 
             /* decompress payload */
-            uint8_t *old, *new;
             int64_t oldsize, newsize;
 
             printf("Read header!\n");
@@ -489,52 +488,80 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             if (memcmp(payload, "PEAR/BSDIFF43", 13) != 0)
                 puts("Error header patch-file!\n");
 
+            /* get newsize */
             newsize = offtin(payload+13);
             printf("newsize:\n");
             print_u64_dec(newsize);
             printf("\n");
 
-            // TODO write bsdiff implementation
-            (void)oldsize;
-            (void)old;
-            (void)new;
 
-            /* decode payload */
-            /*config *cfg = {};
-            cfg->window_sz2 = 8;
-            cfg->lookahead_sz2 = 7;
-            cfg->decoder_input_buffer_size = payload_size;
-            cfg->in = &payload;
-            */
+
+
+            printf("Testing write to storage:\n");
+            uint8_t buffer[4] = {0x01, 0x02, 0x03, 0x04};
+            int ret = suit_storage_write(storage, manifest, buffer, 682, 4);
+
+            if (ret == SUIT_OK) {
+                printf("SUIT_OK\n");
+                uint8_t test[10];
+                for (unsigned int i = 0; i < 10; i++){
+                    suit_storage_read(storage, test, i, 1);
+                    printf("%x ", test[i]);
+                }
+                printf("\n");
+            }
+            else
+                printf("SUIT not okay: %d\n", ret);
+
             int verbosity = 0;
             int small = 1;
             int bzerr;
 
+            unsigned int len = newsize + 24;
             unsigned int buf_len = 1024;
-            char out_buf[buf_len];
+
+            uint8_t old_test[buf_len];
+            oldsize = buf_len;
             
-            bzerr = BZ2_bzBuffToBuffDecompress(out_buf, &buf_len, (char*)&payload, payload_size, small, verbosity);
+            bzerr = BZ2_bzBuffToBuffDecompress(storage, &len, (char*)&payload, payload_size, small, verbosity);
             
             if (bzerr == BZ_OUTBUFF_FULL){
                 printf("Full Output\n");
-                for (unsigned int i = 0; i < buf_len; i++){
-                    printf("%x ", out_buf[i]);
-                }
-                printf("\n");
             }
             else {
-                printf("Buffer\n");
+                suit_storage_read(storage, old_test, 0, oldsize);
+                /* print storage data */
+                printf("Decompressed data:\n");
                 for (unsigned int i = 0; i < buf_len; i++){
-                    printf("%x ", out_buf[i]);
+                    printf("%x ", old_test[i]);
                 }
+                printf("\n");
+                printf("\n");
                 printf("\n");
             }
 
-            //bzerr = bzDecompressInit(bz_stream *strm, int verbosity, int small);
-
-
-            //bspatch();
-
+            /* testing bsdiff implementation */
+            /* read storage data */
+            suit_storage_read(storage, old_test, 0, oldsize);
+            /* print storage data */
+            printf("Old data:\n");
+            for (unsigned int i = 0; i < buf_len; i++){
+                printf("%x ", old_test[i]);
+            }
+            printf("\n");
+            printf("\n");
+            printf("\n");
+            /* patch the data */
+            bspatch((const uint8_t*)old_test, oldsize, storage, oldsize, payload);
+            /* print patched data */
+            suit_storage_read(storage, old_test, 0, oldsize);
+            printf("New data:\n");
+            for (unsigned int i = 0; i < buf_len; i++){
+                printf("%x ", old_test[i]);
+            }
+            printf("\n");
+            printf("\n");
+            printf("\n");
             return SUIT_OK;
         }
         else {
@@ -582,7 +609,7 @@ static int _dtv_verify_image_match(suit_manifest_t *manifest, int key,
 
     /* TODO: replace with generic verification (not only sha256) */
     LOG_INFO("Starting digest verification against image\n");
-    res = _validate_payload(comp, digest, img_size);
+    res = _validate_payload(comp, digest, img_size, manifest);
     if (res == SUIT_OK) {
         LOG_INFO("Install correct payload\n");
         suit_storage_install(comp->storage_backend, manifest);

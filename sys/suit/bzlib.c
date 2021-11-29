@@ -30,6 +30,8 @@
 
 #include "bzlib_private.h"
 
+#include "suit/storage.h"
+suit_storage_t* storage;
 
 /*---------------------------------------------------*/
 /*--- Compression stuff                           ---*/
@@ -546,7 +548,8 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            //*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            suit_storage_write(storage, NULL, (const uint8_t*) &s->state_out_ch, (size_t)s->strm->next_out, (size_t)1);
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -716,7 +719,8 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            //*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            suit_storage_write(storage, NULL, (const uint8_t*) &s->state_out_ch, (size_t)s->strm->next_out, (size_t)1);
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -765,7 +769,8 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            //*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            suit_storage_write(storage, NULL, (const uint8_t*) &s->state_out_ch, (size_t)s->strm->next_out, (size_t)1);
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -1299,7 +1304,7 @@ int BZ_API(BZ2_bzBuffToBuffCompress)
 
 /*---------------------------------------------------*/
 int BZ_API(BZ2_bzBuffToBuffDecompress) 
-                           ( char*         dest, 
+                           ( suit_storage_t* outStorage,
                              unsigned int* destLen,
                              char*         source, 
                              unsigned int  sourceLen,
@@ -1309,7 +1314,7 @@ int BZ_API(BZ2_bzBuffToBuffDecompress)
    bz_stream strm;
    int ret;
 
-   if (dest == NULL || destLen == NULL || 
+   if (destLen == NULL ||
        source == NULL ||
        (small != 0 && small != 1) ||
        verbosity < 0 || verbosity > 4) 
@@ -1321,8 +1326,10 @@ int BZ_API(BZ2_bzBuffToBuffDecompress)
    ret = BZ2_bzDecompressInit ( &strm, verbosity, small );
    if (ret != BZ_OK) return ret;
 
+   storage = outStorage;
+
    strm.next_in = source;
-   strm.next_out = dest;
+   strm.next_out = 0;
    strm.avail_in = sourceLen;
    strm.avail_out = *destLen;
 

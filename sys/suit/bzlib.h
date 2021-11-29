@@ -211,13 +211,15 @@ BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffCompress) (
       int           workFactor 
    );
 
+#include "suit/storage.h"
+
 BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffDecompress) ( 
-      char*         dest, 
+      suit_storage_t* storage,
       unsigned int* destLen,
-      char*         source, 
+      char*         source,
       unsigned int  sourceLen,
-      int           small, 
-      int           verbosity 
+      int           small,
+      int           verbosity
    );
 
 
