@@ -27,8 +27,9 @@
 #include <assert.h>
 
 #include "fmt.h"
+
 #include "bspatch.h"
-#include "heatshrink_decoder.h"
+#include "bzlib.h"
 
 #include "hashes/sha256.h"
 
@@ -411,100 +412,6 @@ static int _get_digest(nanocbor_value_t *bstr, const uint8_t **digest, size_t
     return nanocbor_get_bstr(&arr_it, digest, digest_len);
 }
 
-static int decoder_sink_read(uint8_t *out, heatshrink_decoder *hsd,
-    uint8_t *data, size_t data_sz) {
-    size_t sink_sz = 0;
-    size_t poll_sz = 0;
-    size_t out_sz = 4096;
-    uint8_t out_buf[out_sz];
-    memset(out_buf, 0, out_sz);
-
-    HSD_sink_res sres;
-    HSD_poll_res pres;
-    HSD_finish_res fres;
-
-    size_t sunk = 0;
-    do {
-        if (data_sz > 0) {
-            sres = heatshrink_decoder_sink(hsd, &data[sunk], data_sz - sunk, &sink_sz);
-            if (sres < 0) { printf("Error sink\n"); }
-            sunk += sink_sz;
-        }
-
-        do {
-            pres = heatshrink_decoder_poll(hsd, out_buf, out_sz, &poll_sz);
-            if (pres < 0) { printf("Error poll\n"); }
-            /* fill out file */
-            //if (handle_sink(out, poll_sz, out_buf) < 0) die("handle_sink");
-            (void)out;
-            printf("Out data:");
-            for (size_t i = 0; i < out_sz; i++)
-                printf("%x", out_buf[i]);
-            printf("\n");
-        } while (pres == HSDR_POLL_MORE);
-
-        if (data_sz == 0 && poll_sz == 0) {
-            fres = heatshrink_decoder_finish(hsd);
-            if (fres < 0) { printf("Error finish\n"); }
-            if (fres == HSDR_FINISH_DONE) { return 1; }
-        }
-    } while (sunk < data_sz);
-
-    return 0;
-}
-
-static int decode(size_t in_buf_size, uint8_t *in_buf) {
-    uint8_t window_sz2 = 8;
-    size_t window_sz = 1 << window_sz2;
-    //uint8_t lookahead_sz2 = 7;
-    heatshrink_decoder *hsd = {0};
-    hsd->input_size = in_buf_size;
-    //hsd->input_index = 1;   /* offset to next unprocessed input byte */
-    //hsd->output_count = 0;      /* how many bytes to output */
-    //hsd->output_index = 0;      /* index for bytes to output */
-    //hsd->head_index = 0;
-    //hsd->state = 0;
-    //hsd->current_byte = 0;
-    //hsd->bit_index = 0;
-
-    if (hsd == NULL) { printf("Error init decoder\n"); }
-
-    ssize_t read_sz = 0;
-
-
-    HSD_finish_res fres;
-
-    /* Process input until end of stream */
-    while (1) {
-        uint8_t input[window_sz];
-        for (size_t i = 0; i < window_sz; i++)
-            input[i] = in_buf[i];
-        read_sz = window_sz;
-        //read_sz = handle_read(in, window_sz, &input);
-        if (input == NULL) {
-            fprintf(stderr, "handle read failure\n");
-            printf("Error read\n");
-        }
-        if (read_sz == 0) {
-            fres = heatshrink_decoder_finish(hsd);
-            if (fres < 0) { printf("Error finish\n"); }
-            if (fres == HSDR_FINISH_DONE) break;
-        } else if (read_sz < 0) {
-            printf("Error read\n");
-        } else {
-            if (decoder_sink_read(NULL, hsd, input, read_sz)) { break; }
-            //if (handle_drop(in, read_sz) < 0) { printf("Error drop\n"); }
-        }
-    }
-    if (read_sz == -1) {
-        printf("Error read\n");
-    }
-
-    //heatshrink_decoder_free(hsd);
-    return 0;
-}
-
-
 static int _validate_payload(suit_component_t *component, const uint8_t *digest,
                              size_t payload_size)
 {
@@ -546,7 +453,7 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
 
     else {
         /* payload magic */
-        uint8_t magic_pay[4] = {0x45, 0x4e, 0x44, 0x53};
+        uint8_t magic_pay[4] = {0x50, 0x45, 0x41, 0x52};
         /* read payload */
         uint8_t payload[payload_size];
         suit_storage_read(storage, payload, 0, payload_size);
@@ -579,10 +486,10 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("Read header!\n");
 
             /* Check for appropriate magic */
-            if (memcmp(payload, "ENDSLEY/BSDIFF43", 16) != 0)
+            if (memcmp(payload, "PEAR/BSDIFF43", 13) != 0)
                 puts("Error header patch-file!\n");
 
-            newsize = offtin(payload+16);
+            newsize = offtin(payload+13);
             printf("newsize:\n");
             print_u64_dec(newsize);
             printf("\n");
@@ -599,8 +506,32 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             cfg->decoder_input_buffer_size = payload_size;
             cfg->in = &payload;
             */
+            int verbosity = 0;
+            int small = 1;
+            int bzerr;
 
-            decode(payload_size, payload);
+            unsigned int buf_len = 1024;
+            char out_buf[buf_len];
+            
+            bzerr = BZ2_bzBuffToBuffDecompress(out_buf, &buf_len, (char*)&payload, payload_size, small, verbosity);
+            
+            if (bzerr == BZ_OUTBUFF_FULL){
+                printf("Full Output\n");
+                for (unsigned int i = 0; i < buf_len; i++){
+                    printf("%x ", out_buf[i]);
+                }
+                printf("\n");
+            }
+            else {
+                printf("Buffer\n");
+                for (unsigned int i = 0; i < buf_len; i++){
+                    printf("%x ", out_buf[i]);
+                }
+                printf("\n");
+            }
+
+            //bzerr = bzDecompressInit(bz_stream *strm, int verbosity, int small);
+
 
             //bspatch();
 
