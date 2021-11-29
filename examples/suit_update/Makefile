@@ -2,7 +2,8 @@
 APPLICATION = suit_update
 
 # If no BOARD is found in the environment, use this default:
-BOARD ?= samr21-xpro
+BOARD ?= samd21-xpro
+WERROR = 0
 
 # This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../..
@@ -26,10 +27,6 @@ USEMODULE += gnrc_icmpv6_echo
 # include this for printing IP addresses
 USEMODULE += shell
 USEMODULE += shell_commands
-
-# heatshrink for decompression
-USEPKG += heatshrink
-INCLUDE += $(RIOTPKG)/heatshrink/...
 
 # Set this to 1 to enable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
