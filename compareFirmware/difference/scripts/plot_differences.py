@@ -204,7 +204,7 @@ for i, elem in enumerate(diff):
     log_diff.append(math.log10(abs(elem)))
     versions_diff.append("rev" + str(i).zfill(2) + "_rev" + str(i+1).zfill(2))
 
-fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "$log_{10}$ from size of difference [Byte]", figsize = (10,6), width = 0.4)
+fig_codediff, ax_codediff = plot_bar([log_diff], versions_diff, ["C-code UNIX diff"], "Difference between serial Revisions", "size of difference [$log_{10}$ Byte]", figsize = (10,6), width = 0.4)
 
 ### save and close figures ###
 fig_codediff.savefig("../plots/code_diff.pdf")
