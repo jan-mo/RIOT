@@ -13,6 +13,11 @@ diff_algos = ["diff", "byte_diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rs
 folder = "../algo_diffs_slots/"
 folder_restore = "../algo_diffs_slots/restore/"
 
+# check if script for matches_diff is executed
+if "byte_diff" in diff_algos:
+    diff_algos.append("baseline")
+    print("Info: execute /matches_diff/scripts/matches.py to convert the binaries!")
+
 # get all files of database
 Database = SearchDatabase("../../data_basis/")
 [files_samd20, files_samd21, versions] = Database.database_files_riotboot()

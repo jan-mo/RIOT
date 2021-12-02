@@ -19,6 +19,7 @@ pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
 # check if script for matches_diff is executed
 if "byte_diff" in diff_algos:
+    diff_algos.append("baseline")
     print("Info: execute /matches_diff/scripts/matches.py to convert the binaries!")
 
 # get all files of database

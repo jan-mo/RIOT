@@ -14,7 +14,7 @@ from __plot_functions import plot_bar, plot_function_diff, plot_function_diff_re
 ###
 
 # used differencing algos
-diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_heat", "deltagen"]
+diff_algos = ["baseline", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_heat", "deltagen"]
 
 plot_diagonal = True # compare diff and byte_diff
 
@@ -106,7 +106,7 @@ if plot_diagonal:
             key.append(algo + "_" + name)
         keys[algo] = key
 
-    plot_function_diff(algos_here, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal_of_diffs.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal of diff and byte_diff", figsize = (10,6), width = 0.08, zoom = False)
+    plot_function_diff(algos_here, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal_of_diffs.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal of byte_diff and baseline", figsize = (10,6), width = 0.08, zoom = False)
 
 
 ### SAMD21 relative bar plot ###

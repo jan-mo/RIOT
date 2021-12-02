@@ -71,7 +71,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
     line_style = ["--", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
 
     for i, value in enumerate(values):
-        if legend[i] == "byte_diff":
+        if legend[i] == "baseline":
             label = "baseline"
             line = 2.5
         else:

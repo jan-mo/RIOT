@@ -12,7 +12,7 @@ from __plot_functions import plot_bar, plot_function_diff
 ###
 
 # used differencing algos
-diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_heat", "deltagen"]
+diff_algos = ["baseline", "rsync8", "rsync16", "rsync32", "bsdiff", "vcdiff",  "zdelta", "xdelta3", "detools_heat", "deltagen"]
 
 ### load data ###
 with open("../output/sizes_sorted_same_slots.save", 'r') as json_file:
