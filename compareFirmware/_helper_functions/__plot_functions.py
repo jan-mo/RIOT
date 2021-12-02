@@ -68,10 +68,17 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     fig, ax = plt.subplots()
 
-    line_style = ["o-", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
+    line_style = ["--", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
 
     for i, value in enumerate(values):
-        plt.plot(xlabels, value, line_style[i], label = legend[i])
+        if legend[i] == "byte_diff":
+            label = "baseline"
+            line = 2.5
+        else:
+            label = legend[i]
+            line = 1
+
+        plt.plot(xlabels, value, line_style[i], label = label, linewidth = line)
 
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel(ylabel)

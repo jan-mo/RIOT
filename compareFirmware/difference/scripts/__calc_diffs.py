@@ -196,9 +196,9 @@ class calcDiff:
                                             "normalized":os.path.getsize(patch_diff)/os.path.getsize(file2)}
 
             if "byte_diff" in self.diff_algos:
-                sizes["byte_diff"][name_byte_diff] = {"size":os.path.getsize(patch_byte_diff),
+                sizes["byte_diff"][name_byte_diff] = {"size":sum(1 for line in open(patch_byte_diff)),
                                                       "check":"pass" if os.path.getsize(path_conv_file2) == os.path.getsize(restore_byte_diff) else "fail",
-                                                      "normalized":os.path.getsize(patch_byte_diff)/os.path.getsize(path_conv_file2)}
+                                                      "normalized":sum(1 for line in open(patch_byte_diff))/os.path.getsize(path_conv_file2)}
 
             if "bsdiff" in self.diff_algos:
                 sizes["bsdiff"][name_bsdiff] = {"size":os.path.getsize(patch_bsdiff),
