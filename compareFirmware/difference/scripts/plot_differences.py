@@ -90,7 +90,7 @@ for algo in diff_algos:
 plot_function_diff(diff_algos, keys, labels, sizes_sorted, MCU, "diffalgos_samd20_diagonal.pdf", "../plots/", "SAMD20-xpro Differencing Algorithms diagonal", figsize = (10,6), width = 0.08, zoom = True)
 
 # plot diagonal for diff and byte_diff
-algos_here = ["byte_diff", "diff"]
+algos_here = ["baseline", "byte_diff"]
 if plot_diagonal:
     # setting labels and key for all algos
     labels = []

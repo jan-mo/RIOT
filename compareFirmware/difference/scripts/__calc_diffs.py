@@ -67,7 +67,7 @@ class calcDiff:
 
             #### baseline ####
             if "baseline" in self.diff_algos:
-                name_baseline = "baseline" + name_file1 + "_" + name_file2
+                name_baseline = "baseline_" + name_file1 + "_" + name_file2
                 patch_baseline = self.folder + "baseline/" + name_arch + "/" + name_baseline
                 restore_baseline = self.folder_restore + name_baseline
                 # converted files

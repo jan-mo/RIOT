@@ -90,7 +90,7 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     # zoom y axis
     if zoom:
-        plt.ylim(-0.025, 1.55);
+        plt.ylim(-0.025, 1.025);
 
     fig.tight_layout()
 
