@@ -55,8 +55,11 @@ Database = SearchDatabase("../../difference/")
 compression_methods = ["zlib", "gzip", "bz2", "lzma", "hs", "miniz"]
 
 ### samd20 calculating compression diagonal
+print("SAMD20")
 path_dict = path_samd20
 diff_algos = list(path_dict["normal"].keys())
+# remove baseline from algos
+diff_algos.remove("baseline")
 # calc max revision number
 last_file = path_dict["normal"][diff_algos[0]][-1]
 split_file = last_file.split("_")
@@ -68,8 +71,11 @@ sizes_diagonal_samd20["riotboot"] = dict()
 sizes_diagonal_samd20["normal"], sizes_diagonal_samd20["riotboot"] = diagonal_sizes(path_dict, diff_algos, max_rev_number)
 
 ### samd21 calculating compression diagonal
+print("SAMD21")
 path_dict = path_samd21
 diff_algos = list(path_dict["normal"].keys())
+# remove baseline from algos
+diff_algos.remove("baseline")
 # calc max revision number
 last_file = path_dict["normal"][diff_algos[0]][-1]
 split_file = last_file.split("_")
@@ -86,3 +92,5 @@ with open("../output/compression_diagonal_samd20.save", 'w') as out:
 
 with open("../output/compression_diagonal_samd21.save", 'w') as out:
     json.dump(sizes_diagonal_samd21, out)
+
+print("Done")
