@@ -98,6 +98,7 @@ def __calc_matches(idx1, idx2, path, files):
 
 ### diff loop over all ###
 for idx in range(len(versions)-1):
+    print("Revision: ", idx, "->", idx+1)
     # samd20-xpro
     path = diff_path + "samd20-xpro/"
     offset = 0
