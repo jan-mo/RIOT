@@ -138,7 +138,7 @@ def main(args):
                 if component["compression"] == "bsdiff":
                     os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
                 elif component["compression"] == "minidiff":
-                    os.system(path_GIT + "minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
+                    os.system(path_GIT + "RIOT/minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
 
                 # update old fw file
                 if "slot0" in file:
