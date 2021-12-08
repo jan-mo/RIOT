@@ -448,12 +448,15 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
         sha256_final(&ctx, payload_digest);
     }
 
-    if (memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0)
+    if (memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0){
         return SUIT_OK;
+    }
 
     else {
         /* payload magic */
-        uint8_t magic_pay[4] = {0x50, 0x45, 0x41, 0x52};
+        //uint8_t magic_pay[4] = {0x50, 0x45, 0x41, 0x52}; /* header for bsdiff */
+        uint8_t magic_pay[4] = {0x44, 0x45, 0x46, 0x30}; /* header for minibsdiff + miniz */
+
         /* read payload */
         uint8_t payload[payload_size];
         suit_storage_read(storage, payload, 0, payload_size);
@@ -485,8 +488,10 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("Read header!\n");
 
             /* Check for appropriate magic */
-            if (memcmp(payload, "PEAR/BSDIFF43", 13) != 0)
+            if (memcmp(payload, "PEAR/BSDIFF43", 13) != 0){
                 puts("Error header patch-file!\n");
+                return -1;
+            }
 
             /* get newsize */
             newsize = offtin(payload+13);
@@ -495,17 +500,52 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("\n");
 
 
-
-
             printf("Testing write to storage:\n");
-            uint8_t buffer[4] = {0x01, 0x02, 0x03, 0x04};
-            int ret = suit_storage_write(storage, manifest, buffer, 682, 4);
+            #define buffer_size 64
+            static uint8_t buffer[buffer_size];
+            for (int i = 0; i < buffer_size; i++){
+                buffer[i] = i%buffer_size;
+            }
+
+            #define overhead_header 64
+            static uint8_t header[overhead_header] = {0};
+            header[0] = 0x52;
+            header[1] = 0x49;
+            header[2] = 0x4f;
+            header[3] = 0x54;
+            header[4] = 0x11;
+            header[5] = 0x22;
+            header[6] = 0x33;
+            header[7] = 0x44;
+
+            uint16_t size_test_write = 512;
+            //component->param_size = (suit_param_ref_t)size_test_write + overhead_header;
+            int ret = suit_storage_start(storage, manifest, size_test_write + overhead_header);
+            printf("START: %d\n", ret);
+
+            ret = suit_storage_write(storage, manifest, header, 0, overhead_header);
+            printf("HEADER: %d\n", ret);
+
+            uint16_t offset = 0;
+            for (uint16_t i = 0; i < size_test_write/buffer_size; i++){
+                offset = i*buffer_size + overhead_header;
+                printf("Offset: %d\n", offset);
+                ret = suit_storage_write(storage, manifest, buffer, offset, buffer_size);
+                if (ret != SUIT_OK){
+                    printf("ERROR WRITE: %d\n", ret);
+                }
+            }
+
+
+            ret = suit_storage_finish(storage, manifest);
+            printf("FINISH: %d\n", ret);
+
+            uint8_t test[20];
 
             if (ret == SUIT_OK) {
                 printf("SUIT_OK\n");
-                uint8_t test[10];
-                for (unsigned int i = 0; i < 10; i++){
-                    suit_storage_read(storage, test, i, 1);
+                suit_storage_read(storage, test, 0, 20);
+                for (unsigned int i = 0; i < 20; i++){
                     printf("%x ", test[i]);
                 }
                 printf("\n");
@@ -518,15 +558,32 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             int bzerr;
 
             unsigned int len = newsize + 24;
-            unsigned int buf_len = 1024;
+            unsigned int buf_len = 2048;
 
             uint8_t old_test[buf_len];
             oldsize = buf_len;
             
-            bzerr = BZ2_bzBuffToBuffDecompress(storage, &len, (char*)&payload, payload_size, small, verbosity);
+            suit_storage_read(storage, old_test, 0, oldsize);
+            /* print storage data */
+            printf("Compressed data:\n");
+            for (unsigned int i = 0; i < buf_len; i++){
+                printf("%x ", old_test[i]);
+            }
+            printf("\n");
+            printf("\n");
+            printf("\n");
+
+            //component->param_size = (suit_param_ref_t)newsize;
+            ret = suit_storage_start(storage, manifest, newsize);
+            printf("START: %d\n", ret);
+
+            bzerr = BZ2_bzBuffToBuffDecompress(storage, manifest, &len, (char*)&payload, payload_size, small, verbosity);
             
             if (bzerr == BZ_OUTBUFF_FULL){
                 printf("Full Output\n");
+            }
+            else if (bzerr != SUIT_OK) {
+                printf("BZerror: %d\n", bzerr);
             }
             else {
                 suit_storage_read(storage, old_test, 0, oldsize);
@@ -562,6 +619,7 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
             printf("\n");
             printf("\n");
             printf("\n");
+
             return SUIT_OK;
         }
         else {

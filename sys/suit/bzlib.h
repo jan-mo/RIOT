@@ -215,6 +215,7 @@ BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffCompress) (
 
 BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffDecompress) ( 
       suit_storage_t* storage,
+      suit_manifest_t* manifest,
       unsigned int* destLen,
       char*         source,
       unsigned int  sourceLen,
