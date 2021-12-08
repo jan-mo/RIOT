@@ -76,11 +76,11 @@ def main(args):
             "file": filename,
             "uri": uri,
             "bootable": False,
-            "compression": "bsdiff",
+            "compression": "minidiff", #"bsdiff",
         }
 
-        if component["compression"] == "bsdiff":
-            print("bsdiff")
+        if component["compression"] == "bsdiff" or component["compression"] == "minidiff":
+            print(component["compression"])
 
             # calc prev and current fw version
             split_file = filename.split("/")
@@ -135,7 +135,10 @@ def main(args):
                 # calc bsdiff patch
                 file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
                 file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
-                os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
+                if component["compression"] == "bsdiff":
+                    os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
+                elif component["compression"] == "minidiff":
+                    os.system(path_GIT + "minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
 
                 # update old fw file
                 if "slot0" in file:
