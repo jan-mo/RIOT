@@ -68,12 +68,13 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     fig, ax = plt.subplots()
 
-    line_style = ["--", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
+    line_style = ["o-", "x-", "x-.", "x--", "s-", "s-.", "v-", "v-.", ".-", ".-.", ".--", "-", "-.", "--"]
 
     for i, value in enumerate(values):
         if legend[i] == "baseline":
             label = "baseline"
             line = 2.5
+            line_style[i] = "--"
         else:
             label = legend[i]
             line = 1

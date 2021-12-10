@@ -91,6 +91,21 @@ class calcDiff:
                 # patch file
                 os.system("bspatch " + file1 + " " + restore_bsdiff + " " + patch_bsdiff)
 
+            #### minibs_heat ####
+            if "minibs_heat" in self.diff_algos:
+                name_minibs_heat = "minibs_heat_" + name_file1 + "_" + name_file2
+                patch_minibs_heat = self.folder + "minibs_heat/" + name_arch + "/" + name_minibs_heat
+                restore_minibs_heat = self.folder_restore + name_minibs_heat
+                tmp_minibs_heat = self.folder + "minibs_heat/" + name_arch + "/" + name_minibs_heat + str(pid)
+                # diff file
+                os.system("~/GIT/minibsdiff/minibsdiff gen " + file1 + " " + file2 + " " + tmp_minibs_heat + " > silent")
+                os.system("~/GIT/heatshrink/heatshrink -e -w 8 -l 4 " + tmp_minibs_heat + " " + patch_minibs_heat + " > silent")
+                os.system("rm -f silent " + tmp_minibs_heat)
+                # patch file
+                os.system("~/GIT/heatshrink/heatshrink -d -w 8 -l 4 " + patch_minibs_heat + " " + tmp_minibs_heat + " > silent")
+                os.system("~/GIT/minibsdiff/minibsdiff app " + file1 + " " + tmp_minibs_heat + " " +  restore_minibs_heat + " > silent")
+                os.system("rm -f silent " + tmp_minibs_heat)
+
             #### xdelta3 ####
             if "xdelta3" in self.diff_algos:
                 name_xdelta3 = "xdelta3_" + name_file1 + "_" + name_file2
@@ -222,6 +237,11 @@ class calcDiff:
                 sizes["bsdiff"][name_bsdiff] = {"size":os.path.getsize(patch_bsdiff),
                                                 "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_bsdiff) else "fail",
                                                 "normalized":os.path.getsize(patch_bsdiff)/os.path.getsize(file2)}
+
+            if "minibs_heat" in self.diff_algos:
+                sizes["minibs_heat"][name_minibs_heat] = {"size":os.path.getsize(patch_minibs_heat),
+                                                          "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_minibs_heat) else "fail",
+                                                          "normalized":os.path.getsize(patch_minibs_heat)/os.path.getsize(file2)}
 
             if "xdelta3" in self.diff_algos:
                 sizes["xdelta3"][name_xdelta3] = {"size":os.path.getsize(patch_xdelta3),

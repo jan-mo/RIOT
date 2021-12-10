@@ -13,7 +13,7 @@ from __finding_versions import SearchDatabase
 ###
 
 # used differencing algos
-diff_algos = ["diff", "byte_diff", "bsdiff", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
+diff_algos = ["diff", "byte_diff", "bsdiff", "minibs_heat", "xdelta3", "rsync8", "rsync16", "rsync32", "zdelta", "detools_none", "detools_heat", "vcdiff"]
 pkg_arch = "diffutils bsdiff xdelta3 rsync"
 pkg_ubuntu = "diffutils bsdiff xdelta3 rsync"
 
