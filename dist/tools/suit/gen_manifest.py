@@ -98,23 +98,24 @@ def main(args):
             fw_old_slot0 = ""
             fw_old_slot1 = ""
             for version in fw_versions:
-                if "slot0_old" == version:
+                if "slot0_installed" == version:
                     fw_old_slot0 = version
-                elif "slot1_old" == version:
+                elif "slot1_installed" == version:
                     fw_old_slot1 = version
+
             # check older fw version
             if fw_old_slot0 == "":
                 print("No old file detected, publish again!")
                 if "slot0" in file:
-                    os.system("cp " + filename + " " + path + "slot0_old")
+                    os.system("cp " + filename + " " + path + "slot0_installed")
                 elif "slot1" in file:
-                    os.system("cp " + filename + " " + path + "slot1_old")
+                    os.system("cp " + filename + " " + path + "slot1_installed")
             elif fw_old_slot1 == "":
                 print("No old file detected, publish again!")
                 if "slot0" in file:
-                    os.system("cp " + filename + " " + path + "slot0_old")
+                    os.system("cp " + filename + " " + path + "slot0_installed")
                 elif "slot1" in file:
-                    os.system("cp " + filename + " " + path + "slot1_old")
+                    os.system("cp " + filename + " " + path + "slot1_installed")
             else:
                 if "slot0" in file:
                     curr_fw = file
@@ -127,12 +128,6 @@ def main(args):
                 print("curr: ", file)
                 print("prev: ", prev_fw)
 
-                # save current fw
-                if "slot0" in file:
-                    os.system("cp " + filename + " " + path + "slot0_old_save")
-                elif "slot1" in file:
-                    os.system("cp " + filename + " " + path + "slot1_old_save")
-
                 # calc bsdiff patch
                 file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
                 file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
@@ -142,12 +137,6 @@ def main(args):
                     os.system(path_GIT + "RIOT/minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
                 elif component["compression"] == "miniheat":
                     os.system(path_GIT + "RIOT/miniheat.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
-
-                # update old fw file
-                if "slot0" in file:
-                    os.system("cp " + path + "slot0_old_save" + " " + path + "slot0_old")
-                elif "slot1" in file:
-                    os.system("cp " + path + "slot1_old_save" + " " + path + "slot1_old")
 
         if offset:
             component.update({"offset": offset})
