@@ -1,0 +1,9 @@
+
+
+
+sudo ./dist/tools/ethos/start_network.sh /dev/ttyACM0 riot0 2001:db8::/64
+
+sudo ip address add 2001:db8::1/128 dev riot0 && ifconfig
+
+sudo SUIT_COAP_SERVER=[2001:db8::1] make -j suit/publish
+SUIT_COAP_SERVER=[2001:db8::1] SUIT_CLIENT=[fe80::a48b:b4ff:fec9:e58d%riot0] make -j suit/notify

@@ -226,6 +226,14 @@ static int _fetch_block(coap_pkt_t *pkt, uint8_t *buf, sock_udp_t *sock,
     return 0;
 }
 
+
+uint32_t magic_pay = 0xa6d0aa74; /* header for heatshrink */
+uint32_t magic_pay_diff = 0x4d425344; /* header for minibsdiff */
+bool detect_patch = 0;
+
+uint8_t* buffer_decomp;
+uint8_t* buffer_firmware;
+
 int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
                             coap_blksize_t blksize,
                             coap_blockwise_cb_t callback, void *arg)
@@ -257,11 +265,43 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
             coap_get_block2(&pkt, &block2);
             more = block2.more;
 
-            if (callback(arg, block2.offset, pkt.payload, pkt.payload_len,
-                         more)) {
-                DEBUG("callback res != 0, aborting.\n");
-                res = -1;
-                goto out;
+            /* check if patch exists */
+            if (block2.offset == 0 && !detect_patch){
+                uint32_t header_check = pkt.payload[0]<<24 | pkt.payload[1]<<16 |
+                                        pkt.payload[2]<< 8 | pkt.payload[3];
+                if(header_check == magic_pay){
+                    detect_patch = 1;
+                    buffer_decomp = (uint8_t*)malloc( 1 * blksize * sizeof(uint8_t) );
+                    buffer_firmware = (uint8_t*)malloc( 4 * blksize * sizeof(uint8_t) );
+                }
+            }
+            /* start decompressing package and patching firmware */
+            if (!strncmp(&path[strlen(path) - 8], "riot.bin", 8) && detect_patch){
+                printf("DECOMPRESSING!\n");
+
+
+                if (buffer_decomp == NULL || buffer_firmware == NULL)
+                    printf("ERROR allocation!\n");
+
+
+
+                /* write calculated firmware data to storage */
+                if (callback(arg, block2.offset, pkt.payload, pkt.payload_len, more)) {
+                    DEBUG("callback res != 0, aborting.\n");
+                    res = -1;
+                    goto out;
+                }
+                /* TODO: updating image_size of manifest at the end !!! */
+                /* patch done */
+                //detect_patch = 0;
+            }
+            /* get normal data */
+            else{
+                if (callback(arg, block2.offset, pkt.payload, pkt.payload_len, more)) {
+                    DEBUG("callback res != 0, aborting.\n");
+                    res = -1;
+                    goto out;
+                }
             }
         }
         else {

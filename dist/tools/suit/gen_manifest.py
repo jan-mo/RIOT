@@ -76,10 +76,10 @@ def main(args):
             "file": filename,
             "uri": uri,
             "bootable": False,
-            "compression": "minidiff", #"bsdiff",
+            "compression": "miniheat", #"minidiff", #"bsdiff",
         }
 
-        if component["compression"] == "bsdiff" or component["compression"] == "minidiff":
+        if component["compression"] != "none":
             print(component["compression"])
 
             # calc prev and current fw version
@@ -123,6 +123,7 @@ def main(args):
                     curr_fw = file
                     prev_fw = fw_old_slot0
 
+                print("file: ", filename)
                 print("curr: ", file)
                 print("prev: ", prev_fw)
 
@@ -139,6 +140,8 @@ def main(args):
                     os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
                 elif component["compression"] == "minidiff":
                     os.system(path_GIT + "RIOT/minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
+                elif component["compression"] == "miniheat":
+                    os.system(path_GIT + "RIOT/miniheat.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
 
                 # update old fw file
                 if "slot0" in file:
