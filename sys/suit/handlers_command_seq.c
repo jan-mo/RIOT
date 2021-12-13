@@ -28,7 +28,7 @@
 
 #include "fmt.h"
 
-#include "bspatch.h"
+#include "suit/bspatch.h"
 #include "heatshrink_decoder.h"
 
 #include "hashes/sha256.h"

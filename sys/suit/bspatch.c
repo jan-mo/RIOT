@@ -27,7 +27,7 @@
 
 #include <limits.h>
 #include <stdio.h>
-#include "bspatch.h"
+#include "suit/bspatch.h"
 
 #include "fmt.h"
 
