@@ -28,7 +28,7 @@
 
 #include "fmt.h"
 
-#include "suit/bspatch.h"
+//#include "suit/bspatch.h"
 #include "heatshrink_decoder.h"
 
 #include "hashes/sha256.h"
@@ -47,14 +47,6 @@
 
 #include "log.h"
 
-
-#define ring_size 64
-uint8_t ptr_ring = 0;
-uint8_t ring_buffer[ring_size];
-
-suit_storage_t* storage_ring_buffer = NULL;
-suit_manifest_t* manifest_ring_buffer = NULL;
-size_t storage_offset = 0;
 
 static int _get_component_size(suit_manifest_t *manifest,
                                suit_component_t *comp,
@@ -421,47 +413,7 @@ static int _get_digest(nanocbor_value_t *bstr, const uint8_t **digest, size_t
     return nanocbor_get_bstr(&arr_it, digest, digest_len);
 }
 
-static int write_ring_buffer(uint8_t* data, uint8_t length){
-    if (storage_ring_buffer == NULL || manifest_ring_buffer == 0){
-        printf("Ring buffer storage and manifest not initialized\n");
-        return -2;
-    }
-    for (int i = 0; i < length; i++){
-        ring_buffer[ptr_ring] = data[i];
-        ptr_ring++;
-        if (ptr_ring == ring_size){
-            if (suit_storage_write(storage_ring_buffer, manifest_ring_buffer, ring_buffer, storage_offset, ring_size) != SUIT_OK){
-                printf("Write Buffer to Storage failed!\n");
-                return -1;
-            }
-            storage_offset += ring_size;
-            ptr_ring = 0;
-        }
-    }
-    return 0;
-}
-
-static int finish_write_ring_buffer(void){
-    if (ptr_ring == 0) {
-        printf("nothing to finish\n");
-        storage_offset = 0;
-        return 0;
-    }
-    else {
-        for (int i = 0; ptr_ring != 0; i++) {
-            uint8_t data = 0;
-            write_ring_buffer(&data, 1);
-        }
-        if (ptr_ring != 0){
-            printf("finish went wrong\n");
-            return -1;
-        }
-        storage_offset = 0;
-        return 0;
-    }
-}
-
-static void print_bin_data(uint8_t* data, size_t start, size_t end){
+void print_bin_data(uint8_t* data, size_t start, size_t end){
     if (end%16 != 0)
         end = end + end%16;
     for (size_t ptr = start; ptr < end; ptr = ptr+16) {
@@ -515,259 +467,82 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
         /* payload magic */
         //uint8_t magic_pay[4] = {0x50, 0x45, 0x41, 0x52}; /* header for bsdiff */
         //uint8_t magic_pay[4] = {0x44, 0x45, 0x46, 0x30}; /* header for  miniz */
-        uint8_t magic_pay[4] = {0xa6, 0xd0, 0xaa, 0x74}; /* header for heatshrink */
-        uint8_t magic_pay_diff[4] = {0x4d, 0x42, 0x53, 0x44}; /* header for minibsdiff */
+        //uint8_t magic_pay[4] = {0xa6, 0xd0, 0xaa, 0x74}; /* header for heatshrink */
+        //uint8_t magic_pay_diff[4] = {0x4d, 0x42, 0x53, 0x44}; /* header for minibsdiff */
 
         /* read payload */
         printf("PayloadSize: %d\n", payload_size);
-        //#define size_buffer_max 1024
-        //payload_size = payload_size > size_buffer_max ? size_buffer_max : payload_size;
-        //uint8_t payload[size_buffer_max];
 
-        uint8_t* payload;
-        payload = (uint8_t*) malloc( payload_size * sizeof(uint8_t) );
+        uint8_t payload[64];
+        payload_size = 64;
+        suit_storage_read(storage, payload, 0, 64);
 
-        bool payload_to_big = 0;
-        if (payload == NULL) {
-            printf("NULL pointer!!\n");
-            printf("to much payload, create new component!\n");
-            payload_to_big = 1;
+        /*printf("Switch component\n");
+        printf("Comp current %d\n", manifest->component_current);
+        if (manifest->component_current < CONFIG_SUIT_COMPONENT_MAX-1)
+            manifest->component_current++;
+        printf("Comp current %d\n", manifest->component_current);
 
-            printf("For now only use 1024 for payload\n");
-            payload_size = 1024;
-            payload = (uint8_t*) malloc( payload_size * sizeof(uint8_t) );
+        suit_component_t* new = _get_component(manifest);
+        suit_storage_t* storage_new = new->storage_backend;
 
+        printf("Copy payload.\n");
+        int retur = suit_storage_start(storage, manifest, payload_size);
+        printf("START: %d\n", retur);
 
-            /*printf("Switch component\n");
-            printf("Comp current %d\n", manifest->component_current);
-            if (manifest->component_current < CONFIG_SUIT_COMPONENT_MAX-1)
-                manifest->component_current++;
-            printf("Comp current %d\n", manifest->component_current);
-
-            suit_component_t* new = _get_component(manifest);
-            suit_storage_t* storage_new = new->storage_backend;
-
-            printf("Copy payload.\n");
-            int retur = suit_storage_start(storage, manifest, payload_size);
-            printf("START: %d\n", retur);
-
-            uint8_t pay_buffer[64];
-            for (size_t i = 0;; i = i + 64){
-                suit_storage_read(storage, pay_buffer, i, 64);
-                suit_storage_write(storage_new, manifest, pay_buffer, i, 64);
-            }
-
-
-            retur = suit_storage_finish(storage, manifest);
-            printf("FINISH: %d\n", retur);
-
-            printf("Validate reading\n");
-            storage = storage_new;
-            */
-
-        }
-        if (suit_storage_read(storage, payload, 0, payload_size) != SUIT_OK){
-            printf("Error reading storage\n");
+        uint8_t pay_buffer[64];
+        for (size_t i = 0;; i = i + 64){
+            suit_storage_read(storage, pay_buffer, i, 64);
+            suit_storage_write(storage_new, manifest, pay_buffer, i, 64);
         }
 
-        /* modify compression payload */
-        /* first 4 byte are different (depending on bsdiff) */
-        payload[0] = magic_pay[0];
-        payload[1] = magic_pay[1];
-        payload[2] = magic_pay[2];
-        payload[3] = magic_pay[3];
+        retur = suit_storage_finish(storage, manifest);
+        printf("FINISH: %d\n", retur);
 
-        /* print payload content */
-        //size_t size_buf = (payload_size >= 16*25) ? 16*25 : payload_size;
-        print_bin_data(payload, 0, 256);
-        printf("\n");
-        printf("\n");
-        print_bin_data(payload, payload_size-256, payload_size);
+        printf("Validate reading\n");
+        storage = storage_new;
+        */
 
         /* calc checksum to verify compression */
-        sha256(payload, payload_size, payload_digest);
-        if (payload_to_big || memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0) {
-            if (!payload_to_big)
+        bool skip_check = 1;
+        if (!skip_check){
+            sha256(payload, payload_size, payload_digest);
+        }
+        if (skip_check || memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0) {
+            if (!skip_check)
                 printf("Checksum PASSED\n");
             else
                 printf("Skip Checksum\n");
 
-            printf("Compression detected!\n");
-
             /* decompress payload */
-            int64_t oldsize, newsize;
-
-            /* first decompress data (miniz) */
-            //mz_ulong length = 2048;
-            //unsigned char dest[length];
-
-            //int error = mz_uncompress(dest, &length, (const unsigned char*) payload, (mz_ulong)payload_size);
-            //if (error != MZ_OK) {
-            //   printf("Error MZ: %d\n", error);
-            //    return -1;
-            //}
-
-            printf("Testing RINGBUFFER\n");
-
-            int retur = suit_storage_start(storage, manifest, 1024);
-            printf("START: %d\n", retur);
-
-
-            storage_ring_buffer = storage;
-            manifest_ring_buffer = manifest;
-
-            uint8_t data[640];
-            for (int i = 0; i < 640; i++){
-                data[i] = i%256;
-            }
-
-            write_ring_buffer(data, 32);
-            write_ring_buffer(data, 32);
-            write_ring_buffer(data, 64);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 10);
-            write_ring_buffer(data, 15);
-            write_ring_buffer(data, 43);
-            write_ring_buffer(data, 120);
-
-
-            finish_write_ring_buffer();
-            retur = suit_storage_finish(storage, manifest);
-            printf("FINISH: %d\n", retur);
-
             uint32_t img_size;
             _get_component_size(manifest, component, &img_size);
             printf("COMPONENT Size: %ld\n", img_size);
 
-            suit_storage_read(storage, data, 0, 640);
-            printf("data from ringBuffer:\n");
-            print_bin_data(data, 0, 640);
-
-
-            printf("Starting decompression!!!!!\n");
-            retur = suit_storage_start(storage, manifest, 102400);
-            printf("START: %d\n", retur);
-
-
-            static heatshrink_decoder _decoder;
-
-            heatshrink_decoder_reset(&_decoder);
-
-            uint8_t out_tmp[64];
-
-            size_t n = payload_size;
-            uint8_t *inpos = (uint8_t*)payload;
-            uint8_t *outpos = out_tmp;
-
-            /* decompress */
-            size_t written = 0;
-            while(1) {
-                size_t n_sunk = 0;
-                if (n) {
-                    heatshrink_decoder_sink(&_decoder, inpos, n, &n_sunk);
-                    if (n_sunk) {
-                        inpos += n_sunk;
-                        n -= n_sunk;
-                    }
-                    heatshrink_decoder_poll(&_decoder, outpos, ring_size, &written);
-                    write_ring_buffer(outpos, written);
-                    written = 0;
-                }
-                else {
-                    while (heatshrink_decoder_finish(&_decoder) == HSDR_FINISH_MORE) {
-                        heatshrink_decoder_poll(&_decoder, outpos, ring_size, &written);
-                        write_ring_buffer(outpos, written);
-                        written = 0;
-                    }
-                    break;
-                }
-            }
-
-            finish_write_ring_buffer();
-            retur = suit_storage_finish(storage, manifest);
-            printf("FINISH: %d\n", retur);
-
-
             /* read Decompressed data */
-            unsigned int buf_len = 2048;
+            unsigned int buf_len = 512;
             uint8_t old_test[buf_len];
-            suit_storage_read(storage, old_test, 0, buf_len);
-            /* applying magic diff*/
-            old_test[0] = magic_pay_diff[0];
-            old_test[1] = magic_pay_diff[1];
-            old_test[2] = magic_pay_diff[2];
-            old_test[3] = magic_pay_diff[3];
+            if (suit_storage_read(storage, old_test, 0, buf_len) != SUIT_OK)
+                printf("Error read start\n");
 
             /* print storage data */
-            printf("Decompressed data:\n");
+            printf("Decompressed data start:\n");
+            print_bin_data(old_test, 0, buf_len);
+            printf("\n");
+            if (suit_storage_read(storage, old_test, 85800 - buf_len, 85800) != SUIT_OK)
+                printf("Error read end\n");
+            printf("Decompressed data end:\n");
             print_bin_data(old_test, 0, buf_len);
 
 
-            /* patch data with minibsdiff */
-            printf("Read header!\n");
-
-            /* Check for appropriate magic */
-            if (memcmp(old_test, "MBSDIF43", 8) != 0){
-                puts("Error header patch-file!\n");
-                return -1;
-            }
-
-            /* get newsize */
-            size_t ctrllen=offtin(old_test+8);
-            size_t datalen=offtin(old_test+16);
-            newsize=offtin(old_test+24);
-            printf("ctrllen:\n");
-            print_u64_dec(ctrllen);
-            printf("\n");
-            printf("datalen:\n");
-            print_u64_dec(datalen);
-            printf("\n");
-            printf("newsize:\n");
-            print_u64_dec(newsize);
-            printf("\n");
-
-
-            /* writing to storage */
-            // first suit_storage_start() with newsize
-            // second suit_storage_write() with 64 byte Blocks
-            // third suit_storage_finish()
-
-
-            int ret = suit_storage_start(storage, manifest, 1024);
-            printf("START: %d\n", ret);
-
-            uint8_t data_[64] = {0};
-            ret = suit_storage_write(storage, manifest, data_, 0, 64);
-            printf("DATA: %d\n", ret);
-
-            /*
-            uint16_t offset = 0;
-            for (uint16_t i = 0; i < size_test_write/buffer_size; i++){
-                offset = i*buffer_size + overhead_header;
-                printf("Offset: %d\n", offset);
-                ret = suit_storage_write(storage, manifest, buffer, offset, buffer_size);
-                if (ret != SUIT_OK){
-                    printf("ERROR WRITE: %d\n", ret);
-                }
-            }
-            */
-
-            ret = suit_storage_finish(storage, manifest);
-            printf("FINISH: %d\n", ret);
-
-
             /* patch the data */
-            oldsize = 1024;
-            bspatch((const uint8_t*)old_test, oldsize, storage, oldsize, payload);
+            //int64_t oldsize, newsize;
+            //oldsize = 1024;
+            //bspatch((const uint8_t*)old_test, oldsize, storage, oldsize, payload);
             /* print patched data */
-            suit_storage_read(storage, old_test, 0, oldsize);
-            printf("New data:\n");
-            print_bin_data(old_test, 0, oldsize);
+            //suit_storage_read(storage, old_test, 0, oldsize);
+            //printf("New data:\n");
+            //print_bin_data(old_test, 0, oldsize);
 
             return SUIT_OK;
         }

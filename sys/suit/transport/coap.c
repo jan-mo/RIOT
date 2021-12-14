@@ -83,23 +83,24 @@ static uint8_t _manifest_buf[SUIT_MANIFEST_BUFSIZE];
 #include "suit/bspatch.h"
 #include "heatshrink_decoder.h"
 
-uint32_t magic_pay = 0xa6d0aa74; /* header for heatshrink */
-uint32_t magic_pay_diff = 0x4d425344; /* header for minibsdiff */
 bool detect_patch = 0;
 
 uint8_t* buffer_decomp;
 uint8_t* buffer_firmware;
 uint8_t size_full_paylad;
 
+
 uint8_t ring_size = 0;
 uint8_t ptr_ring = 0;
 uint8_t* ring_buffer;
 
-suit_storage_t* storage_ring_buffer = NULL;
-suit_manifest_t* manifest_ring_buffer = NULL;
 size_t storage_offset = 0;
 
+suit_storage_t* storage_ring_buffer = NULL;
+suit_manifest_t* manifest_ring_buffer = NULL;
 
+
+static heatshrink_decoder _decoder;
 
 #ifdef MODULE_SUIT
 static inline void _print_download_progress(suit_manifest_t *manifest,
@@ -250,7 +251,7 @@ static int _fetch_block(coap_pkt_t *pkt, uint8_t *buf, sock_udp_t *sock,
     return 0;
 }
 
-static int init_ring_buffer(uint8_t size, suit_storage_t* storage, suit_manifest_t* manifest){
+int init_ring_buffer(uint8_t size, suit_storage_t* storage, suit_manifest_t* manifest){
     if (manifest == NULL && storage == NULL){
         printf("Error manifest and storage equal NULL\n");
         return -1;
@@ -271,7 +272,17 @@ static int init_ring_buffer(uint8_t size, suit_storage_t* storage, suit_manifest
     return 0;
 }
 
-static int write_ring_buffer(uint8_t* data, uint8_t length){
+void __print_bin_data(uint8_t* data, size_t start, size_t end){
+    if (end%16 != 0)
+        end = end + end%16;
+    for (size_t ptr = start; ptr < end; ptr = ptr+16) {
+        printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
+            data[ptr],data[ptr+1],data[ptr+2],data[ptr+3],data[ptr+4],data[ptr+5],data[ptr+6],data[ptr+7],
+            data[ptr+8],data[ptr+9],data[ptr+10],data[ptr+11],data[ptr+12],data[ptr+13],data[ptr+14],data[ptr+15]);
+    }
+}
+
+int write_ring_buffer(uint8_t* data, uint8_t length){
     if (storage_ring_buffer == NULL || manifest_ring_buffer == 0){
         printf("Ring buffer storage and manifest not initialized\n");
         return -2;
@@ -291,7 +302,7 @@ static int write_ring_buffer(uint8_t* data, uint8_t length){
     return 0;
 }
 
-static int finish_write_ring_buffer(void){
+int finish_write_ring_buffer(void){
     if (ptr_ring == 0) {
         printf("nothing to finish\n");
         storage_offset = 0;
@@ -308,16 +319,6 @@ static int finish_write_ring_buffer(void){
         }
         storage_offset = 0;
         return 0;
-    }
-}
-
-void print_bin_data(uint8_t* data, size_t start, size_t end){
-    if (end%16 != 0)
-        end = end + end%16;
-    for (size_t ptr = start; ptr < end; ptr = ptr+16) {
-        printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
-            data[ptr],data[ptr+1],data[ptr+2],data[ptr+3],data[ptr+4],data[ptr+5],data[ptr+6],data[ptr+7],
-            data[ptr+8],data[ptr+9],data[ptr+10],data[ptr+11],data[ptr+12],data[ptr+13],data[ptr+14],data[ptr+15]);
     }
 }
 
@@ -340,6 +341,18 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
         return res;
     }
 
+
+    static uint32_t magic_pay = 0xa6d0aa74; /* header for heatshrink */
+    static uint32_t magic_pay_diff = 0x4d425344; /* header for minibsdiff */
+
+    (void) magic_pay_diff;
+
+
+    uint8_t out_tmp[64];
+
+    size_t n;
+    uint8_t *inpos;
+
     int more = 1;
     size_t num = 0;
     res = -1;
@@ -353,6 +366,11 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
             coap_get_block2(&pkt, &block2);
             more = block2.more;
 
+
+            /* decompress the data */
+            n = pkt.payload_len;
+            inpos = (uint8_t*)pkt.payload;
+
             /* check if patch packages are received */
             if (block2.offset == 0 && !detect_patch){
                 uint32_t header_check = pkt.payload[0]<<24 | pkt.payload[1]<<16 |
@@ -360,41 +378,32 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
                 /* allocate space for decompression and patching */
                 if(header_check == magic_pay){
                     detect_patch = 1;
-                    buffer_decomp = (uint8_t*)malloc( 1 * blksize * sizeof(uint8_t) );
-                    buffer_firmware = (uint8_t*)malloc( 4 * blksize * sizeof(uint8_t) );
+                    buffer_decomp = (uint8_t*)malloc( 1 * pkt.payload_len * sizeof(uint8_t) );
+                    buffer_firmware = (uint8_t*)malloc( 4 * pkt.payload_len * sizeof(uint8_t) );
 
                     size_full_paylad = offtin(pkt.payload+24);
+                    printf("Full payload: %d\n", size_full_paylad);
+                    heatshrink_decoder_reset(&_decoder);
+
+                    // getting manifest and storage
+                    suit_manifest_t *manifest = (suit_manifest_t *)arg;
+                    suit_component_t *comp = &manifest->components[manifest->component_current];
+                    suit_storage_t* storage = comp->storage_backend;
+                    if (init_ring_buffer(pkt.payload_len, storage, manifest) != 0){
+                        printf("INIT ring_buffer failed\n");
+                        return -1;
+                    }
+
+                    printf("DECOMPRESSING!\n");
                 }
             }
             /* start decompressing package and patching firmware */
             if (!strncmp(&path[strlen(path) - 8], "riot.bin", 8) && detect_patch){
-                printf("DECOMPRESSING!\n");
-
 
                 if (buffer_decomp == NULL || buffer_firmware == NULL)
                     printf("ERROR allocation!\n");
 
-
                 /* decompress the data */
-                // getting manifest and storage
-                suit_manifest_t *manifest = (suit_manifest_t *)arg;
-                suit_component_t *comp = &manifest->components[manifest->component_current];
-                suit_storage_t* storage = comp->storage_backend;
-                if (init_ring_buffer(64, storage, manifest) != 0){
-                    printf("INIT ring_buffer failed\n");
-                    return -1;
-                }
-
-                static heatshrink_decoder _decoder;
-
-                heatshrink_decoder_reset(&_decoder);
-
-                uint8_t out_tmp[64];
-
-                size_t n = blksize;
-                uint8_t *inpos = (uint8_t*)pkt.payload;
-                uint8_t *outpos = out_tmp;
-
                 /* decompress */
                 size_t written = 0;
                 while(1) {
@@ -405,33 +414,27 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
                             inpos += n_sunk;
                             n -= n_sunk;
                         }
-                        heatshrink_decoder_poll(&_decoder, outpos, ring_size, &written);
-                        write_ring_buffer(outpos, written);
+                        heatshrink_decoder_poll(&_decoder, out_tmp, ring_size, &written);
+                        write_ring_buffer(out_tmp, written);
                         written = 0;
                     }
                     else {
                         while (heatshrink_decoder_finish(&_decoder) == HSDR_FINISH_MORE) {
-                            heatshrink_decoder_poll(&_decoder, outpos, ring_size, &written);
-                            write_ring_buffer(outpos, written);
+                            heatshrink_decoder_poll(&_decoder, out_tmp, ring_size, &written);
+                            write_ring_buffer(out_tmp, written);
                             written = 0;
                         }
                         break;
                     }
                 }
 
-                if (finish_write_ring_buffer() != 0){
-                    printf("FINISH ring buffer failed\n");
-                }
-
-                printf("FINISH storage: %d\n", suit_storage_finish(storage, manifest));
-
-
                 /* write calculated firmware data to storage */
-                if (callback(arg, block2.offset, pkt.payload, pkt.payload_len, more)) {
+                /*if (callback(arg, block2.offset, pkt.payload, pkt.payload_len, more)) {
                     DEBUG("callback res != 0, aborting.\n");
                     res = -1;
                     goto out;
                 }
+                */
                 /* TODO: updating image_size of manifest at the end !!! */
                 /* patch done */
                 //detect_patch = 0;
@@ -456,7 +459,13 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
         num += 1;
     }
 
+    printf("FINISH ring buffer\n");
+    if (finish_write_ring_buffer() != 0){
+        printf("FINISH ring buffer failed\n");
+    }
+
 out:
+    printf("Num: %d\n", num);
     sock_udp_close(&sock);
     return res;
 }
