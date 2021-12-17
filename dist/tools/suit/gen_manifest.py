@@ -76,7 +76,7 @@ def main(args):
             "file": filename,
             "uri": uri,
             "bootable": False,
-            "compression": "miniheat", #"minidiff", #"bsdiff",
+            "compression": "none", #"minidiff", #"bsdiff",
         }
 
         if component["compression"] != "none":
@@ -125,18 +125,18 @@ def main(args):
                     prev_fw = fw_old_slot0
 
                 print("file: ", filename)
-                print("curr: ", file)
+                print("curr: ", curr_fw)
                 print("prev: ", prev_fw)
 
                 # calc bsdiff patch
-                file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
-                file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
+                file1 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + prev_fw
+                file2 = path_GIT + "RIOT/examples/suit_update/bin/samd21-xpro/" + curr_fw
                 if component["compression"] == "bsdiff":
                     os.system(path_GIT + "bsdiff/bsdiff " + file1 + " " + file2 + " " + filename)
                 elif component["compression"] == "minidiff":
                     os.system(path_GIT + "RIOT/minidiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
                 elif component["compression"] == "miniheat":
-                    os.system(path_GIT + "RIOT/miniheat.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
+                    os.system(path_GIT + "RIOT/minibsdiff.py " + file1 + " " + file2 + " " + filename + " " + path_GIT)
 
         if offset:
             component.update({"offset": offset})

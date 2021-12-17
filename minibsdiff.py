@@ -8,9 +8,11 @@ file2 = args[2]
 out = args[3]
 path = args[4]
 
+### save file2
+os.system("cp " + file2 + " temp")
+
 os.system(path + "minibsdiff/minibsdiff gen " + file1 + " " + file2 + " diff_out" + " > silent")
-os.system(path + "heatshrink/heatshrink -e -w 8 -l 4 diff_out " + out + " > silent")
 os.system("rm silent")
 
-### for debugging
-os.system("cp " + out + " patch_file")
+### for testing, use diff_out as size
+os.system("cp diff_out " + out)
