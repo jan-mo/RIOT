@@ -28,6 +28,9 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += shell
 USEMODULE += shell_commands
 
+FEATURES_REQUIRED += periph_flashpage
+FEATURES_OPTIONAL += periph_flashpage_pagewise
+
 USEPKG += heatshrink
 -INCLUDE += $(RIOTPKG)/heatshrink/...
 
