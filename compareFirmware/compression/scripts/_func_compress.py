@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.9
+#!/usr/bin/env python3
 
 import zlib, gzip, bz2, lzma
 import heatshrink2 as hs
