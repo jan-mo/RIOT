@@ -28,7 +28,6 @@
 
 #include "fmt.h"
 
-//#include "suit/bspatch.h"
 #include "heatshrink_decoder.h"
 
 #include "hashes/sha256.h"
@@ -414,8 +413,6 @@ static int _get_digest(nanocbor_value_t *bstr, const uint8_t **digest, size_t
 }
 
 void print_bin_data(uint8_t* data, size_t start, size_t end){
-    if (end%16 != 0)
-        end = end + end%16;
     for (size_t ptr = start; ptr < end; ptr = ptr+16) {
         printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
             data[ptr],data[ptr+1],data[ptr+2],data[ptr+3],data[ptr+4],data[ptr+5],data[ptr+6],data[ptr+7],
@@ -464,106 +461,34 @@ static int _validate_payload(suit_component_t *component, const uint8_t *digest,
     }
 
     else {
-        /* payload magic */
-        //uint8_t magic_pay[4] = {0x50, 0x45, 0x41, 0x52}; /* header for bsdiff */
-        //uint8_t magic_pay[4] = {0x44, 0x45, 0x46, 0x30}; /* header for  miniz */
-        //uint8_t magic_pay[4] = {0xa6, 0xd0, 0xaa, 0x74}; /* header for heatshrink */
-        //uint8_t magic_pay_diff[4] = {0x4d, 0x42, 0x53, 0x44}; /* header for minibsdiff */
+        printf("Skip Checksum\n");
+        printf("DEBUGGING output\n");
 
-        /* read payload */
-        printf("PayloadSize: %d\n", payload_size);
+        /* decompress payload */
+        uint32_t img_size;
+        _get_component_size(manifest, component, &img_size);
+        printf("COMPONENT Size: %ld\n", img_size);
 
-        uint8_t payload[64];
-        payload_size = 64;
-        suit_storage_read(storage, payload, 0, 64);
+        /* read Decompressed data */
+        unsigned int buf_len = 2048;
+        uint8_t old_test[buf_len];
 
-        /*printf("Switch component\n");
-        printf("Comp current %d\n", manifest->component_current);
-        if (manifest->component_current < CONFIG_SUIT_COMPONENT_MAX-1)
-            manifest->component_current++;
-        printf("Comp current %d\n", manifest->component_current);
+        /* print storage data */
+        size_t end = img_size - img_size%16;
+        if (suit_storage_read(storage, old_test, 0, buf_len) != SUIT_OK)
+            printf("Error read start\n");
 
-        suit_component_t* new = _get_component(manifest);
-        suit_storage_t* storage_new = new->storage_backend;
+        printf("Decompressed data start:\n");
+        print_bin_data(old_test, 0, buf_len);
+        printf("\n");
 
-        printf("Copy payload.\n");
-        int retur = suit_storage_start(storage, manifest, payload_size);
-        printf("START: %d\n", retur);
+        /* print storage end */
+        if (suit_storage_read(storage, old_test, end - buf_len, buf_len) != SUIT_OK)
+           printf("Error read end\n");
+        printf("Decompressed data end:\n");
+        print_bin_data(old_test, 0, buf_len);
 
-        uint8_t pay_buffer[64];
-        for (size_t i = 0;; i = i + 64){
-            suit_storage_read(storage, pay_buffer, i, 64);
-            suit_storage_write(storage_new, manifest, pay_buffer, i, 64);
-        }
-
-        retur = suit_storage_finish(storage, manifest);
-        printf("FINISH: %d\n", retur);
-
-        printf("Validate reading\n");
-        storage = storage_new;
-        */
-
-        /* calc checksum to verify compression */
-        bool skip_check = 1;
-        if (!skip_check){
-            sha256(payload, payload_size, payload_digest);
-        }
-        if (skip_check || memcmp(digest, payload_digest, SHA256_DIGEST_LENGTH) == 0) {
-            if (!skip_check)
-                printf("Checksum PASSED\n");
-            else
-                printf("Skip Checksum\n");
-
-            /* decompress payload */
-            uint32_t img_size;
-            _get_component_size(manifest, component, &img_size);
-            printf("COMPONENT Size: %ld\n", img_size);
-
-            /* read Decompressed data */
-            unsigned int buf_len = 512;
-            uint8_t old_test[buf_len];
-            if (suit_storage_read(storage, old_test, 0, buf_len) != SUIT_OK)
-                printf("Error read start\n");
-
-            /* print storage data */
-            printf("Decompressed data start:\n");
-            print_bin_data(old_test, 0, buf_len);
-            printf("\n");
-            if (suit_storage_read(storage, old_test, 85800 - buf_len, 85800) != SUIT_OK)
-                printf("Error read end\n");
-            printf("Decompressed data end:\n");
-            print_bin_data(old_test, 0, buf_len);
-
-
-            /* patch the data */
-            //int64_t oldsize, newsize;
-            //oldsize = 1024;
-            //bspatch((const uint8_t*)old_test, oldsize, storage, oldsize, payload);
-            /* print patched data */
-            //suit_storage_read(storage, old_test, 0, oldsize);
-            //printf("New data:\n");
-            //print_bin_data(old_test, 0, oldsize);
-
-            return SUIT_OK;
-        }
-        else {
-            printf("checksum FAILED\n");
-            uint8_t buf_[16];
-            for (size_t i = 0; i < payload_size; i = i+16){
-                suit_storage_read(storage, buf_, i, 16);
-                if(memcmp(buf_, &payload[i], 16) != 0){
-                    printf("Wrong payload at %d:\n", i);
-                    printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
-                        payload[i],payload[i+1],payload[i+2],payload[i+3],payload[i+4],payload[i+5],payload[i+6],payload[i+7],
-                        payload[i+8],payload[i+9],payload[i+10],payload[i+11],payload[i+12],payload[i+13],payload[i+14],payload[i+15]);
-                    printf("%02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x %02x%02x\n",
-                        buf_[i],buf_[i+1],buf_[i+2],buf_[i+3],buf_[i+4],buf_[i+5],buf_[i+6],buf_[i+7],
-                        buf_[i+8],buf_[i+9],buf_[i+10],buf_[i+11],buf_[i+12],buf_[i+13],buf_[i+14],buf_[i+15]);
-                    printf("\n");
-                }
-            }
-            return SUIT_ERR_DIGEST_MISMATCH;
-        }
+        return SUIT_ERR_DIGEST_MISMATCH;
     }
 }
 
