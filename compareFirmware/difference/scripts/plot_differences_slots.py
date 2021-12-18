@@ -205,4 +205,85 @@ for algo in diff_algos:
 
 plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots", zoom = True)
 
+
+######### plot chunks against diff
+
+### load data matches_diff ###
+with open("../../matches_diff/output/diffs_matches.save", 'r') as json_file:
+    diffs_matches = json.load(json_file)
+
+
+### get all chunks
+chunks = []
+added = []
+deleted = []
+size = []
+for elem in diffs_matches["samd21-xpro"]["slots"]["alternating"]:
+    chunks.append(diffs_matches["samd21-xpro"]["slots"]["alternating"][elem]["chunks"])
+    added.append(diffs_matches["samd21-xpro"]["slots"]["alternating"][elem]["added"])
+    deleted.append(diffs_matches["samd21-xpro"]["slots"]["alternating"][elem]["deleted"])
+    size.append(diffs_matches["samd21-xpro"]["slots"]["alternating"][elem]["size"])
+
+### combine keys and characteristics
+chunks_comb = []
+added_comb = []
+deleted_comb = []
+size_comb = []
+j = 0
+for algo in diff_algos:
+    j = j + 1
+    for i, elem in enumerate(keys[algo]):
+        chunks_comb.append([j, chunks[i], elem])
+        added_comb.append([j, added[i], elem])
+        deleted_comb.append([j, deleted[i], elem])
+        size_comb.append([j, size[i], elem])
+
+chunks_comb.sort()
+added_comb.sort()
+deleted_comb.sort()
+size_comb.sort()
+
+### decombine the elements
+keys_sorted_chunks = dict()
+keys_sorted_added = dict()
+keys_sorted_deleted = dict()
+keys_sorted_size = dict()
+for i, algo in enumerate(diff_algos):
+    keys_sorted_chunks[algo] = dict()
+    keys_sorted_added[algo] = dict()
+    keys_sorted_deleted[algo] = dict()
+    keys_sorted_size[algo] = dict()
+    key_chunks = []
+    key_added = []
+    key_deleted = []
+    key_size = []
+    for j in range(len(versions)-1):
+        key_chunks.append(chunks_comb[j+i*(len(versions)-1)][2])
+        key_added.append(added_comb[j+i*(len(versions)-1)][2])
+        key_deleted.append(deleted_comb[j+i*(len(versions)-1)][2])
+        key_size.append(size_comb[j+i*(len(versions)-1)][2])
+    keys_sorted_chunks[algo] = key_chunks
+    keys_sorted_added[algo] = key_added
+    keys_sorted_deleted[algo] = key_deleted
+    keys_sorted_size[algo] = key_size
+
+
+chunks.sort()
+added.sort()
+deleted.sort()
+size.sort()
+
+### chunks
+plot_function_diff(diff_algos, keys_sorted_chunks, chunks, sizes_sorted_alternating, MCU, "chunks_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, chunks vs. revisions", zoom = True, ticks = False)
+
+### added
+plot_function_diff(diff_algos, keys_sorted_added, added, sizes_sorted_alternating, MCU, "added_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, added vs. revisions", zoom = True, ticks = False)
+
+### deleted
+plot_function_diff(diff_algos, keys_sorted_deleted, deleted, sizes_sorted_alternating, MCU, "deleted_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, deleted vs. revisions", zoom = True, ticks = False)
+
+### deleted
+plot_function_diff(diff_algos, keys_sorted_size, size, sizes_sorted_alternating, MCU, "size_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, size vs. revisions", zoom = True, ticks = False)
+
+
 print("Done!")

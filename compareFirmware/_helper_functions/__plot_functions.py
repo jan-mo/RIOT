@@ -49,7 +49,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     return fig, ax
 
 #### simple line plot function ####
-def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18, 8), zoom = True):
+def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18, 8), zoom = True, ticks = True):
 
     plt.rcParams["figure.figsize"] = figsize
 
@@ -84,9 +84,15 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel(ylabel)
     ax.set_title(name_fig)
-    x = np.arange(len(xlabels))  # the label locations
-    ax.set_xticks(x)
-    ax.set_xticklabels(xlabels, rotation=45)
+    if ticks:
+        x = np.arange(len(xlabels))  # the label locations
+        ax.set_xticks(x)
+        ax.set_xticklabels(xlabels, rotation=45)
+    else:
+        x = np.arange(0,xlabels[-1],int(xlabels[-1]/10))  # the label locations
+        ax.set_xticks(x)
+        ax.set_xticklabels(x, rotation=45)
+
     ax.legend(ncol=3, loc = 'upper center')
 
     # zoom y axis
@@ -255,7 +261,7 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
 
 
 ### plots the differences from given keys ###
-def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, figsize = (10,6), width = 0.1, zoom = False):
+def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, figsize = (10,6), width = 0.1, zoom = False, ticks = True):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -270,8 +276,8 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = False)
-    fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", figsize = figsize, zoom = zoom)
+    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = False, ticks = ticks)
+    fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", figsize = figsize, zoom = zoom, ticks = ticks)
 
     # save and close figures
     fig_samd20.savefig(path + file)
