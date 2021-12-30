@@ -109,13 +109,16 @@ static heatshrink_decoder _decoder;
 
 /* bsdiff values */
 size_t newsize,ctrllen,datalen;
-uint8_t *ctrlblock;
+size_t ctrlblock;
 size_t diffblock, extrablock;
 size_t oldpos,newpos,patch_pos;
 size_t ctrl[3];
 size_t i_loop;
 uint8_t i_loop_done = 1;
 bool __init_own_bsdiff = 0;
+
+#define SIZE_BUFFER_HEADER 4
+uint8_t size_buffer_header_counter = 0;
 
 uint8_t* buffer_header;
 
@@ -133,6 +136,7 @@ extra_pointers_t* extra_pointers;
 uint8_t entry_extrpointer = 0;
 bool calc_extra_blocks = 0;
 bool extra_blocks_done = 0;
+bool load_extra_data = 0;
 
 uint8_t loop = 0;
 
@@ -316,7 +320,6 @@ int write_inner_ring_buffer(uint8_t* data, uint8_t length) {
 }
 
 int init_own_bsdiff(void){
-
     printf("INIT own bsdiff\n");
     /* allocate extra pointers */
     extra_pointers = (extra_pointers_t*) malloc(LEN_EXTRA_POINTER * sizeof(extra_pointers_t));
@@ -334,8 +337,12 @@ int init_own_bsdiff(void){
     datalen=offtin(buffer_header+16);
     newsize=offtin(buffer_header+24);
 
+    printf("newsize: %d\n", newsize);
+    printf("ctrllen: %d\n", ctrllen);
+    printf("datalen: %d\n", datalen);
+
     /* Get pointers into the header metadata */
-    ctrlblock  = buffer_header+32;
+    ctrlblock  = 32;
     diffblock  = 32+ctrllen;
     extrablock = 32+ctrllen+datalen;
 
@@ -347,7 +354,10 @@ int init_own_bsdiff(void){
 }
 
 int own_bsdiff_ctrlblock(void) {
-    printf("OWN bsdiff controlblock\n");
+    if (load_extra_data) {
+        printf("Leaving OWN controlblock");
+        return 0;
+    }
 
     /* set offset for patch_data */
     size_t offset_temp = diffblock;
@@ -357,10 +367,16 @@ int own_bsdiff_ctrlblock(void) {
     }
 
     /* Read control block */
-    ctrl[0] = offtin(ctrlblock);
-    ctrl[1] = offtin(ctrlblock+8);
-    ctrl[2] = offtin(ctrlblock+16);
+    ctrl[0] = offtin(&buffer_header[ctrlblock]);
+    ctrl[1] = offtin(&buffer_header[ctrlblock+8]);
+    ctrl[2] = offtin(&buffer_header[ctrlblock+16]);
+
     ctrlblock += 24;
+
+    /* print control block */
+    //printf("ctrl0: %d\n", ctrl[0]);
+    //printf("ctrl1: %d\n", ctrl[1]);
+    //printf("ctrl2: %d\n", ctrl[2]);
 
     /* Sanity check */
     if(newpos+ctrl[0]>newsize) {
@@ -370,13 +386,9 @@ int own_bsdiff_ctrlblock(void) {
     /* increment diffblock */
     diffblock += ctrl[0];
 
-    /* print control block */
-    printf("ctrl0: %d\n", ctrl[0]);
-    printf("ctrl1: %d\n", ctrl[1]);
-    printf("ctrl2: %d\n", ctrl[2]);
-
     i_loop = 0;
     loop++;
+
     return 0;
 }
 
@@ -391,12 +403,14 @@ void extrablock_calculation(uint8_t* patch) {
         return;
     }
 
-    //printf("patch data: %d\n", extrablock%ring_size);
-    //__print_bin_data(patch,extrablock%ring_size,ring_size);
+    size_t offset_patch = extrablock%ring_size;
 
-    uint8_t offset_patch = extrablock%ring_size;
+    printf("EXTRA offset: %d\n", offset_patch);
+    //__print_bin_data(patch,offset_patch,ring_size);
 
     for (uint8_t extra = 0; extra < entry_extrpointer; extra++) {
+
+        printf("EXTRA entry: %d\n", extra);
 
         uint16_t page_offset = extra_pointers[extra].offset_pointer%FLASHPAGE_SIZE;
         uint8_t extra_size = extra_pointers[extra].size_pointer;
@@ -410,30 +424,37 @@ void extrablock_calculation(uint8_t* patch) {
             //printf("flash data:\n");
             //__print_bin_data(buf_flash,0,FLASHPAGE_SIZE);
 
+            bool extra_done_page = 0;
             /* write extra data to buf_new_data */
             for (int i = 0; i < FLASHPAGE_SIZE; i++) {
                 /* write extra data */
-                if (i == page_offset) {
+                if (i == page_offset && !extra_done_page) {
                     for (int j = 0; j < extra_size; j++, i++) {
                         /* if buffer exceeded */
                         if (i >= FLASHPAGE_SIZE) {
-                            printf("Buffer exceeded\n");
+                            printf("Buffer exceeded at %d.\n", j);
                             /* write data to flash */
+                            printf("write page: %d\n", page);
                             flashpage_write_page(page,buf_new_data);
                             i = 0;
-                            page_offset = FLASHPAGE_SIZE;
                             /* read new page */
                             page++;
                             flashpage_read(page, buf_flash);
                         }
                         if (offset_patch >= ring_size) {
                             /* patch exceeded */
-                            printf("Extrablocks exceeded\n");
+                            printf("Extrablocks exceeded.\n");
+                            extra_pointers[extra].size_pointer = extra_size-j;
+                            extra_pointers[extra].offset_pointer = page_offset+j;
+                            load_extra_data = 1;
+                            free(buf_flash);
+                            free(buf_new_data);
                             return;
                         }
                         buf_new_data[i] = patch[offset_patch];
                         offset_patch++;
                     }
+                    extra_done_page = 1;
                 }
                 /* write flash data */
                 buf_new_data[i] = buf_flash[i];
@@ -441,17 +462,18 @@ void extrablock_calculation(uint8_t* patch) {
 
             /* write data to flash */
             flashpage_write_page(page,buf_new_data);
-
-            /* print valid data */
-            ptr = extra_pointers[extra].offset_pointer+256;
-            suit_storage_read(storage_ring_buffer, buf_flash, ptr - ptr%FLASHPAGE_SIZE, FLASHPAGE_SIZE);
-            //printf("Extra data:\n");
-            //__print_bin_data(buf_flash,0,FLASHPAGE_SIZE);
         }
+
+        /* mark extra content as done */
+        extra_pointers[extra].size_pointer = 0;
     }
     printf("Extrablocks DONE!\n");
     calc_extra_blocks = 0;
     extra_blocks_done = 1;
+
+    free(buf_flash);
+    free(buf_new_data);
+    return;
 }
 
 int for_loop(uint8_t* patch) {
@@ -532,20 +554,20 @@ int own_bspatch(uint8_t* patch)
     }
 
     if (i_loop_done == 1) {
-        printf("Loop_done\n");
+        //printf("Loop_done\n");
 
         /* Adjust pointers */
         newpos+=ctrl[0];
         oldpos+=ctrl[0];
 
         /* Sanity check */
-        if(newpos+ctrl[1]>newsize){
+        if(newpos+ctrl[1]>newsize) {
             /* finish inner_ring_buffer */
             uint8_t zero = 0x00;
             while (ptr_inner_ring) {
                 write_inner_ring_buffer(&zero, 1);
             }
-            return -3; /* Corrupt patch */
+            return -3;
         }
 
         /* write empty extra data */
@@ -559,19 +581,24 @@ int own_bspatch(uint8_t* patch)
         extra_pointers[entry_extrpointer].size_pointer = ctrl[1];
         entry_extrpointer++;
 
-        printf("extrapointer length: %d\n", entry_extrpointer);
+        //printf("extrapointer length: %d\n", entry_extrpointer);
 
         /* Adjust pointers */
         newpos+=ctrl[1];
         oldpos+=ctrl[2];
     }
 
-    if (offset_patch_data && i_loop_done == 1) {
-        if (own_bsdiff_ctrlblock() !=0) {
+    if (offset_patch_data && i_loop_done == 1 && !load_extra_data) {
+        int res = own_bsdiff_ctrlblock();
+        if (res == -1) {
+            printf("Read new data Extracontrol\n");
+            return 0;
+        }
+        else if (res != 0) {
             printf("ERROR controlblock\n");
         }
-        printf("do LOOP again!\n");
-        printf("patch_offset: %d\n", offset_patch_data);
+        //printf("do LOOP again!\n");
+        //printf("patch_offset: %d\n", offset_patch_data);
         own_bspatch(patch);
     }
     return 0;
@@ -616,7 +643,7 @@ int write_ring_buffer(uint8_t* data, uint8_t length) {
         if (ptr_ring == ring_size){
             /* patch the data */
             if (!__init_own_bsdiff) {
-                buffer_header = (uint8_t*) malloc(LEN_DIFF_PATCH * sizeof(uint8_t));
+                buffer_header = (uint8_t*) malloc(LEN_DIFF_PATCH * SIZE_BUFFER_HEADER * sizeof(uint8_t));
                 if (buffer_header == NULL) {
                     printf("ERROR init buffer_header\n");
                     return -1;
@@ -626,6 +653,11 @@ int write_ring_buffer(uint8_t* data, uint8_t length) {
                     printf("ERROR: init own bsdiff\n");
                     return -1;
                 }
+                size_buffer_header_counter++;
+            }
+            else if (size_buffer_header_counter < SIZE_BUFFER_HEADER) {
+                memcpy(&buffer_header[size_buffer_header_counter*LEN_DIFF_PATCH], ring_buffer, LEN_DIFF_PATCH);
+                size_buffer_header_counter++;
             }
             /* check controlblock */
             if (newpos < newsize && i_loop_done) {
@@ -634,14 +666,13 @@ int write_ring_buffer(uint8_t* data, uint8_t length) {
                 }
             }
             /* calculate data from diff, read until old_data is read */
-            // TODO getting old size, replace 85000
-
             if (own_bspatch(ring_buffer) != 0) {
                 printf("ERROR own bsdiff\n");
             }
             /* reset ring_buffer */
             ptr_ring = 0;
         }
+        load_extra_data = 0;
     }
     return 0;
 }
@@ -666,7 +697,7 @@ int finish_write_ring_buffer(void) {
             write_ring_buffer(&data, 1);
         }
         if (ptr_inner_ring != 0){
-            printf("finish went wrong\n");
+            printf("ERROR finish went wrong\n");
             return -1;
         }
         storage_offset = 0;
