@@ -206,15 +206,28 @@ class calcDiff:
                 os.system("rm -f silent")
 
             ### detools heatshrink compression ###
+            #if "detools_heat" in self.diff_algos:
+            #    name_detools_heat = "detools_heat_" + name_file1 + "_" + name_file2
+            #    patch_detools_heat = self.folder + "detools_heat/" + name_arch + "/" + name_detools_heat
+            #    restore_detools_heat = self.folder_restore + name_detools_heat
+            #    # diff file
+            #    os.system("python -m detools create_patch -a bsdiff -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
+            #    # patch file
+            #    os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
+            #    os.system("rm -f silent")
             if "detools_heat" in self.diff_algos:
                 name_detools_heat = "detools_heat_" + name_file1 + "_" + name_file2
                 patch_detools_heat = self.folder + "detools_heat/" + name_arch + "/" + name_detools_heat
                 restore_detools_heat = self.folder_restore + name_detools_heat
+                detools_heat_par = "_detools_heat_" + str(pid)    # save file for parallel loop
                 # diff file
-                os.system("python -m detools create_patch -a bsdiff -c heatshrink  "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
+                os.system("python -m detools create_patch_in_place --memory-size 10240 --segment-size 256 -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
                 # patch file
-                os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
+                os.system("cp " + file1 + " " + detools_heat_par)
+                os.system("python -m detools apply_patch_in_place "  + detools_heat_par + " " + patch_detools_heat + " > silent")
+                os.system("cp " + detools_heat_par + " " + restore_detools_heat)
                 os.system("rm -f silent")
+                os.system("rm -f " + detools_heat_par)
 
 
             #### check patch and calc sizes ####
