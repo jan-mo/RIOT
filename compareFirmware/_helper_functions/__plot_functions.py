@@ -11,7 +11,7 @@ from numpy import mean as estimate
 ###
 
 #### simple bar plot function ####
-def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18,8), width = 0.1):
+def plot_bar(values, xlabels, legend, name_fig=False, ylabel="size [kB]", figsize = (18,8), width = 0.1):
 
     x = np.arange(len(xlabels))  # the label locations
 
@@ -39,7 +39,8 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
 
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel(ylabel)
-    ax.set_title(name_fig)
+    if name_fig != False:
+        ax.set_title(name_fig)
     ax.set_xticks(x)
     ax.set_xticklabels(xlabels, rotation=45)
     ax.legend(ncol=3, loc = 'upper right')
@@ -49,7 +50,7 @@ def plot_bar(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (1
     return fig, ax
 
 #### simple line plot function ####
-def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (18, 8), zoom = True, ticks = True):
+def plot_line(values, xlabels, legend, name_fig=False, ylabel="size [kB]", figsize = (18, 8), zoom = True, ticks = True):
 
     plt.rcParams["figure.figsize"] = figsize
 
@@ -83,7 +84,8 @@ def plot_line(values, xlabels, legend, name_fig, ylabel="size [kB]", figsize = (
 
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel(ylabel)
-    ax.set_title(name_fig)
+    if name_fig != False:
+        ax.set_title(name_fig)
     if ticks:
         x = np.arange(len(xlabels))  # the label locations
         ax.set_xticks(x)
@@ -156,7 +158,8 @@ def plot_line_compression(data_json, def_diff_algos, def_compression, name_fig, 
     ax.set_xticks(x)
     ax.set_xticklabels(def_diff_algos, rotation=45)
     ax.set_xlabel(None)
-    ax.set_title(name_fig)
+    if name_fig != False:
+        ax.set_title(name_fig)
     ax.legend(ncol=2)
 
     # zoom y axis
@@ -209,7 +212,8 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
     ax.set_xticks(x)
     ax.set_xticklabels(def_compression, rotation=45)
     ax.set_xlabel(None)
-    ax.set_title(name_fig)
+    if name_fig != False:
+        ax.set_title(name_fig)
 
     # zoom y axis
     if zoom:
@@ -253,7 +257,8 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
     ax = sns.heatmap(data, annot = True, vmin = 0, vmax = 50, lw = 0.1, cbar = False)
     ax.set_yticklabels(ylabels, rotation = 0, multialignment = "center")
     ax.set_xticklabels(xlabels, rotation = 45)
-    ax.set_title(board + " " + name_fig)
+    if name_fig != False:
+        ax.set_title(board + " " + name_fig)
 
     fig.tight_layout()
 
@@ -261,7 +266,7 @@ def plot_heatmap_matches(chunks, bytes_deleted, bytes_added, sizes_diff, xlabels
 
 
 ### plots the differences from given keys ###
-def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name, figsize = (10,6), width = 0.1, zoom = False, ticks = True):
+def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_name = False, figsize = (10,6), zoom = False, ticks = True):
     array_all = []
     norm_all = []
     for algo in diff_algos:
@@ -276,16 +281,19 @@ def plot_function_diff(diff_algos, keys, xlabels, values, MCU, file, path, fig_n
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = False, ticks = ticks)
-    fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", figsize = figsize, zoom = zoom, ticks = ticks)
+    if fig_name != False:
+        fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, fig_name, figsize = figsize, zoom = False, ticks = ticks)
+        fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", figsize = figsize, zoom = zoom, ticks = ticks)
+    else:
+        fig_samd20, ax_samd20 = plot_line(array_all, xlabels, diff_algos, figsize = figsize, zoom = False, ticks = ticks)
+        fig_norm20, ax_norm20 = plot_line(norm_all, xlabels, diff_algos, ylabel="size of difference / target size", figsize = figsize, zoom = zoom, ticks = ticks)
 
     # save and close figures
     fig_samd20.savefig(path + file)
     fig_norm20.savefig(path + "norm_" + file)
 
-
-    if "diagonal" in fig_name or "slot" in fig_name:
-        print(fig_name + " (normalized)")
+    if "slot" in file:
+        print(file)
         for i, diff in enumerate(diff_algos):
             mean = np.mean(norm_all[i])
             std = np.std(norm_all[i])
@@ -311,8 +319,13 @@ def plot_function_diff_relative(diff_algos, keys, xlabels, values, file, path, f
         array_all.append(array)
         norm_all.append(norm)
 
-    fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, "size [Byte]", width = width)
-    fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", width = width)
+    if fig_name != False:
+        fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, fig_name, "size [Byte]", width = width)
+        fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, fig_name + " (normalized)", "size of difference / target size", width = width)
+    else:
+        fig_samd20, ax_samd20 = plot_bar(array_all, xlabels, diff_algos, ylabel="size [Byte]", width = width)
+        fig_norm20, ax_norm20 = plot_bar(norm_all, xlabels, diff_algos, ylabel="size of difference / target size", width = width)
+
 
     # save and close figures
     fig_samd20.savefig(path + file)

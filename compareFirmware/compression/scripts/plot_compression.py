@@ -23,10 +23,10 @@ def_compression = ["zlib", "gzip", "bzip2", "lzma", "heatshrink", "miniz"]
 
 
 ### compression of revisions
-fig_rev_samd20, ax_rev_samd20 = plot_bar_compression(sizes_rev["samd20"], def_compression, "SAMD20-xpro Mean and STD of Compressed Revisions", "compressed revisions / target size", zoom=True)
+fig_rev_samd20, ax_rev_samd20 = plot_bar_compression(sizes_rev["samd20"], def_compression, False, "compressed revisions / target size", zoom=True)
 fig_rev_samd20.savefig("../plots/comp_revisions_samd20.pdf")
 
-fig_rev_samd21, ax_rev_samd21 = plot_bar_compression(sizes_rev["samd21"], def_compression, "SAMD21-xpro Mean and STD of Compressed Revisions", "compressed revisions / target size", zoom=True)
+fig_rev_samd21, ax_rev_samd21 = plot_bar_compression(sizes_rev["samd21"], def_compression, False, "compressed revisions / target size", zoom=True)
 fig_rev_samd21.savefig("../plots/comp_revisions_samd21.pdf")
 
 plt.close("all")
@@ -35,11 +35,11 @@ plt.close("all")
 ### Compression of patch files SAMD20
 print("SAMD20")
 # normal
-fig_normal, ax_normal = plot_line_compression(sizes_diag_samd20["normal"], def_diff_algos, def_compression, "SAMD20-xpro Mean and STD of Compressed Patch Files", "compressed patch files / patch file size", zoom=True)
+fig_normal, ax_normal = plot_line_compression(sizes_diag_samd20["normal"], def_diff_algos, def_compression, False, "compressed patch files / patch file size", zoom=True)
 fig_normal.savefig("../plots/comp_diff_normal_samd20.pdf")
 
 # riotboot
-fig_riotboot, ax_riotboot = plot_line_compression(sizes_diag_samd20["riotboot"], def_diff_algos, def_compression, "SAMD20-xpro Mean and STD of Compressed Patch Files with Slots", "compressed patch file / patch file size", zoom=True)
+fig_riotboot, ax_riotboot = plot_line_compression(sizes_diag_samd20["riotboot"], def_diff_algos, def_compression, False, "compressed patch file / patch file size", zoom=True)
 fig_riotboot.savefig("../plots/comp_diff_riotboot_samd20.pdf")
 
 # compare compression and target file
@@ -59,8 +59,8 @@ for comp in def_compression:
             rev = split_value[-3] + "_" + split_value[-2]
             sizes_new_samd20["riotboot"][diff][comp][value]["reduction"] = round(sizes_diag_samd20["riotboot"][diff][comp][value]["size_comp"] / sizes_rev["samd20"][comp][rev]["size_orig"], 2)
 
-fig_normal, ax_normal = plot_line_compression(sizes_new_samd20["normal"], def_diff_algos, def_compression, "SAMD20-xpro Mean and STD of Compressed Patch Files (normalized)", "compressed patch files / target size", zoom=False)
-fig_riotboot, ax_riotboot = plot_line_compression(sizes_new_samd20["riotboot"], def_diff_algos, def_compression, "SAMD20-xpro Size of Compressed Patch Files with Slots (normalized)", "compressed patch file / target size", zoom=False)
+fig_normal, ax_normal = plot_line_compression(sizes_new_samd20["normal"], def_diff_algos, def_compression, False, "compressed patch files / target size", zoom=False)
+fig_riotboot, ax_riotboot = plot_line_compression(sizes_new_samd20["riotboot"], def_diff_algos, def_compression, False, "compressed patch file / target size", zoom=False)
 fig_normal.savefig("../plots/comp_diff_normal_samd20_normalized.pdf")
 fig_riotboot.savefig("../plots/comp_diff_riotboot_samd20_normalized.pdf")
 
@@ -70,11 +70,11 @@ plt.close("all")
 ### Compression of patch files SAMD21
 print("SAMD21")
 # normal
-fig_normal, ax_normal = plot_line_compression(sizes_diag_samd21["normal"], def_diff_algos, def_compression, "SAMD21-xpro Mean and STD of Compressed Patch Files", "compressed patch file / patch file size", zoom=True)
+fig_normal, ax_normal = plot_line_compression(sizes_diag_samd21["normal"], def_diff_algos, def_compression, False, "compressed patch file / patch file size", zoom=True)
 fig_normal.savefig("../plots/comp_diff_normal_samd21.pdf")
 
 # riotboot
-fig_riotboot, ax_samd20_riotboot = plot_line_compression(sizes_diag_samd21["riotboot"], def_diff_algos, def_compression, "SAMD21-xpro Mean and STD of Compressed Patch Files with Slots", "compressed patch file / patch file size", zoom=True)
+fig_riotboot, ax_samd20_riotboot = plot_line_compression(sizes_diag_samd21["riotboot"], def_diff_algos, def_compression, False, "compressed patch file / patch file size", zoom=True)
 fig_riotboot.savefig("../plots/comp_diff_riotboot_samd21.pdf")
 
 # compare compression and target file
@@ -94,8 +94,8 @@ for comp in def_compression:
             rev = split_value[-3] + "_" + split_value[-2]
             sizes_new_samd21["riotboot"][diff][comp][value]["reduction"] = round(sizes_diag_samd21["riotboot"][diff][comp][value]["size_comp"] / sizes_rev["samd21"][comp][rev]["size_orig"], 2)
 
-fig_normal, ax_normal = plot_line_compression(sizes_new_samd21["normal"], def_diff_algos, def_compression, "SAMD21-xpro Mean and STD of Compressed Patch Files (normalized)", "compressed patch files / target size", zoom=False)
-fig_riotboot, ax_riotboot = plot_line_compression(sizes_new_samd21["riotboot"], def_diff_algos, def_compression, "SAMD21-xpro Mean and STD of Compressed Patch Files with Slots (normalized)", "compressed patch file / target size", zoom=False)
+fig_normal, ax_normal = plot_line_compression(sizes_new_samd21["normal"], def_diff_algos, def_compression, False, "compressed patch files / target size", zoom=False)
+fig_riotboot, ax_riotboot = plot_line_compression(sizes_new_samd21["riotboot"], def_diff_algos, def_compression, False, "compressed patch file / target size", zoom=False)
 fig_normal.savefig("../plots/comp_diff_normal_samd21_normalized.pdf")
 fig_riotboot.savefig("../plots/comp_diff_riotboot_samd21_normalized.pdf")
 

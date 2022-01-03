@@ -23,7 +23,7 @@ for i, version in enumerate(versions):
     size_samd20.append(os.path.getsize(samd20[i])/1024)
     size_samd21.append(os.path.getsize(samd21[i])/1024)
 
-fig, ax = plot_bar([size_samd20, size_samd21], versions, ["samd20-xpro", "samd21-xpro"], "Revision sizes of SAMD20 and SAMD21", figsize = (10,6), width = 0.4)
+fig, ax = plot_bar([size_samd20, size_samd21], versions, ["samd20-xpro", "samd21-xpro"], False, figsize = (10,6), width = 0.4)
 
 fig.savefig("../plots/sizes_revisions.pdf")
 plt.close("all")

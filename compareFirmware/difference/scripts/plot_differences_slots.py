@@ -73,49 +73,27 @@ if "deltagen" in diff_algos:
 ### SAMD20 bar plot ###
 MCU = "samd20-xpro"
 print("SAMD20")
-### slot0
+### slot0 and slot1
 # getting keys
 keys_algo = sizes_sorted_same[MCU][diff_algos[0]]
 
 # setting labels and key for all algos
 labels = []
 for key in keys_algo:
-    if "slot0" not in key:
-        continue
-    tmp = key.split("_")
-    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
+    if "slot0" in key or "slot1" in key:
+        tmp = key.split("_")
+        labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
 
 keys = dict()
 for algo in diff_algos:
     revs = sizes_sorted_same[MCU][algo].keys()
     key = []
     for rev in revs:
-        if "slot0" not in rev:
-            continue
-        key.append(rev)
+        if "slot0" in rev or "slot1" in rev:
+            key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot0", zoom = True)
-
-### slot1
-labels = []
-for key in keys_algo:
-    if "slot1" not in key:
-        continue
-    tmp = key.split("_")
-    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
-
-keys = dict()
-for algo in diff_algos:
-    revs = sizes_sorted_same[MCU][algo].keys()
-    key = []
-    for rev in revs:
-        if "slot1" not in rev:
-            continue
-        key.append(rev)
-    keys[algo] = key
-
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot1.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in slot1", zoom = True)
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd20_same_slot0_slot1.pdf", "../plots/slots/", False, zoom = True)
 
 
 ### SAMD21 bar plot ###
@@ -128,42 +106,20 @@ keys_algo = sizes_sorted_same[MCU][diff_algos[0]]
 # setting labels and key for all algos
 labels = []
 for key in keys_algo:
-    if "slot0" not in key:
-        continue
-    tmp = key.split("_")
-    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
+    if "slot0" in key or "slot1" in key:
+        tmp = key.split("_")
+        labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
 
 keys = dict()
 for algo in diff_algos:
     revs = sizes_sorted_same[MCU][algo].keys()
     key = []
     for rev in revs:
-        if "slot0" not in rev:
-            continue
-        key.append(rev)
+        if "slot0" in rev or "slot1" in rev:
+            key.append(rev)
     keys[algo] = key
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot0", zoom = True)
-
-### slot1
-labels = []
-for key in keys_algo:
-    if "slot1" not in key:
-        continue
-    tmp = key.split("_")
-    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
-
-keys = dict()
-for algo in diff_algos:
-    revs = sizes_sorted_same[MCU][algo].keys()
-    key = []
-    for rev in revs:
-        if "slot1" not in rev:
-            continue
-        key.append(rev)
-    keys[algo] = key
-
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot1.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in slot1", zoom = True)
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_same, MCU, "diffalgos_samd21_same_slot0_slot1.pdf", "../plots/slots/", False, zoom = True)
 
 
 
@@ -185,7 +141,7 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "../plots/slots/", "SAMD20-xpro Differencing Algorithms updates in alternating slots", zoom = True)
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_alternating.pdf", "../plots/slots/", False, zoom = True)
 
 
 ### SAMD21 bar plot ###
@@ -203,7 +159,57 @@ keys = dict()
 for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
-plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "../plots/slots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots", zoom = True)
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_alternating.pdf", "../plots/slots/", False, zoom = True)
+
+
+
+
+
+
+############## Evaluation #################
+### update alternating slots Evaluation ###
+diff_algos = ["minibs_heat", "bsdiff", "zdelta", "detools_heat", "vcdiff"]
+
+### SAMD20 bar plot ###
+MCU = "samd20-xpro"
+# getting keys
+keys_algo = sizes_sorted_alternating[MCU][diff_algos[0]]
+
+# setting labels and key for all algos
+labels = []
+for key in keys_algo:
+    tmp = key.split("_")
+    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
+
+keys = dict()
+for algo in diff_algos:
+    keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
+
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_minidiff.pdf", "../plots/slots/", False, zoom = True)
+
+
+### SAMD21 bar plot ###
+MCU = "samd21-xpro"
+# getting keys
+keys_algo = sizes_sorted_alternating[MCU][diff_algos[0]]
+
+# setting labels and key for all algos
+labels = []
+for key in keys_algo:
+    tmp = key.split("_")
+    labels.append(tmp[-6] + tmp[-5] + "_" + tmp[-3] + tmp[-2])
+
+keys = dict()
+for algo in diff_algos:
+    keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
+
+plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd21_minidiff.pdf", "../plots/slots/", False, zoom = True)
+
+
+
+
+
+
 
 
 ######### plot chunks against diff
@@ -274,16 +280,16 @@ deleted.sort()
 size.sort()
 
 ### chunks
-plot_function_diff(diff_algos, keys_sorted_chunks, chunks, sizes_sorted_alternating, MCU, "chunks_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, chunks vs. revisions", zoom = True, ticks = False)
+plot_function_diff(diff_algos, keys_sorted_chunks, chunks, sizes_sorted_alternating, MCU, "chunks_diff_samd21_alternating.pdf", "../plots/", False, zoom = True, ticks = False)
 
 ### added
-plot_function_diff(diff_algos, keys_sorted_added, added, sizes_sorted_alternating, MCU, "added_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, added vs. revisions", zoom = True, ticks = False)
+plot_function_diff(diff_algos, keys_sorted_added, added, sizes_sorted_alternating, MCU, "added_diff_samd21_alternating.pdf", "../plots/", False, zoom = True, ticks = False)
 
 ### deleted
-plot_function_diff(diff_algos, keys_sorted_deleted, deleted, sizes_sorted_alternating, MCU, "deleted_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, deleted vs. revisions", zoom = True, ticks = False)
+plot_function_diff(diff_algos, keys_sorted_deleted, deleted, sizes_sorted_alternating, MCU, "deleted_diff_samd21_alternating.pdf", "../plots/", False, zoom = True, ticks = False)
 
 ### deleted
-plot_function_diff(diff_algos, keys_sorted_size, size, sizes_sorted_alternating, MCU, "size_diff_samd21_alternating.pdf", "../plots/", "SAMD21-xpro Differencing Algorithms updates in alternating slots, size vs. revisions", zoom = True, ticks = False)
+plot_function_diff(diff_algos, keys_sorted_size, size, sizes_sorted_alternating, MCU, "size_diff_samd21_alternating.pdf", "../plots/", False, zoom = True, ticks = False)
 
 
 print("Done!")
