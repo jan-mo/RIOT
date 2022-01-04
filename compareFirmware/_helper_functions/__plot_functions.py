@@ -203,7 +203,7 @@ def plot_bar_compression(data_json, def_compression, name_fig, ylabel, figsize=(
     ax = sns.barplot(
         data = data,
         x = "compression", y = "values",
-        capsize = 0.2, estimator = estimate
+        capsize = 0.15, estimator = estimate
     )
 
     ax.set_ylabel(ylabel)
