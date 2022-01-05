@@ -1,0 +1,12 @@
+[submodule "compareFirmware/external_algorithms/Repos/minibsdiff"]
+	path = compareFirmware/external_algorithms/Repos/minibsdiff
+	url = https://github.com/thoughtpolice/minibsdiff.git
+[submodule "compareFirmware/external_algorithms/Repos/open-vcdiff"]
+	path = compareFirmware/external_algorithms/Repos/open-vcdiff
+	url = https://github.com/google/open-vcdiff.git
+[submodule "compareFirmware/external_algorithms/Repos/zdelta"]
+	path = compareFirmware/external_algorithms/Repos/zdelta
+	url = https://github.com/snej/zdelta.git
+[submodule "compareFirmware/external_algorithms/Repos/heatshrink"]
+	path = compareFirmware/external_algorithms/Repos/heatshrink
+	url = https://github.com/atomicobject/heatshrink.git
