@@ -18,7 +18,7 @@ with open("../output/sizes_compression_rev.save", 'r') as file:
     sizes_rev = json.load(file)
 
 ### define algos that should be plotted
-def_diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "bsdiff", "zdelta", "detools_heat", "vcdiff", "xdelta3", "deltagen"]
+def_diff_algos = ["byte_diff", "rsync8", "rsync16", "rsync32", "detools_heat", "zdelta", "bsdiff", "deltagen", "vcdiff", "xdelta3"]
 def_compression = ["zlib", "gzip", "bzip2", "lzma", "heatshrink", "miniz"]
 
 

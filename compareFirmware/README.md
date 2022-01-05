@@ -2,6 +2,7 @@
 
 This folder holds all scripts and files for the firmware comparison. The folders are:
 - \_helper_functions
+- external_algorithms
 - data_basis
 - difference
 - compression
@@ -14,11 +15,15 @@ The script `difference_and_plot_all.py` calculates all differences and also the 
 ## requirements
 
 The `requirements.txt` holds all python requirements.
-Some compression or differencing algorithms need to be installed in your GIT-root folder. (above the RIOT folder) Possible algorithms are `minibsdiff`, `heatshrink` or `miniz`.
+Some compression or differencing algorithms need external GIT repository. Possible algorithms are `minibsdiff`, `heatshrink`, `vcdiff`, `zdelta` or `miniz`. These can be find in folder `external_algorithms`
 
 ## \_helper_functions
 
 This folder contains helper functions for plotting and finding revision-data.
+
+## external_algorithms
+
+Here all compiled algorithms are stored. In folder `external_algorihtms/Repos/` all repositories are stored. (use `git submodule update --init --recursive`)
 
 ## data_basis
 

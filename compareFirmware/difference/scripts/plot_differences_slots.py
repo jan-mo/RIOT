@@ -168,7 +168,7 @@ plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "dif
 
 ############## Evaluation #################
 ### update alternating slots Evaluation ###
-diff_algos = ["minibs_heat", "bsdiff", "zdelta", "detools_heat", "vcdiff"]
+diff_algos = ["minibs_heat", "bsdiff", "zdelta", "xdelta3", "vcdiff"]
 
 ### SAMD20 bar plot ###
 MCU = "samd20-xpro"
@@ -186,6 +186,9 @@ for algo in diff_algos:
     keys[algo] = sizes_sorted_alternating[MCU][algo].keys()
 
 plot_function_diff(diff_algos, keys, labels, sizes_sorted_alternating, MCU, "diffalgos_samd20_minidiff.pdf", "../plots/slots/", False, zoom = True)
+
+
+
 
 
 ### SAMD21 bar plot ###

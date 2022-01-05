@@ -1,0 +1,9 @@
+/home/arch/Downloads/miniz/CMakeFiles/example1.dir
+/home/arch/Downloads/miniz/CMakeFiles/example2.dir
+/home/arch/Downloads/miniz/CMakeFiles/example3.dir
+/home/arch/Downloads/miniz/CMakeFiles/example4.dir
+/home/arch/Downloads/miniz/CMakeFiles/example5.dir
+/home/arch/Downloads/miniz/CMakeFiles/example6.dir
+/home/arch/Downloads/miniz/CMakeFiles/miniz_tester.dir
+/home/arch/Downloads/miniz/CMakeFiles/edit_cache.dir
+/home/arch/Downloads/miniz/CMakeFiles/rebuild_cache.dir

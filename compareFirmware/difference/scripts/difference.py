@@ -56,8 +56,8 @@ elif dist == "Ubuntu":
     os.system("sudo apt-get install " + pkg_arch)
 
 ### calc diff of files ###
-git_folder = "../../../../"
-diff = calcDiff(folder, folder_restore, diff_algos, git_folder)
+external_folder = "../../external_algorithms/"
+diff = calcDiff(folder, folder_restore, diff_algos, external_folder)
 
 ### samd20-xpro ###
 results_samd20 = diff.calc_diffs(files_samd20, sizes_samd20, "samd20-xpro")

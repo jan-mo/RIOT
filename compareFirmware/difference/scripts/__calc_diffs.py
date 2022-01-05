@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os
+import os, math
 
 # parallel processing
 from pathos.multiprocessing import ProcessingPool as Pool
@@ -13,11 +13,11 @@ from pathos.helpers import mp as helper
 
 class calcDiff:
 
-    def __init__(self, source, restore, diff_algos, git_folder):
+    def __init__(self, source, restore, diff_algos, external_folder):
         self.folder = source
         self.folder_restore = restore
         self.diff_algos = diff_algos
-        self.git_folder = git_folder
+        self.external_algos_folder = external_folder
 
     ### calculate all differences ###
     def second_loop(self, file1, files, sizes, name_arch):
@@ -98,12 +98,12 @@ class calcDiff:
                 restore_minibs_heat = self.folder_restore + name_minibs_heat
                 tmp_minibs_heat = self.folder + "minibs_heat/" + name_arch + "/" + name_minibs_heat + str(pid)
                 # diff file
-                os.system("~/GIT/minibsdiff/minibsdiff gen " + file1 + " " + file2 + " " + tmp_minibs_heat + " > silent")
-                os.system("~/GIT/heatshrink/heatshrink -e -w 8 -l 4 " + tmp_minibs_heat + " " + patch_minibs_heat + " > silent")
+                os.system("./" + self.external_algos_folder + "minibsdiff gen " + file1 + " " + file2 + " " + tmp_minibs_heat + " > silent")
+                os.system("./" + self.external_algos_folder + "heatshrink -e -w 8 -l 4 " + tmp_minibs_heat + " " + patch_minibs_heat + " > silent")
                 os.system("rm -f silent " + tmp_minibs_heat)
                 # patch file
-                os.system("~/GIT/heatshrink/heatshrink -d -w 8 -l 4 " + patch_minibs_heat + " " + tmp_minibs_heat + " > silent")
-                os.system("~/GIT/minibsdiff/minibsdiff app " + file1 + " " + tmp_minibs_heat + " " +  restore_minibs_heat + " > silent")
+                os.system("./" + self.external_algos_folder + "heatshrink -d -w 8 -l 4 " + patch_minibs_heat + " " + tmp_minibs_heat + " > silent")
+                os.system("./" + self.external_algos_folder + "minibsdiff app " + file1 + " " + tmp_minibs_heat + " " +  restore_minibs_heat + " > silent")
                 os.system("rm -f silent " + tmp_minibs_heat)
 
             #### xdelta3 ####
@@ -121,24 +121,20 @@ class calcDiff:
                 name_zdelta = "zdelta_" + name_file1 + "_" + name_file2
                 patch_zdelta = self.folder + "zdelta/" + name_arch + "/" + name_zdelta
                 restore_zdelta = self.folder_restore + name_zdelta
-                ### make sure zdelta is installed!!!!
-                zdelta_path = "./" + self.git_folder + "zdelta/"
                 # diff file
-                os.system(zdelta_path + "zdc " + file1 + " " + file2 + " " + patch_zdelta)
+                os.system("./" + self.external_algos_folder + "zdc " + file1 + " " + file2 + " " + patch_zdelta)
                 # patch file
-                os.system(zdelta_path + "zdu " + file1 + " " + patch_zdelta + " " + restore_zdelta)
+                os.system("./" + self.external_algos_folder + "zdu " + file1 + " " + patch_zdelta + " " + restore_zdelta)
 
             #### vcdiff ####
             if "vcdiff" in self.diff_algos:
                 name_vcdiff = "vcdiff_" + name_file1 + "_" + name_file2
                 patch_vcdiff = self.folder + "vcdiff/" + name_arch + "/" + name_vcdiff
                 restore_vcdiff = self.folder_restore + name_bsdiff
-                ### make sure zdelta is installed!!!!
-                vcdiff_path = "./" + self.git_folder + "vcdiff/"
                 # diff file
-                os.system(vcdiff_path + "vcdiff encode -dictionary " + file1 + " < " + file2 + " > " + patch_vcdiff)
+                os.system("./" + self.external_algos_folder + "vcdiff encode -dictionary " + file1 + " < " + file2 + " > " + patch_vcdiff)
                 # patch file
-                os.system(vcdiff_path + "vcdiff decode -dictionary " + file1 + " < " + patch_vcdiff + " > " + restore_vcdiff)
+                os.system("./" + self.external_algos_folder + "vcdiff decode -dictionary " + file1 + " < " + patch_vcdiff + " > " + restore_vcdiff)
 
             #### rsync8 ####
             if "rsync8" in self.diff_algos:
@@ -200,34 +196,39 @@ class calcDiff:
                 patch_detools_none = self.folder + "detools_none/" + name_arch + "/" + name_detools_none
                 restore_detools_none = self.folder_restore + name_detools_none
                 # diff file
-                os.system("python -m detools create_patch -c none -t hdiffpatch -a hdiffpatch "  + file1 + " " + file2 + " " + patch_detools_none + " > silent")
+                os.system("python -m detools create_patch -c none -t sequential -a match-blocks "  + file1 + " " + file2 + " " + patch_detools_none + " > silent")
                 # patch file
                 os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_none + " " + restore_detools_none + " > silent")
                 os.system("rm -f silent")
 
             ### detools heatshrink compression ###
-            #if "detools_heat" in self.diff_algos:
-            #    name_detools_heat = "detools_heat_" + name_file1 + "_" + name_file2
-            #    patch_detools_heat = self.folder + "detools_heat/" + name_arch + "/" + name_detools_heat
-            #    restore_detools_heat = self.folder_restore + name_detools_heat
-            #    # diff file
-            #    os.system("python -m detools create_patch -a bsdiff -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
-            #    # patch file
-            #    os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
-            #    os.system("rm -f silent")
             if "detools_heat" in self.diff_algos:
                 name_detools_heat = "detools_heat_" + name_file1 + "_" + name_file2
                 patch_detools_heat = self.folder + "detools_heat/" + name_arch + "/" + name_detools_heat
                 restore_detools_heat = self.folder_restore + name_detools_heat
-                detools_heat_par = "_detools_heat_" + str(pid)    # save file for parallel loop
                 # diff file
-                os.system("python -m detools create_patch_in_place --memory-size 10240 --segment-size 256 -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
+                os.system("python -m detools create_patch -t sequential -a match-blocks -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat + " > silent")
                 # patch file
-                os.system("cp " + file1 + " " + detools_heat_par)
-                os.system("python -m detools apply_patch_in_place "  + detools_heat_par + " " + patch_detools_heat + " > silent")
-                os.system("cp " + detools_heat_par + " " + restore_detools_heat)
+                os.system("python -m detools apply_patch "  + file1 + " " + patch_detools_heat + " " + restore_detools_heat + " > silent")
                 os.system("rm -f silent")
-                os.system("rm -f " + detools_heat_par)
+            #if "detools_heat" in self.diff_algos:
+            #    name_detools_heat = "detools_heat_" + name_file1 + "_" + name_file2
+            #    patch_detools_heat = self.folder + "detools_heat/" + name_arch + "/" + name_detools_heat
+            #    restore_detools_heat = self.folder_restore + name_detools_heat
+            #    detools_heat_par = "_detools_heat_" + str(pid)    # save file for parallel loop
+            #    # diff file
+            #    if os.path.getsize(file1) < os.path.getsize(file2):
+            #        patch_size = os.path.getsize(file1)
+            #    else:
+            #        patch_size = os.path.getsize(file2)
+            #    patch_size = math.floor(patch_size/256)
+            #    patch_size = str(patch_size*256)
+            #    os.system("python -m detools create_patch_in_place --memory-size " + patch_size + " --segment-size 256 -c heatshrink "  + file1 + " " + file2 + " " + patch_detools_heat)
+            #    # patch file
+            #    os.system("cp " + file1 + " " + detools_heat_par)
+            #    os.system("python -m detools apply_patch_in_place "  + detools_heat_par + " " + patch_detools_heat)
+            #    os.system("mv " + detools_heat_par + " " + restore_detools_heat)
+            #    os.system("rm -f silent")
 
 
             #### check patch and calc sizes ####
@@ -235,66 +236,92 @@ class calcDiff:
                 sizes["diff"][name_diff] = {"size":os.path.getsize(patch_diff),
                                             "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_diff) else "fail",
                                             "normalized":os.path.getsize(patch_diff)/os.path.getsize(file2)}
+                if sizes["diff"][name_diff]["check"] == "fail":
+                    print("Warning: check failed diff " + file1 + " " + file2)
 
             if "byte_diff" in self.diff_algos:
                 sizes["byte_diff"][name_byte_diff] = {"size":os.path.getsize(patch_byte_diff),
                                                       "check":"pass" if os.path.getsize(path_conv_file2) == os.path.getsize(restore_byte_diff) else "fail",
                                                       "normalized":os.path.getsize(patch_byte_diff)/os.path.getsize(path_conv_file2)}
+                if sizes["byte_diff"][name_byte_diff]["check"] == "fail":
+                    print("Warning: check failed byte_diff " + file1 + " " + file2)
 
             if "baseline" in self.diff_algos:
                 sizes["baseline"][name_baseline] = {"size":sum(1 for line in open(patch_baseline + "_added_bytes")),
                                                     "check":"pass" if os.path.getsize(path_conv_file2) == os.path.getsize(restore_baseline) else "fail",
                                                     "normalized":sum(1 for line in open(patch_baseline + "_added_bytes"))/os.path.getsize(path_conv_file2)}
+                if sizes["baseline"][name_baseline]["check"] == "fail":
+                    print("Warning: check failed baseline " + file1 + " " + file2)
 
             if "bsdiff" in self.diff_algos:
                 sizes["bsdiff"][name_bsdiff] = {"size":os.path.getsize(patch_bsdiff),
                                                 "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_bsdiff) else "fail",
                                                 "normalized":os.path.getsize(patch_bsdiff)/os.path.getsize(file2)}
+                if sizes["bsdiff"][name_bsdiff]["check"] == "fail":
+                    print("Warning: check failed bsdiff " + file1 + " " + file2)
 
             if "minibs_heat" in self.diff_algos:
                 sizes["minibs_heat"][name_minibs_heat] = {"size":os.path.getsize(patch_minibs_heat),
                                                           "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_minibs_heat) else "fail",
                                                           "normalized":os.path.getsize(patch_minibs_heat)/os.path.getsize(file2)}
+                if sizes["minibs_heat"][name_minibs_heat]["check"] == "fail":
+                    print("Warning: check failed minibs_heat " + file1 + " " + file2)
 
             if "xdelta3" in self.diff_algos:
                 sizes["xdelta3"][name_xdelta3] = {"size":os.path.getsize(patch_xdelta3),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_xdelta3) else "fail",
                                                   "normalized":os.path.getsize(patch_xdelta3)/os.path.getsize(file2)}
+                if sizes["xdelta3"][name_xdelta3]["check"] == "fail":
+                    print("Warning: check failed xdelta3 " + file1 + " " + file2)
 
             if "zdelta" in self.diff_algos:
                 sizes["zdelta"][name_zdelta] = {"size":os.path.getsize(patch_zdelta),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_zdelta) else "fail",
                                                   "normalized":os.path.getsize(patch_zdelta)/os.path.getsize(file2)}
+                if sizes["zdelta"][name_zdelta]["check"] == "fail":
+                    print("Warning: check failed zdelta " + file1 + " " + file2)
 
             if "vcdiff" in self.diff_algos:
                 sizes["vcdiff"][name_vcdiff] = {"size":os.path.getsize(patch_vcdiff),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_vcdiff) else "fail",
                                                   "normalized":os.path.getsize(patch_vcdiff)/os.path.getsize(file2)}
+                if sizes["vcdiff"][name_vcdiff]["check"] == "fail":
+                    print("Warning: check failed vcdiff " + file1 + " " + file2)
 
             if "rsync8" in self.diff_algos:
                 sizes["rsync8"][name_rsync8] = {"size":os.path.getsize(patch_rsync8),
                                                 "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_rsync8) else "fail",
                                                 "normalized":os.path.getsize(patch_rsync8)/os.path.getsize(file2)}
+                if sizes["rsync8"][name_rsync8]["check"] == "fail":
+                    print("Warning: check failed rsync8 " + file1 + " " + file2)
 
             if "rsync16" in self.diff_algos:        
                 sizes["rsync16"][name_rsync16] = {"size":os.path.getsize(patch_rsync16),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_rsync16) else "fail",
                                                   "normalized":os.path.getsize(patch_rsync16)/os.path.getsize(file2)}
+                if sizes["rsync16"][name_rsync16]["check"] == "fail":
+                    print("Warning: check failed rsync16 " + file1 + " " + file2)
 
             if "rsync32" in self.diff_algos:        
                 sizes["rsync32"][name_rsync32] = {"size":os.path.getsize(patch_rsync32),
                                                   "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_rsync32) else "fail",
                                                   "normalized":os.path.getsize(patch_rsync32)/os.path.getsize(file2)}
+                if sizes["rsync32"][name_rsync32]["check"] == "fail":
+                    print("Warning: check failed rsync32 " + file1 + " " + file2)
 
             if "detools_none" in self.diff_algos:
                 sizes["detools_none"][name_detools_none] = {"size":os.path.getsize(patch_detools_none),
                                                             "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_detools_none) else "fail",
                                                             "normalized":os.path.getsize(patch_detools_none)/os.path.getsize(file2)}
+                if sizes["detools_none"][name_detools_none]["check"] == "fail":
+                    print("Warning: check failed detools_none " + file1 + " " + file2)
 
             if "detools_heat" in self.diff_algos:
                 sizes["detools_heat"][name_detools_heat] = {"size":os.path.getsize(patch_detools_heat),
                                                             "check":"pass" if os.path.getsize(file2) == os.path.getsize(restore_detools_heat) else "fail",
                                                             "normalized":os.path.getsize(patch_detools_heat)/os.path.getsize(file2)}
+                if sizes["detools_heat"][name_detools_heat]["check"] == "fail":
+                    print("Warning: check failed " + file1 + " " + file2)
         return [sizes]
 
 

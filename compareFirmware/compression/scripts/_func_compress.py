@@ -14,7 +14,7 @@ from __finding_versions import SearchDatabase
 ###
 def __all_compress_functions(file, method, option = None):
 
-    folder_GIT = "../../../../"
+    external_folder = "../../external_algorithms/"
 
     if method == "zlib" and option:
         compress = zlib.compress(file, option)
@@ -45,13 +45,13 @@ def __all_compress_functions(file, method, option = None):
         f = open("temp/temp_in", 'wb')
         f.write(file)
         f.close()
-        os.system("./" + folder_GIT + "miniz/miniz_tester " + option + " c temp/temp_in temp/temp_out > temp/silent")
+        os.system("./" + external_folder + "miniz_tester " + option + " c temp/temp_in temp/temp_out > temp/silent")
         compress = open("temp/temp_out", 'rb').read()
     elif method == "miniz":
         f = open("temp/temp_in", 'wb')
         f.write(file)
         f.close()
-        os.system("./" + folder_GIT + "miniz/miniz_tester c " + file + " temp/temp_in temp/temp_out > temp/silent")
+        os.system("./" + external_folder + "miniz_tester c " + file + " temp/temp_in temp/temp_out > temp/silent")
         compress = open("temp/temp_out", 'rb').read()
 
     else:
@@ -61,7 +61,7 @@ def __all_compress_functions(file, method, option = None):
 
 def __all_decompress_functions(file, method, option = None):
 
-    folder_GIT = "../../../../"
+    external_folder = "../../external_algorithms/"
 
     if method == "zlib" and option:
         decompress = zlib.decompress(file, option)
@@ -92,13 +92,13 @@ def __all_decompress_functions(file, method, option = None):
         f = open("temp/temp_in", 'wb')
         f.write(file)
         f.close()
-        os.system("./" + folder_GIT + "miniz/miniz_tester " + option + " d temp/temp_in temp/temp_out > temp/silent")
+        os.system("./" + external_folder + "miniz_tester " + option + " d temp/temp_in temp/temp_out > temp/silent")
         decompress = open("temp/temp_out", 'rb').read()
     elif method == "miniz":
         f = open("temp/temp_in", 'wb')
         f.write(file)
         f.close()
-        os.system("./" + folder_GIT + "miniz/miniz_tester d " + file + " temp/temp_in temp/temp_out > temp/silent")
+        os.system("./" + external_folder + "miniz_tester d " + file + " temp/temp_in temp/temp_out > temp/silent")
         decompress = open("temp/temp_out", 'rb').read()
 
     return decompress

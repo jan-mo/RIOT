@@ -1,0 +1,1 @@
+/usr/bin/c++  -fno-strict-aliasing -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -O3 -fno-strict-aliasing -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -rdynamic CMakeFiles/miniz_tester.dir/miniz_tester.cpp.o CMakeFiles/miniz_tester.dir/miniz.c.o CMakeFiles/miniz_tester.dir/timer.cpp.o -o bin_linux/miniz_tester 

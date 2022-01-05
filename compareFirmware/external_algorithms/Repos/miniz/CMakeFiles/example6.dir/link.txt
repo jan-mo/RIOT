@@ -1,0 +1,1 @@
+/usr/bin/cc  -fno-strict-aliasing -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -O3 -DNDEBUG -Wall -Wextra -Wall -Wextra -fno-strict-aliasing -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -rdynamic CMakeFiles/example6.dir/example6.c.o -o bin_linux/example6  -lm 

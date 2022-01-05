@@ -58,8 +58,8 @@ for i in range(length):
     if (i*4+3) < len(files_samd21):
         slots1_samd21.append(files_samd21[i*4+3])
 
-git_folder = "../../../../"
-diff = calcDiff(folder, folder_restore, diff_algos, git_folder)
+external_folder = "../../external_algorithms/"
+diff = calcDiff(folder, folder_restore, diff_algos, external_folder)
 
 ### getting alternating slots ###
 #samd20
