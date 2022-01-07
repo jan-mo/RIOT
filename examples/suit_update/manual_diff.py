@@ -2,7 +2,6 @@
 
 import os, sys
 
-GIT = "../../../"
 path = "bin/samd21-xpro/"
 file1_in = path
 file1_out = path
@@ -53,8 +52,8 @@ with open(file2_out, 'wb') as out:
 ### store new header
 new_header = data_file2[0:256]
 
-os.system(GIT + "minibsdiff/minibsdiff gen " + file1_out + " " + file2_out + " diff_out" + " > silent")
-os.system(GIT + "heatshrink/heatshrink -e -w 8 -l 4 diff_out " + out_file + " > silent")
+os.system("./external_algorithms/minibsdiff gen " + file1_out + " " + file2_out + " diff_out" + " > silent")
+os.system("./external_algorithms/heatshrink -e -w 8 -l 4 diff_out " + out_file + " > silent")
 os.system("rm silent")
 
 ### add new header to out_file
