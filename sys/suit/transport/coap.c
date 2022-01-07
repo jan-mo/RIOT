@@ -90,10 +90,8 @@ bool detect_patch = 0;
 # define LEN_DIFF_PATCH FLASHPAGE_SIZE
 uint16_t ring_size = 0;
 uint16_t ptr_ring = 0;
-uint8_t* ring_buffer;
 
 uint16_t ptr_inner_ring = 0;
-uint8_t* inner_ring_buffer;
 
 unsigned new_data_page = 0;
 unsigned old_data_page = 0;
@@ -120,8 +118,6 @@ bool __init_own_bsdiff = 0;
 #define SIZE_BUFFER_HEADER 4
 uint8_t size_buffer_header_counter = 0;
 
-uint8_t* buffer_header;
-
 size_t offset_patch_data;
 size_t offset_old_data;
 uint8_t old_data[FLASHPAGE_SIZE];
@@ -132,13 +128,22 @@ typedef struct {
 }extra_pointers_t;
 
 #define LEN_EXTRA_POINTER 64
-extra_pointers_t* extra_pointers;
 uint8_t entry_extrpointer = 0;
 bool calc_extra_blocks = 0;
 bool extra_blocks_done = 0;
 bool load_extra_data = 0;
 
 uint8_t loop = 0;
+
+
+/* static memory allocation */
+uint8_t buf_flash[FLASHPAGE_SIZE];
+uint8_t buf_new_data[FLASHPAGE_SIZE];
+uint8_t ring_buffer[LEN_DIFF_PATCH];
+uint8_t inner_ring_buffer[LEN_DIFF_PATCH];
+uint8_t buffer_header[LEN_DIFF_PATCH * SIZE_BUFFER_HEADER];
+
+extra_pointers_t extra_pointers[LEN_EXTRA_POINTER];
 
 
 #ifdef MODULE_SUIT
@@ -322,7 +327,6 @@ int write_inner_ring_buffer(uint8_t* data, uint8_t length) {
 int init_own_bsdiff(void){
     printf("INIT own bsdiff\n");
     /* allocate extra pointers */
-    extra_pointers = (extra_pointers_t*) malloc(LEN_EXTRA_POINTER * sizeof(extra_pointers_t));
     if (extra_pointers == NULL){
         printf("Out of mem for extra_pointers\n");
         return -1;
@@ -393,11 +397,7 @@ int own_bsdiff_ctrlblock(void) {
 }
 
 void extrablock_calculation(uint8_t* patch) {
-    uint8_t* buf_flash;
-    uint8_t* buf_new_data;
 
-    buf_flash = (uint8_t*) malloc(FLASHPAGE_SIZE * sizeof(uint8_t));
-    buf_new_data = (uint8_t*) malloc(FLASHPAGE_SIZE * sizeof(uint8_t));
     if (buf_flash == NULL && buf_new_data == NULL) {
         printf("ERROR init buf_extra\n");
         return;
@@ -447,8 +447,6 @@ void extrablock_calculation(uint8_t* patch) {
                             extra_pointers[extra].size_pointer = extra_size-j;
                             extra_pointers[extra].offset_pointer = page_offset+j;
                             load_extra_data = 1;
-                            free(buf_flash);
-                            free(buf_new_data);
                             return;
                         }
                         buf_new_data[i] = patch[offset_patch];
@@ -471,8 +469,6 @@ void extrablock_calculation(uint8_t* patch) {
     calc_extra_blocks = 0;
     extra_blocks_done = 1;
 
-    free(buf_flash);
-    free(buf_new_data);
     return;
 }
 
@@ -604,26 +600,24 @@ int own_bspatch(uint8_t* patch)
     return 0;
 }
 
-int init_ring_buffer(uint16_t size, suit_storage_t* storage, suit_manifest_t* manifest, unsigned page_old, unsigned page_new){
+int init_ring_buffer(suit_storage_t* storage, suit_manifest_t* manifest, unsigned page_old, unsigned page_new){
     if (manifest == NULL && storage == NULL){
         printf("Error manifest and storage equal NULL\n");
         return -1;
     }
 
     /* allocate ring_buffer */
-    ring_buffer = (uint8_t*) malloc(size * sizeof(uint8_t));
     if (ring_buffer == NULL){
         printf("Allocating ring_buffer failed, Storage exceeded\n");
         return -2;
     }
     /* allocate innter_ring_buffer */
-    inner_ring_buffer = (uint8_t*) malloc(size * sizeof(uint8_t));
     if (inner_ring_buffer == NULL){
         printf("Allocating ring_buffer failed, Storage exceeded\n");
         return -2;
     }
     /* set ring storage */
-    ring_size = size;
+    ring_size = LEN_DIFF_PATCH;
     storage_offset = 0;
     /* set manifest and storage */
     manifest_ring_buffer = manifest;
@@ -643,7 +637,6 @@ int write_ring_buffer(uint8_t* data, uint8_t length) {
         if (ptr_ring == ring_size){
             /* patch the data */
             if (!__init_own_bsdiff) {
-                buffer_header = (uint8_t*) malloc(LEN_DIFF_PATCH * SIZE_BUFFER_HEADER * sizeof(uint8_t));
                 if (buffer_header == NULL) {
                     printf("ERROR init buffer_header\n");
                     return -1;
@@ -677,18 +670,10 @@ int write_ring_buffer(uint8_t* data, uint8_t length) {
     return 0;
 }
 
-void free_pointers(void) {
-    free(ring_buffer);
-    free(inner_ring_buffer);
-    free(extra_pointers);
-    free(buffer_header);
-}
-
 int finish_write_ring_buffer(void) {
     if (ptr_inner_ring == 0) {
         printf("nothing to finish\n");
         storage_offset = 0;
-        free_pointers();
         return 0;
     }
     else {
@@ -702,7 +687,6 @@ int finish_write_ring_buffer(void) {
         }
         storage_offset = 0;
         ptr_ring = 0;
-        free_pointers();
         return 0;
     }
 }
@@ -782,7 +766,7 @@ int suit_coap_get_blockwise(sock_udp_ep_t *remote, const char *path,
 
                     heatshrink_decoder_reset(&_decoder);
 
-                    if (init_ring_buffer(LEN_DIFF_PATCH, storage, manifest, page_old, page_new) != 0){
+                    if (init_ring_buffer(storage, manifest, page_old, page_new) != 0){
                         printf("INIT ring_buffer failed\n");
                         return -1;
                     }
