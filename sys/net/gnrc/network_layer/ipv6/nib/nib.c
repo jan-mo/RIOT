@@ -203,7 +203,12 @@ void gnrc_ipv6_nib_init_iface(gnrc_netif_t *netif)
     _add_static_lladdr(netif);
     _auto_configure_addr(netif, &ipv6_addr_link_local_prefix, 64U);
 
-    gnrc_ipv6_nib_iface_up(netif);
+    netopt_enable_t link = NETOPT_ENABLE;
+    netif_get_opt(&netif->netif, NETOPT_LINK, 0, &link, sizeof(netopt_enable_t));
+    if (link == NETOPT_ENABLE) {
+        gnrc_ipv6_nib_iface_up(netif);
+    }
+
     gnrc_netif_release(netif);
 }
 
