@@ -218,7 +218,7 @@ static void _isr(netdev_t *netdev)
     DEBUG("slipdev: handling ISR event\n");
 
     size_t len;
-    while (crb_get_chunk_size(&dev->rb, &len)) {
+    if (crb_get_chunk_size(&dev->rb, &len)) {
         DEBUG("slipdev: event handler set, issuing RX_COMPLETE event\n");
         netdev->event_callback(netdev, NETDEV_EVENT_RX_COMPLETE);
     }
