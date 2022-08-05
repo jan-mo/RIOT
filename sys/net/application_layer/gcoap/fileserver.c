@@ -32,6 +32,9 @@
 /** Maximum length of an expressible path, including the trailing 0 character. */
 #define COAPFILESERVER_PATH_MAX (64)
 
+static gcoap_fileserver_event_handler_t _event_cb;
+static void *_event_ctx;
+
 /** Data extracted from a request on a file */
 struct requestdata {
     /** 0-terminated expanded file name in the VFS */
@@ -172,6 +175,12 @@ static ssize_t gcoap_fileserver_file_handler(coap_pkt_t *pdu, uint8_t *buf, size
         goto late_err;
     }
 
+    if (request->blocknum2 == 0 && _event_cb) {
+        _event_cb(GCOAP_FILESERVER_GET_START, request->namebuf, _event_ctx);
+    }
+
+    printf("sending block %lu of %s\n", request->blocknum2, request->namebuf);
+
     /* That'd only happen if the buffer is too small for even a 16-byte block,
      * or if the above calculations were wrong.
      *
@@ -195,6 +204,10 @@ static ssize_t gcoap_fileserver_file_handler(coap_pkt_t *pdu, uint8_t *buf, size
     if (read == 0) {
         /* Rewind to clear payload marker */
         read -= 1;
+    }
+
+    if (!more && _event_cb) {
+        _event_cb(GCOAP_FILESERVER_GET_END, request->namebuf, _event_ctx);
     }
 
     return resp_len + read;
@@ -369,6 +382,12 @@ ssize_t gcoap_fileserver_handler(coap_pkt_t *pdu, uint8_t *buf, size_t len,
 
 error:
     return gcoap_response(pdu, buf, len, errorcode);
+}
+
+void gcoap_fileserver_set_event_cb(gcoap_fileserver_event_handler_t cb, void *ctx)
+{
+    _event_cb = cb;
+    _event_ctx = ctx;
 }
 
 /** @} */

@@ -75,6 +75,16 @@ extern "C" {
 
 #include "net/nanocoap.h"
 
+typedef enum {
+    GCOAP_FILESERVER_GET_START,
+    GCOAP_FILESERVER_GET_END,
+} gcoap_fileserver_event_t;
+
+typedef void (*gcoap_fileserver_event_handler_t)(gcoap_fileserver_event_t event, const char *file,
+                                                 void *ctx);
+
+void gcoap_fileserver_set_event_cb(gcoap_fileserver_event_handler_t cb, void *ctx);
+
 /**
  * @brief File server handler
  *
