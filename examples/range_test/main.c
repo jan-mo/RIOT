@@ -33,7 +33,7 @@
 #include "shell.h"
 #include "range_test.h"
 
-#define HELLO_TIMEOUT_US    (50*1000)
+#define HELLO_TIMEOUT_US    (50 * US_PER_MS)
 #define HELLO_RETRIES       (100)
 
 #define TEST_PERIOD_MS (5 * MS_PER_SEC)
@@ -250,8 +250,10 @@ static int _range_test_cmd(int argc, char** argv)
     rtt_clear_alarm();
 
     range_test_print_results();
+    puts("test done");
 
     xtimer_sleep(1);
+    puts("sleep done");
 
     return 0;
 }

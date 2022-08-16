@@ -120,7 +120,7 @@ static const netopt_setting_t settings[] = {
         {
             {
                 .opt  = NETOPT_IEEE802154_PHY,
-                .data = IEEE802154_PHY_ASK,
+                .data = IEEE802154_PHY_MR_FSK,
                 .data_len = 1
             },
             {
@@ -161,7 +161,7 @@ static const netopt_setting_t settings[] = {
         {
             {
                 .opt  = NETOPT_IEEE802154_PHY,
-                .data = IEEE802154_PHY_OQPSK,
+                .data = IEEE802154_PHY_MR_OQPSK,
                 .data_len = 1
             },
             {
@@ -225,12 +225,17 @@ static const netopt_setting_t settings[] = {
         .opt =
         {
             {
+                .opt  = IEEE802154_PHY_OQPSK,
+                .data = 0,
+                .data_len = 1
+            },
+            {
                 .opt  = NETOPT_MR_OQPSK_RATE,
                 .data = 0,
                 .data_len = 1
             },
         },
-        .opt_num = 1
+        .opt_num = 2
     },
 };
 

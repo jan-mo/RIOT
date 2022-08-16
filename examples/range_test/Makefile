@@ -35,6 +35,10 @@ QUIET ?= 1
 
 # CFLAGS += -DIEEE802154_DEFAULT_PANID=$(DEFAULT_PAN_ID)
 
+# comment out for 2.4 GHz radio usage
+DISABLE_MODULE += at86rf215_24ghz
+CFLAGS += -DCONFIG_AT86RF215_DEFAULT_TXPOWER=3
+
 include $(RIOTBASE)/Makefile.include
 
 # Set a custom channel if needed
