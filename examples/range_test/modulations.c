@@ -277,18 +277,18 @@ void range_test_add_measurement(kernel_pid_t netif, int rssi_local, int rssi_rem
 
 void range_test_print_results(void)
 {
-    printf("modulation;\t    iface;     sent; received; RSSI_local; RSSI_remote;  RTT\n");
+    printf("modulation;iface;sent;received;RSSI_local;RSSI_remote;RTT\n");
     for (unsigned i = 0; i < ARRAY_SIZE(settings); ++i) {
         for (int j = 0; j < GNRC_NETIF_BUS_NUMOF; ++j) {
             xtimer_ticks32_t ticks = results[j][i].rtt_ticks;
 
-            printf("%15s;", settings[i].name);
-            printf("\t%d;", 5 + j);
-            printf("%9d;", results[j][i].pkts_send);
-            printf("%9d;", results[j][i].pkts_rcvd);
-            printf("%9ld;", results[j][i].rssi_sum[0] / results[j][i].pkts_rcvd);
-            printf("%9ld;", results[j][i].rssi_sum[1] / results[j][i].pkts_rcvd);
-            printf("%9ld\n", xtimer_usec_from_ticks(ticks));
+            printf("\"%s\";", settings[i].name);
+            printf("%d;", 5 + j);
+            printf("%d;", results[j][i].pkts_send);
+            printf("%d;", results[j][i].pkts_rcvd);
+            printf("%ld;", results[j][i].rssi_sum[0] / results[j][i].pkts_rcvd);
+            printf("%ld;", results[j][i].rssi_sum[1] / results[j][i].pkts_rcvd);
+            printf("%ld\n", xtimer_usec_from_ticks(ticks));
         }
     }
     memset(results, 0, sizeof(results));

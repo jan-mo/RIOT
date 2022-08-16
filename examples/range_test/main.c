@@ -382,6 +382,9 @@ int main(void)
     gpio_set(GNSS_NENABLE_PIN);
     gpio_set(VCC18_PERIPH_NENABLE_PIN);
     gpio_set(QSPI_NENABLE_PIN);
+    /* disable modules (kaefer_cb) */
+    //gpio_clear(QSPI_ENABLE_PIN);
+    //gpio_clear(GNSS_ENABLE_PIN);
 
     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
     thread_create(test_server_stack, sizeof(test_server_stack),
