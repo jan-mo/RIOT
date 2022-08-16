@@ -23,6 +23,8 @@ USEMODULE += shell_commands
 USEMODULE += ps
 USEMODULE += xtimer
 
+USEMODULE += ztimer_no_periph_rtt
+
 USEMODULE += periph_rtt
 
 # Comment this out to disable code in RIOT that does safety checking

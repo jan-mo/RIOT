@@ -225,8 +225,8 @@ static const netopt_setting_t settings[] = {
         .opt =
         {
             {
-                .opt  = IEEE802154_PHY_OQPSK,
-                .data = 0,
+                .opt  = NETOPT_IEEE802154_PHY,
+                .data = IEEE802154_PHY_OQPSK,
                 .data_len = 1
             },
             {

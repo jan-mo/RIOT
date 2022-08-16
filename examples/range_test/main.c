@@ -33,10 +33,13 @@
 #include "shell.h"
 #include "range_test.h"
 
-#define HELLO_TIMEOUT_US    (50 * US_PER_MS)
-#define HELLO_RETRIES       (100)
+#include "board.h"
+#include "periph/gpio.h"
 
-#define TEST_PERIOD_MS (5 * MS_PER_SEC)
+#define HELLO_TIMEOUT   (50 * 1000)
+#define HELLO_RETRIES   (100)
+
+#define TEST_PERIOD (5 * RTT_FREQUENCY)
 #define TEST_PORT   (2323)
 #define QUEUE_SIZE  (4)
 
@@ -66,7 +69,7 @@ static volatile uint32_t last_alarm;
 
 static void _rtt_alarm(void* ctx)
 {
-    last_alarm += TEST_PERIOD_MS;
+    last_alarm += TEST_PERIOD;
     rtt_set_alarm(last_alarm, _rtt_alarm, ctx);
 
     mutex_unlock(ctx);
@@ -199,7 +202,7 @@ static int _range_test_cmd(int argc, char** argv)
     while (--tries) {
         _send_hello(0, &ipv6_addr_all_nodes_link_local, TEST_PORT);
 
-        if (xtimer_msg_receive_timeout(&m, HELLO_TIMEOUT_US) > 0) {
+        if (xtimer_msg_receive_timeout(&m, HELLO_TIMEOUT) > 0) {
             break;
         }
     }
@@ -223,7 +226,7 @@ static int _range_test_cmd(int argc, char** argv)
                       range_test_sender, &ctx[i], "pinger");
     }
 
-    last_alarm = rtt_get_counter() + TEST_PERIOD_MS;
+    last_alarm = rtt_get_counter() + TEST_PERIOD;
     rtt_set_alarm(last_alarm, _rtt_alarm, &mutex);
 
     range_test_start();
@@ -267,7 +270,7 @@ static void _rtt_next_setting(void* arg)
         .type = CUSTOM_MSG_TYPE_NEXT_SETTING
     };
 
-    last_alarm += TEST_PERIOD_MS;
+    last_alarm += TEST_PERIOD;
     rtt_set_alarm(last_alarm, _rtt_next_setting, arg);
 
     msg_send(&m, ctx->target.pid);
@@ -325,7 +328,7 @@ static void* range_test_server(void *arg)
             _udp_reply(pkt, pkt->data, pkt->size);
 
             range_test_start();
-            last_alarm = rtt_get_counter() + TEST_PERIOD_MS;
+            last_alarm = rtt_get_counter() + TEST_PERIOD;
             rtt_set_alarm(last_alarm, _rtt_next_setting, &ctx);
 
             break;
@@ -375,6 +378,11 @@ static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
 
 int main(void)
 {
+    /* disable 1.8V modules (lbc_at-v12) */
+    gpio_set(GNSS_NENABLE_PIN);
+    gpio_set(VCC18_PERIPH_NENABLE_PIN);
+    gpio_set(QSPI_NENABLE_PIN);
+
     msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
     thread_create(test_server_stack, sizeof(test_server_stack),
                   THREAD_PRIORITY_MAIN - 1, THREAD_CREATE_STACKTEST,
