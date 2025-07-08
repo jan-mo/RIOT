@@ -565,7 +565,7 @@ void print_u64_dec(uint64_t val);
  *
  * @param[in]   val  Value to print
  */
-void print_s64_dec(uint64_t val);
+void print_s64_dec(int64_t val);
 
 /**
  * @brief Print float value

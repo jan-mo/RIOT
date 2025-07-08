@@ -741,7 +741,7 @@ void print_u64_dec(uint64_t val)
     print(buf, len);
 }
 
-void print_s64_dec(uint64_t val)
+void print_s64_dec(int64_t val)
 {
     char buf[20]; /* "-9223372036854775808" */
     size_t len = fmt_s64_dec(buf, val);
