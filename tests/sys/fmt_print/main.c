@@ -41,6 +41,8 @@ int main(void)
     print_str("\n");
     print_u64_dec(0xFFFFFFFFFFFFFFFF);
     print_str("\n");
+    print_s64_dec(0x7FFFFFFFFFFFFFFF);
+    print_str("\n");
     print_s64_dec(0x8000000000000000);
     print_str("\n");
     print_float(1.2345, 5);
